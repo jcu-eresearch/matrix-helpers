@@ -18,3 +18,8 @@ These are the current strategies:
 
 We need the ability to turn on and off the areas of the Design based upon Site
 metadata.  The above problem precludes this one.
+
+## Collate Matrix snippets
+
+There's a huge amount of boilerplate in each Design in order to make it work.
+Let's collate this info here so we can re-use it (and version control it!).
