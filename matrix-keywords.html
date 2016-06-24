@@ -1715,7 +1715,7 @@
           </tbody>
         </table>
 
-        <h1>Global Keywords</h1>
+        <h1>Global Keywords (<a href="https://matrix-manuals.squiz.net/keyword-replacements/chapters/global-keywords">Reference</a>)</h1>
         <div id="content_container_3003">
           <p>Global keyword replacements can be used within various assets in the system to show different information about the current asset the user is viewing, the current site they are viewing or their user account if they are logged in. For example, to show the name of the page the user is currently viewing&nbsp;&nbsp;as&nbsp;&nbsp;a&nbsp;&nbsp;heading&nbsp;&nbsp;in&nbsp;&nbsp;your <em>Design</em>, you can use the global keyword replacement <em>%globals_asset_name%</em>.</p>
           <div class="bookmarks">
@@ -1893,7 +1893,20 @@
           <p>You can also show any metadata values from the user account by using the format:</p><pre>%globals_user_metadata_<fieldname>&lt;fieldname&gt;%</fieldname></pre>
           <p>where &lt;fieldname&gt; is the name of the metadata field you want to show. For example, if you have applied a <em>Metadata Schema</em> to a user account that contains the field Hobbies, you can show the value that has been entered into this field by using the global keyword replacement <em>%globals_user_metadata_Hobbies%</em>. You can place these keyword replacements within the content of an asset. Squiz Matrix&nbsp;&nbsp;will&nbsp;&nbsp;then&nbsp;&nbsp;replace&nbsp;&nbsp;these&nbsp;&nbsp;keyword&nbsp;&nbsp;replacements&nbsp;&nbsp;with&nbsp;&nbsp;the correct information from the user account.</p>
           <div version="5.2.0">
-            <p>The following keyword format can be used to print the user group asset IDs that the current user is a member of:</p><pre>%globals_user_member_groups%</pre></div>
+            <p>The following keyword format can be used to print the user group asset IDs that the current user is a member of:</p>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th>Keyword</th>
+                  <th>Value</th>
+                </tr>
+                <tr>
+                  <td>&#37;globals_user_member_groups&#37;</td>
+                  <td>%globals_user_member_groups%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div version="5.1.0">
             <p>The following keywords can be used to extract internal message data in JSON format from the current user's inbox, sent, and trash message folders:</p><pre>%globals_user_messages_inbox%<br>%globals_user_messages_sent%<br>%globals_user_messages_trash%</pre>
             <p>By default, the max limit on messages returned for these keywords is 100. A&nbsp;keyword parameter&nbsp;can be used to change the result limit, for example: <strong>%globals_user_messages_inbox_10%</strong>. This would return the latest 10 messages from the user's inbox.</p>
