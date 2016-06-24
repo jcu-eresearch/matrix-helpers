@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdn.web.jcu.io/1.0.0-beta.1/css/jcu.min.css" integrity="sha384-yvalFRKl+0g0tWrYJQwXPaf4oRFo9hOu7BssvfScVX9wdvvA+NjYtnAFm3sqP7LF" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container jcu-content">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Squiz Matrix Master Template Documentation</h1>
+          <p class="lead">This document attempts to explain what keywords and
+            global variables do what through a working example</p>
+          <h1>Keywords</h1>
+          <h2>Asset details (reference)</h2>
+          <table class="table">
+            <tr><td>&#37;asset_assetid&#37;</td><td>%asset_assetid%</td></tr>
+            <tr><td>&#37;asset_version&#37;</td><td>%asset_version%</td></tr>
+            <tr><td>&#37;asset_name&#37;</td><td>%asset_name%</td></tr>
+            <tr><td>&#37;asset_short_name&#37;</td><td>%asset_short_name%</td></tr>
+            <tr><td>&#37;asset_created&#37;</td><td>%asset_created%</td></tr>
+            <tr><td>&#37;asset_updated&#37;</td><td>%asset_updated%</td></tr>
+            <tr><td>&#37;asset_published&#37;</td><td>%asset_published%</td></tr>
+            <tr><td>&#37;asset_status&#37;</td><td>%asset_status%</td></tr>
+            <tr><td>&#37;asset_languages&#37;</td><td>%asset_languages%</td></tr>
+            <tr><td>&#37;asset_charset&#37;</td><td>%asset_charset%</td></tr>
+            <tr><td>&#37;asset_created_userid&#37;</td><td>%asset_created_userid%</td></tr>
+            <tr><td>&#37;asset_force_secure&#37;</td><td>%asset_force_secure%</td></tr>
+            <tr><td>&#37;asset_updated_userid&#37;</td><td>%asset_updated_userid%</td></tr>
+            <tr><td>&#37;asset_status_changed_userid&#37;</td><td>%asset_status_changed_userid%</td></tr>
+            <tr><td>&#37;asset_published_userid&#37;</td><td>%asset_published_userid%</td></tr>
+            <tr><td>&#37;asset_status_changed&#37;</td><td>%asset_status_changed%</td></tr>
+            <tr><td>&#37;asset_type_code&#37;</td><td>%asset_type_code%</td></tr>
+          </table>
+          <h1>Parse statements (<a href="https://matrix-manuals.squiz.net/designs/chapters/global-variables">Reference</a>)</h1>
+          <p class="lead">Global variables do more than just print, they can actually <em>manipulate</em> certain headers.</p>
+          <table class="table">
+            <tr><th>Variable</th><th>Value</th></tr>
+            <tr><td>html_header</td><td><MySource_PRINT id_name="__global__" var="html_header" /></td></tr>
+                        <tr><td>css_header</td><td><pre><MySource_PRINT id_name="__global__" var="css_header" /></pre></td></tr>
+            <tr><td>content_attachment</td><td><a href="https://matrix-manuals.squiz.net/designs/chapters/global-variables#content-attachment">Mess with Content-Disposition headers</a></td></tr>
+            <tr><td>content_type</td><td><a href="https://matrix-manuals.squiz.net/designs/chapters/global-variables#content-type">Mess with Content-Type headers</a></td></tr>
+            <tr><td>site_link</td><td><MySource_PRINT id_name="__global__" var="site_link" /></td></tr>
+            <tr><td>site_link, full url</td><td><MySource_PRINT id_name="__global__" var="site_link" full_url="true" /></td></tr>
+            <tr><td>site_name</td><td><MySource_PRINT id_name="__global__" var="site_name" /></td></tr>
+            <tr><td>assetid</td><td><MySource_PRINT id_name="__global__" var="assetid" /></td></tr>
+            <tr><td>asset_name</td><td><MySource_PRINT id_name="__global__" var="asset_name" /></td></tr>
+            <tr><td>asset_short_name</td><td><MySource_PRINT id_name="__global__" var="asset_short_name" /></td></tr>
+            <tr><td>asset_link</td><td><MySource_PRINT id_name="__global__" var="asset_link" /></td></tr>
+            <tr><td>asset_link, full URL</td><td><MySource_PRINT id_name="__global__" var="asset_link" full_url="true" /></td></tr>
+            <tr><td>current_asset</td><td><MySource_PRINT id_name="__global__" var="current_user" /></td></tr>
+            <tr><td>current_asset, keyword/asset_url</td><td><MySource_PRINT id_name="__global__" var="current_asset" keyword="asset_url" /></td></tr>
+            <tr><td>current_asset, keyword/site_name</td><td><MySource_PRINT id_name="__global__" var="current_asset" keyword="globals_site_name" /></td></tr>
+            <tr><td>current_asset, short_name</td><td><MySource_PRINT id_name="__global__" var="current_asset" attr="short_name" /></td></tr>
+            <tr><td>current_asset, id</td><td><MySource_PRINT id_name="__global__" var="current_asset" attr="id" /></td></tr>
+            <tr><td>current_user</td><td><MySource_PRINT id_name="__global__" var="current_user" /></td></tr>
+            <tr><td>current_user, username</td><td><MySource_PRINT id_name="__global__" var="current_user" attr="username" /></td></tr>
+            <tr><td>current_user, first_name</td><td><MySource_PRINT id_name="__global__" var="current_user" attr="first_name" /></td></tr>
+            <tr><td>current_user, last_name</td><td><MySource_PRINT id_name="__global__" var="current_user" attr="last_name" /></td></tr>
+            <tr><td>current_user, default</td><td><MySource_PRINT id_name="__global__" var="current_user" default="Not logged in" /></td></tr>
+            <tr><td>file_path</td><td><MySource_PRINT id_name="__global__" var="file_path" filename="foobar.css" /></td></tr>
+            <tr><td>css_path</td><td><MySource_PRINT id_name="__global__" var="css_path" filename="foobar.css" /></td></tr>
+            <tr><td>asset_thumbnail</td><td><MySource_PRINT id_name="__global__" var="asset_thumbnail" /></td></tr>
+            <tr><td>asset_thumbnail_url</td><td><MySource_PRINT id_name="__global__" var="asset_thumbnail_url" /></td></tr>
+          </table>
+
+          <h1>Common Keywords</h1>
+          <h2>Asset Information</h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>
+                  Keyword Replacement
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Information Shown
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  asset_assetid
+                </td>
+                <td>
+                  %asset_assetid%
+                </td>
+                <td>
+                  The ID of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_name
+                </td>
+                <td>
+                  %asset_name%
+                </td>
+                <td>
+                  Full name of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_short_name
+                </td>
+                <td>
+                  %asset_short_name%
+                </td>
+                <td>
+                  Short name of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_name_linked
+                </td>
+                <td>
+                  %asset_name_linked%
+                </td>
+                <td>
+                  The name of the asset, linked to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_short_name_linked
+                </td>
+                <td>
+                  %asset_short_name_linked%
+                </td>
+                <td>
+                  The short name of the asset, linked to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_type
+                </td>
+                <td>
+                  %asset_type%
+                </td>
+                <td>
+                  Asset type.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_type_icon
+                </td>
+                <td>
+                  %asset_type_icon%
+                </td>
+                <td>
+                  icon of the asset being displayed.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_type_icon_url
+                </td>
+                <td>
+                  %asset_type_icon_url%
+                </td>
+                <td>
+                  icon of the asset being displayed.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_version
+                </td>
+                <td>
+                  %asset_version%
+                </td>
+                <td>
+                  Version of the asset being displayed.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_version_major
+                </td>
+                <td>
+                  %asset_version_major%
+                </td>
+                <td>
+                  Major version number of the asset being displayed.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_version_minor
+                </td>
+                <td>
+                  %asset_version_minor%
+                </td>
+                <td>
+                  Minor version number of the asset being displayed.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_version_micro
+                </td>
+                <td>
+                  %asset_version_micro%
+                </td>
+                <td>
+                  Micro version number of the asset being displayed.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_url
+                </td>
+                <td>
+                  %asset_url%
+                </td>
+                <td>
+                  URL of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_url_&lt;context&gt;
+                </td>
+                <td>
+                  %asset_url_&lt;context&gt;%
+                </td>
+                <td>
+                  .
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_urls
+                </td>
+                <td>
+                  %asset_urls%
+                </td>
+                <td>
+                  All URLs available on the asset, printed as an array.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_web_path
+                </td>
+                <td>
+                  %asset_web_path%
+                </td>
+                <td>
+                  The shortest web path assigned to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_href
+                </td>
+                <td>
+                  %asset_href%
+                </td>
+                <td>
+                  Relative href of the asset from the requested URL.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_sibling_prev
+                </td>
+                <td>
+                  %asset_sibling_prev%
+                </td>
+                <td>
+                  .
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_sibling_next
+                </td>
+                <td>
+                  %asset_sibling_next%
+                </td>
+                <td>
+                  .
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_sibling_prev_type_1
+                </td>
+                <td>
+                  %asset_sibling_prev_type_1%
+                </td>
+                <td>
+                  .
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_sibling_next_type_1
+                </td>
+                <td>
+                  %asset_sibling_next_type_1%
+                </td>
+                <td>
+                  .
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_sibling_prev_type_2
+                </td>
+                <td>
+                  %asset_sibling_prev_type_2%
+                </td>
+                <td>
+                  .
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_sibling_next_type_2
+                </td>
+                <td>
+                  %asset_sibling_next_type_2%
+                </td>
+                <td>
+                  .
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_parent
+                </td>
+                <td>
+                  %asset_parent%
+                </td>
+                <td>
+                  Returns the current parent asset ID based on the current asset in it lineage context.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_parents
+                </td>
+                <td>
+                  %asset_parents%
+                </td>
+                <td>
+                  Returns an array of asset IDs for all direct parents of the asset
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_linking_info
+                </td>
+                <td>
+                  %asset_linking_info%
+                </td>
+                <td>
+                  screen of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_linking_lineage
+                </td>
+                <td>
+                  %asset_linking_lineage%
+                </td>
+                <td>
+                  Returns the current asset lineage based on the current asset in its lineage context.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  globals_asset_charset
+                </td>
+                <td>
+                  %globals_asset_charset%
+                </td>
+                <td>
+                  The character set for the asset,
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  globals_asset_languages
+                </td>
+                <td>
+                  %globals_asset_languages%
+                </td>
+                <td>
+                  screen of an asset.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Creation Details</h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>
+                  Keyword Replacement
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Information Shown
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  asset_created
+                </td>
+                <td>
+                  %asset_created%
+                </td>
+                <td>
+                  The date and time that the asset was created. The format that will be used is YYYY-MM-DD HH:MM:SS.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_short
+                </td>
+                <td>
+                  %asset_created_short%
+                </td>
+                <td>
+                  The date that the asset was created. The format that will be used is YYYY-MM-DD.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_readable
+                </td>
+                <td>
+                  %asset_created_readable%
+                </td>
+                <td>
+                  The date and time that the asset was created. The format that will be used is DD M YYYY H:MM[AM/PM].
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_readabledate
+                </td>
+                <td>
+                  %asset_created_readabledate%
+                </td>
+                <td>
+                  The date that the asset was created. The format that will be used is DD-MM-YYYY.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_readabletime
+                </td>
+                <td>
+                  %asset_created_readabletime%
+                </td>
+                <td>
+                  The time that the asset was created. The format that will be used is H:MM[AM/PM].
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_relative
+                </td>
+                <td>
+                  %asset_created_relative%
+                </td>
+                <td>
+                  .
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_relative-dow
+                </td>
+                <td>
+                  %asset_created_relative-dow%
+                </td>
+                <td>
+                  .
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_iso8601
+                </td>
+                <td>
+                  %asset_created_iso8601%
+                </td>
+                <td>
+                  The date and time that the asset was created. The format that will be used is ISO8601.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_rfc2822
+                </td>
+                <td>
+                  %asset_created_rfc2822%
+                </td>
+                <td>
+                  The date and time that the asset was created. The format that will be used is RFC2822.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_ical
+                </td>
+                <td>
+                  %asset_created_ical%
+                </td>
+                <td>
+                  The date and time that the asset was created. The format that will be used is iCalendar.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_by_name
+                </td>
+                <td>
+                  %asset_created_by_name%
+                </td>
+                <td>
+                  Full name of the user that created the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_by_first_name
+                </td>
+                <td>
+                  %asset_created_by_first_name%
+                </td>
+                <td>
+                  First name of the user that created the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_by_last_name
+                </td>
+                <td>
+                  %asset_created_by_last_name%
+                </td>
+                <td>
+                  Surname of the user that created the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_by_email
+                </td>
+                <td>
+                  %asset_created_by_email%
+                </td>
+                <td>
+                  Email of the user that created the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_by_assetid
+                </td>
+                <td>
+                  %asset_created_by_assetid%
+                </td>
+                <td>
+                  The asset ID of the user that created the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_by_url
+                </td>
+                <td>
+                  %asset_created_by_url%
+                </td>
+                <td>
+                  The URL of the user that created the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_by_thumbnail
+                </td>
+                <td>
+                  %asset_created_by_thumbnail%
+                </td>
+                <td>
+                  keywords, outlined below.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_created_X
+                </td>
+                <td>
+                  %asset_created_X%
+                </td>
+                <td>
+                  for a full list of the date characters available.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Last Updated Details</h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>
+                  Keyword Replacement
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Information Shown
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated
+                </td>
+                <td>
+                  %asset_updated%
+                </td>
+                <td>
+                  The date and time that the asset was last updated. The format that will be used is YYYY-MM-DD HH:MM:SS.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_short
+                </td>
+                <td>
+                  %asset_updated_short%
+                </td>
+                <td>
+                  The date that the asset was last updated. The format that will be used is YYYY-MM-DD.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_readable
+                </td>
+                <td>
+                  %asset_updated_readable%
+                </td>
+                <td>
+                  The date and time that the asset was last updated. The format that will be used is DD M YYYY H:MM[AM\PM].
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_readabledate
+                </td>
+                <td>
+                  %asset_updated_readabledate%
+                </td>
+                <td>
+                  The date that the asset was last updated. The format that will be used is DD-MM-YYYY.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_readabletime
+                </td>
+                <td>
+                  %asset_updated_readabletime%
+                </td>
+                <td>
+                  The time that the asset was last updated. The format that will be used is H:MM[AM/PM].
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_relative
+                </td>
+                <td>
+                  %asset_updated_relative%
+                </td>
+                <td>
+                  When the asset was last updated, relative to the current date.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_relative-dow
+                </td>
+                <td>
+                  %asset_updated_relative-dow%
+                </td>
+                <td>
+                  When the asset was last updated, relative to the day of the week.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_iso8601
+                </td>
+                <td>
+                  %asset_updated_iso8601%
+                </td>
+                <td>
+                  The date and time that the asset was last updated. The format that will be used is ISO8601.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_rfc2822
+                </td>
+                <td>
+                  %asset_updated_rfc2822%
+                </td>
+                <td>
+                  The date and time that the asset was last updated. The format that will be used is RFC2822.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_ical
+                </td>
+                <td>
+                  %asset_updated_ical%
+                </td>
+                <td>
+                  The date and time that the asset was last updated. The format that will be used is iCalendar.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_by_name
+                </td>
+                <td>
+                  %asset_updated_by_name%
+                </td>
+                <td>
+                  Full name of the user that last updated the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_by_first_name
+                </td>
+                <td>
+                  %asset_updated_by_first_name%
+                </td>
+                <td>
+                  First name of the user that last updated this asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_by_last_name
+                </td>
+                <td>
+                  %asset_updated_by_last_name%
+                </td>
+                <td>
+                  Surname of the user that last updated this asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_by_email
+                </td>
+                <td>
+                  %asset_updated_by_email%
+                </td>
+                <td>
+                  Email of the user that last updated this asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_by_assetid
+                </td>
+                <td>
+                  %asset_updated_by_assetid%
+                </td>
+                <td>
+                  The asset ID of the user that last updated this asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_by_url
+                </td>
+                <td>
+                  %asset_updated_by_url%
+                </td>
+                <td>
+                  The URL of the user that created the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_by_thumbnail
+                </td>
+                <td>
+                  %asset_updated_by_thumbnail%
+                </td>
+                <td>
+                  keywords, outlined below.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_updated_X
+                </td>
+                <td>
+                  %asset_updated_X%
+                </td>
+                <td>
+                  for a full list of the date characters available.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Last Published Details</h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>
+                  Keyword Replacement
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Information Shown
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  asset_published
+                </td>
+                <td>
+                  %asset_published%
+                </td>
+                <td>
+                  The date and time that the asset was last published. The format that will be used is YYYY-MM-DD HH:MM:SS.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_short
+                </td>
+                <td>
+                  %asset_published_short%
+                </td>
+                <td>
+                  The date that the asset was last published. The format that will be used is YYYY-MM-DD.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_readable
+                </td>
+                <td>
+                  %asset_published_readable%
+                </td>
+                <td>
+                  The date and time that the asset was last published. The format that will be used is DD M YYYY H:MM[AM/PM].
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_readabledate
+                </td>
+                <td>
+                  %asset_published_readabledate%
+                </td>
+                <td>
+                  The date that the asset was last published. The format that will be used is DD-MM-YYYY.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_readabletime
+                </td>
+                <td>
+                  %asset_published_readabletime%
+                </td>
+                <td>
+                  The time that the asset was last published. The format that will be used is H:MM[AM\PM].
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_relative
+                </td>
+                <td>
+                  %asset_published_relative%
+                </td>
+                <td>
+                  When the asset was last published, relative to the current date.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_relative-dow
+                </td>
+                <td>
+                  %asset_published_relative-dow%
+                </td>
+                <td>
+                  When the asset was last published, relative to the day of the week.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_iso8601
+                </td>
+                <td>
+                  %asset_published_iso8601%
+                </td>
+                <td>
+                  The date and time that the asset was last published. The format that will be used is ISO8601.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_rfc2822
+                </td>
+                <td>
+                  %asset_published_rfc2822%
+                </td>
+                <td>
+                  The date and time that the asset was last published. The format that will be used is RFC2822.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_ical
+                </td>
+                <td>
+                  %asset_published_ical%
+                </td>
+                <td>
+                  The date and time that the asset was last published. The format that will be used is iCalendar.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_by_name
+                </td>
+                <td>
+                  %asset_published_by_name%
+                </td>
+                <td>
+                  Full name of the user that last published the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_by_first_name
+                </td>
+                <td>
+                  %asset_published_by_first_name%
+                </td>
+                <td>
+                  First name of the user that last published this asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_by_last_name
+                </td>
+                <td>
+                  %asset_published_by_last_name%
+                </td>
+                <td>
+                  Surname of the user that last published this asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_by_email
+                </td>
+                <td>
+                  %asset_published_by_email%
+                </td>
+                <td>
+                  Email of the user that last published this asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_by_assetid
+                </td>
+                <td>
+                  %asset_published_by_assetid%
+                </td>
+                <td>
+                  The asset ID of the user that last published this asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_by_url
+                </td>
+                <td>
+                  %asset_published_by_url%
+                </td>
+                <td>
+                  The URL of the user that last published this asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_by_thumbnail
+                </td>
+                <td>
+                  %asset_published_by_thumbnail%
+                </td>
+                <td>
+                  keywords, outlined below.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_published_X
+                </td>
+                <td>
+                  %asset_published_X%
+                </td>
+                <td>
+                  for a full list of the date characters available.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Last Status Change Details</h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>
+                  Keyword Replacement
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Information Shown
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed
+                </td>
+                <td>
+                  %asset_status_changed%
+                </td>
+                <td>
+                  of the asset was last changed. The format that will be used is YYYY-MM-DD HH:MM:SS.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_short
+                </td>
+                <td>
+                  %asset_status_changed_short%
+                </td>
+                <td>
+                  of the asset was last changed. The format that will be used is YYYY-MM-DD.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_readable
+                </td>
+                <td>
+                  %asset_status_changed_readable%
+                </td>
+                <td>
+                  of the asset was last changed. The format that will be used is DD M YYYY H:MM[AM/PM].
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_readabledate
+                </td>
+                <td>
+                  %asset_status_changed_readabledate%
+                </td>
+                <td>
+                  of the asset was last changed. The format that will be used is DD-MM-YYYY.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_readabletime
+                </td>
+                <td>
+                  %asset_status_changed_readabletime%
+                </td>
+                <td>
+                  of the asset was last changed. The format that will be used is H:MM[AM/PM].
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_relative
+                </td>
+                <td>
+                  %asset_status_changed_relative%
+                </td>
+                <td>
+                  of the asset was last changed, relative to the current date and time.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_relative-dow
+                </td>
+                <td>
+                  %asset_status_changed_relative-dow%
+                </td>
+                <td>
+                  of the asset was last changed, relative to the day of the week.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_iso8601
+                </td>
+                <td>
+                  %asset_status_changed_iso8601%
+                </td>
+                <td>
+                  of the asset was last changed. The format that will be used is ISO8601.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_rfc2822
+                </td>
+                <td>
+                  %asset_status_changed_rfc2822%
+                </td>
+                <td>
+                  of the asset was last changed. The format that will be used is RFC2822.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_ical
+                </td>
+                <td>
+                  %asset_status_changed_ical%
+                </td>
+                <td>
+                  of the asset was last changed. The format that will be used is iCalendar.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_by_name
+                </td>
+                <td>
+                  %asset_status_changed_by_name%
+                </td>
+                <td>
+                  of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_by_first_name
+                </td>
+                <td>
+                  %asset_status_changed_by_first_name%
+                </td>
+                <td>
+                  of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_by_last_name
+                </td>
+                <td>
+                  %asset_status_changed_by_last_name%
+                </td>
+                <td>
+                  of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_by_email
+                </td>
+                <td>
+                  %asset_status_changed_by_email%
+                </td>
+                <td>
+                  of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_by_assetid
+                </td>
+                <td>
+                  %asset_status_changed_by_assetid%
+                </td>
+                <td>
+                  of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_changed_by_url
+                </td>
+                <td>
+                  %asset_status_changed_by_url%
+                </td>
+                <td>
+                  of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_change_by_thumbnail
+                </td>
+                <td>
+                  %asset_status_change_by_thumbnail
+                </td>
+                <td>
+                  keywords, outlined below.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_colour
+                </td>
+                <td>
+                  %asset_status_colour%
+                </td>
+                <td>
+                  of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_description
+                </td>
+                <td>
+                  %asset_status_description%
+                </td>
+                <td>
+                  of the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_status_code
+                </td>
+                <td>
+                  %asset_status_code%
+                </td>
+                <td>
+                  .
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Permissions</h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>
+                  Keyword Replacement
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Information Shown
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  asset_read_permission
+                </td>
+                <td>
+                  [omitted for performance]
+                </td>
+                <td>
+                  A comma-separated list of the full names for the users who have read access to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_write_permission
+                </td>
+                <td>
+                  %asset_write_permission%
+                </td>
+                <td>
+                  A comma-separated list of the full names for the users who have write access to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_admin_permission
+                </td>
+                <td>
+                  %asset_admin_permission%
+                </td>
+                <td>
+                  A comma-separated list of the full names of the users who have admin access to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_read_permission_assetid
+                </td>
+                <td>
+                  [omitted for performance]
+                </td>
+                <td>
+                  A comma-separated list of the asset IDs of users who have read access to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_write_permission_assetid
+                </td>
+                <td>
+                  %asset_write_permission_assetid%
+                </td>
+                <td>
+                  A comma-separated list of the asset IDs of users who have write access to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_admin_permission_assetid
+                </td>
+                <td>
+                  %asset_admin_permission_assetid%
+                </td>
+                <td>
+                  A comma-separated list of the asset IDs of users who have admin access to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_read_permission_email
+                </td>
+                <td>
+                  [omitted for performance]
+                </td>
+                <td>
+                  A comma-separated list of email addresses for the users who have read access to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_write_permission_email
+                </td>
+                <td>
+                  [omitted for performance]
+                </td>
+                <td>
+                  A comma-separated list of email addresses for the users who have write access to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_admin_permission_email
+                </td>
+                <td>
+                  [omitted for performance]
+                </td>
+                <td>
+                  A comma-separated list of email addresses for the users who have admin access to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_read_permission_email_linked
+                </td>
+                <td>
+                  [omitted for performance]
+                </td>
+                <td>
+                  A comma-separated list of linked email addresses for the users who have read access to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_write_permission_email_linked
+                </td>
+                <td>
+                  %asset_write_permission_email_linked%
+                </td>
+                <td>
+                  A comma-separated list of linked email addresses for the users who have write access to the asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_admin_permission_email_linked
+                </td>
+                <td>
+                  %asset_admin_permission_email_linked%
+                </td>
+                <td>
+                  A comma-separated list of linked email addresses for the users who have admin access to the asset.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Roles</h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>
+                  Keyword Replacement
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Information Shown
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  asset_role_X
+                </td>
+                <td>
+                  %asset_role_X%
+                </td>
+                <td>
+                  A comma-separated list of  full names for the users/groups
+                  who can perform a Role, where X is the asset ID of the Role.  
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_role_X_email
+                </td>
+                <td>
+                  %asset_role_X_email%
+                </td>
+                <td>
+                  A comma-separated list of email addresses for the
+                  users/groups who can perform a Role, where X is the asset ID
+                  of the Role.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_role_X_email_linked
+                </td>
+                <td>
+                  %asset_role_X_email_linked%
+                </td>
+                <td>
+                  A comma-separated list of linked email addresses for the
+                  users/groups who can perform a Role, where X is the asset ID
+                  of the Role.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Thumbnail</h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>
+                  Keyword Replacement
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Information Shown
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  asset_thumbnail
+                </td>
+                <td>
+                  %asset_thumbnail%
+                </td>
+                <td>
+                  The thumbnail of an asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_thumbnail_title
+                </td>
+                <td>
+                  %asset_thumbnail_title%
+                </td>
+                <td>
+                  The title (friendly name) of the thumbnail of an asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_thumbnail_name
+                </td>
+                <td>
+                  %asset_thumbnail_name%
+                </td>
+                <td>
+                  The file name of the thumbnail of an asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_thumbnail_assetid
+                </td>
+                <td>
+                  %asset_thumbnail_assetid%
+                </td>
+                <td>
+                  The asset ID of the thumbnail of an asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_thumbnail_url
+                </td>
+                <td>
+                  %asset_thumbnail_url%
+                </td>
+                <td>
+                  The URL of the thumbnail of an asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_thumbnail_caption
+                </td>
+                <td>
+                  %asset_thumbnail_caption%
+                </td>
+                <td>
+                  The caption of the thumbnail of an asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_thumbnail_alt
+                </td>
+                <td>
+                  %asset_thumbnail_alt%
+                </td>
+                <td>
+                  The alt text of the thumbnail of an asset.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  asset_thumbnail_v_&lt;variety_name&gt;_X
+                </td>
+                <td>
+                  %asset_thumbnail_v_&lt;variety_name&gt;_X%
+                </td>
+                <td>
+                  variety.
+                  Keyword Replacements.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Paint Layout</h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>
+                  Keyword Replacement
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Information Shown
+                </th>
+              </tr>
+              <tr>
+                <td>
+                  asset_role_X
+                </td>
+                <td>
+                   %asset_paint_layout_id%
+                </td>
+                <td>
+                   The asset ID of the Paint Layout applicable for the asset on
+                   the current URL, whether asset-based, URL-based or
+                   user-defined.
+
+                   This keyword can be used in conjunction with the as_asset
+                   keyword modifier to expose the properties and attributes of
+                   a Paint Layout within an asset's content. For more
+                   information, refer to the Keyword Modifiers documentation.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h1>Global Keywords</h1>
+
+
+        </div><!-- ./col-xs-12 -->
+      </div><!-- ./row -->
+    </div><!-- ./container -->
+  </body>
+</html>
