@@ -13,164 +13,162 @@
         <p class="lead">This document attempts to explain what keywords and global variables do what through a working example</p>
         <h1>Parse statements (<a href="https://matrix-manuals.squiz.net/designs/chapters/global-variables">Reference</a>)</h1>
         <p class="lead">Global variables do more than just print, they can actually <em>manipulate</em> certain headers.</p>
-        <table class="table">
-          <tr>
-            <th>Variable</th>
-            <th>Value</th>
-          </tr>
-          <tr>
-            <td>html_header</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="html_header" />
-            </td>
-          </tr>
-          <tr>
-            <td>css_header</td>
-            <td><pre><MySource_PRINT id_name="__global__" var="css_header" /></pre></td>
-          </tr>
-          <tr>
-            <td>content_attachment</td>
-            <td><a href="https://matrix-manuals.squiz.net/designs/chapters/global-variables#content-attachment">Mess with Content-Disposition headers</a></td>
-          </tr>
-          <tr>
-            <td>content_type</td>
-            <td><a href="https://matrix-manuals.squiz.net/designs/chapters/global-variables#content-type">Mess with Content-Type headers</a></td>
-          </tr>
-          <tr>
-            <td>site_link</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="site_link" />
-            </td>
-          </tr>
-          <tr>
-            <td>site_link, full url</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="site_link" full_url="true" />
-            </td>
-          </tr>
-          <tr>
-            <td>site_name</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="site_name" />
-            </td>
-          </tr>
-          <tr>
-            <td>assetid</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="assetid" />
-            </td>
-          </tr>
-          <tr>
-            <td>asset_name</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="asset_name" />
-            </td>
-          </tr>
-          <tr>
-            <td>asset_short_name</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="asset_short_name" />
-            </td>
-          </tr>
-          <tr>
-            <td>asset_link</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="asset_link" />
-            </td>
-          </tr>
-          <tr>
-            <td>asset_link, full URL</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />
-            </td>
-          </tr>
-          <tr>
-            <td>current_asset</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="current_user" />
-            </td>
-          </tr>
-          <tr>
-            <td>current_asset, keyword/asset_url</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="current_asset" keyword="asset_url" />
-            </td>
-          </tr>
-          <tr>
-            <td>current_asset, keyword/site_name</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="current_asset" keyword="globals_site_name" />
-            </td>
-          </tr>
-          <tr>
-            <td>current_asset, short_name</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="current_asset" attr="short_name" />
-            </td>
-          </tr>
-          <tr>
-            <td>current_asset, id</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="current_asset" attr="id" />
-            </td>
-          </tr>
-          <tr>
-            <td>current_user</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="current_user" />
-            </td>
-          </tr>
-          <tr>
-            <td>current_user, username</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="current_user" attr="username" />
-            </td>
-          </tr>
-          <tr>
-            <td>current_user, first_name</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="current_user" attr="first_name" />
-            </td>
-          </tr>
-          <tr>
-            <td>current_user, last_name</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="current_user" attr="last_name" />
-            </td>
-          </tr>
-          <tr>
-            <td>current_user, default</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="current_user" default="Not logged in" />
-            </td>
-          </tr>
-          <tr>
-            <td>file_path</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="file_path" filename="foobar.css" />
-            </td>
-          </tr>
-          <tr>
-            <td>css_path</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="css_path" filename="foobar.css" />
-            </td>
-          </tr>
-          <tr>
-            <td>asset_thumbnail</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="asset_thumbnail" />
-            </td>
-          </tr>
-          <tr>
-            <td>asset_thumbnail_url</td>
-            <td>
-              <MySource_PRINT id_name="__global__" var="asset_thumbnail_url" />
-            </td>
-          </tr>
-        </table>
+        <div class="table-responsive m-b-2">
+          <table class="table">
+            <tr>
+              <th>Parse code</th>
+              <th>Value</th>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="html_header" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="html_header" /> </td>
+            </tr>
+            <tr>
+              <td><pre><code>&lt;MySource_PRINT id_name="__global__" var="css_header" /&gt;</code></pre></td>
+              <td><pre><MySource_PRINT id_name="__global__" var="css_header" /></pre></td>
+            </tr>
+            <tr>
+              <td>Read docs about content_attachment</td>
+              <td><a href="https://matrix-manuals.squiz.net/designs/chapters/global-variables#content-attachment">Mess with Content-Disposition headers</a></td>
+            </tr>
+            <tr>
+              <td>Read docs about content_type</td>
+              <td><a href="https://matrix-manuals.squiz.net/designs/chapters/global-variables#content-type">Mess with Content-Type headers</a></td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="site_link" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="site_link" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="site_link" full_url="true" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="site_link" full_url="true" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="site_name" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="site_name" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="assetid" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="assetid" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="asset_name" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="asset_name" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="asset_short_name" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="asset_short_name" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="asset_link" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="asset_link" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="asset_link" full_url="true" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="asset_link" full_url="true" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="current_user" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="current_user" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="current_asset" keyword="asset_url" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="current_asset" keyword="asset_url" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="current_asset" keyword="globals_site_name" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="current_asset" keyword="globals_site_name" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="current_asset" attr="short_name" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="current_asset" attr="short_name" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="current_asset" attr="id" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="current_asset" attr="id" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="current_user" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="current_user" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="current_user" attr="username" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="current_user" attr="username" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="current_user" attr="first_name" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="current_user" attr="first_name" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="current_user" attr="last_name" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="current_user" attr="last_name" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="current_user" default="Not logged in" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="current_user" default="Not logged in" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="file_path" filename="foobar.css" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="file_path" filename="foobar.css" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="css_path" filename="foobar.css" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="css_path" filename="foobar.css" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="asset_thumbnail" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="asset_thumbnail" /> </td>
+            </tr>
+            <tr>
+              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="asset_thumbnail_url" /&gt;</code></pre> </td>
+            <td> <MySource_PRINT id_name="__global__" var="asset_thumbnail_url" /> </td>
+            </tr>
+          </table>
+        </div>
+
+        <h1 id="conditional-keywords">Conditional Keywords</h1>
+        <p class="alert alert-danger">Conditional keywords will <em>not</em> function in Parse files</p>
+        <p class="lead">Conditional keywords are finnicky and liable to failure
+          because they are sensitive to both indendation (!) and if the
+          conditional attribute you specific <em>doesn't exist</em>, the
+          condition is deemed true and the HTML will be output to the page.  In
+          short, this means that if the keyword is <strong>truthy</strong> or
+          <strong>doesn't exist</strong> the condition will succeed. Yikes.
+        </p>
+
+        <h2>Test harness</h2>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-6">
+              <p>This code should render a button and not a failure message
+              </p>
+              <pre>
+              <code>
+&#37;begin_asset_name&#37;
+  &lt;a class="btn btn-lg btn-primary" href="&#37;asset_url&#37;"&gt;
+    &#37;asset_name&#37;
+  &lt;/a&gt;
+&#37;else_asset&#37;
+  Sorry, this is false.
+&#37;end_asset&#37;
+              </code>
+              </pre>
+            </div>
+            <div class="col-xs-6">
+%begin_asset_name%
+  <a class="btn btn-lg btn-primary" href="%asset_url%">
+    %asset_name%
+  </a>
+%else_asset%
+  Sorry, this is false.
+%end_asset%
+            </div>
+          </div>
+        </div>
 
         <h1>Common Keywords</h1>
+        <p class="lead">See <a href="https://matrix-manuals.squiz.net/keyword-replacements/chapters/keyword-modifiers">Keyword Modifiers</a> for the documentation on how to use modifiers to change the output.
+        </p>
         <h2>Asset Information</h2>
         <table class="table">
           <tbody>
@@ -1746,20 +1744,52 @@
             <tbody>
               <tr>
                 <th id="table30175r1c1"> Keyword Replacement </th>
+                <th>Value</th>
                 <th id="table30175r1c2"> Information Shown </th>
               </tr>
               <tr>
-                <td headers="table30175r1c1">
-                  %globals_site_&lt;attribute&gt;%
+                <td> %globals_site_&lt;attribute&gt;% </td>
+                <td></td>
+                <td>
+                  <p>The system does a replacement of "globals_site_" with "asset_" so that "globals_site_assetid" is the same as calling "asset_assetid"
+                  </p>
+
+                  <p>
+                    Any attribute of the current Site asset. For example, %globals_site_name% shows the name of the Site the user is currently viewing. This global keyword replacement could then be used in a Design to show the name of the Site. If the name of the Site then changes, the Design will not need to be updated, as the global keyword replacement will source the information directly from the Site.
+                  </p>
                 </td>
-                <td headers="table30175r1c2">
-                  Any attribute of the current Site asset. For example, %globals_site_name% shows the name of the Site the user is currently viewing. This global keyword replacement could then be used in a Design to show the name of the Site. If the name of the Site then changes, the Design will not need to be updated, as the global keyword replacement will source the information directly from the Site.
-                </td>
+              </tr>
+              <tr>
+                <td>&#37;globals_site_name&#37;</td>
+                <td>%globals_site_name%</td>
+                <td>Name of the current Site asset</td>
+              </tr>
+              <tr>
+                <td>&#37;globals_site_url&#37;</td>
+                <td>%globals_site_url%</td>
+                <td>Site URL</td>
+              </tr>
+              <tr>
+                <td>&#37;globals_site_index_id&#37;</td>
+                <td>%globals_site_index_id%</td>
+                <td><p>An asset ID of a <em>Site</em> can be appended to these global keyword replacements to specify the <em>Site</em> to return the asset ID values from. For example, the global keyword replacement:</p><pre>%globals_site_index_id:100%</pre>
+                   <p>Will return the asset ID of the <em>Index </em>page of the <em>Site</em> with the asset ID of 100.</p>
+               </td>
+              </tr>
+              <tr>
+                <td>&#37;globals_site_not_found_id&#37;</td>
+                <td>%globals_site_not_found_id%</td>
+                <td>Site special page ID</td>
+              </tr>
+              <tr>
+                <td>&#37;globals_site_archive_id&#37;</td>
+                <td>%globals_site_archive_id%</td>
+                <td>Site special page ID</td>
               </tr>
             </tbody>
           </table>
           <h2 id="Asset">Asset</h2>
-          <table style="width: 100%;" id="table43555" border="1">
+          <table class="table">
             <tbody>
               <tr>
                 <th id="table43555r1c1"> Keyword Replacement </th>
@@ -1915,61 +1945,71 @@
             <p>The following keyword can be used to print any <a href="https://matrix-manuals.squiz.net/sugarcrm">SugarCRM</a> Record ID applied to the current user:</p><pre>%globals_user_sugar_<module_name>&lt;module_name&gt;_id% </module_name></pre>
             <p>Where &lt;module_name&gt; is the name of the Module that the Record ID is stored against. For example, %globals_user_sugar_Contacts_id%.</p>
           </div>
+
           <h2 id="Server-Variable">Server Variable</h2>
           <p>The format of the global keyword replacement for the web server is:</p><pre>%globals_server_&lt;variable&gt;%</pre>
-          <p>where &lt;variable&gt; is the PHP session variable that you want to return server information from (ref: <a target="_blank" href="http://php.net/manual/en/reserved.variables.server.php">PHP $_SERVER Manual</a>). For example, the global keyword replacement <em>%globals_server_http_user_agent%</em> will return the header of the current request (e.g. Mozilla/4.5 [en] (X11; U;Linux 2.2.9 i586 ) ).</p>
+          <p>where &lt;variable&gt; is the PHP session variable that you want to return server information from (ref: <a target="_blank" href="http://php.net/manual/en/reserved.variables.server.php">PHP $_SERVER Manual</a>). For example, the global keyword replacement <em>&#37;globals_server_http_user_agent&#37;</em> will return the header of the current request (e.g. <pre>%globals_server_http_user_agent%</pre>).</p>
           <p>Please note that the server information available will vary depending on the setup of your web server.</p>
+          <p>For instance, your SQ_SYSTEM_SESSION cookie is: %globals_server_sq_system_session%  (secure, right?)</p>
+
           <h2 id="Session-Variable">Session Variable</h2>
           <p>The format of the global keyword replacement for a session is:</p><pre>%globals_session_&lt;variable&gt;%</pre>
           <p>where &lt;variable&gt; is the name of the item you want to access in the Squiz Matrix session sandbox. This global keyword replacement can be used in conjunction with <em>Triggers</em>. For example, in a <em>Trigger</em>, you can set a session variable and then access it via this global keyword replacement. For more information about <em>Triggers</em>, refer to the <a href="https://matrix-manuals.squiz.net/triggers">Triggers</a> manual.</p>
+
           <h2 id="HTTP-Get-Variable">HTTP GET Variable</h2>
           <p>The format of the global keyword replacement&nbsp;for a HTTP GET variable is:</p><pre>%globals_get_&lt;variable&gt;%</pre>
           <p>where &lt;variable&gt; is the name of the variable that you want to access. Only scalar variables can be used as global keyword replacements. Arrays are not supported.</p>
+
           <h2 id="HTTP-Post-Variable">HTTP POST Variable</h2>
           <p>The format of the global keyword replacement for a HTTP POST variable is:</p><pre>%globals_post_&lt;variable&gt;%</pre>
           <p>where &lt;variable&gt; is the name of the variable that you want to access. Arrays are not supported.</p>
+
           <h2 id="Current-Date-and-Time">Current Date and Time</h2>
           <p>The global keyword replacement:</p><pre>%globals_date%</pre>
           <p>will display the current server date and time, for example, 6<sup>th</sup> Feb 2009 5:00pm. This global keyword replacement&nbsp;can be suffixed with a PHP date format (ref: <a href="http://au.php.net/manual/en/function.date.php">PHP: Date Manual</a>) for greater control of the date and time that is displayed. For example, if you use the global keyword replacements <em>%globals_date_M%%globals_date_Y%</em>,&nbsp;&nbsp;it&nbsp;&nbsp;will&nbsp;&nbsp;show&nbsp;&nbsp;Feb&nbsp;&nbsp;2009.</p>
           <p>To print a date relative to the current date and time, the following keyword replacement can be used:</p><pre>  %globals_date_relative_&lt;relative_date&gt;%</pre>
           <p>where &lt;relative_date&gt; is the relative date value to return, for example, <strong>next monday</strong> or <strong>this friday</strong>.</p>
           <p>Like the <em>%globals_date%</em> keyword replacement, you can append a PHP date suffix to the end of these keywords to specify the date format to display, for example, <em>%globals_date_relative_this_friday_d-m-Y%</em>.</p>
+
           <h2 id="Current-Context">Current Context</h2>
           <p>The global keyword replacement:</p><pre>%globals_context%&nbsp;</pre>
           <p>will display the current context the user is viewing. For more information on contexts, refer to the <a href="https://matrix-manuals.squiz.net/contexts">Contexts</a> manual.</p>
+
           <h2 id="Current-Protocol">Current Protocol</h2>
           <div version="4.18.2">The global keyword replacement:<pre>%globals_protocol%</pre>
             <p>will display the communications protocol of the current URL, either <strong>http </strong>or <strong>https</strong>.</p>
           </div>
+
           <h2 id="Random-Number-Generation">Random Number Generation</h2>
           <p>The global keyword replacement:</p><pre>%globals_random%&nbsp;</pre>
           <p>will generate a random number. This global keyword replacement can be configured to generate a number within a set range of integers by using the format <em>%globals_random_&lt;MIN&gt;_&lt;MAX&gt;%</em>. For example, the global keyword replacement %globals_random_1_6%, where 1 is the minimum number and 6 is the maximum, will generate a number within that 1 to 6 range.</p>
+
           <h2 id="Cookie-Values">Cookie Values</h2>
           <p>The format of the global keyword replacement&nbsp;for a cookie is:</p><pre>%globals_cookie_&lt;variable&gt;%</pre>
           <p>where &lt;variable&gt; is the name of the cookie you want to display the value of. This global keyword replacement can be used in conjunction with <em>Triggers</em>. For example, in the <em>Set Cookie Trigger </em>action you can set the cookie name and value and then access it via this global keyword replacement.&nbsp;For more information about <em>Triggers</em>, refer to the <a href="https://matrix-manuals.squiz.net/triggers">Triggers</a> manual.</p>
+
           <h2 id="Asset-Map-Icons">Asset Map Icons</h2>
           <p>The format of the global keyword replacement&nbsp;to display the <em>Asset Map</em> icon of an asset is:</p><pre>%globals_icon_&lt;type&gt;<type>%</type></pre>
           <p>where &lt;type&gt; is the asset type of the icon you want to display. For example, <em>%globals_icon_page_standard%</em> will display the <em>Asset Map</em> icon of the <em>Standard Page</em> asset type.</p>
-          <h2 id="Site-Special-Pages">Site Special Pages</h2>
-          <p>The global keyword replacements:</p><pre>%globals_site_index_id%<br>%globals_site_not_found_id%<br>%globals_site_archive_id%&amp;</pre>
-          <p>will display the asset ID of a <em>Site Special Page</em> (The configured <em>Index</em>, <em>Not Found</em> and <em>Archived Asset </em>pages of a <em>Site</em>).</p>
-          <p>An asset ID of a <em>Site</em> can be appended to these global keyword replacements to specify the <em>Site</em> to return the asset ID values from. For example, the global keyword replacement:</p><pre>%globals_site_index_id:100%</pre>
-          <p>Will return the asset ID of the <em>Index </em>page of the <em>Site</em> with the asset ID of 100.</p>
+
           <h2 id="Referrer">Referrer</h2>
           <div version="5.0.0">
             <p>The following global keyword replacement&nbsp;will return the initial referral URL of the site, if one exists:</p><pre>%globals_site_referrer%</pre>
             <p>The following global keyword replacement&nbsp;will return the referral URL of the current page, if one exists:</p><pre>%globals_page_referrer%&nbsp;</pre></div>
+
           <h2 id="Visited-Pages">Visited Pages</h2>
           <div version="5.0.0">
             <p>The following global keyword replacement will return an array of the URLs that have been visited by a user in the current session:</p><pre>%globals_visited_urls%</pre>
             <p>The array generated by this global keyword replacement will be displayed in a similar format to the example below:</p><pre>["http:\/\/www.example.com\/site\/home","http:\/\/www.example.com\/site\/about-us","http:\/\/www.example.com\/site\/news"]&nbsp;</pre>
             <p>The following global keyword replacement will return an array of asset IDs that have been visited by a user in the current session:</p><pre>%globals_visited_assets%</pre>
             <p>The array generated by this global keyword replacement will be displayed in a similar format to the example below:</p><pre>["376","373","496","500","504","524","591","525","23","24"]&nbsp;</pre></div>
+
           <h2 id="Entry-Asset">Entry Asset</h2>
           <div version="5.0.0">
             <p>The following keyword replacement will display the asset ID that was first accessed in the user's current session:</p><pre>%globals_entry_asset%</pre>
             <p>So, for example, if the user first accessed the site through the site's Home<strong> </strong>page, which has an asset ID of #40, this global keyword replacement will display a value of <strong>40</strong>.</p>
           </div>
+
           <h2 id="SAML-User-Attributes">SAML User Attributes</h2>
           <div version="4.18.5">
             <p>The following global keyword replacements are available to provide access to a SAML user's attributes after being authenticated by a <em>SAML Account Manager</em>.</p>
