@@ -1,0 +1,3 @@
+<!--@@ Design area: Matrix boilerplate, should be placed in <head> @@-->
+<!--@@ See https://matrix-manuals.squiz.net/designs/chapters/metadata-design-area @@-->
+<MySource_AREA id_name="metadata" design_area="metadata" />
