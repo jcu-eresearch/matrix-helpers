@@ -10,8 +10,16 @@ trial and error.  Here's a few suggestions to help.
   of any Asset.
 * The Edit+ interface (for content editors and easier uploading of multiple
   Assets) is accessible by appending `/_edit` to the URL of any Asset.
+* All metadata, permissions and other settings within Matrix are assigned at
+  an Asset level.  This means that you need to be careful that permissions are
+  set correctly as the process of creating a new asset sees permissions
+  *copied* to each new child of a parent.
 
 ## Metadata
+
+* If changing a `Metadata Schema` that has been applied to Assets, ensure you
+  choose to `Regenerate metadata files` after each change or else the
+  new/modified fields will not be shown on the given Assets.
 
 * Enabling `Show on Frontend` for metadata schemas will result in the fields
   being echoed into the `<head>` the resulting rendered page as `<meta>` tags.
