@@ -24,3 +24,10 @@ trial and error.  Here's a few suggestions to help.
   `Asset` to dump all the various keywords to the page.  Now, just search
   through the page to find value you need!
 
+## Security
+
+* To avoid further XSS vulnerabilities, any keywords should utilise the
+  `^escapehtml` keyword modifier when being outputted.
+
+  * It is not known at this time whether Design Parse code has an equivalent
+    escaping mechanism.
