@@ -49,13 +49,16 @@ URLs: `mysource_files/*` reference files underneath the Design itself.
 
 ## Execution order
 
-Note that an overall `Design` is a `Design Area` also by way of class
-inheritance within the PHP code.
+Firstly, some preparation steps are taken when a Design or Design
+Customisation are saved:
 
-1. `mysource_*` file references in a Design Area are resolved to `file_path`
-   or `css_path` parse code
-(https://matrix-manuals.squiz.net/designs/chapters/global-variables#file-path)
+1. `mysource_*` file references in a Design Area (or `Design` overall) are
+   resolved to `file_path` or `css_path` parse code
+   (<https://matrix-manuals.squiz.net/designs/chapters/global-variables#file-path>)
    when the code was saved initially.
+
+   Note that an overall `Design` is a `Design Area` also by way of class
+   inheritance within the PHP code.
 
 1. Global keyword replacements inside `declared_vars` design areas are
    resolved (relative to the asset the `Design` is assigned to (eg a Site)).
@@ -65,12 +68,17 @@ inheritance within the PHP code.
 1. Design areas are turned into `echo` PHP code in a `design_file.php` and
    this file is cached.
 
-1. Upon a request being served by Matrix, output buffering is turned on,
-   meaning all `echo` calls get buffered.  (see `start()` in
-   `core/include/mysource.inc:541`)
+1. If there are any `Design Customisations` present, these are generated after
+   the main Design PHP file was generated.
 
-1. The `design_file.php` is executed via a `require` call, echoing assets and
-   content calls into the system's buffer.
+Then, upon a request being served by Matrix, the following happens:
+
+1. Output buffering is turned on, meaning all `echo` calls get buffered (see
+   `start()` in `core/include/mysource.inc:541`).
+
+1. The `design_file.php` for the Design associated with the current Asset is
+   executed via a `require` call, echoing assets and content calls into the
+   system's buffer.
 
   * Conditional keywords in Page content are resolved (but not keywords
     themselves)
