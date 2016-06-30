@@ -8,12 +8,22 @@ trial and error.  Here's a few suggestions to help.
 
 * The administrative backend is accessible by appending `/_admin` to the URL
   of any Asset.
+
 * The Edit+ interface (for content editors and easier uploading of multiple
   Assets) is accessible by appending `/_edit` to the URL of any Asset.
+
+## Cautions
+
 * All metadata, permissions and other settings within Matrix are assigned at
   an Asset level.  This means that you need to be careful that permissions are
   set correctly as the process of creating a new asset sees permissions
   *copied* to each new child of a parent.
+
+* Matrix has a propensity to timeout with `504 Gateway Timeout` errors when
+  performing certain tasks (viewing history, saving content) or in some cases
+  simply *ignore* requests you make to save content, as if you never made the
+  request.  Be prepared to either have a copy of your data locally or copied
+  to your clipboard before you click `Commit` or `Save`.
 
 ## Metadata
 
