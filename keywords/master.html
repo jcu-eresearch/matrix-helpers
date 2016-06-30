@@ -466,7 +466,7 @@
                   &#37;asset_linking_info&#37;
                 </td>
                 <td>
-                  %asset_linking_info%
+                  <textarea>%asset_linking_info%</textarea>
                 </td>
                 <td>
                   Returns the Linking information of the asset. The same information that is shown on the Linking screen of the asset.
@@ -1776,6 +1776,7 @@
                   <p>
                     Any attribute of the current Site asset. For example, %globals_site_name% shows the name of the Site the user is currently viewing. This global keyword replacement could then be used in a Design to show the name of the Site. If the name of the Site then changes, the Design will not need to be updated, as the global keyword replacement will source the information directly from the Site.
                   </p>
+                  <p>The following are examples of this in action.</p>
                 </td>
               </tr>
               <tr>
@@ -1787,6 +1788,11 @@
                 <td>&#37;globals_site_url&#37;</td>
                 <td>%globals_site_url%</td>
                 <td>Site URL</td>
+              </tr>
+              <tr>
+                <td>&#37;globals_site_assetid&#37;</td>
+                <td>%globals_site_assetid%</td>
+                <td>Site's Asset ID</td>
               </tr>
               <tr>
                 <td>&#37;globals_site_index_id&#37;</td>
