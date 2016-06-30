@@ -49,6 +49,9 @@ trial and error.  Here's a few suggestions to help.
   be formatted in a manner such as `org.site.logo`, with dots delimiting
   namespaces.  Change `org` to be your own organisation's identifier.
 
+* There are no Boolean fields in Metadata Schemas. You'll have to use a
+  `select` type field instead and fake it.
+
 ## Keywords
 
 * Conditional Keywords **are not** available in Design files.
