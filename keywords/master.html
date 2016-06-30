@@ -10,6 +10,17 @@
       max-height: 10rem;
       overflow: scroll;
     }
+    .table-parse th:first-child {
+      width: 35%;
+    }
+    .table-parse pre {
+      white-space: pre-line;
+    }
+    .table-parse textarea {
+      width: 100%;
+      min-height: 15rem;
+      overflow: scroll;
+    }
   </style>
 </head>
 
@@ -20,9 +31,95 @@
         <h1>Squiz Matrix Master Template Documentation</h1>
         <p class="lead">This document attempts to explain what keywords and global variables do what through a working example</p>
         <h1>Parse statements (<a href="https://matrix-manuals.squiz.net/designs/chapters/global-variables">Reference</a>)</h1>
+
+        <h2>Design Tags</h2>
+        <p class="lead">
+          These Design Tags are a central aspect to making a Design dynamic.
+          Areas can be customised in Design Customisations (or
+          sub-Customisations) and body content can be included, amongst many
+          more things.  Consult the <a
+            href="https://matrix-manuals.squiz.net/designs/chapters/design-tags">reference</a>
+          for full details.
+        </p>
+        <div class="table-responsive m-b-2">
+          <table class="table table-parse">
+            <tbody>
+              <tr>
+                <th>Parse code</th>
+                <th>Output</th>
+              </tr>
+              <tr>
+                <td><pre><code>&lt;MySource_AREA id_name="metadata" design_area="metadata" /&gt;</code></pre></td>
+                <td>
+                  <textarea><MySource_AREA id_name="metadata" design_area="metadata" /></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td><pre><code>&lt;MySource_AREA id_name="body" design_area="body" /&gt;</code></pre></td>
+                <td>
+                  <div class="overflow"><MySource_AREA id_name="body" design_area="body" /></div>
+                </td>
+              </tr>
+              <tr>
+                <td><pre><code>
+                  &lt;MySource_AREA id_name="settingsId" design_area="declared_vars" print="no"&gt; 
+                    &lt;MySource_DECLARE name="colour" value="#deadbf" type="colour" description="A declared setting"/&gt;
+                  &lt;/MySource_AREA&gt;
+                  &lt;style&gt;
+                    .deadbeef {
+                      /* The following color definition comes from a PRINT Design Tag */
+                      color: &lt;MySource_PRINT id_name="settingsId" var="colour" /&gt;;
+                    }
+                  &lt;/style&gt;
+                </code></pre></td>
+                <td>
+                  <MySource_AREA id_name="settingsId" design_area="declared_vars" print="no"> 
+                    <MySource_DECLARE name="colour" value="#deadbf" type="colour" description="A declared setting"/>
+                    <MySource_DECLARE name="keyword_string" value="%globals_site_name%" type="text" description="A value from keywords"/>
+                  </MySource_AREA>
+                  <textarea>
+<h1><MySource_PRINT id_name="settingsId" var="keyword_string" /></h1>
+<style>
+  .deadbeef {
+    /* The following color definition comes from a PRINT Design Tag */
+    color: <MySource_PRINT id_name="settingsId" var="colour" />;
+  }
+</style>
+                  </textarea>
+                </td>
+              </tr>
+              <tr>
+                <td><pre><code>
+                    &lt;MySource_AREA id_name="back_to_pages" design_area="access_history"&gt;
+                      &lt;MySource_SET name="asset_types" value="page_standard" /&gt;
+                      &lt;MySource_ASSET&gt;
+                        &lt;a href="&lt;MySource_PRINT var="asset_link" /&gt;"&gt;
+                          &lt;MySource_PRINT var="asset_short_name" /&gt;
+                        &lt;/a&gt;
+                      &lt;/MySource_ASSET&gt;
+                    &lt;/MySource_AREA&gt;
+                </code></pre></td>
+                <td>
+                  <div class="overflow">
+                    <MySource_AREA id_name="back_to_pages" design_area="access_history">
+                      <MySource_SET name="asset_types" value="page_standard" />
+                      <MySource_ASSET>
+                        <a href="<MySource_PRINT var="asset_link" />">
+                          <MySource_PRINT var="asset_short_name" />
+                        </a>
+                      </MySource_ASSET>
+                    </MySource_AREA>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>GLobal variables</h2>
         <p class="lead">Global variables do more than just print, they can actually <em>manipulate</em> certain headers.</p>
         <div class="table-responsive m-b-2">
-          <table class="table">
+          <table class="table table-parse">
             <tr>
               <th>Parse code</th>
               <th>Value</th>
@@ -136,9 +233,10 @@
 
         <h1 id="conditional-keywords">Conditional Keywords</h1>
         <p class="alert alert-danger">Conditional keywords will <em>not</em>
-          function in Parse files and the following test harness proves
-          this. This code should render a button and not a failure message, but
-          in Matrix 5.3.x both the button and message are displayed.
+          function in Parse files as they only work in `Bodycopy` areas. The
+          following test harness proves this. This code should render a button
+          and not a failure message, but in Matrix 5.3.x both the button and
+          message are displayed.
         </p>
         <div class="container-fluid">
           <div class="row">
