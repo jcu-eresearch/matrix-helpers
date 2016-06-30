@@ -47,6 +47,48 @@ Reference: https://matrix-manuals.squiz.net/designs/chapters/design-tags
 
 URLs: `mysource_files/*` reference files underneath the Design itself.
 
+## Execution order
+
+Note that an overall `Design` is a `Design Area` also by way of class
+inheritance within the PHP code.
+
+1. `mysource_*` file references in a Design Area are resolved to `file_path`
+   or `css_path` parse code
+(https://matrix-manuals.squiz.net/designs/chapters/global-variables#file-path)
+   when the code was saved initially.
+
+1. Global keyword replacements inside `declared_vars` design areas are
+   resolved (relative to the asset the `Design` is assigned to (eg a Site)).
+   It's important to note that this context is *different* from the final
+   keyword replacement, which takes place later.
+
+1. Design areas are turned into `echo` PHP code in a `design_file.php` and
+   this file is cached.
+
+1. Upon a request being served by Matrix, output buffering is turned on,
+   meaning all `echo` calls get buffered.  (see `start()` in
+   `core/include/mysource.inc:541`)
+
+1. The `design_file.php` is executed via a `require` call, echoing assets and
+   content calls into the system's buffer.
+
+  * Conditional keywords in Page content are resolved (but not keywords
+    themselves)
+
+1. Keyword replacements originally from the Design parse file or content are resolved
+
+  * Unresolvable keywords are blanked intentionally, which isn't helpful if
+    you're trying to develop or debug something. (see `replaceKeyword()` in)
+   `core/include/mysource.inc:1140`)
+
+  * Matrix comments `<!--@@ @@-->` are stripped at the end of this step,
+    meaning they can be used in any Parse file or content area without them
+    being seen by the end user.
+
+1. Matrix URL references using `./?a=123456` are resolved
+
+1. The page is sent to the client.
+
 ## Design Customisations
 
 `Design Customisations` fill the slots in the origin `Design`, filling or
