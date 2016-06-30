@@ -95,7 +95,7 @@ Then, upon a request being served by Matrix, the following happens:
 
 1. Matrix URL references using `./?a=123456` are resolved
 
-1. The page is sent to the client.
+1. Output buffering is turned off and the page is sent to the client.
 
 ## Design Customisations
 
