@@ -41,6 +41,9 @@ Reference: https://matrix-manuals.squiz.net/designs/chapters/design-tags
     ([referece](https://matrix-manuals.squiz.net/designs/chapters/request-vars-design-area))
   * `asset_lineage` which allows iteration through the `Asset`'s hierarchy
     ([reference](https://matrix-manuals.squiz.net/designs/chapters/asset-lineage-design-area))
+  * If there are any `__global__` `PRINT` directives that don't correspond to
+    a Global Variable, the attributes of the current Design (or Design Area)
+    are accessed.
 
 * `MySource_SET`: sets variables for a `Design` area (slot)
 * `MySource_ASSET`: Looping statement through assets
@@ -65,8 +68,9 @@ Customisation are saved:
    It's important to note that this context is *different* from the final
    keyword replacement, which takes place later.
 
-1. Design areas are turned into `echo` PHP code in a `design_file.php` and
-   this file is cached.
+1. Design areas and parse code are turned into `echo` PHP code in a
+   `design_file.php` and this file is cached.  You can equate writing
+   Parse code to writing PHP that'll be executed later.
 
 1. If there are any `Design Customisations` present, these are generated after
    the main Design PHP file was generated.
