@@ -21,6 +21,11 @@
       min-height: 15rem;
       overflow: scroll;
     }
+    .fill {
+      width: 100%;
+      min-height: 7rem;
+      overflow: scroll;
+    }
   </style>
 </head>
 
@@ -126,7 +131,7 @@
             </tr>
             <tr>
               <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="html_header" /&gt;</code></pre> </td>
-            <td> <MySource_PRINT id_name="__global__" var="html_header" /> </td>
+              <td><textarea class="fill"><MySource_PRINT id_name="__global__" var="html_header" /></textarea></td>
             </tr>
             <tr>
               <td><pre><code>&lt;MySource_PRINT id_name="__global__" var="css_header" /&gt;</code></pre></td>
@@ -181,9 +186,6 @@
             <td> <MySource_PRINT id_name="__global__" var="current_asset" keyword="asset_url" /> </td>
             </tr>
             <tr>
-              <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="current_asset" keyword="globals_site_name" /&gt;</code></pre> </td>
-            <td> <MySource_PRINT id_name="__global__" var="current_asset" keyword="globals_site_name" /> </td>
-            </tr>
             <tr>
               <td> <pre><code>&lt;MySource_PRINT id_name="__global__" var="current_asset" attr="short_name" /&gt;</code></pre> </td>
             <td> <MySource_PRINT id_name="__global__" var="current_asset" attr="short_name" /> </td>
