@@ -11,3 +11,9 @@ content management, creation or configuration.  Expect you need to do
 effectively everything yourself in terms of wiring: eg creating templates,
 setting up metadata and connecting it all together.
 
+## Helpful dumps
+
+Check out `dumps/` for a variety of system dumps that will help you when
+working with keywords in various different contexts. For instance, the
+`asset-*` exports will assist with determine which attributes and keywords are
+available on Page assets, Sites and so forth.
