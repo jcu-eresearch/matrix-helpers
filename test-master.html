@@ -33,11 +33,11 @@
   <div class="container jcu-content">
     <div class="row">
       <div class="col-xs-12">
-        <h1>Squiz Matrix Master Template Documentation</h1>
+        <h1 id="content">Squiz Matrix Master Template Documentation</h1>
         <p class="lead">This document attempts to explain what keywords and global variables do what through a working example</p>
-        <h1>Parse statements (<a href="https://matrix-manuals.squiz.net/designs/chapters/global-variables">Reference</a>)</h1>
+        <h1 id="parse-statements">Parse statements (<a href="https://matrix-manuals.squiz.net/designs/chapters/global-variables">Reference</a>)</h1>
 
-        <h2>Design Tags</h2>
+        <h2 id="design-tags">Design Tags</h2>
         <p class="lead">
           These Design Tags are a central aspect to making a Design dynamic.
           Areas can be customised in Design Customisations (or
@@ -267,7 +267,7 @@
           </div>
         </div>
 
-        <h1>Common Keywords</h1>
+        <h1 id="common-keywords">Common Keywords</h1>
         <p class="lead">See <a href="https://matrix-manuals.squiz.net/keyword-replacements/chapters/keyword-modifiers">Keyword Modifiers</a> for the documentation on how to use modifiers to change the output.  At the time of writing, the document page had useful worked examples showing the keyword modifier and output.
         </p>
         <h2>Asset Information</h2>
@@ -1895,6 +1895,11 @@
                 <td>Site's Asset ID</td>
               </tr>
               <tr>
+                <td>&#37;globals_site_&lt;keyword&gt;&#37;</td>
+                <td>%globals_site_&lt;keyword&gt;%</td>
+                <td>All <a href="#common-keywords">other standard asset keywords</a> can be used here.  We've demonstrated some above, but any other keywords listed will work as well.</td>
+              </tr>
+              <tr>
                 <td>&#37;globals_site_index_id&#37;</td>
                 <td>%globals_site_index_id%</td>
                 <td><p>An asset ID of a <em>Site</em> can be appended to these global keyword replacements to specify the <em>Site</em> to return the asset ID values from. For example, the global keyword replacement:</p><pre>%globals_site_index_id:100%</pre>
@@ -2231,6 +2236,13 @@
     <!-- ./row -->
   </div>
   <!-- ./container -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.0/anchor.min.js"></script>
+  <script>
+    anchors.options.placement = 'left';
+    anchors.options.class = 'h1';
+    anchors.add();
+  </script>
 </body>
 
 </html>
