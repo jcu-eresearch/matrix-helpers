@@ -101,6 +101,26 @@ Then, upon a request being served by Matrix, the following happens:
 
 1. Output buffering is turned off and the page is sent to the client.
 
+## Comparing Parse XML and Keywords
+
+Parse code are the various `<MySource_*>` tags that are embedded solely within
+Design assets and are used at a high level to build page templates.  These
+tags build a limited subset of PHP and are processed first, before anything
+else within a Design file, and committed to the cache in PHP.  When it comes
+to request time, these PHP statements are executed first and then only after
+the entire HTML for a page has been built do the keywords (both asset-centric or
+global, such as `%globals_site_name%`) get resolved.
+
+There are some areas where Parse and Keywords overlap, such as outputting a
+site name or asset name.  In short, if you can use Parse, you're likely to get
+slightly better performance as the code for laying out the resolver has
+already been produced.
+
+In other non-Design contexts, such as Page assets and content, you'll be
+required to use Keywords only.  However, you get the benefit of conditional
+keyword statements (eg `%begin_globals_site_name%` / `%end_globals%`), which
+don't exist within Design Parse files.
+
 ## Design Customisations
 
 `Design Customisations` fill the slots in the origin `Design`, filling or
