@@ -1,291 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-nav,
-section {
-    display: block;
-}
-
-audio,
-canvas,
-video {
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
-}
-
-audio:not([controls]) {
-    display: none;
-}
-
-[hidden] {
-    display: none;
-}
-
-body,
-button,
-input,
-select,
-textarea {
-    font-family: arial, sans-serif;
-    color: #222;
-}
-
-html {
-    font-size: 100%;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-}
-
-html,
-button,
-input,
-select,
-textarea {
-    font-family: sans-serif;
-    color: #222;
-}
-
-body {
-    margin: 0;
-    font-size: 1em;
-    line-height: 1.4;
-    background: #f5f5f5;
-}
-
-::-moz-selection {
-    background: #a8cdf1;
-    color: #000;
-    text-shadow: none;
-}
-
-::selection {
-    background: #a8cdf1;
-    color: #000;
-    text-shadow: none;
-}
-
-a {
-    color: #00e;
-}
-
-a:visited {
-    color: #551a8b;
-}
-
-a:hover {
-    color: #06e;
-}
-
-a:focus {
-    outline: 0;
-}
-
-a:hover,
-a:active {
-    outline: 0;
-}
-
-abbr[title],
-acronym[title] {
-    border-bottom: 1px dotted;
-}
-
-b,
-strong {
-    font-weight: bold;
-}
-
-blockquote {
-    margin: 1em 40px;
-}
-
-dfn {
-    font-style: italic;
-}
-
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
-
-ins {
-    background: #ff9;
-    color: #000;
-    text-decoration: none;
-}
-
-mark {
-    background: #ff0;
-    color: #000;
-    font-style: italic;
-    font-weight: bold;
-}
-
-pre,
-code,
-kbd,
-samp {
-    font-family: monospace, serif;
-    _font-family: 'courier new', monospace;
-    font-size: 1em;
-}
-
-small {
-    font-size: 85%;
-}
-
-sub,
-sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-}
-
-sup {
-    top: -0.5em;
-}
-
-sub {
-    bottom: -0.25em;
-}
-
-img {
-    border: 0;
-    -ms-interpolation-mode: bicubic;
-    vertical-align: middle;
-}
-
-figure {
-    margin: 0;
-}
-
-form {
-    margin: 0;
-}
-
-fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-label {
-    cursor: pointer;
-}
-
-legend {
-    border: 0;
-    *margin-left: -7px;
-    padding: 0;
-    white-space: normal;
-}
-
-button,
-input,
-select,
-textarea {
-    font-size: 100%;
-    margin: 0;
-    vertical-align: baseline;
-    *vertical-align: middle;
-}
-
-button,
-input {
-    line-height: normal;
-}
-
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-    cursor: pointer;
-    -webkit-appearance: button;
-    *overflow: visible;
-}
-
-button[disabled],
-input[disabled] {
-    cursor: default;
-    opacity: .7;
-    background: #fafafa;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-    box-sizing: border-box;
-    padding: 0;
-    *width: 13px;
-    *height: 13px;
-}
-
-input[type="search"] {
-    -webkit-appearance: textfield;
-    -moz-box-sizing: content-box;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-}
-
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button {
-    -webkit-appearance: none;
-}
-
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
-}
-
-textarea {
-    overflow: auto;
-    vertical-align: top;
-    resize: vertical;
-}
-
-input:invalid,
-textarea:invalid {
-    background-color: #f0dddd;
-}
-
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-td {
-    vertical-align: top;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: .5em 0;
-}
-
-h3 {
-    font-size: 1.4em;
-}
-
 .ir {
     display: block;
     border: 0;
@@ -329,20 +41,6 @@ h3 {
 
 .invisible {
     visibility: hidden;
-}
-
-.clearfix:before,
-.clearfix:after {
-    content: "";
-    display: table;
-}
-
-.clearfix:after {
-    clear: both;
-}
-
-.clearfix {
-    zoom: 1;
 }
 
 .alignRight {
@@ -396,11 +94,6 @@ h3 {
     line-height: 13px;
 }
 
-a,
-a:visited {
-    color: #3f98e1;
-}
-
 .screenHide {
     display: block;
     position: absolute;
@@ -416,24 +109,24 @@ a:visited {
 
 .assetIcon,
 .currentSelectionIcon {
-    background: url(Images/assetPickerGeneric.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/assetPickerGeneric.png) 0 50% no-repeat;
 }
 
 .isDependant1 .assetIcon {
-    background-image: url(Images/icon-dependant.png);
+    background-image: url(/__data/ees/Images/icon-dependant.png);
     background-position: 50% 50%;
 }
 
 .page_standard {
-    background: url(Images/iconPage-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconPage-small.png) 0 50% no-repeat;
 }
 
 .page_redirect {
-    background: url(Images/iconRedirect-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconRedirect-small.png) 0 50% no-repeat;
 }
 
 .news_item {
-    background: url(Images/iconNews-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconNews-small.png) 0 50% no-repeat;
 }
 
 .calendar_event,
@@ -442,13 +135,13 @@ a:visited {
 .calendar_event_single,
 .calendar_event_recurring,
 .calendar_event_multi_date {
-    background: url(Images/iconEvent-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconEvent-small.png) 0 50% no-repeat;
 }
 
 .image,
 .image_variety,
 .thumbnail {
-    background: url(Images/iconImage-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconImage-small.png) 0 50% no-repeat;
 }
 
 .file,
@@ -456,52 +149,52 @@ a:visited {
 .js_file,
 .rtf_file,
 .text_file {
-    background: url(Images/iconFile-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconFile-small.png) 0 50% no-repeat;
 }
 
 .powerpoint_doc {
-    background: url(Images/iconPPT-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconPPT-small.png) 0 50% no-repeat;
 }
 
 .excel_doc {
-    background: url(Images/iconExcel-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconExcel-small.png) 0 50% no-repeat;
 }
 
 .mp3_file {
-    background: url(Images/iconSound-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconSound-small.png) 0 50% no-repeat;
 }
 
 .flv_file,
 .video_file {
-    background: url(Images/iconMovie-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconMovie-small.png) 0 50% no-repeat;
 }
 
 .word_doc {
-    background: url(Images/iconDOC-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconDOC-small.png) 0 50% no-repeat;
 }
 
 .pdf_file {
-    background: url(Images/iconPDF-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconPDF-small.png) 0 50% no-repeat;
 }
 
 .folder {
-    background: url(Images/iconFolder-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconFolder-small.png) 0 50% no-repeat;
 }
 
 .page_asset_listing {
-    background: url(Images/iconAssetListing-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconAssetListing-small.png) 0 50% no-repeat;
 }
 
 .page_custom_form {
-    background: url(Images/iconForm-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconForm-small.png) 0 50% no-repeat;
 }
 
 .page_account_manager {
-    background: url(Images/iconAccountManager-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconAccountManager-small.png) 0 50% no-repeat;
 }
 
 .site {
-    background: url(Images/iconSite-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconSite-small.png) 0 50% no-repeat;
 }
 
 .user,
@@ -513,7 +206,7 @@ a:visited {
 .ldap_backend_user,
 .public_user,
 .simple_edit_user {
-    background: url(Images/iconUser-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconUser-small.png) 0 50% no-repeat;
 }
 
 .user_group,
@@ -521,15 +214,15 @@ a:visited {
 .ldap_user_group,
 .role,
 .system_user_group {
-    background: url(Images/iconUserGroup-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconUserGroup-small.png) 0 50% no-repeat;
 }
 
 .data_record {
-    background: url(Images/iconDataRecord-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconDataRecord-small.png) 0 50% no-repeat;
 }
 
 .link {
-    background: url(Images/iconLink-small.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/iconLink-small.png) 0 50% no-repeat;
 }
 
 .archived,
@@ -679,7 +372,7 @@ body.modePreviewFile {
 
 #ees_modePreviewFile .preview_icon {
     margin: 17px;
-    background: #fff url(Images/iconFile-largest.png) 0 50% no-repeat;
+    background: #fff url(/__data/ees/Images/iconFile-largest.png) 0 50% no-repeat;
     width: 488px;
     height: 180px;
     background-color: #e7e7e7;
@@ -688,32 +381,32 @@ body.modePreviewFile {
 }
 
 #ees_modePreviewFile .page_redirect {
-    background-image: url(Images/iconRedirect-largest.png);
+    background-image: url(/__data/ees/Images/iconRedirect-largest.png);
 }
 
 #ees_modePreviewFile .flv_file,
 #ees_modePreviewFile .video_file {
-    background-image: url(Images/iconMovie-largest.png);
+    background-image: url(/__data/ees/Images/iconMovie-largest.png);
 }
 
 #ees_modePreviewFile .excel_doc {
-    background-image: url(Images/iconExcel-largest.png);
+    background-image: url(/__data/ees/Images/iconExcel-largest.png);
 }
 
 #ees_modePreviewFile .powerpoint_doc {
-    background-image: url(Images/iconPPT-largest.png);
+    background-image: url(/__data/ees/Images/iconPPT-largest.png);
 }
 
 #ees_modePreviewFile .word_doc {
-    background-image: url(Images/iconDOC-largest.png);
+    background-image: url(/__data/ees/Images/iconDOC-largest.png);
 }
 
 #ees_modePreviewFile .pdf_file {
-    background-image: url(Images/iconPDF-largest.png);
+    background-image: url(/__data/ees/Images/iconPDF-largest.png);
 }
 
 #ees_modePreviewFile .mp3_file {
-    background-image: url(Images/iconSound-largest.png);
+    background-image: url(/__data/ees/Images/iconSound-largest.png);
 }
 
 #ees_modePreviewFile .preview_icon p {
@@ -772,7 +465,7 @@ body.modePreviewFile {
     border: 1px solid #dadada;
     text-align: center;
     border-radius: 3px;
-    background: url(Images/image_preview_bg.png);
+    background: url(/__data/ees/Images/image_preview_bg.png);
 }
 
 #ees_previewFileContainer {
@@ -883,7 +576,7 @@ body.modePreviewFile {
     filter: alpha(opacity=50);
     width: 16px;
     height: 18px;
-    background: transparent url(Images/linkicon-add.png) 0 0 no-repeat;
+    background: transparent url(/__data/ees/Images/linkicon-add.png) 0 0 no-repeat;
 }
 
 a.genericButton {
@@ -916,11 +609,11 @@ a.genericButton:hover {
 }
 
 .bgWhiteTransparency {
-    background: url(Images/opacity_white_bg.png) repeat scroll 0 0 transparent;
+    background: url(/__data/ees/Images/opacity_white_bg.png) repeat scroll 0 0 transparent;
 }
 
 .bgWhiteTransparency_20 {
-    background: url(Images/opacity_white_bg_20.png) repeat scroll 0 0 transparent;
+    background: url(/__data/ees/Images/opacity_white_bg_20.png) repeat scroll 0 0 transparent;
 }
 
 #ees_safeEditButton {
@@ -1011,7 +704,7 @@ body.embedMode {
     left: 20px;
     padding-left: 20px;
     color: #f00;
-    background: #fff url('Images/white_exclamation.png') no-repeat 0 1px;
+    background: #fff url('/__data/ees/Images/white_exclamation.png') no-repeat 0 1px;
     cursor: pointer;
     font-size: 12px;
     text-overflow: ellipsis;
@@ -1121,7 +814,7 @@ body.embedMode {
     margin-right: -10px;
     right: 12px;
     bottom: 2px;
-    background: #7aaff1 url(Images/drag-handles-se.png) 3px 3px no-repeat;
+    background: #7aaff1 url(/__data/ees/Images/drag-handles-se.png) 3px 3px no-repeat;
 }
 
 #ees_PreviewFrameContainer .ui-icon-gripsmall-diagonal-se:hover,
@@ -1141,7 +834,7 @@ body.embedMode {
     top: -10px;
     bottom: 0;
     right: 0;
-    background: #7aaff1 url(Images/drag-handles-e-w.png) 2px 14px no-repeat;
+    background: #7aaff1 url(/__data/ees/Images/drag-handles-e-w.png) 2px 14px no-repeat;
 }
 
 #ees_PreviewFrameContainer .ui-resizable-e {
@@ -1168,7 +861,7 @@ body.embedMode {
     bottom: 0;
     right: 0;
     left: 0;
-    background: #7aaff1 url(Images/drag-handles-n-s.png) 14px 2px no-repeat;
+    background: #7aaff1 url(/__data/ees/Images/drag-handles-n-s.png) 14px 2px no-repeat;
 }
 
 #ees_PreviewFrameContainer .ui-resizable-s-icon:hover,
@@ -1241,7 +934,7 @@ table.styled td:first-child {
 }
 
 #ees_styledPopup .title {
-    background: url(Images/popupTitle-bg.gif) repeat-x scroll 0 0 #113262;
+    background: url(/__data/ees/Images/popupTitle-bg.gif) repeat-x scroll 0 0 #113262;
     color: #fff;
     font-weight: bold;
     font-size: 14px;
@@ -1251,7 +944,7 @@ table.styled td:first-child {
 
 table#ees_styledPopup {
     border: 1px solid #113262;
-    background: url(Images/page-gradient.png) repeat-x left top #fff;
+    background: url(/__data/ees/Images/page-gradient.png) repeat-x left top #fff;
 }
 
 #ees_styledPopup fieldset {
@@ -1292,7 +985,7 @@ table#ees_styledPopup {
     height: 22px;
     border: 0;
     color: #fff;
-    background: transparent url(Images/popup-button-bg.png) no-repeat 0 0;
+    background: transparent url(/__data/ees/Images/popup-button-bg.png) no-repeat 0 0;
     text-align: center;
     cursor: pointer;
 }
@@ -1311,7 +1004,7 @@ table#ees_styledPopup {
 }
 
 .ees_BubbleArrow {
-    background-image: url(Images/arrow-sprite-black.png);
+    background-image: url(/__data/ees/Images/arrow-sprite-black.png);
     background-repeat: no-repeat;
     position: absolute;
     z-index: 999;
@@ -1382,7 +1075,7 @@ table#ees_styledPopup {
 }
 
 #ees_error .message {
-    background: url(Images/error_white.png) no-repeat scroll 15px 50% transparent;
+    background: url(/__data/ees/Images/error_white.png) no-repeat scroll 15px 50% transparent;
     padding-left: 45px;
     min-height: 22px;
 }
@@ -1468,13 +1161,13 @@ table#ees_styledPopup {
 }
 
 .confirmMessage {
-    background: transparent url(Images/detailsInfoWarning_v2.gif) no-repeat scroll 0 50%;
+    background: transparent url(/__data/ees/Images/detailsInfoWarning_v2.gif) no-repeat scroll 0 50%;
     padding: 0 0 0 40px;
     text-align: left;
 }
 
 .ees_BubbleContent .error {
-    background: #c50505 url(Images/white_exclamation.png) 8px 15px no-repeat;
+    background: #c50505 url(/__data/ees/Images/white_exclamation.png) 8px 15px no-repeat;
     padding: 10px 30px;
     color: #fff;
 }
@@ -1495,7 +1188,7 @@ table#ees_styledPopup {
 }
 
 .eesTooltip .tooltipArrow {
-    background: url(Images/arrow-sprite.png) 0 0 no-repeat;
+    background: url(/__data/ees/Images/arrow-sprite.png) 0 0 no-repeat;
 }
 
 .tooltipNorth .tooltipArrow {
@@ -1789,7 +1482,7 @@ table#ees_styledPopup {
 
 .asset-search-header .asset-search-box[type="text"].searching {
     border-color: #007edd;
-    background-image: url(Images/processing-search-query.gif);
+    background-image: url(/__data/ees/Images/processing-search-query.gif);
     background-repeat: no-repeat;
     background-position: 100% 50%;
 }
@@ -1826,7 +1519,7 @@ table#ees_styledPopup {
     background-repeat: no-repeat;
     position: relative;
     font-size: 12px;
-    background-image: url(Images/filter-btn-sprite.png);
+    background-image: url(/__data/ees/Images/filter-btn-sprite.png);
 }
 
 .filter-btn.filter-page {
@@ -2000,20 +1693,20 @@ table#ees_styledPopup {
 
 .pagination-btn.pagination-previous,
 .pagination-btn.pagination-previous.disabled:hover {
-    background: #fafafa url(Images/search-asset-pagination-previous.png) no-repeat 50% 50%;
+    background: #fafafa url(/__data/ees/Images/search-asset-pagination-previous.png) no-repeat 50% 50%;
 }
 
 .pagination-btn.pagination-previous:hover {
-    background: #f3f3f3 url(Images/search-asset-pagination-previous-hover.png) no-repeat 50% 50%;
+    background: #f3f3f3 url(/__data/ees/Images/search-asset-pagination-previous-hover.png) no-repeat 50% 50%;
 }
 
 .pagination-btn.pagination-next,
 .pagination-btn.pagination-next.disabled:hover {
-    background: #fafafa url(Images/search-asset-pagination-next.png) no-repeat 50% 50%;
+    background: #fafafa url(/__data/ees/Images/search-asset-pagination-next.png) no-repeat 50% 50%;
 }
 
 .pagination-btn.pagination-next:hover {
-    background: #f3f3f3 url(Images/search-asset-pagination-next-hover.png) no-repeat 50% 50%;
+    background: #f3f3f3 url(/__data/ees/Images/search-asset-pagination-next-hover.png) no-repeat 50% 50%;
 }
 
 .pagination-label {
@@ -2043,7 +1736,7 @@ table#ees_styledPopup {
     display: inline-block;
     width: 30px;
     height: 30px;
-    background: #fff url(Images/asset-search-item-locate-sprite.png);
+    background: #fff url(/__data/ees/Images/asset-search-item-locate-sprite.png);
     background-repeat: no-repeat;
     background-position: -3px 50%;
     position: absolute;
@@ -2251,13 +1944,13 @@ table#ees_styledPopup {
     height: 24px;
     line-height: 24px;
     display: block;
-    background: url(Images/toolbar_sprite.png) 0 0 no-repeat;
-    background: none, url(Images/toolbar_sprite.svg) 0 0 no-repeat;
+    background: url(/__data/ees/Images/toolbar_sprite.png) 0 0 no-repeat;
+    background: none, url(/__data/ees/Images/toolbar_sprite.svg) 0 0 no-repeat;
 }
 
 #ees_toolBarLogo {
-    background: url(Images/logo-toolbar-matrix.png) 0 0 no-repeat;
-    background: none, url(Images/logo-toolbar-matrix.svg) 0 0 no-repeat;
+    background: url(/__data/ees/Images/logo-toolbar-matrix.png) 0 0 no-repeat;
+    background: none, url(/__data/ees/Images/logo-toolbar-matrix.svg) 0 0 no-repeat;
     float: left;
     height: 27px;
     width: 162px;
@@ -2468,7 +2161,7 @@ th {
 }
 
 #ees_previewSizeOptionList .selected .ticked {
-    background: url(Images/tick-blue.png) no-repeat left center;
+    background: url(/__data/ees/Images/tick-blue.png) no-repeat left center;
 }
 
 #ees_updatePreviewButtonContainer {
@@ -2541,157 +2234,157 @@ th {
 }
 
 #ees_assetCreationWizard .modalHeaderContent .clone_asset {
-    background-image: url(Images/iconCloneAsset-large.png);
+    background-image: url(/__data/ees/Images/iconCloneAsset-large.png);
 }
 
 #ees_assetCreationWizardAssetTypes .page_redirect {
-    background-image: url(Images/iconRedirect-large.png);
+    background-image: url(/__data/ees/Images/iconRedirect-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .page_redirect {
-    background-image: url(Images/iconRedirect-medium.png);
+    background-image: url(/__data/ees/Images/iconRedirect-medium.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .page_standard {
-    background-image: url(Images/iconPage-medium.png);
+    background-image: url(/__data/ees/Images/iconPage-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .page_standard {
-    background-image: url(Images/iconPage-large.png);
+    background-image: url(/__data/ees/Images/iconPage-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .image,
 #ees_assetCreationWizard .modalHeaderContent .thumbnail {
-    background-image: url(Images/iconImage-medium.png);
+    background-image: url(/__data/ees/Images/iconImage-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .image,
 #ees_assetCreationWizardAssetTypes .thumbnail {
-    background-image: url(Images/iconImage-large.png);
+    background-image: url(/__data/ees/Images/iconImage-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .folder {
-    background-image: url(Images/iconFolder-medium.png);
+    background-image: url(/__data/ees/Images/iconFolder-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .folder {
-    background-image: url(Images/iconFolder-large.png);
+    background-image: url(/__data/ees/Images/iconFolder-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .file {
-    background-image: url(Images/iconFile-medium.png);
+    background-image: url(/__data/ees/Images/iconFile-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .file {
-    background-image: url(Images/iconFile-large.png);
+    background-image: url(/__data/ees/Images/iconFile-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .news_item {
-    background-image: url(Images/iconNews-medium.png);
+    background-image: url(/__data/ees/Images/iconNews-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .news_item {
-    background-image: url(Images/iconNews-large.png);
+    background-image: url(/__data/ees/Images/iconNews-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .pdf_file {
-    background-image: url(Images/iconPDF-medium.png);
+    background-image: url(/__data/ees/Images/iconPDF-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .pdf_file {
-    background-image: url(Images/iconPDF-large.png);
+    background-image: url(/__data/ees/Images/iconPDF-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .video_file,
 #ees_assetCreationWizard .modalHeaderContent .flv_file {
-    background-image: url(Images/iconMovie-medium.png);
+    background-image: url(/__data/ees/Images/iconMovie-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .video_file,
 #ees_assetCreationWizardAssetTypes .flv_file {
-    background-image: url(Images/iconMovie-large.png);
+    background-image: url(/__data/ees/Images/iconMovie-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .word_doc {
-    background-image: url(Images/iconDOC-medium.png);
+    background-image: url(/__data/ees/Images/iconDOC-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .word_doc {
-    background-image: url(Images/iconDOC-large.png);
+    background-image: url(/__data/ees/Images/iconDOC-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .powerpoint_doc {
-    background-image: url(Images/iconPPT-medium.png);
+    background-image: url(/__data/ees/Images/iconPPT-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .powerpoint_doc {
-    background-image: url(Images/iconPPT-large.png);
+    background-image: url(/__data/ees/Images/iconPPT-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .excel_doc {
-    background-image: url(Images/iconExcel-medium.png);
+    background-image: url(/__data/ees/Images/iconExcel-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .excel_doc {
-    background-image: url(Images/iconExcel-large.png);
+    background-image: url(/__data/ees/Images/iconExcel-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .rtf_file {
-    background-image: url(Images/iconRTF-medium.png);
+    background-image: url(/__data/ees/Images/iconRTF-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .rtf_file {
-    background-image: url(Images/iconRTF-large.png);
+    background-image: url(/__data/ees/Images/iconRTF-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .text_file {
-    background-image: url(Images/iconTXT-medium.png);
+    background-image: url(/__data/ees/Images/iconTXT-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .text_file {
-    background-image: url(Images/iconTXT-large.png);
+    background-image: url(/__data/ees/Images/iconTXT-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .mp3_file {
-    background-image: url(Images/iconSound-medium.png);
+    background-image: url(/__data/ees/Images/iconSound-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .mp3_file {
-    background-image: url(Images/iconSound-large.png);
+    background-image: url(/__data/ees/Images/iconSound-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .calendar_event_single,
 #ees_assetCreationWizard .modalHeaderContent .calendar_event_recurring {
-    background-image: url(Images/iconEvent-medium.png);
+    background-image: url(/__data/ees/Images/iconEvent-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .calendar_event_single,
 #ees_assetCreationWizardAssetTypes .calendar_event_recurring {
-    background-image: url(Images/iconEvent-large.png);
+    background-image: url(/__data/ees/Images/iconEvent-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .data_record {
-    background-image: url(Images/iconDataRecord-medium.png);
+    background-image: url(/__data/ees/Images/iconDataRecord-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .data_record {
-    background-image: url(Images/iconDataRecord-large.png);
+    background-image: url(/__data/ees/Images/iconDataRecord-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .link {
-    background-image: url(Images/iconLink-medium.png);
+    background-image: url(/__data/ees/Images/iconLink-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .link {
-    background-image: url(Images/iconLink-large.png);
+    background-image: url(/__data/ees/Images/iconLink-large.png);
 }
 
 #ees_assetCreationWizard .modalHeaderContent .page_custom_form {
-    background-image: url(Images/iconForm-medium.png);
+    background-image: url(/__data/ees/Images/iconForm-medium.png);
 }
 
 #ees_assetCreationWizardAssetTypes .page_custom_form {
-    background-image: url(Images/iconForm-large.png);
+    background-image: url(/__data/ees/Images/iconForm-large.png);
 }
 
 #ees_assetCreationWizard .modalBodyButtons .error {
@@ -2757,13 +2450,13 @@ th {
 }
 
 .defaultCreate .required {
-    background: url(Images/required_stars.png) right top no-repeat;
+    background: url(/__data/ees/Images/required_stars.png) right top no-repeat;
     padding-right: 20px;
 }
 
 .defaultCreate p.fieldWarning,
 .defaultCreate #ees_createWarning {
-    background: #fad4dc url(Images/error.png) 10px 50% no-repeat;
+    background: #fad4dc url(/__data/ees/Images/error.png) 10px 50% no-repeat;
     line-height: 18px;
     color: #65464d;
     padding: 5px 0 5px 40px;
@@ -2893,7 +2586,7 @@ th {
 
 .ees_assetLocationsList .notSelected,
 #ees_createLocationsList .notSelected {
-    background: url(Images/delete_overlay.png) repeat 0 0;
+    background: url(/__data/ees/Images/delete_overlay.png) repeat 0 0;
 }
 
 .ees_assetLocationsList .selected,
@@ -2903,7 +2596,7 @@ th {
 
 .ees_assetLocationsList .toggleSelection,
 #ees_createLocationsList .toggleSelection {
-    background: url(Images/delete_recover_dark.png) no-repeat 0 0;
+    background: url(/__data/ees/Images/delete_recover_dark.png) no-repeat 0 0;
     display: block;
     height: 16px;
     margin: 8px 8px 0 0;
@@ -3023,7 +2716,7 @@ th {
     border: 1px solid #9f3732;
     color: #9f3732;
     padding: 6px 6px 6px 36px;
-    background: #f7e3e2 url('Images/error_white.png') no-repeat 8px 12px;
+    background: #f7e3e2 url('/__data/ees/Images/error_white.png') no-repeat 8px 12px;
     border-radius: 5px;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -3066,7 +2759,7 @@ th {
 }
 
 #ees_createSuccessAssetsList .errorIcon {
-    background: url("Images/error_white.png") no-repeat;
+    background: url("/__data/ees/Images/error_white.png") no-repeat;
     width: 16px;
     height: 16px;
     overflow: hidden;
@@ -3105,8 +2798,8 @@ th {
     float: left;
     margin: 4px 3px 4px 4px;
     background-position: 0 0;
-    background: url(Images/context-toolbar-icon.png) 5px 5px no-repeat;
-    background: none, url(Images/context-toolbar-icon.svg) 5px 5px no-repeat;
+    background: url(/__data/ees/Images/context-toolbar-icon.png) 5px 5px no-repeat;
+    background: none, url(/__data/ees/Images/context-toolbar-icon.svg) 5px 5px no-repeat;
 }
 
 #ees_contextSwitcherButton .name {
@@ -3141,7 +2834,7 @@ th {
 }
 
 #ees_contextSwitcherList .current {
-    background: #f2f7fc url('Images/tick-blue.png') no-repeat 186px 9px;
+    background: #f2f7fc url('/__data/ees/Images/tick-blue.png') no-repeat 186px 9px;
 }
 
 #ees_contextSwitcherList .current .name {
@@ -3372,7 +3065,7 @@ th {
 }
 
 #ees_assetDelete {
-    background: url(Images/move_to_trash.png) no-repeat 0 50%;
+    background: url(/__data/ees/Images/move_to_trash.png) no-repeat 0 50%;
     color: #333;
     display: inline-block;
     line-height: 1.6em;
@@ -3388,15 +3081,15 @@ th {
 }
 
 .ees_assetType {
-    background: url(Images/iconGenericMatrix-small.png) no-repeat scroll -5px 50%;
+    background: url(/__data/ees/Images/iconGenericMatrix-small.png) no-repeat scroll -5px 50%;
 }
 
 .ees_assetType.page_standard {
-    background-image: url(Images/iconPage-small.png);
+    background-image: url(/__data/ees/Images/iconPage-small.png);
 }
 
 .ees_assetType.news_item {
-    background-image: url(Images/iconNews-small.png);
+    background-image: url(/__data/ees/Images/iconNews-small.png);
 }
 
 .ees_assetType.calendar_event,
@@ -3408,80 +3101,80 @@ th {
 .ees_assetType.page_calendar,
 .ees_assetType.page_calendar_rolling,
 .ees_assetType.page_calendar_restricted {
-    background-image: url(Images/iconEvent-small.png);
+    background-image: url(/__data/ees/Images/iconEvent-small.png);
 }
 
 .ees_assetType.image,
 .ees_assetType.image_variety,
 .ees_assetType.thumbnail {
-    background-image: url(Images/iconImage-small.png);
+    background-image: url(/__data/ees/Images/iconImage-small.png);
 }
 
 .ees_assetType.file,
 .ees_assetType.css_file,
 .ees_assetType.js_file {
-    background-image: url(Images/iconFile-small.png);
+    background-image: url(/__data/ees/Images/iconFile-small.png);
 }
 
 .ees_assetType.rtf_file {
-    background-image: url(Images/iconRTF-small.png);
+    background-image: url(/__data/ees/Images/iconRTF-small.png);
 }
 
 .ees_assetType.text_file {
-    background-image: url(Images/iconTXT-small.png);
+    background-image: url(/__data/ees/Images/iconTXT-small.png);
 }
 
 .ees_assetType.flv_file,
 .ees_assetType.video_file {
-    background-image: url(Images/iconMovie-small.png);
+    background-image: url(/__data/ees/Images/iconMovie-small.png);
 }
 
 .ees_assetType.word_doc {
-    background-image: url(Images/iconDOC-small.png);
+    background-image: url(/__data/ees/Images/iconDOC-small.png);
 }
 
 .ees_assetType.pdf_file {
-    background-image: url(Images/iconPDF-small.png);
+    background-image: url(/__data/ees/Images/iconPDF-small.png);
 }
 
 .ees_assetType.mp3_file {
-    background-image: url(Images/iconSound-small.png);
+    background-image: url(/__data/ees/Images/iconSound-small.png);
 }
 
 .ees_assetType.excel_doc {
-    background-image: url(Images/iconExcel-small.png);
+    background-image: url(/__data/ees/Images/iconExcel-small.png);
 }
 
 .ees_assetType.powerpoint_doc {
-    background-image: url(Images/iconPPT-small.png);
+    background-image: url(/__data/ees/Images/iconPPT-small.png);
 }
 
 .ees_assetType.folder {
-    background-image: url(Images/iconFolder-small.png);
+    background-image: url(/__data/ees/Images/iconFolder-small.png);
 }
 
 .ees_assetType.page_asset_listing {
-    background-image: url(Images/iconAssetListing-small.png);
+    background-image: url(/__data/ees/Images/iconAssetListing-small.png);
 }
 
 .ees_assetType.page_custom_form {
-    background-image: url(Images/iconForm-small.png);
+    background-image: url(/__data/ees/Images/iconForm-small.png);
 }
 
 .ees_assetType.page_account_manager {
-    background-image: url(Images/iconAccountManager-small.png);
+    background-image: url(/__data/ees/Images/iconAccountManager-small.png);
 }
 
 .ees_assetType.data_record {
-    background-image: url(Images/iconDataRecord-small.png);
+    background-image: url(/__data/ees/Images/iconDataRecord-small.png);
 }
 
 .ees_assetType.link {
-    background-image: url(Images/iconLink-small.png);
+    background-image: url(/__data/ees/Images/iconLink-small.png);
 }
 
 .ees_assetType.page_redirect {
-    background-image: url(Images/iconRedirect-small.png);
+    background-image: url(/__data/ees/Images/iconRedirect-small.png);
 }
 
 #ees_greyOut {
@@ -3507,7 +3200,7 @@ th {
 }
 
 #ees_greyOutMessage.warning {
-    background: url(Images/warning_large.png) 50% 0 no-repeat;
+    background: url(/__data/ees/Images/warning_large.png) 50% 0 no-repeat;
     padding-top: 50px;
 }
 
@@ -3535,7 +3228,7 @@ th {
     height: 100%;
     top: 0;
     left: 0;
-    background: url(Images/ffffff_opacity_60.png) left top repeat;
+    background: url(/__data/ees/Images/ffffff_opacity_60.png) left top repeat;
     z-index: 1100;
 }
 
@@ -3585,21 +3278,21 @@ body.doubleOverlay #ees_mainOverlay {
 }
 
 #ees_overlayImage.confirm {
-    background: url(Images/overlay-confirm.png) left top no-repeat;
+    background: url(/__data/ees/Images/overlay-confirm.png) left top no-repeat;
 }
 
 #ees_overlayImage.fail {
-    background: url(Images/overlay-fail.png) 50% 50% no-repeat;
+    background: url(/__data/ees/Images/overlay-fail.png) 50% 50% no-repeat;
     height: 80px;
 }
 
 #ees_overlayImage.success {
-    background: url(Images/overlay-success.png) 50% 50% no-repeat;
+    background: url(/__data/ees/Images/overlay-success.png) 50% 50% no-repeat;
     height: 80px;
 }
 
 #ees_overlayImage.warning {
-    background: url(Images/overlay-warning.png) 50% 50% no-repeat;
+    background: url(/__data/ees/Images/overlay-warning.png) 50% 50% no-repeat;
     height: 125px;
 }
 
@@ -3634,11 +3327,11 @@ body.doubleOverlay #ees_mainOverlay {
     width: 134px;
     height: 126px;
     margin: 0 auto;
-    background: url(Images/white_loader_bg.png) 0 0 no-repeat;
+    background: url(/__data/ees/Images/white_loader_bg.png) 0 0 no-repeat;
 }
 
 .modalLoaderFeeback {
-    background: url(Images/white_loader.gif) 42px 38px no-repeat;
+    background: url(/__data/ees/Images/white_loader.gif) 42px 38px no-repeat;
     width: 134px;
     height: 126px;
     margin: 0 auto;
@@ -3690,7 +3383,7 @@ body.doubleOverlay #ees_mainOverlay {
 }
 
 .modalIcon {
-    background: url(Images/modalDefaultIcon.png) 50% 50% no-repeat;
+    background: url(/__data/ees/Images/modalDefaultIcon.png) 50% 50% no-repeat;
     display: inline-block;
     margin: 10px 15px 0;
     float: left;
@@ -3740,7 +3433,7 @@ body.doubleOverlay #ees_mainOverlay {
     width: 20px;
     top: 5px;
     right: 5px;
-    background: #8a95a7 url(Images/close-white.png) no-repeat 6px 6px;
+    background: #8a95a7 url(/__data/ees/Images/close-white.png) no-repeat 6px 6px;
     z-index: 1001;
     border-radius: 10px;
     margin: 5px;
@@ -3834,7 +3527,7 @@ body.doubleOverlay #ees_mainOverlay {
     display: block;
     min-height: 113px;
     outline: none;
-    background: transparent url(Images/iconFile-large.png) 12px 50% no-repeat;
+    background: transparent url(/__data/ees/Images/iconFile-large.png) 12px 50% no-repeat;
     padding: 0 30px 0 120px;
     font-size: 1em;
     text-decoration: none;
@@ -3865,15 +3558,15 @@ body.doubleOverlay #ees_mainOverlay {
 }
 
 .modalBodyForm.modalType-button li a.news {
-    background-image: url(Images/iconNews-large.png);
+    background-image: url(/__data/ees/Images/iconNews-large.png);
 }
 
 .modalBodyForm.modalType-button li a.image {
-    background-image: url(Images/iconImage-large.png);
+    background-image: url(/__data/ees/Images/iconImage-large.png);
 }
 
 .modalBodyForm.modalType-button li a.event {
-    background-image: url(Images/iconEvent-large.png);
+    background-image: url(/__data/ees/Images/iconEvent-large.png);
 }
 
 body.previewMode #HTMLCS-wrapper {
@@ -3974,7 +3667,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
     color: #616161;
     text-transform: uppercase;
     text-decoration: none;
-    background: transparent url(Images/wrksp-button.png) 0 0 no-repeat;
+    background: transparent url(/__data/ees/Images/wrksp-button.png) 0 0 no-repeat;
     margin-bottom: 10px;
 }
 
@@ -3993,17 +3686,17 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 #ees_wrkspBox {
     margin: 14px 0;
     color: #000;
-    background: #113262 url(Images/wrksp-rel-mid.gif) 0 0 repeat-y;
+    background: #113262 url(/__data/ees/Images/wrksp-rel-mid.gif) 0 0 repeat-y;
 }
 
 #ees_wrkspBoxInner1 {
-    background: transparent url(Images/wrksp-rel-top.png) 0 0 no-repeat;
+    background: transparent url(/__data/ees/Images/wrksp-rel-top.png) 0 0 no-repeat;
 }
 
 #ees_wrkspBoxInner2 {
     position: relative;
     padding: 23px 0 5px 0;
-    background: transparent url(Images/wrksp-rel-bottom.gif) 0 100% no-repeat;
+    background: transparent url(/__data/ees/Images/wrksp-rel-bottom.gif) 0 100% no-repeat;
     overflow: hidden;
 }
 
@@ -4031,7 +3724,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 #ees_wrkspBox li {
     overflow: hidden;
     border-top: 1px solid #d6d6d6;
-    background: transparent url(Images/wrkspIcon-default.png) 12px 12px no-repeat;
+    background: transparent url(/__data/ees/Images/wrkspIcon-default.png) 12px 12px no-repeat;
     min-height: 80px;
 }
 
@@ -4056,11 +3749,11 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
     min-height: 54px;
     text-decoration: none;
     color: #000;
-    background: transparent url(Images/wrksp-rel-arrow.png) 98% 50% no-repeat;
+    background: transparent url(/__data/ees/Images/wrksp-rel-arrow.png) 98% 50% no-repeat;
 }
 
 #ees_wrkspBox li.current a {
-    background-image: url(Images/wrksp-rel-arrowCurrent.png);
+    background-image: url(/__data/ees/Images/wrksp-rel-arrowCurrent.png);
 }
 
 #ees_wrkspBox li a .wrkspDesc {
@@ -4092,7 +3785,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 #ees_categoryList .ees_categoryListTop {
     height: 72px;
     overflow: hidden;
-    background: url(Images/categoryBox-top.png) no-repeat;
+    background: url(/__data/ees/Images/categoryBox-top.png) no-repeat;
 }
 
 #ees_categoryList .ees_categoryListBody {
@@ -4109,7 +3802,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 #ees_categoryList .ees_categoryListBottom {
     height: 10px;
     overflow: hidden;
-    background: url(Images/categoryBox-bottom.png) no-repeat;
+    background: url(/__data/ees/Images/categoryBox-bottom.png) no-repeat;
 }
 
 #ees_categoryList ul {
@@ -4127,7 +3820,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 #ees_categoryList li .assetDeleteOption {
     height: 16px;
     width: 16px;
-    background: url(Images/delete_recover_dark.png) 0 0 no-repeat;
+    background: url(/__data/ees/Images/delete_recover_dark.png) 0 0 no-repeat;
 }
 
 #ees_categoryList li a {
@@ -4141,27 +3834,27 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 }
 
 #ees_categoryList li li a {
-    background: url(Images/tree-bg.png) 12px 0 no-repeat;
+    background: url(/__data/ees/Images/tree-bg.png) 12px 0 no-repeat;
 }
 
 #ees_categoryList li li li a {
-    background: url(Images/tree-bg.png) 26px 0 no-repeat;
+    background: url(/__data/ees/Images/tree-bg.png) 26px 0 no-repeat;
 }
 
 #ees_categoryList li li a.last {
-    background: url(Images/tree-end-bg.png) 12px 0 no-repeat;
+    background: url(/__data/ees/Images/tree-end-bg.png) 12px 0 no-repeat;
 }
 
 #ees_categoryList li li li a.last {
-    background: url(Images/tree-end-bg.png) 26px 0 no-repeat;
+    background: url(/__data/ees/Images/tree-end-bg.png) 26px 0 no-repeat;
 }
 
 #ees_categoryList li li.open>a:first-child {
-    background: url(Images/tree-end-bg.png) 12px 0 no-repeat;
+    background: url(/__data/ees/Images/tree-end-bg.png) 12px 0 no-repeat;
 }
 
 #ees_categoryList li li li.open>a:first-child {
-    background: url(Images/tree-end-bg.png) 26px 0 no-repeat;
+    background: url(/__data/ees/Images/tree-end-bg.png) 26px 0 no-repeat;
 }
 
 #ees_categoryList .ees_assetTreeList li a {
@@ -4173,7 +3866,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 }
 
 #ees_categoryList li.selected {
-    background: #5487cb url(Images/list_item_selected_bg.png) left top repeat-x;
+    background: #5487cb url(/__data/ees/Images/list_item_selected_bg.png) left top repeat-x;
 }
 
 #ees_categoryList li.selected li {
@@ -4222,7 +3915,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 
 .datePicker .scrollDown span {
     text-indent: -9999px;
-    background: url(Images/up_down_spinner.png) 0 -17px no-repeat;
+    background: url(/__data/ees/Images/up_down_spinner.png) 0 -17px no-repeat;
     overflow: hidden;
     display: block;
     width: 21px;
@@ -4242,7 +3935,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 
 .datePicker .scrollUp span {
     text-indent: -9999px;
-    background: url(Images/up_down_spinner.png) 0 0 no-repeat;
+    background: url(/__data/ees/Images/up_down_spinner.png) 0 0 no-repeat;
     overflow: hidden;
     display: block;
     width: 21px;
@@ -4423,7 +4116,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 }
 
 .custom-form__deletion-overlay {
-    background: transparent url(Images/deleted-state.png) repeat;
+    background: transparent url(/__data/ees/Images/deleted-state.png) repeat;
     display: none;
     position: absolute;
     z-index: 20;
@@ -4487,7 +4180,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
     display: inline-block;
     width: 19px;
     height: 16px;
-    background: url(Images/bodycopy_sprite.png) no-repeat 0 -19px;
+    background: url(/__data/ees/Images/bodycopy_sprite.png) no-repeat 0 -19px;
 }
 
 .custom-form-question__preview {
@@ -4544,7 +4237,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
     width: 16px;
     height: 16px;
     cursor: help;
-    background: url(Images/info-icon.png) no-repeat;
+    background: url(/__data/ees/Images/info-icon.png) no-repeat;
 }
 
 .custom-form-question .viper-editable {
@@ -4572,7 +4265,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 .custom-form-section__title .editable-icon,
 .custom-form-section__title:hover .editable-icon,
 .custom-form-question__inline-editable:hover .editable-icon {
-    background: transparent url(Images/editable-pencil.png) no-repeat;
+    background: transparent url(/__data/ees/Images/editable-pencil.png) no-repeat;
     width: 11px;
     height: 11px;
     display: block;
@@ -4734,7 +4427,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 
 .custom-form-question__drag-handle {
     display: none;
-    background: #eee url(Images/drag_move.png) no-repeat;
+    background: #eee url(/__data/ees/Images/drag_move.png) no-repeat;
     width: 27px;
     height: 25px;
     position: absolute;
@@ -4764,12 +4457,12 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 }
 
 .custom-form-section__drag-handle {
-    background: transparent url(Images/bodycopy_sprite.png) no-repeat;
+    background: transparent url(/__data/ees/Images/bodycopy_sprite.png) no-repeat;
     background-position: 4px -58px;
 }
 
 .custom-form-section__remove-button {
-    background: transparent url(Images/tools-sprite.png) no-repeat;
+    background: transparent url(/__data/ees/Images/tools-sprite.png) no-repeat;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=70)";
 }
 
@@ -4793,7 +4486,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 }
 
 .custom-form-question__type-switcher-button {
-    background: transparent url(Images/custom-form-type-sprite.png) no-repeat;
+    background: transparent url(/__data/ees/Images/custom-form-type-sprite.png) no-repeat;
     width: 100%;
     display: block;
     height: 25px;
@@ -4861,7 +4554,7 @@ a.custom-form__add-new-section-button,
 a.custom-form__add-new-question-button {
     text-decoration: none;
     color: #222;
-    background: url(Images/bodycopy_sprite.png) no-repeat 0 -22px;
+    background: url(/__data/ees/Images/bodycopy_sprite.png) no-repeat 0 -22px;
     padding-left: 22px;
     cursor: pointer;
 }
@@ -4942,7 +4635,7 @@ a.custom-form__add-new-question-button:visited {
 .custom-form-question__settings-button,
 .custom-form-question__clone-button,
 .custom-form-question__remove-button {
-    background: transparent url(Images/tools-sprite.png) no-repeat;
+    background: transparent url(/__data/ees/Images/tools-sprite.png) no-repeat;
     opacity: .7;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=70)";
 }
@@ -5154,7 +4847,7 @@ ul.custom-form-modal__question-type-list li:last-child {
 }
 
 .custom-form-modal__question-type-icon {
-    background-image: url(Images/custom-form-type-sprite.png);
+    background-image: url(/__data/ees/Images/custom-form-type-sprite.png);
     background-repeat: no-repeat;
     width: 22px;
     display: block;
@@ -5199,7 +4892,7 @@ ul.custom-form-modal__question-type-list li:last-child {
 }
 
 .custom-form-section__sort-item-drag-handle {
-    background: transparent url(Images/drag_move.png) no-repeat;
+    background: transparent url(/__data/ees/Images/drag_move.png) no-repeat;
     width: 27px;
     height: 25px;
     position: absolute;
@@ -5213,7 +4906,7 @@ ul.custom-form-modal__question-type-list li:last-child {
 }
 
 #ees_screenMenuList .email {
-    background-image: url(Images/screenIcon-email.png);
+    background-image: url(/__data/ees/Images/screenIcon-email.png);
 }
 
 .plus .emails #ees_screenContentWrapper {
@@ -5318,7 +5011,7 @@ ul.custom-form-modal__question-type-list li:last-child {
 }
 
 .custom_form_email__sortable-drag-handle {
-    background: #eee url(Images/drag_move.png) no-repeat;
+    background: #eee url(/__data/ees/Images/drag_move.png) no-repeat;
     display: block;
     width: 27px;
     height: 25px;
@@ -5334,7 +5027,7 @@ ul.custom-form-modal__question-type-list li:last-child {
 
 .custom_form_email__sortable-delete-button {
     text-decoration: none;
-    background: url(Images/delete_recover_dark.png) no-repeat;
+    background: url(/__data/ees/Images/delete_recover_dark.png) no-repeat;
     margin-left: 10px;
     margin-top: 4px;
     display: block;
@@ -5378,7 +5071,7 @@ ul.custom-form-modal__question-type-list li:last-child {
 .custom-form-email__body-status-text {
     float: right;
     color: #a2a2a2;
-    background: url(Images/metadata-pencil.png) no-repeat right;
+    background: url(/__data/ees/Images/metadata-pencil.png) no-repeat right;
     height: 24px;
     line-height: 24px;
     padding-right: 35px;
@@ -5471,7 +5164,7 @@ ul.custom-form-modal__question-type-list li:last-child {
 }
 
 #ees_conditionSwitcherContainer .current {
-    background: url('Images/tick-blue.png') no-repeat 187px 10px transparent;
+    background: url('/__data/ees/Images/tick-blue.png') no-repeat 187px 10px transparent;
 }
 
 #ees_conditionSwitcherContainer .current .name {
@@ -5667,7 +5360,7 @@ ul.custom-form-modal__question-type-list li:last-child {
 #ees_screenMenuList .screenType {
     display: block;
     padding: 54px 15px 0;
-    background: transparent url(Images/screenIcon-details.png) 50% -4px no-repeat;
+    background: transparent url(/__data/ees/Images/screenIcon-details.png) 50% -4px no-repeat;
 }
 
 #ees_screenMenuList li.current .screenType {
@@ -5675,48 +5368,48 @@ ul.custom-form-modal__question-type-list li:last-child {
 }
 
 #ees_screenMenuList .metadata {
-    background-image: url(Images/screenIcon-metadata.png);
-    background-image: none, url(Images/screenIcon-metadata.svg);
+    background-image: url(/__data/ees/Images/screenIcon-metadata.png);
+    background-image: none, url(/__data/ees/Images/screenIcon-metadata.svg);
 }
 
 #ees_screenMenuList .workflow {
-    background-image: url(Images/screenIcon-workflow.png);
-    background-image: none, url(Images/screenIcon-workflow.svg);
+    background-image: url(/__data/ees/Images/screenIcon-workflow.png);
+    background-image: none, url(/__data/ees/Images/screenIcon-workflow.svg);
 }
 
 #ees_screenMenuList .linking {
-    background-image: url(Images/screenIcon-linking.png);
-    background-image: none, url(Images/screenIcon-linking.svg);
+    background-image: url(/__data/ees/Images/screenIcon-linking.png);
+    background-image: none, url(/__data/ees/Images/screenIcon-linking.svg);
 }
 
 #ees_screenMenuList .urls {
-    background-image: url(Images/screenIcon-urls.png);
-    background-image: none, url(Images/screenIcon-urls.svg);
+    background-image: url(/__data/ees/Images/screenIcon-urls.png);
+    background-image: none, url(/__data/ees/Images/screenIcon-urls.svg);
 }
 
 #ees_screenMenuList .details {
-    background-image: url(Images/screenIcon-details.png);
-    background-image: none, url(Images/screenIcon-details.svg);
+    background-image: url(/__data/ees/Images/screenIcon-details.png);
+    background-image: none, url(/__data/ees/Images/screenIcon-details.svg);
 }
 
 #ees_screenMenuList .content {
-    background-image: url(Images/screenIcon-content.png);
-    background-image: none, url(Images/screenIcon-content.svg);
+    background-image: url(/__data/ees/Images/screenIcon-content.png);
+    background-image: none, url(/__data/ees/Images/screenIcon-content.svg);
 }
 
 #ees_screenMenuList .email {
-    background-image: url(Images/screenIcon-email.png);
-    background-image: none, url(Images/screenIcon-email.svg);
+    background-image: url(/__data/ees/Images/screenIcon-email.png);
+    background-image: none, url(/__data/ees/Images/screenIcon-email.svg);
 }
 
 #ees_screenMenuList .analytics {
-    background-image: url(Images/screenIcon-analytics.png);
-    background-image: none, url(Images/screenIcon-analytics.svg);
+    background-image: url(/__data/ees/Images/screenIcon-analytics.png);
+    background-image: none, url(/__data/ees/Images/screenIcon-analytics.svg);
 }
 
 #ees_screenMenuList .redirect {
-    background-image: url(Images/screenIcon-redirect.png);
-    background-image: none, url(Images/screenIcon-redirect.svg);
+    background-image: url(/__data/ees/Images/screenIcon-redirect.png);
+    background-image: none, url(/__data/ees/Images/screenIcon-redirect.svg);
 }
 
 a.textButton {
@@ -5736,7 +5429,7 @@ a.textButton:hover {
 }
 
 #ees_safeEditButton:before {
-    content: url(Images/screenSwitcher.png);
+    content: url(/__data/ees/Images/screenSwitcher.png);
     width: 14px;
     height: 12px;
     display: block;
@@ -5764,7 +5457,7 @@ a.textButton:hover {
 
 #ees_editURLs span.fieldWarning {
     color: #f00;
-    background: url(Images/required_stars.png) left top no-repeat;
+    background: url(/__data/ees/Images/required_stars.png) left top no-repeat;
     padding-left: 21px;
     font-size: .9em;
 }
@@ -5869,7 +5562,7 @@ div#ees_addAutoRemap .slider {
 }
 
 #ees_assetFinder .modalIcon {
-    background-image: url(Images/modalAssetTreeIcon.png);
+    background-image: url(/__data/ees/Images/modalAssetTreeIcon.png);
 }
 
 #ees_assetFinder .modalBodyContent {
@@ -5902,7 +5595,7 @@ div#ees_addAutoRemap .slider {
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     color: #666;
-    background: url(Images/lineage-arrow_v2.png) no-repeat 100% 50%;
+    background: url(/__data/ees/Images/lineage-arrow_v2.png) no-repeat 100% 50%;
     cursor: pointer;
     display: block;
     float: left;
@@ -6004,7 +5697,7 @@ div#ees_addAutoRemap .slider {
 
 #ees_assetFinderBody .isAccessible0 .accessible {
     display: block;
-    background: url(Images/icon-noPerm.png) 0 0 no-repeat;
+    background: url(/__data/ees/Images/icon-noPerm.png) 0 0 no-repeat;
     position: absolute;
     left: 13px;
     top: 3px;
@@ -6086,7 +5779,7 @@ div#ees_addAutoRemap .slider {
     float: left;
     width: 26px;
     text-align: center;
-    background: transparent url(Images/assetFinder-chevron.png) 26px 50% no-repeat;
+    background: transparent url(/__data/ees/Images/assetFinder-chevron.png) 26px 50% no-repeat;
     padding-right: 10px;
 }
 
@@ -6159,7 +5852,7 @@ div#ees_addAutoRemap .slider {
     display: block;
     height: 16px;
     width: 16px;
-    background: url(Images/loader_assetFinder16x16.gif) 0 0 no-repeat;
+    background: url(/__data/ees/Images/loader_assetFinder16x16.gif) 0 0 no-repeat;
     position: absolute;
     right: 32px;
     top: 68px;
@@ -6195,7 +5888,7 @@ div#ees_addAutoRemap .slider {
     font-weight: bold;
     color: #565656;
     display: block;
-    background: transparent url(Images/finder-loader.gif) no-repeat 50% 0;
+    background: transparent url(/__data/ees/Images/finder-loader.gif) no-repeat 50% 0;
     font-style: italic;
 }
 
@@ -6207,13 +5900,13 @@ div#ees_addAutoRemap .slider {
     float: right;
     display: block;
     padding-right: 17px;
-    background-image: url(Images/refresh-assets.png);
+    background-image: url(/__data/ees/Images/refresh-assets.png);
     background-repeat: no-repeat;
     background-position: 100% 50%;
 }
 
 #ees_refreshAssetFinder:hover {
-    background-image: url(Images/refresh-assets-animated.gif);
+    background-image: url(/__data/ees/Images/refresh-assets-animated.gif);
     background-repeat: no-repeat;
     background-position: 100% 50%;
 }
@@ -6223,7 +5916,7 @@ div#ees_addAutoRemap .slider {
     height: 10px;
     float: left;
     margin-left: -20px;
-    background: url(Images/hidden-asset-sprite.png);
+    background: url(/__data/ees/Images/hidden-asset-sprite.png);
     background-repeat: no-repeat;
     margin-left: -18px;
     margin-top: 16px;
@@ -6266,7 +5959,7 @@ div#ees_addAutoRemap .slider {
 }
 
 .ees_assetPicker .assetDescription .bodycopy_div {
-    background: transparent url(Images/iconGenericMatrix-small.png) 0 50% no-repeat;
+    background: transparent url(/__data/ees/Images/iconGenericMatrix-small.png) 0 50% no-repeat;
     border: none;
     border-radius: 0;
     margin: 0;
@@ -6283,7 +5976,7 @@ div#ees_addAutoRemap .slider {
     width: 14px;
     height: 14px;
     margin: 8px 5px 0 0;
-    background: url(Images/clear_restore.png) no-repeat top left;
+    background: url(/__data/ees/Images/clear_restore.png) no-repeat top left;
 }
 
 .ees_assetPicker .assetIdWrap {
@@ -6543,7 +6236,7 @@ body.editingFrame {
 
 #ees_createNews span.fieldWarning {
     color: #f00;
-    background: url(Images/required_stars.png) left top no-repeat;
+    background: url(/__data/ees/Images/required_stars.png) left top no-repeat;
     padding-left: 21px;
     font-size: .9em;
 }
@@ -6632,7 +6325,7 @@ body.editingFrame {
     height: 16px;
     line-height: 16px;
     overflow: hidden;
-    background: url("Images/error_white.png") no-repeat;
+    background: url("/__data/ees/Images/error_white.png") no-repeat;
     float: right;
     text-indent: -9999px;
     font-size: 80%;
@@ -6641,7 +6334,7 @@ body.editingFrame {
 }
 
 .wizardQueue .delete {
-    background: url("Images/delete_recover_dark.png") no-repeat scroll 0 0 transparent;
+    background: url("/__data/ees/Images/delete_recover_dark.png") no-repeat scroll 0 0 transparent;
     width: 16px;
     height: 16px;
     overflow: hidden;
@@ -6658,11 +6351,11 @@ body.editingFrame {
 }
 
 .wizardQueue .complete {
-    background: url("Images/tick-green.png") no-repeat 160px 6px transparent;
+    background: url("/__data/ees/Images/tick-green.png") no-repeat 160px 6px transparent;
 }
 
 .wizardQueue .fail {
-    background: url("Images/error_white.png") no-repeat 160px 6px transparent;
+    background: url("/__data/ees/Images/error_white.png") no-repeat 160px 6px transparent;
 }
 
 .wizardQueueProgressIndicator h2 {
@@ -6698,7 +6391,7 @@ body.editingFrame {
 
 .wizardQueueProgressIndicator .progress-bar span {
     background-color: #007edd;
-    background-image: url(Images/progress-bar-bg.gif);
+    background-image: url(/__data/ees/Images/progress-bar-bg.gif);
     border-radius: 4px;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
     display: block;
@@ -6718,7 +6411,7 @@ body.editingFrame {
 }
 
 .modalBodyCategories .buttons .clone .icon {
-    background: url(Images/iconCloneAsset-small.png) no-repeat;
+    background: url(/__data/ees/Images/iconCloneAsset-small.png) no-repeat;
     background-position: 12px;
     padding-left: 16px;
     display: block;
@@ -6809,7 +6502,7 @@ body.editingFrame {
 }
 
 .ees-option-widget__add-button-icon {
-    background: transparent url(Images/bodycopy_sprite.png) no-repeat 0 -18px;
+    background: transparent url(/__data/ees/Images/bodycopy_sprite.png) no-repeat 0 -18px;
     height: 18px;
     width: 20px;
     display: inline-block;
@@ -6821,7 +6514,7 @@ body.editingFrame {
     width: 16px;
     height: 16px;
     margin-top: 6px;
-    background: transparent url(Images/sort-handle-small.png) no-repeat;
+    background: transparent url(/__data/ees/Images/sort-handle-small.png) no-repeat;
     background-position: 50% 4px;
     display: block;
     cursor: move;
@@ -6841,7 +6534,7 @@ body.editingFrame {
     height: 14px;
     margin: 8px 4px 0 4px;
     display: block;
-    background: transparent url(Images/remove-list-item.png) no-repeat;
+    background: transparent url(/__data/ees/Images/remove-list-item.png) no-repeat;
     background-position: 50% 0;
 }
 
@@ -6870,7 +6563,7 @@ body.editingFrame {
 }
 
 .ees-option-widget__column:hover .ees-option-widget__display-value {
-    background: url(Images/editable-pencil.png) no-repeat right 6px;
+    background: url(/__data/ees/Images/editable-pencil.png) no-repeat right 6px;
 }
 
 .ees-option-widget__column-edited {
@@ -6994,12 +6687,12 @@ body.editingFrame {
 .ees_locationLinks .websiteLocation .wrapper {
     display: block;
     padding-left: 45px;
-    background: url(Images/menu-show.png) 12px 1px no-repeat transparent;
+    background: url(/__data/ees/Images/menu-show.png) 12px 1px no-repeat transparent;
     text-align: left;
 }
 
 .ees_locationLinks .hiddenFromMenus .websiteLocation .wrapper {
-    background-image: url(Images/menu-hide.png);
+    background-image: url(/__data/ees/Images/menu-hide.png);
 }
 
 .ees_locationLinks .linkValue {
@@ -7019,7 +6712,7 @@ body.editingFrame {
 }
 
 .ees_locationLinks .deleteLink {
-    background: url(Images/delete_overlay.png) left top repeat;
+    background: url(/__data/ees/Images/delete_overlay.png) left top repeat;
 }
 
 .ees_locationLinks .linkTypes {
@@ -7031,7 +6724,7 @@ body.editingFrame {
 }
 
 .ees_locationLinks .assetDeleteOption {
-    background: url(Images/delete_recover_dark.png) left top no-repeat;
+    background: url(/__data/ees/Images/delete_recover_dark.png) left top no-repeat;
     display: block;
     height: 16px;
     width: 16px;
@@ -7043,7 +6736,7 @@ body.editingFrame {
 }
 
 .locationSeparator {
-    background: url(Images/lineage-arrow.png) 50% 50% no-repeat;
+    background: url(/__data/ees/Images/lineage-arrow.png) 50% 50% no-repeat;
     padding-left: 12px;
     padding-right: 8px;
     width: 5px;
@@ -7076,15 +6769,15 @@ body.editingFrame {
 }
 
 #ees_assetLinks .linkType.rootNode .wrapper {
-    background: url(Images/link-types-sprite.png) 12px 0 no-repeat transparent;
+    background: url(/__data/ees/Images/link-types-sprite.png) 12px 0 no-repeat transparent;
 }
 
 #ees_assetLinks .linkType.nestedAsset .wrapper {
-    background: url(Images/link-types-sprite.png) 12px 50% no-repeat transparent;
+    background: url(/__data/ees/Images/link-types-sprite.png) 12px 50% no-repeat transparent;
 }
 
 #ees_assetLinks .linkType.urlLink .wrapper {
-    background: url(Images/link-types-sprite.png) 12px 100% no-repeat transparent;
+    background: url(/__data/ees/Images/link-types-sprite.png) 12px 100% no-repeat transparent;
 }
 
 #ees_editLinking .childrenMessage {
@@ -7113,7 +6806,7 @@ body.editingFrame {
 }
 
 #ees_lastLinkWarning {
-    background: url(Images/detailsInfoWarning_v2.gif) no-repeat scroll 15px 10px #fff2bb;
+    background: url(/__data/ees/Images/detailsInfoWarning_v2.gif) no-repeat scroll 15px 10px #fff2bb;
     border: 1px solid #e0d4a2;
     border-radius: 4px;
     color: #656565;
@@ -7162,7 +6855,7 @@ li.clearfix.child-5949.child.permission-level-admin.access {
 .ees_directChildrenList .dragIcon {
     height: 27px;
     width: 27px;
-    background: url(Images/drag_move.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/drag_move.png) 0 50% no-repeat;
     cursor: move;
     margin: -14px 5px 0 0;
     top: 25px;
@@ -7172,7 +6865,7 @@ li.clearfix.child-5949.child.permission-level-admin.access {
 .ees_directChildrenList .dragDenied {
     height: 27px;
     width: 27px;
-    background: url(Images/drag_move_denied.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/drag_move_denied.png) 0 50% no-repeat;
     cursor: pointer;
     margin: -14px 5px 0 0;
     top: 25px;
@@ -7194,7 +6887,7 @@ li.clearfix.child-5949.child.permission-level-admin.access {
 .ees_assetInfo:hover,
 .ees_directChildrenList .assetInfo:hover {
     position: relative;
-    background: transparent url(Images/iconLocate.png) 100% 50% no-repeat;
+    background: transparent url(/__data/ees/Images/iconLocate.png) 100% 50% no-repeat;
 }
 
 .ees_assetInfo .assetIcon,
@@ -7250,7 +6943,7 @@ li.clearfix.child-5949.child.permission-level-admin.access {
     display: block;
     height: 16px;
     width: 16px;
-    background: url(Images/delete_recover_dark.png) 0 0 no-repeat;
+    background: url(/__data/ees/Images/delete_recover_dark.png) 0 0 no-repeat;
     outline: none;
     margin: 7px 5px 0 0;
 }
@@ -7267,11 +6960,11 @@ li.clearfix.child-5949.child.permission-level-admin.access {
 }
 
 .ees_directChildrenList .markedForDeletion {
-    background: transparent url(Images/delete_overlay.png) 0 0 repeat;
+    background: transparent url(/__data/ees/Images/delete_overlay.png) 0 0 repeat;
 }
 
 .ees_directChildrenList .markedForDeletion .assetDeleteOption {
-    background: url(Images/delete_recover_dark.png) 0 -16px no-repeat;
+    background: url(/__data/ees/Images/delete_recover_dark.png) 0 -16px no-repeat;
 }
 
 .ees_directChildrenList .markedForDeletion .dragIcon {
@@ -7526,7 +7219,7 @@ table.sq-backend-table {
 
 #ees_nestedContentsWarning .nestedWarning p.warningMessage,
 #warning_nesting_form_type_asset {
-    background: url(Images/detailsInfoWarning_v2.gif) 0 5px no-repeat;
+    background: url(/__data/ees/Images/detailsInfoWarning_v2.gif) 0 5px no-repeat;
     background-color: #fff2bb;
     float: left;
     line-height: 18px;
@@ -7640,11 +7333,11 @@ table.sq-backend-table {
 
 #ees_editContents .htmlarea-button {
     border-color: #EEE!important;
-    background-image: url(Images/toolbar.png)!important;
+    background-image: url(/__data/ees/Images/toolbar.png)!important;
 }
 
 #ees_editContents .htmlarea-buttonDisabled {
-    background-image: url(Images/toolbar_disabled.png)!important;
+    background-image: url(/__data/ees/Images/toolbar_disabled.png)!important;
 }
 
 #ees_editContents .htmlarea-select {
@@ -7675,7 +7368,7 @@ table.sq-backend-table {
     padding: 10px 10px 10px 61px;
     margin: 0;
     line-height: normal;
-    background: #e4e4e4 url(Images/warning_large.png) 10px 10px no-repeat;
+    background: #e4e4e4 url(/__data/ees/Images/warning_large.png) 10px 10px no-repeat;
 }
 
 #ees_editContents .notSupported b {
@@ -7777,7 +7470,7 @@ table.sq-backend-table {
 }
 
 .plus .bodycopy_insert .icon {
-    background: #fff url(Images/bodycopy_sprite.png) 50% -20px no-repeat;
+    background: #fff url(/__data/ees/Images/bodycopy_sprite.png) 50% -20px no-repeat;
     width: 24px;
     border: solid 1px #c6cedf;
     border-radius: 3px;
@@ -7812,14 +7505,14 @@ table.sq-backend-table {
     float: left;
     width: 20px;
     height: 20px;
-    background: url(Images/bodycopy_sprite.png) 50% -80px no-repeat;
+    background: url(/__data/ees/Images/bodycopy_sprite.png) 50% -80px no-repeat;
     margin: 0 -5px 0 5px;
 }
 
 .plus .bodycopy_tools .bodycopy_unsupported {
     margin-left: 10px;
     margin-right: 5px;
-    background: url(Images/edit-no-support.png) 0 0 no-repeat;
+    background: url(/__data/ees/Images/edit-no-support.png) 0 0 no-repeat;
 }
 
 .plus .unsupported .bodycopy_content_wrapper {
@@ -7847,8 +7540,8 @@ table.sq-backend-table {
 
 .plus .bodycopy_tools .icon {
     background: #efefef no-repeat;
-    background-image: url(Images/bodycopy_sprite.png);
-    background-image: none, url(Images/bodycopy_sprite.svg);
+    background-image: url(/__data/ees/Images/bodycopy_sprite.png);
+    background-image: none, url(/__data/ees/Images/bodycopy_sprite.svg);
     height: 20px;
     width: 20px;
     cursor: pointer;
@@ -8011,7 +7704,7 @@ table.sq-backend-table {
 .plus .tooltipDivConditions .section.nothingSet .message,
 .plus .tooltipDivConditions .row.condsDisabled .message {
     padding: 8px 0 8px 35px;
-    background: url(Images/detailsInfoWarning_v2.gif) 0 0 no-repeat;
+    background: url(/__data/ees/Images/detailsInfoWarning_v2.gif) 0 0 no-repeat;
 }
 
 .plus .eesTooltip .section:first-child {
@@ -8141,7 +7834,7 @@ table.sq-backend-table {
 }
 
 .plus .tooltipDivConditions .addCondition .icon {
-    background-image: url(Images/linkicon-add.png);
+    background-image: url(/__data/ees/Images/linkicon-add.png);
 }
 
 .plus .tooltipDivConditions .sectionGroup .nothingSet {
@@ -8168,7 +7861,7 @@ table.sq-backend-table {
 }
 
 .plus .tooltipDivConditions .delete {
-    background: url('Images/delete_recover_dark.png') no-repeat top left;
+    background: url('/__data/ees/Images/delete_recover_dark.png') no-repeat top left;
     width: 16px;
     height: 16px;
     overflow: hidden;
@@ -8352,300 +8045,8 @@ table.sq-backend-table {
     width: 16px;
     top: 8px;
     right: 0;
-    background: url(Images/delete_recover_dark.png) 0 0 no-repeat;
+    background: url(/__data/ees/Images/delete_recover_dark.png) 0 0 no-repeat;
     outline: none;
-}
-
-.plus .content_type_raw_html textarea.sq-backend-code-editing,
-.plus .content_type_markdown textarea.sq-backend-code-editing,
-.plus .content_type_code textarea.sq-backend-code-editing {
-    font-family: Monaco, "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace!important;
-    min-height: 100px;
-    width: 695px;
-    line-height: 1.5;
-    background: #f8f7c7;
-    color: #454422;
-    margin: 15px 20px 20px;
-    overflow: auto;
-    padding: 10px;
-    border: 1px solid #dedda5;
-    border-radius: 3px;
-    font-size: 12px;
-    display: block;
-}
-
-.plus .content_type_code table {
-    font-size: .75em;
-    width: auto!important;
-    color: #999;
-    margin: 20px;
-    border-top: solid 1px #f1f1f1;
-}
-
-.plus .content_type_code table tr:first-child td {
-    padding-top: 20px;
-}
-
-.plus .content_type_code td {
-    padding: 2px;
-}
-
-.plus .content_type_code label {
-    margin: 0 10px 0 3px;
-}
-
-.plus .content_type_wysiwyg a,
-.plus .content_type_wysiwyg a:visited {
-    color: #06e;
-}
-
-.plus .content_type_wysiwyg h1,
-.plus .content_type_wysiwyg h2,
-.plus .content_type_wysiwyg h3,
-.plus .content_type_wysiwyg h4,
-.plus .content_type_wysiwyg h5,
-.plus .content_type_wysiwyg h6 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    line-height: normal;
-    margin: 1em 0 .25em;
-    color: inherit;
-}
-
-.plus .bodycopy_content h1:first-child,
-.plus .bodycopy_content h2:first-child,
-.plus .bodycopy_content h3:first-child,
-.plus .bodycopy_content h4:first-child,
-.plus .bodycopy_content h5:first-child,
-.plus .bodycopy_content h6:first-child {
-    margin-top: 0;
-}
-
-.plus .content_type_wysiwyg h1 {
-    font-size: 2.571em;
-}
-
-.plus .content_type_wysiwyg h2 {
-    font-size: 2.143em;
-}
-
-.plus .content_type_wysiwyg h3 {
-    font-size: 1.714em;
-}
-
-.plus .content_type_wysiwyg h4 {
-    font-size: 1.286em;
-}
-
-.plus .content_type_wysiwyg h5 {
-    font-size: 1em;
-}
-
-.plus .content_type_wysiwyg h6 {
-    font-size: .857em;
-}
-
-.plus .content_type_wysiwyg p {
-    margin: 1em 0 1.5em;
-    line-height: 1.25;
-    color: #333;
-    font-size: .98em;
-}
-
-.plus .bodycopy_content p:first-child {
-    margin-top: 0;
-}
-
-.plus .content_type_wysiwyg hr {
-    margin: 1.7em 0;
-    border-color: #DDD;
-}
-
-.plus .content_type_wysiwyg ul,
-.plus .content_type_wysiwyg ol,
-.plus .content_type_wysiwyg dl {
-    margin: 1.4em 3em 2em;
-}
-
-.plus .content_type_wysiwyg ul {
-    list-style-type: disc;
-}
-
-.plus .content_type_wysiwyg ul ul {
-    list-style-type: circle;
-}
-
-.plus .content_type_wysiwyg ul ul ul {
-    list-style-type: square;
-}
-
-.plus .content_type_wysiwyg ul ul,
-.plus .content_type_wysiwyg ol ol,
-.plus .content_type_wysiwyg ul ol,
-.plus .content_type_wysiwyg ol ul {
-    margin-top: .5em;
-    margin-bottom: 1em;
-}
-
-.plus .content_type_wysiwyg ol {
-    list-style-type: decimal;
-}
-
-.plus .content_type_wysiwyg ol ol {
-    list-style-type: lower-alpha;
-}
-
-.plus .content_type_wysiwyg ol ol ol {
-    list-style-type: lower-roman;
-}
-
-.plus .content_type_wysiwyg dt {
-    font-weight: bold;
-    margin: 1em 0;
-}
-
-.plus .content_type_wysiwyg dt:after {
-    content: ":";
-}
-
-.plus .content_type_wysiwyg dd {
-    font-style: italic;
-    margin: 0 0 .5em 1em;
-}
-
-.plus .content_type_wysiwyg table {
-    margin: 1em 0 1.5em;
-    border-collapse: collapse!important;
-    font-size: .9em;
-}
-
-.plus .content_type_wysiwyg caption {
-    padding: .6em 1em;
-    background-color: #f7f7f7;
-    margin-bottom: 5px;
-    color: #5a5a5a;
-    border-radius: 4px;
-}
-
-.plus .content_type_wysiwyg td,
-.plus .content_type_wysiwyg th {
-    border: 1px solid #d2d1d1!important;
-    padding: .6em!important;
-    color: #3a3a3a;
-}
-
-.plus .content_type_wysiwyg th {
-    text-align: center;
-    background-color: #f1f1f1!important;
-    border-color: #d6d6d6!important;
-    color: #696969;
-    font-weight: bold;
-    text-shadow: none!important;
-    font-size: 13px;
-}
-
-.plus .content_type_wysiwyg tr {
-    height: 1em;
-    width: 1em;
-}
-
-.plus .content_type_wysiwyg form {
-    margin: 1em 0 1.5em;
-    font-size: .9em;
-}
-
-.plus .content_type_wysiwyg input[type="text"],
-.plus .content_type_wysiwyg textarea {
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    box-shadow: 0 0 3px #aaa inset;
-    padding: .3em;
-}
-
-.plus .content_type_wysiwyg input[type="submit"] {
-    padding: 2px;
-}
-
-.plus .content_type_wysiwyg fieldset {
-    background: none repeat scroll 0 0 #efefef;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: .6em 1em 1em;
-    margin-bottom: 1.2em;
-}
-
-.plus .content_type_wysiwyg legend {
-    background-color: #ededed;
-    color: #888;
-    font-size: .9em;
-    font-weight: bold;
-    padding: .2em 1em;
-    border: 1px solid #DDD;
-    border-bottom: none;
-}
-
-.plus .content_type_wysiwyg code,
-.plus .content_type_wysiwyg pre {
-    background: #f8f7c7;
-    color: #454422;
-    margin: 1em 0;
-    overflow: auto;
-    padding: .8em;
-    border: 1px solid #dedda5;
-    border-radius: 5px;
-    font-family: Monaco, "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace!important;
-    font-size: .9em;
-    display: block;
-}
-
-.plus .content_type_wysiwyg code {
-    display: inline;
-    padding: .1em;
-}
-
-.plus .content_type_wysiwyg blockquote {
-    background: #f2f2f2;
-    color: #333;
-    margin: 1.5em 0;
-    padding: 25px 28px;
-    position: relative;
-    border: 1px solid #CCC;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    font-size: 1.1em;
-    font-family: Georgia, Times;
-    font-style: italic;
-}
-
-.plus .content_type_wysiwyg blockquote:before {
-    content: "\201C";
-    font-size: 50px;
-    left: 8px;
-    line-height: 0;
-    position: absolute;
-    top: 30px;
-}
-
-.plus .content_type_wysiwyg blockquote:after {
-    bottom: 4px;
-    content: "\201D";
-    font-size: 50px;
-    line-height: 0;
-    position: absolute;
-    right: 13px;
-}
-
-.plus .content_type_wysiwyg q {
-    font-style: italic;
-}
-
-.plus .content_type_wysiwyg object {
-    display: block;
-    background: #e6e6e6;
-    border: 1px dashed #999;
-    min-height: 100px;
-    min-width: 100px;
 }
 
 .plus .content_type_wysiwyg .intro {
@@ -8760,7 +8161,7 @@ table.sq-backend-table {
 }
 
 .plus .content_type_wysiwyg .sq-illegal-wysiwyg-content .sq-warning-message {
-    background: url(Images/detailsInfoWarning_v2.gif) 10px 10px no-repeat;
+    background: url(/__data/ees/Images/detailsInfoWarning_v2.gif) 10px 10px no-repeat;
     background-color: #fff2bb;
     line-height: 18px;
     padding-left: 35px;
@@ -8845,7 +8246,7 @@ table.sq-backend-table {
 
 #ees_editDetails span.fieldWarning {
     color: #f00;
-    background: url(Images/required_stars.png) left top no-repeat;
+    background: url(/__data/ees/Images/required_stars.png) left top no-repeat;
     padding-left: 21px;
     font-size: .9em;
 }
@@ -8945,7 +8346,7 @@ table.sq-backend-table {
 }
 
 #ees_changeStatus .statusWarning .warningMessage {
-    background: url(Images/detailsInfoWarning_v2.gif) 0 5px no-repeat;
+    background: url(/__data/ees/Images/detailsInfoWarning_v2.gif) 0 5px no-repeat;
     float: left;
     line-height: 18px;
     padding-left: 35px;
@@ -9303,7 +8704,7 @@ table.sq-backend-table {
     margin: 0;
     line-height: normal;
     min-height: 40px;
-    background: #e4e4e4 url(Images/warning_large.png) 10px 10px no-repeat;
+    background: #e4e4e4 url(/__data/ees/Images/warning_large.png) 10px 10px no-repeat;
 }
 
 #ees_displayInformation,
@@ -9526,7 +8927,7 @@ h2.dateInfoHeading {
 
 #ees_editWorkflow span.fieldWarning {
     color: #f00;
-    background: url(Images/required_stars.png) left top no-repeat;
+    background: url(/__data/ees/Images/required_stars.png) left top no-repeat;
     padding-left: 21px;
     font-size: 1em;
     display: block;
@@ -9837,7 +9238,7 @@ h2.dateInfoHeading {
     float: left;
     line-height: 25px;
     color: #fff;
-    background: #c50505 url(Images/white_exclamation.png) 5px 50% no-repeat;
+    background: #c50505 url(/__data/ees/Images/white_exclamation.png) 5px 50% no-repeat;
     padding-left: 25px;
 }
 
@@ -9861,11 +9262,11 @@ h2.dateInfoHeading {
 }
 
 .editSection .fieldRequired span {
-    background: url(Images/required_stars.png) left top no-repeat;
+    background: url(/__data/ees/Images/required_stars.png) left top no-repeat;
 }
 
 .editSection .fieldNonEditable span {
-    background: url(Images/lock.png) 0 -15px no-repeat;
+    background: url(/__data/ees/Images/lock.png) 0 -15px no-repeat;
 }
 
 .metadata .cellData ul {
@@ -9920,7 +9321,7 @@ h2.dateInfoHeading {
 .relatedMetadata .dragIcon {
     height: 27px;
     width: 27px;
-    background: url(Images/drag_move.png) 0 50% no-repeat;
+    background: url(/__data/ees/Images/drag_move.png) 0 50% no-repeat;
     cursor: move;
     padding: 3px 9px 0 0;
 }
@@ -9935,7 +9336,7 @@ h2.dateInfoHeading {
 }
 
 ul.ees_relatedAssets li {
-    background: url(Images/menu-show.png) 0 5px no-repeat transparent;
+    background: url(/__data/ees/Images/menu-show.png) 0 5px no-repeat transparent;
     display: block;
     padding-left: 30px!important;
     text-align: left;
@@ -10077,11 +9478,11 @@ ul.ees_relatedAssets li {
 
 .metadata .wysiwygContainer .htmlarea-button {
     border: solid 1px #EEE!important;
-    background-image: url(Images/toolbar.png)!important;
+    background-image: url(/__data/ees/Images/toolbar.png)!important;
 }
 
 .metadata .htmlarea-buttonDisabled {
-    background-image: url(Images/toolbar_disabled.png)!important;
+    background-image: url(/__data/ees/Images/toolbar_disabled.png)!important;
 }
 
 .metadata .htmlarea-select {
@@ -10128,7 +9529,7 @@ ul.ees_relatedAssets li {
 }
 
 .metadata .thesaurusContainer .loadingTerms {
-    background: #fff url('Images/loader_white16x16.gif') no-repeat 5px 5px;
+    background: #fff url('/__data/ees/Images/loader_white16x16.gif') no-repeat 5px 5px;
     padding: 3px 3px 3px 26px;
     width: 270px;
     margin-bottom: 10px;
@@ -10486,7 +9887,7 @@ span[id^="metadata_field_select"] {
     margin: 3px;
     padding: 0 10px;
     position: relative;
-    background: #fafafa url(Images/metadata-pencil.png) 675px 50% no-repeat;
+    background: #fafafa url(/__data/ees/Images/metadata-pencil.png) 675px 50% no-repeat;
     text-shadow: 0 1px 0 #fff;
     border-radius: 3px;
     width: 692px;
@@ -10573,20 +9974,20 @@ span[id^="metadata_field_select"] {
 }
 
 #ees_analyticsReportContents.status-loading {
-    background: url(Images/loader-matrix.gif) 50% 20px no-repeat #f5f5f5;
+    background: url(/__data/ees/Images/loader-matrix.gif) 50% 20px no-repeat #f5f5f5;
 }
 
 #ees_analyticsReportContents.status-stats-empty {
-    background: url(Images/analytics_generic.png) 50% 20px no-repeat #f5f5f5;
+    background: url(/__data/ees/Images/analytics_generic.png) 50% 20px no-repeat #f5f5f5;
 }
 
 #ees_analyticsReportContents.status-goals-empty,
 #ees_analyticsReportContents .status-goals-no-conversions {
-    background: url(Images/analytics_goals.png) 50% 20px no-repeat #f5f5f5;
+    background: url(/__data/ees/Images/analytics_goals.png) 50% 20px no-repeat #f5f5f5;
 }
 
 #ees_analyticsReportContents.status-experiments-empty {
-    background: url(Images/analytics_experiments.png) 50% 20px no-repeat #f5f5f5;
+    background: url(/__data/ees/Images/analytics_experiments.png) 50% 20px no-repeat #f5f5f5;
 }
 
 #ees_analyticsReportContents.status-loading>div {
@@ -10659,7 +10060,7 @@ span[id^="metadata_field_select"] {
 
 #ees_editAnalytics span.fieldWarning {
     color: #f00;
-    background: url(Images/required_stars.png) left top no-repeat;
+    background: url(/__data/ees/Images/required_stars.png) left top no-repeat;
     padding-left: 21px;
     font-size: .9em;
 }
@@ -10685,7 +10086,7 @@ span[id^="metadata_field_select"] {
     height: 13px;
     width: 13px;
     margin: 10px 5px 5px;
-    background: url(Images/help-buttons.png) left 0 no-repeat;
+    background: url(/__data/ees/Images/help-buttons.png) left 0 no-repeat;
 }
 
 #ees_editAnalytics .helpRollover:hover {
@@ -11031,7 +10432,7 @@ div.analyticsGraphTooltip table .total {
 }
 
 #ees_editAnalytics .summaryUnit .valueDiv span.flipper {
-    background: url(Images/time_flipper_large.png) top left repeat-x;
+    background: url(/__data/ees/Images/time_flipper_large.png) top left repeat-x;
     height: 51px;
     line-height: 51px;
     border: solid 1px #dadada;
@@ -11061,7 +10462,7 @@ div.analyticsGraphTooltip table .total {
     padding-left: 20px;
     height: 16px;
     line-height: 16px;
-    background: url(Images/change-arrows.png) left -64px no-repeat;
+    background: url(/__data/ees/Images/change-arrows.png) left -64px no-repeat;
 }
 
 #ees_editAnalytics .changeDiv.better {
@@ -11146,7 +10547,7 @@ div.analyticsGraphTooltip table .total {
 
 #ees_editAnalytics .trafficBdownCentre span.enterExit {
     display: block;
-    background: url(Images/enterexit.png) left 0 no-repeat;
+    background: url(/__data/ees/Images/enterexit.png) left 0 no-repeat;
     width: 100%;
     height: 18px;
 }
@@ -11244,7 +10645,7 @@ div.analyticsGraphTooltip table .total {
     vertical-align: middle;
     width: 30px;
     height: 42px;
-    background: url(Images/analytics_goal_type.png) -4px 0 no-repeat;
+    background: url(/__data/ees/Images/analytics_goal_type.png) -4px 0 no-repeat;
     margin-left: 5px;
 }
 
@@ -11270,7 +10671,7 @@ div.analyticsGraphTooltip table .total {
     vertical-align: middle;
     width: 20px;
     height: 20px;
-    background: url(Images/analytics_goal_type_sml.png) 0 0 no-repeat;
+    background: url(/__data/ees/Images/analytics_goal_type_sml.png) 0 0 no-repeat;
 }
 
 .analyticsDropDownTooltip .small-goal-type-sprite {
@@ -11498,7 +10899,7 @@ div.dropDownClicker {
 
 div.dropDownClicker span.expand {
     display: inline-block;
-    background: url(Images/reportlist.png) 0 0 no-repeat;
+    background: url(/__data/ees/Images/reportlist.png) 0 0 no-repeat;
     width: 14px;
     height: 10px;
     margin-top: 4px;
@@ -11658,7 +11059,7 @@ div[id^="ees_analyticsAudienceReport"] table {
 
 #ees_editAnalytics table.styled.drilldown .majorRow.clickable span.expand {
     display: inline-block;
-    background: url(Images/expandcollapse.png) 0 -7px no-repeat;
+    background: url(/__data/ees/Images/expandcollapse.png) 0 -7px no-repeat;
     width: 10px;
     height: 7px;
     margin-top: 7px;
