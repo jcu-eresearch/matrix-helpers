@@ -9,3 +9,18 @@
 * `/__lib/web/popups/print_limbo_keywords.php?asset_type=design` lists all
   keywords for a given asset type for Simple Edit (unsure where used yet)
 * `/_web_services/edit.js` is the JavaScript API endpoint
+
+## CSRF
+
+* Access the CSRF token directly via `/?SQ_ACTION=getToken` from any URL.
+  This is a potential security risk if editors are untrusted or there are any
+  locations where an untrusted user can inject HTML.
+
+## Designs
+
+* `/?SQ_ACTION=set_design_name&SQ_DESIGN_NAME=test` will set the design name
+  permanently (well, into your $_SESSION) so you can browse an entire site or
+  elsewhere without needing to append `?SQ_DESIGN_NAME=test` to a given page
+  load.
+* `/?SQ_ACTION=clean_design_name` will clear the $_SESSION of your
+  `SQ_DESIGN_NAME` variable
