@@ -9,6 +9,8 @@
 * `/__lib/web/popups/print_limbo_keywords.php?asset_type=design` lists all
   keywords for a given asset type for Simple Edit (unsure where used yet)
 * `/_web_services/edit.js` is the JavaScript API endpoint
+* `/__data/assets/js_file/0013/3433/EditPlusConfig.js` contains the Edit+
+  configuration and API keys.
 
 ## CSRF
 
