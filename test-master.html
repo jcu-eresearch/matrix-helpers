@@ -1902,7 +1902,7 @@
               <tr>
                 <td>&#37;globals_site_index_id&#37;</td>
                 <td>%globals_site_index_id%</td>
-                <td><p>An asset ID of a <em>Site</em> can be appended to these global keyword replacements to specify the <em>Site</em> to return the asset ID values from. For example, the global keyword replacement:</p><pre>%globals_site_index_id:100%</pre>
+                <td><p>An asset ID of a <em>Site</em> can be appended to these global keyword replacements to specify the <em>Site</em> to return the asset ID values from. For example, the global keyword replacement:</p> <pre>&#37;globals_site_index_id:100&#37;</pre> (value: %globals_site_index_id:100%)
                    <p>Will return the asset ID of the <em>Index </em>page of the <em>Site</em> with the asset ID of 100.</p>
                </td>
               </tr>
@@ -1928,11 +1928,10 @@
                 </tr>
                 <tr>
                   <td headers="table43555r1c1">
-                    %globals_asset_attribute_
-                    <attribute>&lt;attribute&gt;%</attribute>
+                    %globals_asset_attribute_&lt;attribute&gt;%
                   </td>
                   <td headers="table43555r1c2">
-                    Any attribute of the current front end asset.For example, %globals_asset_attribute_title% shows the <em>Title</em> attribute of a <em>File </em>type asset the user is currently viewing. This global keyword replacement&nbsp;could then be used in a <em>Design</em> to show the title of the asset. If the title of the asset then changes, the <em>Design</em> will not need to be updated, as the global keyword replacement will source the information directly from the asset.
+                    Any attribute of the current front end asset. For example, &#37;globals_asset_attribute_title&#37; (value: %globals_asset_attribute_title%) shows the <em>Title</em> attribute of a <em>File</em>type asset the user is currently viewing. This global keyword replacement could then be used in a <em>Design</em> to show the title of the asset. If the title of the asset then changes, the <em>Design</em> will not need to be updated, as the global keyword replacement will source the information directly from the asset.
                   </td>
                 </tr>
                 <tr>
@@ -1940,7 +1939,7 @@
                     %globals_asset_attribute_&lt;attribute&gt;:&lt;assetid&gt;%
                   </td>
                   <td headers="table43555r1c2">
-                    Any attribute of any asset in the system.&nbsp;For example, if we have an <em>Image</em> asset in our system with an asset ID of #67 the global keyword %globals_asset_attribute_title:67% will show the title of this <em>Image </em>asset, while the global keyword %globals_asset_attribute_size:67% will show its file size.
+                    Any attribute of any asset in the system.&nbsp;For example, if we have an <em>Image</em> asset in our system with an asset ID of #67 the global keyword &#37;globals_asset_attribute_title:67&#37; (value: %globals_asset_attribute_title:67%) will show the title of this <em>Image </em>asset, while the global keyword &#37;globals_asset_attribute_size:67&#37; will show its file size.
                   </td>
                 </tr>
                 <tr>
