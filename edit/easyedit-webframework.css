@@ -1,0 +1,133 @@
+/*csslint ids:false*/
+
+/* Integration process:
+ * 1. Remove all reset rules from easyedit.min.css
+ * 2. Remove all rules for `* .content_type_wysiwyg *` from easyedit.min.css
+ * 3. Apply these customisations on top of easyedit.min.css; they are
+ *    separated out for ease of visibility.
+ *
+ * For linting, we ignore ID rules because Matrix Edit+ uses them.
+ */
+
+/*
+ * General and Content
+ */
+
+/* .row conflicts with Framework so set no margins, and only configure margins
+ * for WYSIWYG fields.
+ */
+.row {
+  margin-left: 0;
+  margin-right: 0;
+  margin-left: initial;
+  margin-right: initial;
+}
+
+.plus .content_type_wysiwyg .row {
+  margin-right: -.625rem;
+  margin-left: -.625rem;
+}
+
+/* Tooltip un-fixed widths */
+#ees_exitEditTooltip .tooltipButtons a {
+  width: auto;
+}
+
+/* Tooltip and wizard un-fixed heights */
+.defaultCreate input.textInput, .defaultCreate textarea.textInput,
+#ees_pageNaming .inputText, #ees_detailsRedirect .inputText, .details-screen-section .inputText, .eesTooltip .inputText,
+.plus .tooltipEditDiv input[type="text"],
+.plus .tooltipEditDiv textarea
+{
+  height: auto !important;
+}
+
+/*
+ * Main Edit+ toolbar
+ */
+
+/* Reset conflicts with button list */
+#ees_screenMenuList {
+  margin-bottom: 0;
+}
+
+/* Clear default paddings */
+.wizardQueue .queue {
+  padding-left: 0;
+}
+
+/* Accessibility select drop-down */
+.HTMLCS-settings select {
+  color: #000;
+}
+
+/* Asset info tooltip */
+#ees_infoBoxTooltip .row .label {
+  display: block;
+  width: auto;
+  float: none;
+  padding: 0;
+  color: #000;
+  text-align: left;
+}
+
+#ees_infoBoxTooltip .data {
+  display: block;
+  max-width: none;
+}
+
+/* Exit contents */
+#ees_exitEditTooltip .tooltipContent {
+  color: inherit;
+}
+
+/*
+ * Details panel
+ */
+
+/* Fix invisible text due to line-heights */
+#ees_thumbnailPreview {
+  overflow: visible;
+  line-height: inherit;
+}
+
+/*
+ * Metadata panel
+ */
+
+/* Metadata heading heights */
+.metadata h3, #ees_editMetadata h3 {
+  margin-bottom: 1rem;
+}
+
+/* Metadata fixed-width uses content-box */
+.editSection .cellName,
+.editSection .cellData {
+  box-sizing: content-box;
+}
+
+/* Improve colours for edit cells so they're readable */
+.editSection .cellData .defaultLabel,
+.sq-metadata-settings-wrapper,
+.editSection .cellData {
+  color: inherit;
+}
+.cellData > select {
+  background-color: #fff;
+}
+
+/*
+ * Links panel
+ */
+
+/* Always show drag icons and UI on*/
+.child .linkingScreenShortCut,
+#ees_editLinking .ees_directChildrenList .dragIcon {
+  visibility: visible;
+}
+
+/* Reposition the hover magnifying glass icon */
+.ees_assetInfo:hover, .ees_directChildrenList .assetInfo:hover {
+  background-position-x: 88%;
+}
+

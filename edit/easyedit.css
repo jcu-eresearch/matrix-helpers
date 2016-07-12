@@ -8049,6 +8049,44 @@ table.sq-backend-table {
     outline: none;
 }
 
+.plus .content_type_raw_html textarea.sq-backend-code-editing,
+.plus .content_type_markdown textarea.sq-backend-code-editing,
+.plus .content_type_code textarea.sq-backend-code-editing {
+    font-family: Monaco, "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace!important;
+    min-height: 100px;
+    width: 695px;
+    line-height: 1.5;
+    background: #f8f7c7;
+    color: #454422;
+    margin: 15px 20px 20px;
+    overflow: auto;
+    padding: 10px;
+    border: 1px solid #dedda5;
+    border-radius: 3px;
+    font-size: 12px;
+    display: block;
+}
+
+.plus .content_type_code table {
+    font-size: .75em;
+    width: auto!important;
+    color: #999;
+    margin: 20px;
+    border-top: solid 1px #f1f1f1;
+}
+
+.plus .content_type_code table tr:first-child td {
+    padding-top: 20px;
+}
+
+.plus .content_type_code td {
+    padding: 2px;
+}
+
+.plus .content_type_code label {
+    margin: 0 10px 0 3px;
+}
+
 .plus .content_type_wysiwyg .intro {
     position: relative;
     border-radius: 4px;
