@@ -37,7 +37,8 @@
 .defaultCreate input.textInput, .defaultCreate textarea.textInput,
 #ees_pageNaming .inputText, #ees_detailsRedirect .inputText, .details-screen-section .inputText, .eesTooltip .inputText,
 .plus .tooltipEditDiv input[type="text"],
-.plus .tooltipEditDiv textarea
+.plus .tooltipEditDiv textarea,
+#ees_editURLs .inputText
 {
   height: auto !important;
 }
@@ -112,7 +113,7 @@
 .editSection .cellData {
   color: inherit;
 }
-.cellData > select {
+.cellData select {
   background-color: #fff;
 }
 
@@ -131,3 +132,11 @@
   background-position-x: 88%;
 }
 
+/*
+ * URLs panel
+ */
+
+/* Remove extraneous margin, padding already present */
+#ees_listCurrentUrls ul {
+  margin-left: 0;
+}
