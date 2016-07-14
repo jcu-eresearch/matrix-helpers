@@ -28,6 +28,27 @@
   margin-left: -.625rem;
 }
 
+/* Unfix the width of the content editor wrapper */
+.plus .content #ees_screenContentWrapper {
+  max-width: none;
+  width: auto;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/* Unfix the width of the content editor */
+.plus #ees_viperContent, .plus .ees_viperContent {
+  width: auto;
+}
+
+/* Unfix the width and improve styles of raw code editing */
+.plus .content_type_raw_html textarea.sq-backend-code-editing, .plus .content_type_markdown textarea.sq-backend-code-editing, .plus .content_type_code textarea.sq-backend-code-editing {
+  width: 100%;
+  min-height: 200px;
+  margin: 0;
+  border: 0 none;
+}
+
 /* Tooltip un-fixed widths */
 #ees_exitEditTooltip .tooltipButtons a {
   width: auto;
@@ -53,6 +74,7 @@
 }
 
 /* Clear default paddings */
+#ees_screenMenuList,
 .wizardQueue .queue {
   padding-left: 0;
 }
