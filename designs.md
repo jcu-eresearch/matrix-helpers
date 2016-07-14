@@ -125,14 +125,21 @@ don't exist within Design Parse files.
 
 `Design Customisations` fill the slots in the origin `Design`, filling or
 overriding the `MySource_AREA`-defined areas in a Design with a change of some
-description.  This could 
-Are just like macros - overriding the areas in a Design with a change in HTML
-or linkage to a different context.  For instance, a Logo could be a design
-customisation as it will be customised for a Design.
+description.  This can be essentially thought of as filling the areas in a
+Design with some initial HTML (in the case of an initial "customisation") or a
+change in HTML or linkage to a different context in further Design
+Customisations.  For instance, a Logo could be a design customisation as it
+will be customised for a Design.
 
 `Design Customisations` can be applied where and as `Design`s can be: to a
 `Site` or any other `Asset` in Matrix.
 
+One key limitation to Designs and Design Customisations is that they require
+administrator intervention to modify, extend or create.  By contrast, a
+theming approach that uses Site metadata (what eResearch is currently working
+on) gives the control to the editors, essentially replacing Design
+Customisations with code that directly points to Site metadata instead of
+being hard-coded (or hard-configured).
 
 ## CSS Structure
 
