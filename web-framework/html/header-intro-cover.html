@@ -3,17 +3,19 @@
   <div class="intro-body">
     <div class="container">
       <div class="row">
+        %begin_globals_asset_metadata_jcu.features.page.type^eq:landing%
         <div class="col-md-10 col-lg-6">
-          %begin_globals_asset_metadata_jcu.features.page.type^eg:landing%
           <h1 class="page-title animated transparent" id="page-title" data-animation="fadeInLeft" data-delay="250"><span class="sr-only">%globals_site_name%: </span>%globals_asset_name%</h1>
-          <p class="lead animated transparent" data-animation="fadeInUp" data-delay="500">%globals_asset_metadata_jcu.features.page.byline%</p>
-          %else_globals_asset_metadata_jcu.features.page.type^eg:content%
+          <div class="lead animated transparent" data-animation="fadeInUp" data-delay="500">%globals_asset_metadata_jcu.features.page.byline%</div>
+        </div>
+        %else_globals_asset_metadata_jcu.features.page.type^eq:content%
+        <div class="col-xs-12">
           <h1 class="page-title" id="page-title"><span class="sr-only">%globals_site_name%: </span>%globals_asset_name%</h1>
-          <p class="lead">%globals_asset_metadata_jcu.features.page.byline%</p>
+          <div class="lead">%globals_asset_metadata_jcu.features.page.byline%</div>
           %end_globals%
         </div>
       </div>
-      %begin_globals_asset_metadata_jcu.features.page.type^eg:landing%
+      %begin_globals_asset_metadata_jcu.features.page.type^eq:landing%
       <div class="row">
         <div class="col-xs-12 text-xs-center animated transparent" data-animation="fadeIn" data-delay="1000">
           <a href="#explore" class="btn btn-circle page-scroll" role="button">
@@ -21,7 +23,7 @@
           </a>
         </div>
       </div>
-      %else_globals_asset_jcu.features.page.type^eg:content%
+      %else_globals_asset_jcu.features.page.type^eq:content%
       <div class="row">
         <div class="col-xs-12 p-x-0">
           <!-- TODO: dynamic navigation? Parse??-->
