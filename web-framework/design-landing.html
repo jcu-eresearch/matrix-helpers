@@ -1,0 +1,141 @@
+<!--@@ Stored design areas: custom CSS/JS via Site metadata @@-->
+<MySource_AREA id_name="site_custom_css" design_area="nest_content" print="no" />
+<MySource_AREA id_name="site_custom_js" design_area="nest_content" print="no" />
+
+<!-- Edit+ boilerplate configuration -->
+<MySource_AREA id_name="exit_area" design_area="exit" print="no"></MySource_AREA>
+<MySource_AREA id_name="nested_EES_code" design_area="nest_content" print="no" />
+<MySource_AREA id_name="simple_edit_EES" design_area="show_if">
+  <MySource_SET name="condition" value="simple_edit_mode" />
+  <MySource_THEN>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+          <meta charset="utf-8" />
+          <title>Loading Easy Edit Suite...</title>
+          <!--@@ Force IE10 to IE9 standards. 7,8,9 act unchanged. 11 & edge act unchanged @@-->
+          <!--@@ <meta http-equiv="X-UA-Compatible" content="IE=7,8,9,EmulateIE9,11" /> @@-->
+          <MySource_PRINT id_name="nested_EES_code" />
+
+          <!-- CSS from Design and custom CSS from Site metadata  -->
+          <link href="mysource_files/landing.min.css" rel="stylesheet">
+          <MySource_PRINT id_name="site_custom_css" />
+      </head>
+      <body></body>
+    </html>
+    <MySource_PRINT id_name="exit_area" />
+  </MySource_THEN>
+</MySource_AREA>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="mysource_files/favicon.ico">
+
+    <!--@@ Site title; nested content due to "inconsisent asset" keyword bug @@-->
+    <MySource_AREA id_name="title" design_area="nest_content" />
+
+    <!--@@ Web Framework Core CSS @@-->
+    <link rel="stylesheet" href="./?a=281218:dist/css/jcu.min.css" integrity="sha384-yvalFRKl+0g0tWrYJQwXPaf4oRFo9hOu7BssvfScVX9wdvvA+NjYtnAFm3sqP7LF" crossorigin="anonymous">
+
+    <!--@@ Landing template CSS, referenced by Matrix Design mysource syntax  @@-->
+    <link href="mysource_files/landing.min.css" rel="stylesheet">
+
+    <!--@@ Stored design area: custom CSS via Site metadata @@-->
+    <MySource_PRINT id_name="site_custom_css" />
+
+    <!--@@ Custom CSS, specified by the asset metadata;
+      nested content due to "inconsisent asset" keyword bug @@-->
+    <MySource_AREA id_name="site_landing_css" design_area="nest_content" />
+
+    <!--@@ Design area: Matrix boilerplate, see https://matrix-manuals.squiz.net/designs/chapters/head-design-area @@-->
+    <MySource_AREA id_name="head" design_area="head" />
+
+    <!--@@ Design area: Matrix boilerplate, see https://matrix-manuals.squiz.net/designs/chapters/metadata-design-area @@-->
+    <MySource_AREA id_name="metadata" design_area="metadata" />
+  </head>
+
+  <!--@@ Body opening tag; nested content due to "inconsisent asset" keyword bug @@-->
+  <MySource_AREA id_name="body_opening_tag" design_area="nest_content" />
+
+    <a class="sr-only sr-only-focusable" href="#main">
+      <div class="container-fluid bg-inverse text-inverse p-y-1">
+        Skip to main content
+      </div>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top">
+      <div class="container">
+        <button class="navbar-toggler pull-xs-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#main-nav">
+          &#9776;
+        </button>
+        <a class="navbar-brand page-scroll" href="%globals_site_url%">
+          <img class="brand-img img-fluid" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name%" alt="James Cook University Australia %globals_site_name% logo">
+        </a>
+        <div class="collapse navbar-toggleable navbar-toggleable-md" id="main-nav">
+          <MySource_AREA id_name="main_navigation" design_area="menu_normal">
+            <MySource_SET name="level" value="top"/>
+            <MySource_SET name="wanted_asset_types" value="page_standard" />
+            <MySource_SET name="settings.class.normal" value="" />
+            <MySource_SET name="settings.class.current" value="active" />
+            <ul class="nav navbar-nav pull-md-right">
+              <MySource_ASSET>
+              <li class="nav-item <MySource_PRINT var="settings.class" />">
+                <a class="nav-link <MySource_PRINT var="asset_metadata_jcu.navigation.css_classes" />" href="<MySource_PRINT var="asset_link" />"><MySource_PRINT var="asset_short_name" /></a>
+              </li>
+              </MySource_ASSET>
+            </ul>
+          </MySource_AREA>
+        </div>
+      </div>
+    </nav>
+
+    <MySource_Area id_name="header" design_area="nest_content" />
+
+    <main id="main" role="main" aria-labelledby="page-title">
+      <MySource_AREA id_name="body" design_area="body" />
+    </main>
+
+    %globals_site_metadata_jcu.site.cobranding^as_asset:asset_contents%
+
+    <MySource_AREA id_name="footer" design_area="nest_content" />
+
+    <!--@@ JavaScript resources @@-->
+    <!--@@ jQuery @@-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+    <!--@@ Custom Theme JavaScript: Collapse the navbar on scroll, inlined for performance @@-->
+    <script>
+      (function($) {
+        'use strict';
+
+        function collapseNavbar() {
+          if ($('.navbar-custom').offset().top > 50) {
+            $('.navbar-fixed-top').addClass('navbar-collapsed');
+          } else {
+            $('.navbar-fixed-top').removeClass('navbar-collapsed');
+          }
+        }
+
+        collapseNavbar();
+        $(window).scroll(collapseNavbar);
+      })(jQuery);
+    </script>
+
+    <!--@@ Bootstrap Core JavaScript @@-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js" integrity="sha384-MWq1Lnqj72tmjGdOKuNBn3E0gj3vWfy/1EmR5TVL8d8nGvwgy32YkCpKpTUhwBVv" crossorigin="anonymous"></script>
+    <script src="./?a=281218:dist/js/jcu.min.js" integrity="sha384-GXpe6UW5FXR+By2fTo2YeI+yVoY1QGkZdZpppWl3qboYFMqHL7zFEq+X6hRoB1gH" crossorigin="anonymous"></script>
+
+    <MySource_AREA id_name="maps_api" design_area="nest_content" />
+
+    <!--@@ Landing template CSS, referenced by Matrix Design mysource syntax  @@-->
+    <script src="mysource_files/landing.min.js"></script>
+
+    <!--@@ Stored design area: custom JS via Site metadata @@-->
+    <MySource_PRINT id_name="site_custom_js" />
+  </body>
+</html>
