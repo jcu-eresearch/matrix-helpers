@@ -12,6 +12,26 @@
 <script src="./?a=438?v=%globals_asset_version:438%"></script>
 <!--@@ Edit+ Configuration @@-->
 <script src="./?a=3433?v=%globals_asset_version:3433%"></script>
+
+<!--@@ JCU workaround for not being able to edit Site metadata @@-->
+<script>
+  (function() {
+    var oldFn = Squiz_Matrix_API.prototype.getKeywordsReplacements;
+    Squiz_Matrix_API.prototype.getKeywordsReplacements = function() {
+      // Prevent redirection for Site assets
+      // Avoid uses of Squiz percent global keywords which actually resolve
+      if (arguments.length === 1 &&
+          arguments[0] &&
+          arguments[0].keywords_array &&
+          arguments[0].keywords_array.length === 1 &&
+          arguments[0].keywords_array[0] === ('%' + 'asset_index_id%')) {
+        arguments[0].keywords_array[0] = '%' + 'nonexistent_keyword%';
+      }
+      // getKeywordsReplacements is expecting either 0 or 1 arguments so apply
+      return oldFn.apply(this, arguments);
+    };
+  })();
+</script>
 <!--@@ Edit+ Core Scripts @@-->
 <script src="/__data/ees/easyedit.min.js"></script>
 <script src="/__data/ees/Viper/viper.js"></script>
