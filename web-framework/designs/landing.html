@@ -35,7 +35,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="mysource_files/favicon.ico">
 
-    <title>%globals_asset_name% - %globals_site_name% - James Cook University</title>
+    <!--@@ Site title; nested content due to "inconsisent asset" keyword bug @@-->
+    <MySource_AREA id_name="title" design_area="nest_content" />
 
     <!--@@ Web Framework Core CSS @@-->
     <link rel="stylesheet" href="./?a=281218:dist/css/jcu.min.css" integrity="sha384-yvalFRKl+0g0tWrYJQwXPaf4oRFo9hOu7BssvfScVX9wdvvA+NjYtnAFm3sqP7LF" crossorigin="anonymous">
@@ -46,13 +47,9 @@
     <!--@@ Stored design area: custom CSS via Site metadata @@-->
     <MySource_PRINT id_name="site_custom_css" />
 
-    <!--@@ Custom CSS, specified by the site metadata @@-->
-    <style>
-      .intro {
-        background-color: %globals_asset_metadata_jcu.features.cover_background_color^replace_keywords:empty:{globals_site_metadata_jcu.features.cover_background_color}%;
-        background-image: url(./?a=%globals_asset_metadata_jcu.features.cover_image^replace_keywords:empty:{globals_site_metadata_jcu.features.cover_image}%);
-      }
-    </style>
+    <!--@@ Custom CSS, specified by the asset metadata;
+      nested content due to "inconsisent asset" keyword bug @@-->
+    <MySource_AREA id_name="site_landing_css" design_area="nest_content" />
 
     <!--@@ Design area: Matrix boilerplate, see https://matrix-manuals.squiz.net/designs/chapters/head-design-area @@-->
     <MySource_AREA id_name="head" design_area="head" />
@@ -61,7 +58,8 @@
     <MySource_AREA id_name="metadata" design_area="metadata" />
   </head>
 
-  <body class="design-landing %globals_asset_metadata_jcu.features.page.type^lowercase^css_safe^prepend:layout-% %globals_asset_type^lowercase^css_safe^prepend:type-% %globals_site_href^lowercase^css_safe^prepend:site-% %globals_asset_linking_lineage^json_decode^index:1^as_asset:asset_href^lowercase^css_safe^prepend:section-%" id="page-top" role="document">
+  <!--@@ Body opening tag; nested content due to "inconsisent asset" keyword bug @@-->
+  <MySource_AREA id_name="body_opening_tag" design_area="nest_content" />
 
     <a class="sr-only sr-only-focusable" href="#main">
       <div class="container-fluid bg-inverse text-inverse p-y-1">
@@ -103,7 +101,7 @@
     </main>
 
     %globals_site_metadata_jcu.site.cobranding^as_asset:asset_contents%
-    
+
     <MySource_AREA id_name="footer" design_area="nest_content" />
 
     <!--@@ JavaScript resources @@-->
