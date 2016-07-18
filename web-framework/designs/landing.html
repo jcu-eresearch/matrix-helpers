@@ -67,6 +67,58 @@
       </div>
     </a>
 
+    <!--@@ Edit toolbar, only visible to authenticated users @@-->
+    <MySource_AREA id_name="write_access" design_area="show_if" print="no">
+      <MySource_SET name="condition" value="write_access" />
+      <MySource_THEN>
+        <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" />/_edit'>
+          <span class="icon-edit" aria-label="Edit icon"></span> Edit page
+        </a>
+      </MySource_THEN>
+    </MySource_AREA>
+    <MySource_AREA id_name="admin_access" design_area="show_if" print="no">
+      <MySource_SET name="condition" value="admin_access" />
+      <MySource_THEN>
+        <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" />/_admin'>
+          <span class="icon-favorite" aria-label="Admin icon"></span> Admin this page
+        </a>
+      </MySource_THEN>
+    </MySource_AREA>
+    <MySource_AREA id_name="edit_toolbar" design_area="show_if">
+      <MySource_SET name="condition" value="logged_in" />
+      <MySource_THEN>
+        <div class="bg-inverse p-a-1" style="z-index: 1040; position: fixed; right: 0;">
+          <div class="btn-group">
+            <button class="btn btn-secondary dropdown-toggle" id="editMenuLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="icon-edit" aria-label="Edit icon"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="editMenuLabel">
+              <div class="h6 dropdown-header">
+                <span class="icon-user" aria-label="Logged in as"></span>
+                <MySource_PRINT id_name="__global__" var="current_user" />
+              </div>
+              <MySource_PRINT id_name="write_access" />
+              <MySource_PRINT id_name="admin_access" />
+              <a class="dropdown-item" href="%globals_site_url%">
+                <span class="icon-world" aria-label="Site icon"></span> Site home
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="%globals_asset_url:134527%">
+                <span class="icon-flag" aria-label="Flag icon"></span> Flag this page
+              </a>
+              <a class="dropdown-item" href="https://www.jcu.edu.au/digital-marketing">
+                <span class="icon-support" aria-label="Site icon"></span> Help
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="%globals_site_url%?SQ_ACTION=logout">
+                <span class="icon-exit" aria-label="Logout icon"></span> Logout
+              </a>
+            </div>
+          </div>
+        </div>
+      </MySource_THEN>
+    </MySource_AREA>
+
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top">
       <div class="container">
