@@ -1,5 +1,32 @@
 # Useful Matrix endpoints for performing various actions
 
+## Appends
+
+Append any of these URLs to an Asset URL to have an effect.
+The URLs might change based upon the configuration located in
+`core/include/system_config.inc`.
+
+* `/_admin` for administrative UI access. On the JCU site, hit this URL when
+  logged out to be prompted for a standard Matrix login form.  Need Admin
+  permission and must be a Backend User to access this.
+* `/_edit` for Edit+ access (for editor users). Must have Edit access and be a
+  Simple Edit User.
+* `/_login` to simply prompt for login. Must be a User.
+* `/_nocache` for preventing caching on the given page load; available to the
+  Public.
+* `/_noproxycache` for preventing proxy caching on the given page load;
+  available to the Public.
+* `/_recache` for causing Matrix to re-cache the given page; available to the
+  Public.
+* `/_performance` for testing page performance; requires the current user to
+  be a Backend User (eg an admin).  The following URLs are used internally
+  within performance testing display frames:
+
+  * `/_performance_timing`
+  * `/_performance_result`
+
+## Assets
+
 * `/?a=12345` gets a given asset for the specified ID
 * `/__lib/web/connectivity.php?connect_url=http://google.com` gets the remote
   server to perform a request to the given URL and return either 1 for able to
