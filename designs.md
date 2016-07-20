@@ -95,7 +95,9 @@ Then, upon a request being served by Matrix, the following happens:
 
   * Matrix comments `<!--@@ @@-->` are stripped at the end of this step,
     meaning they can be used in any Parse file or content area without them
-    being seen by the end user.
+    being seen by the end user. Make sure that you end the comments correctly;
+    if you mix HTML and Squiz comments (like `<!-@@ foo -->`), you'll end up
+    losing most of your page content without warning.
 
 1. Matrix URL references using `./?a=123456` are resolved
 
@@ -114,7 +116,12 @@ global, such as `%globals_site_name%`) get resolved.
 There are some areas where Parse and Keywords overlap, such as outputting a
 site name or asset name.  In short, if you can use Parse, you're likely to get
 slightly better performance as the code for laying out the resolver has
-already been produced.
+already been produced and cached. However, Parse is somewhat limited in the
+conditional sense (eg hacks are needed to work around nesting) so you might
+need to push your logic out into Page content.  Unfortunately, in Page content
+you don't have access to Parse, so you can't check `show_if` conditions like
+`logged_in` reliably or `write_access` or `admin_access` (without a incurring
+a mega performance hit).
 
 In other non-Design contexts, such as Page assets and content, you'll be
 required to use Keywords only.  However, you get the benefit of conditional
@@ -156,14 +163,35 @@ the `Settings screen`. This Design is now applied throughout the site.
 
 ### Can you set a default for a Design Area?
 
-Defaults are seemingly most easily configured through creating a "default"
+Defaults are most easily configured through creating a "default"
 `Design Customisation`, applying the defaults for header/footer/etc and then
 having further `Design`s extend upon that `Design Customisation`.
 
 There is also the ability to put *some* basic conditions into the original
-`Design` parse file through design tags and keywords, but this is yet to be
-explored in depth
+`Design` parse file through design tags and keywords, but this is yet fairly
+limited and can be prone to bugs with `%global_asset_*%` contexts.
 
 ### What manners in which can logic be included in a `Design` parse file?
+
+The short answer is kind-of, but if you're chasing a clear `if` statement,
+then you'll be sorely disappointed.
+
+Firstly, it's possible to have some simple "conditional" statements using
+Keywords and keyword modifiers (such as `empty` or `eq`).  Think of them like
+single-line lambdas.  These quickly get convoluted and incredibly hard to
+read.  It's again technically possible to nest keywords and modifiers using
+`replace_keywords`, but only so far.  Outputting simple values like CSS
+classes or snippets of text is fine, and it's even possible to output full
+HTML, but you'll be in all sorts of pain.  In short, they're powerful, but a
+mess.
+
+Secondly, you can use a basic if statement in the form of a Design area called
+`show_if`.  Directly nesting `show_if` areas isn't possible, but you can use
+yet-another-fun-hack in the form of a non-printed Design area which you later
+print inside `show_if` area.  For more info, see the [official
+documentation](https://matrix-manuals.squiz.net/designs/chapters/show-if-design-area#Nesting-Show-If-Design-Areas).
+
+There's also the ability to do some purpose-specific processing, such as for
+displaying navigation items from the asset's lineage hierarchy. 
 
 * Can we put any logic into the Parse file?  (If, switch, loops?)
