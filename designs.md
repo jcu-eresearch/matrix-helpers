@@ -191,7 +191,22 @@ yet-another-fun-hack in the form of a non-printed Design area which you later
 print inside `show_if` area.  For more info, see the [official
 documentation](https://matrix-manuals.squiz.net/designs/chapters/show-if-design-area#Nesting-Show-If-Design-Areas).
 
-There's also the ability to do some purpose-specific processing, such as for
-displaying navigation items from the asset's lineage hierarchy. 
+There's a slightly undocumented feature called `replace_keyword_in_match` in
+the `show_if` area that allows you to match on resolved keywords.  The setting
+is present in the Matrix UI but not documented in XML. The code for this looks
+like so:
 
-* Can we put any logic into the Parse file?  (If, switch, loops?)
+    <MySource_SET name="condition_replace_keyword_in_match" value="1" />
+
+The value **must be** exactly `1`; no other truthy value will suffice.  See
+`parse/show_if.xml` for a fully worked example.  A hidden benefit of this is
+that you can check keywords with modifiers, which means that you're
+essentially able to compare two different function call results (as
+strings/regex). YMMV.
+
+There's also the ability to do some purpose-specific processing, such as for
+displaying navigation items from the asset's lineage hierarchy.
+
+This all sums up to a very ambiguous answer of "it depends", because your
+condition needs to match the functionality available.  Sadly, access to just
+write in PHP is not allowed, which makes life quite difficult.

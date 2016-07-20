@@ -1,0 +1,26 @@
+<!--@@ Design area: Basic show-if conditional with regex testing of the string. @@-->
+<!--@@ Regex is tested using an insensitive preg_match (aka search anywhere in
+string), with all forward slashes escaped.
+In this test, the value will show up as a h1 if configured and a message if not.
+@@-->
+<MySource_Area id_name="cobranding" design_area="show_if">
+  <MySource_SET name="condition" value="keyword_regexp"/>
+  <MySource_SET name="condition_keyword" value="globals_site_metadata_jcu.site.cobranding"/>
+  <MySource_SET name="condition_keyword_match" value="^.+$" />
+  <!--@@<MySource_SET name="condition_keyword_match" value="[0-9]+" /> @@-->
+  <MySource_THEN>
+    <h1>%globals_site_metadata_jcu.site.cobranding%</h1>
+  </MySource_THEN>
+  <MySource_ELSE><h1>Not configured!<h1></MySource_ELSE>
+</MySource_Area>
+
+<MySource_Area id_name="cobranding" design_area="show_if">
+  <MySource_SET name="condition" value="keyword_regexp"/>
+  <MySource_SET name="condition_keyword" value="globals_site_metadata_jcu.site.cobranding"/>
+  <MySource_SET name="condition_keyword_match" value="^%globals_site_metadata_jcu.site.cobranding%$" />
+  <!-- Must be exactly '1'! -->
+  <MySource_SET name="condition_replace_keyword_in_match" value="1" />
+  <MySource_THEN>
+    %globals_site_metadata_jcu.site.cobranding^as_asset:asset_contents%
+  </MySource_THEN>
+</MySource_Area>
