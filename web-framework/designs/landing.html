@@ -67,52 +67,137 @@
       </div>
     </a>
 
-    <!--@@ Edit toolbar, only visible to authenticated users @@-->
-    <MySource_AREA id_name="write_access" design_area="show_if" print="no">
+    <!--@@ Page toolbar, only visible to authenticated users @@-->
+    <MySource_AREA id_name="toolbar_edit" design_area="show_if" print="no">
       <MySource_SET name="condition" value="write_access" />
       <MySource_THEN>
-        <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" />/_edit'>
-          <span class="icon-edit" aria-label="Edit icon"></span> Edit page
-        </a>
+        <div class="btn-group text-xs-left p-a-1" role="group">
+          <table class="table table-sm small m-b-0">
+            <tbody>
+              <tr>
+                <th scope="row">Name</th>
+                <td class="truncate" title="%globals_asset_name%">%globals_asset_name%</td>
+              </tr>
+              <tr>
+                <th scope="row">Short Name</th>
+                <td class="truncate" title="%globals_asset_short_name%">%globals_asset_short_name%</td>
+              </tr>
+              <tr>
+                <th scope="row">Type</th>
+                <td>%asset_type_icon% %asset_type%</td>
+              </tr>
+              <tr>
+                <th scope="row">Status</th>
+                <td><span class="label" style="color: #2d2d2d; background-color: %globals_asset_status_colour%;">%globals_asset_status_description%</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Updated</th>
+                <td>%asset_updated_relative%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="btn-group" role="group">
+          <button class="btn btn-secondary dropdown-toggle dropdown-toggle-right" id="editMenuLabel" type="button" data-toggle="dropdown" aria-haspopup="true">
+            <span class="icon-edit" aria-label="Edit icon"></span> Edit
+          </button>
+          <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="editMenuLabel">
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit' title="Edit this current asset">
+              <span class="icon-edit" aria-label="Edit icon"></span> Edit page
+            </a>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />/_edit' title="Configure the current site">
+              <span class="icon-cog" aria-label="Edit site icon"></span> Configure site
+            </a>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />' title="Go to current site">
+              <span class="icon-world" aria-label="Site icon"></span> Site home
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_nocache' title="Show page without server caching">
+              <span class="icon-redo" aria-label="Disable cache icon"></span> Show without caching
+            </a>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_recache' title="Regenerate server cache for this page">
+              <span class="icon-lightning2" aria-label="Refresh icon"></span> Regenerate server cache
+            </a>
+          </div>
+        </div>
       </MySource_THEN>
     </MySource_AREA>
-    <MySource_AREA id_name="admin_access" design_area="show_if" print="no">
+    <MySource_AREA id_name="toolbar_admin" design_area="show_if" print="no">
       <MySource_SET name="condition" value="admin_access" />
       <MySource_THEN>
-        <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" />/_admin'>
-          <span class="icon-favorite" aria-label="Admin icon"></span> Admin this page
+        <div class="btn-group" role="group">
+          <button class="btn btn-secondary dropdown-toggle dropdown-toggle-right" id="adminMenuLabel" type="button" data-toggle="dropdown" aria-haspopup="true">
+            <span class="icon-favorite" aria-label="Admin icon"></span> Admin
+          </button>
+          <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="adminMenuLabel">
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_admin' title="Go to admin interface for current asset">
+              <span class="icon-pagesetup" aria-label="Admin icon"></span> Page admin
+            </a>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />/_admin' title="Go to admin interface for current site">
+              <span class="icon-websitebuilder" aria-label="Admin icon"></span> Site admin
+            </a>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_performance' title="Performance test this current page">
+              <span class="icon-speed" aria-label="Performance icon"></span> Test page performance
+            </a>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />?SQ_DESIGN_NAME=test' title="Show this asset with the keyword and test design (if configured)">
+              <span class="icon-checkbox" aria-label="Test icon"></span> Show asset tester
+            </a>
+          </div>
+        </div>
+      </MySource_THEN>
+    </MySource_AREA>
+    <MySource_AREA id_name="toolbar_help_for_editors" design_area="show_if" print="no">
+      <MySource_SET name="condition" value="write_access" />
+      <MySource_THEN>
+        <a class="dropdown-item" href="https://www.jcu.edu.au/marketing-toolkit/brand-manual" target="_blank" title="Access the general brand manual">
+          <span class="icon-restaurantmenu" aria-label="Site icon"></span> JCU Brand Manual
+          <small class="icon-opennewwindow" title="Opens in new window"></small>
+        </a>
+        <a class="dropdown-item" href="https://web.jcu.io/jcu/introduction/" target="_blank" title="Access the style guide for the web">
+          <span class="icon-cms" aria-label="Web page icon"></span> JCU Web Framework
+          <small class="icon-opennewwindow" title="Opens in new window"></small>
         </a>
       </MySource_THEN>
     </MySource_AREA>
-    <MySource_AREA id_name="edit_toolbar" design_area="show_if">
+    <MySource_AREA id_name="page_tools" design_area="show_if">
       <MySource_SET name="condition" value="logged_in" />
       <MySource_THEN>
-        <div class="bg-inverse p-a-1" style="z-index: 1040; position: fixed; right: 0;">
-          <div class="btn-group">
-            <button class="btn btn-secondary dropdown-toggle" id="editMenuLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="icon-edit" aria-label="Edit icon"></span>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="editMenuLabel">
-              <div class="h6 dropdown-header">
-                <span class="icon-user" aria-label="Logged in as"></span>
-                <MySource_PRINT id_name="__global__" var="current_user" />
+        <div class="edit-toolbar bg-primary">
+          <button class="btn btn-primary btn-block btn-sm text-xs-left" type="button" data-toggle="collapse" data-target="#pageToolsButtons" aria-expanded="false" aria-controls="pageToolsButtons">
+            <span class="icon-websitebuilder" aria-label="Tools icon"></span> Page tools
+          </button>
+          <div class="collapse" id="pageToolsButtons">
+            <div class="btn-group-vertical">
+              <MySource_PRINT id_name="toolbar_edit" />
+              <MySource_PRINT id_name="toolbar_admin" />
+              <div class="btn-group" role="group">
+                <button class="btn btn-secondary dropdown-toggle dropdown-toggle-right" id="helpMenuLabel" type="button" data-toggle="dropdown" aria-haspopup="true">
+                  <span class="icon-support" aria-label="Help icon"></span> Help
+                </button>
+                <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="helpMenuLabel">
+                  <a class="dropdown-item" href="#">
+                    <span class="icon-flag" aria-label="Flag icon"></span> Flag this page
+                  </a>
+                  <a class="dropdown-item" href="https://www.jcu.edu.au/digital-marketing" target="_blank" title="Get help from a human">
+                    <span class="icon-support" aria-label="Site icon"></span> Get support
+                    <small class="icon-opennewwindow" title="Opens in new window"></small>
+                  </a>
+                  <MySource_PRINT id_name="toolbar_help_for_editors" />
+                </div>
               </div>
-              <MySource_PRINT id_name="write_access" />
-              <MySource_PRINT id_name="admin_access" />
-              <a class="dropdown-item" href="%globals_site_url%">
-                <span class="icon-world" aria-label="Site icon"></span> Site home
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="%globals_asset_url:134527%">
-                <span class="icon-flag" aria-label="Flag icon"></span> Flag this page
-              </a>
-              <a class="dropdown-item" href="https://www.jcu.edu.au/digital-marketing">
-                <span class="icon-support" aria-label="Site icon"></span> Help
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="%globals_site_url%?SQ_ACTION=logout">
-                <span class="icon-exit" aria-label="Logout icon"></span> Logout
-              </a>
+              <div class="btn-group" role="group">
+                <button class="btn btn-secondary dropdown-toggle dropdown-toggle-right" id="userMenuLabel" type="button" data-toggle="dropdown" aria-haspopup="true">
+                  <span class="icon-user" aria-label="My account icon"></span> My account
+                </button>
+                <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="userMenuLabel">
+                  <div class="dropdown-header h6">Logged in as
+                    <MySource_PRINT id_name="__global__" var="current_user" />
+                  </div>
+                  <a class="dropdown-item" href="%globals_site_url%?SQ_ACTION=logout" title="Logout of this system">
+                    <span class="icon-exit" aria-label="Logout icon"></span> Logout
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -152,7 +237,14 @@
       <MySource_AREA id_name="body" design_area="body" />
     </main>
 
-    %globals_site_metadata_jcu.site.cobranding^as_asset:asset_contents%
+    <MySource_Area id_name="cobranding" design_area="show_if">
+      <MySource_SET name="condition" value="keyword_regexp"/>
+      <MySource_SET name="condition_keyword" value="globals_site_metadata_jcu.site.cobranding"/>
+      <MySource_SET name="condition_keyword_match" value="^.+$" />
+      <MySource_THEN>
+        %globals_site_metadata_jcu.site.cobranding^as_asset:asset_contents%
+      </MySource_THEN>
+    </MySource_Area>
 
     <MySource_AREA id_name="footer" design_area="nest_content" />
 
