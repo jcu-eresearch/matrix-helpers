@@ -270,6 +270,38 @@
         <h1 id="common-keywords">Common Keywords</h1>
         <p class="lead">See <a href="https://matrix-manuals.squiz.net/keyword-replacements/chapters/keyword-modifiers">Keyword Modifiers</a> for the documentation on how to use modifiers to change the output.  At the time of writing, the document page had useful worked examples showing the keyword modifier and output.
         </p>
+        <h2>System Information</h2>
+        <div class="table-responsive m-b-2">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th> Keyword Replacement </th>
+                <th> Value </th>
+                <th> Information Shown </th>
+              </tr>
+              <tr>
+                <td> &#37;system_name&#37; </td>
+                <td> %system_name% </td>
+                <td> The value of the environment variable SQ_CONF_SYSTEM_NAME.</td>
+              </tr>
+              <tr>
+                <td> &#37;system_owner&#37; </td>
+                <td> %system_owner% </td>
+                <td> The value of the environment variable SQ_CONF_SYSTEM_OWNER.</td>
+              </tr>
+              <tr>
+                <td> &#37;default_email&#37; </td>
+                <td> %default_email% </td>
+                <td> The value of the environment variable SQ_CONF_DEFAULT_EMAIL.</td>
+              </tr>
+              <tr>
+                <td> &#37;tech_email&#37; </td>
+                <td> %tech_email% </td>
+                <td> The value of the environment variable SQ_CONF_TECH_EMAIL.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <h2>Asset Information</h2>
         <div class="table-responsive m-b-2">
           <table class="table">
@@ -286,26 +318,24 @@
                 </th>
               </tr>
               <tr>
-                <td>
-                  &#37;asset_assetid&#37;
-                </td>
-                <td>
-                  %asset_assetid%
-                </td>
-                <td>
-                  The ID of the asset.
-                </td>
+                <td>&#37;asset_frontend_metadata&#37;</td>
+                <td><textarea class="fill">%asset_frontend_metadata%</textarea></td>
+                <td>Keyword to output the frontend metadata for this current asset (undocumented)</td>
               </tr>
               <tr>
-                <td>
-                  &#37;asset_name&#37;
-                </td>
-                <td>
-                  %asset_name%
-                </td>
-                <td>
-                  Full name of the asset.
-                </td>
+                <td>&#37;nested_get_&lt;argument&gt;&#37;</td>
+                <td><textarea class="fill">%nested_get_argument%</textarea></td>
+                <td>Output any variable from the $_GET server variable (undocumented; test with ?argument=abc)</td>
+              </tr>
+              <tr>
+                <td> &#37;asset_assetid&#37; </td>
+                <td> %asset_assetid% </td>
+                <td> The ID of the asset.  </td>
+              </tr>
+              <tr>
+                <td> &#37;asset_name&#37; </td>
+                <td> %asset_name% </td>
+                <td> Full name of the asset.  </td>
               </tr>
               <tr>
                 <td>
@@ -1796,7 +1826,7 @@
                 </td>
                 <td>
                   Specified attribute value for an Image Variety of an asset thumbnail, where
-                  <variety_name> is the name of the variety and X is the attribute that you want to show. For example, %asset_thumbnail_v_var1_url% will show the URL of the var1 variety. For more information, refer to the Image and Thumbnail Keyword Replacements.
+                  &lt;variety_name&gt; is the name of the variety and X is the attribute that you want to show. For example, %asset_thumbnail_v_var1_url% will show the URL of the var1 variety. For more information, refer to the Image and Thumbnail Keyword Replacements.
                 </td>
               </tr>
             </tbody>
