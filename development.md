@@ -27,6 +27,12 @@ trial and error.  Here's a few suggestions to help.
 
 ## Metadata
 
+* **Warning, warning, warning!** The **most important** thing to know about
+  creating metadata schemas is that once you've created a field and people are
+  actively using it, you **cannot** change the field type.  So a change from
+  `Text` to `WYSIWYG` or `Text` to `Select` is impossible without recreating
+  data!
+
 * If changing a `Metadata Schema` that has been applied to Assets, ensure you
   choose to `Regenerate metadata files` after each change or else the
   new/modified fields will not be shown on the given Assets.
@@ -55,10 +61,45 @@ trial and error.  Here's a few suggestions to help.
 ## Keywords
 
 * Conditional Keywords **are not** available in Design files.
+
+* Keywords **are not** available in CSS/JS files.  In order to use keywords
+  inside either of these, they would need to be inline CSS in a page, use
+  declarative HTML attributes for JS (eg `data-*`) or use some weird hack
+  involving Page assets, where keywords work.
+
+* Global keywords (eg `%globals_asset_type%`) may evaluate to a different
+  result depending on where the keyword is called (eg for Site index pages,
+  the same keyword will be different in the Design parse file compared to a
+  nested content page).  See the following example.
+
+  Design context:
+
+      design-landing layout-content type-site site-demo section-demo_home
+
+  Page content context:
+
+      design-landing layout-landing type-standard_page site-demo section-demo_home
+
 * There's a lot of keywords in Matrix.  By using the `keywords/master.html` as
   the Parse file for a Design, you can associate this file with any given
   `Asset` to dump all the various keywords to the page.  Now, just search
   through the page to find value you need!
+
+* Still confused over whether a given keyword exists in Matrix?  Don't worry,
+  you're not alone.
+
+  For general metadata-centric asset keywords, look at
+  `generateKeywordReplacements(..)` in 
+  `core/include/metadata_manager.inc:2047`, which is the PHP generator of
+  keyword replacements (or PHP code to generate them).  This covers most
+  general keywords used throughout Matrix.
+
+  For asset-centric keywords, simply grep through the source code in Matrix
+  for the term ``function getKeywordReplacement``.  This will yield all
+  potential locations where keywords might be queried.  See also
+  `replace_global_keywords()` inside `core/include/general.inc:2193` for more
+  details on how globals are constructed and see `_getKeywordReplacement` in
+  `core/include/asset.inc:4173` for the code that builds local keywords.
 
 ## Security
 
