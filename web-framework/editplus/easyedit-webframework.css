@@ -6,12 +6,25 @@
  * 3. Apply these customisations on top of easyedit.min.css; they are
  *    separated out for ease of visibility.
  *
- * For linting, we ignore ID rules because Matrix Edit+ uses them.
+ * For linting, we ignore ID rules because Matrix Edit+ uses them and we can't
+ * achieve greater specificity without doing the same.
+ *
+ * See more info about CSS customisations at
+ * https://matrix-manuals.squiz.net/edit-plus/chapters/css-customisations.
  */
 
 /*
  * General and Content
  */
+#ees_toolBarLogo {
+  background-image: url("https://www.jcu.edu.au/?a=281218:dist/images/jcua-logo-colour.svg");
+  background-repeat: no-repeat;
+  height: 43px;
+  width: 120px;
+  background-size: contain;
+  margin-top: 0;
+  margin-left: 1rem;
+}
 
 /* .row conflicts with Framework so set no margins, and only configure margins
  * for WYSIWYG fields.
