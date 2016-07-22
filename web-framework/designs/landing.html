@@ -102,14 +102,24 @@
             <span class="icon-edit" aria-label="Edit icon"></span> Edit
           </button>
           <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="editMenuLabel">
-            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit' title="Edit this current asset">
-              <span class="icon-edit" aria-label="Edit icon"></span> Edit page
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit' title="Change page details, including name, status and thumbnail">
+              <span class="icon-details1" aria-label="Details icon"></span> Change page details
             </a>
-            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />/_edit' title="Configure the current site">
-              <span class="icon-cog" aria-label="Edit site icon"></span> Configure site
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit?SQ_BACKEND_PAGE=main#mode=edit&screen=content' title="Edit this current asset's content">
+              <span class="icon-edit" aria-label="Edit icon"></span> Edit page content
             </a>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit?SQ_BACKEND_PAGE=main#mode=edit&screen=metadata' title="Configure the current asset's metadata settings">
+              <span class="icon-settings5" aria-label="Settings icon"></span> Configure page settings
+            </a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />' title="Go to current site">
               <span class="icon-world" aria-label="Site icon"></span> Site home
+            </a>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />/_edit' title="Change site details, including name, status and thumbnail">
+              <span class="icon-details1" aria-label="Details icon"></span> Change site details
+            </a>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />/_edit?SQ_BACKEND_PAGE=main#mode=edit&screen=metadata' title="Configure the current site's metadata settings">
+              <span class="icon-cog" aria-label="Edit site icon"></span> Configure site settings
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_nocache' title="Show page without server caching">
@@ -159,6 +169,15 @@
         </a>
       </MySource_THEN>
     </MySource_AREA>
+    <MySource_AREA id_name="toolbar_user_admin" design_area="show_if" print="no">
+      <MySource_SET name="condition" value="user_type"/>
+      <MySource_SET name="condition_user_types" value="backend_user" />
+      <MySource_THEN>
+        <a class="dropdown-item" href="%globals_site_url%/_admin/?assetid=%globals_user_assetid%&am_section=edit_asset" title="Edit your account details, including releasing locks">
+          <span class="icon-useralt" aria-label="User profile icon"></span> Edit my account details
+        </a>
+      </MySource_THEN>
+    </MySource_AREA>
     <MySource_AREA id_name="page_tools" design_area="show_if">
       <MySource_SET name="condition" value="logged_in" />
       <MySource_THEN>
@@ -175,7 +194,7 @@
                   <span class="icon-support" aria-label="Help icon"></span> Help
                 </button>
                 <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="helpMenuLabel">
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="mailto:ithelpdesk@jcu.edu.au?subject=[CMS Content] %globals_user_name% has flagged '%globals_asset_short_name%'&body=%globals_user_name% [%globals_user_attribute_username%] is flagging the content at:%0A %globals_asset_url% %0Afor attention.%0A%0AComments:%0A[please add info here about the issue you are experiencing]">
                     <span class="icon-flag" aria-label="Flag icon"></span> Flag this page
                   </a>
                   <a class="dropdown-item" href="https://www.jcu.edu.au/digital-marketing" target="_blank" title="Get help from a human">
@@ -190,9 +209,11 @@
                   <span class="icon-user" aria-label="My account icon"></span> My account
                 </button>
                 <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="userMenuLabel">
-                  <div class="dropdown-header h6">Logged in as
-                    <MySource_PRINT id_name="__global__" var="current_user" />
+                  <div class="dropdown-header h6 t">Logged in as
+                    <MySource_PRINT id_name="__global__" var="current_user" /><br>
+                    (%globals_user_type_icon% %globals_user_type%)
                   </div>
+                  <MySource_PRINT id_name="toolbar_user_admin" />
                   <a class="dropdown-item" href="%globals_site_url%?SQ_ACTION=logout" title="Logout of this system">
                     <span class="icon-exit" aria-label="Logout icon"></span> Logout
                   </a>
