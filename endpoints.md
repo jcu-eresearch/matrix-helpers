@@ -11,6 +11,14 @@ The URLs might change based upon the configuration located in
   permission and must be a Backend User to access this.
 * `/_edit` for Edit+ access (for editor users). Must have Edit access and be a
   Simple Edit User.
+
+  * `/_edit?SQ_BACKEND_PAGE=main#mode=edit&screen=content` will take you
+    directly to the screen in Edit+. You can substitute `content` for any
+    other screen name, including `details`, `metadata`, `workflow`, `linking`,
+    `urls` or `analytics` (if configured).
+  * On any page that tries to use CSS to *hide* an edit screen, use the direct
+    link to access it.
+
 * `/_login` to simply prompt for login. Must be a User.
 * `/_nocache` for preventing caching on the given page load; available to the
   Public.
