@@ -1,24 +1,70 @@
-Web Framework folder
- -> Designs folder
-   -> Design asset
-     -> Edit the Parse file (page template) to add statements/expressions to
-control the HTML output
+# General overview
 
-## Parse file
+## HTML sources
 
-In this template, use the Boilerplate provided by Matrix in several key areas.
-These snippets are included in the `design_boilerplate/` folder in this
-repository for convenience:
+The following are the key areas where HTML will "bubble up" and out of Matrix.
 
-* Edit+
-* Metadata
-* …
+* Design assets
+* Design Customisations (extends Designs, fills slots \[areas\])
+* Assets (such as Pages, which feature content)
+* Asset Listings
+* Content Containers
+* Metadata Schemas (indirectly for configuration via Metadata)
 
-## Types
+## Getting HTML out of Matrix
 
-* Asset listings
-* Content containers
+Export of Matrix rendered HTML is somewhat possible by way of the
+`?SQ_ASSET_CONTENTS` handler, which can potentially act as an API to getting
+content out of Matrix without the Design infrastructure being used.  It's
+untested at this stage, but you could potentially separate up the header,
+footer and so forth into Page content and then use this handler to get their
+rendered contents for inclusion elsewhere.
 
+## Design assets (Parse files)
+
+[Design
+assets](https://matrix-manuals.squiz.net/designs/chapters/design-asset) are
+templates and can contain statements, expressions and slots
+(blocks) that may be overridden by Design Customisations.
+
+The Parse File (Design tags) is the language used for including dynamic
+content in a Design.  For example parse code, see the [Design
+documentation](https://matrix-manuals.squiz.net/designs/appendices/appendix-example-parse-file).
+Within Parse you essentially define sections (areas) of the page that should
+be filled with some form of content.  This content will typically be
+something dynamic from Matrix, such as dynamic CSS URLs, content the user has
+created, and so on. In other platforms, these areas are known as blocks or
+slots that you'll be filling.
+
+`Design Customisations` are an extension asset to Designs that fills these
+areas with something tangible.  For instance, a Design with an `AREA` design tag
+configured for the logo would use a `Design Customisation` to configure the logo
+for different sites.  Alternatively, the boilerplate provided in this
+repository takes a different approach and uses Site Metadata to do the
+configuration.  This puts the control in the editor's hands as opposed to
+needing a system administrator to continually produce copies of designs every
+time a change needs to happen.
+
+## Features
+
+* Designs can utilise Keyword Replacements
+* Designs can utilise Global Variables (site_link, site_name, assetid,
+  asset_name, etc)
+* Designs **cannot use** Conditional Variables. This means logic needs to either
+  be shifted to Parse or into Page assets with content.
+* Files beneath a Design in Matrix are referenced thus:
+  `mysource_files/my-file-name.svg`, and any references will be
+  expanded according to the File Reference Method field configured
+  on the Design.
+
+## Comments
+
+Comments within Design files look like this, with a special `<!--@@` start and
+end tag that tells Matrix to strip this comment from the HTML going to the
+client.  This means you and should document your code for future developers
+like so:
+
+    <!--@@ Comment goes here @@-->
 
 ## Design Tags
 
@@ -26,7 +72,8 @@ repository for convenience:
 equivalent to template statements or expressions in other templating
 languages, such as `{% block foo %}` in Jinja2 or `<metal>` in TAL.
 
-Reference: https://matrix-manuals.squiz.net/designs/chapters/design-tags
+For additional documentation, consult the
+[reference](https://matrix-manuals.squiz.net/designs/chapters/design-tags).
 
 * `MySource_AREA`: `Design Areas` are essentially template slots/fillable
   inheritance blocks. Can be more than just HTML and offer some control over
@@ -44,11 +91,11 @@ Reference: https://matrix-manuals.squiz.net/designs/chapters/design-tags
   * If there are any `__global__` `PRINT` directives that don't correspond to
     a Global Variable, the attributes of the current Design (or Design Area)
     are accessed.
+  * These can't be nested, so you can use a non-printing `MySource_AREA` to
+    achieve roughly the same effect.
 
 * `MySource_SET`: sets variables for a `Design` area (slot)
 * `MySource_ASSET`: Looping statement through assets
-
-URLs: `mysource_files/*` reference files underneath the Design itself.
 
 ## Execution order
 
@@ -152,7 +199,11 @@ being hard-coded (or hard-configured).
 
 * Create `CSS Design File` when you need to add Matrix references inside it
 * Create `CSS File` when you just want static CSS
-* See https://matrix-manuals.squiz.net/designs/chapters/css-design-file
+* Create `CSS File Folder`s for performance and linking.  Ensure that you link
+  a given CSS file into the file folder's settings page, not just place the
+  CSS file under the given folder.
+* See https://matrix-manuals.squiz.net/designs/chapters/css-design-file for
+  more information.
 
 ## Sites
 
@@ -210,3 +261,9 @@ displaying navigation items from the asset's lineage hierarchy.
 This all sums up to a very ambiguous answer of "it depends", because your
 condition needs to match the functionality available.  Sadly, access to just
 write in PHP is not allowed, which makes life quite difficult.
+
+## Paint layouts
+
+Paint Layouts are templates for assets to control how an asset is displayed in
+the overall rendered page.
+

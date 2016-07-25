@@ -33,6 +33,14 @@ The URLs might change based upon the configuration located in
   * `/_performance_timing`
   * `/_performance_result`
 
+* `?SQ_ASSET_CONTENTS` or `?SQ_ASSET_CONTENTS=123,234` gets the current
+  Asset's contents without any surrounding design.
+* `?SQ_ASSET_CONTENTS_RAW` or `?SQ_ASSET_CONTENTS_RAW=123,234` gets the
+  current Asset's contents without any design or paint layout.
+* `?SQ_ASSET_CONTENTS=123&SQ_PAINT_LAYOUT=456` or
+  `?SQ_ASSET_CONTENTS=123&SQ_PAINT_LAYOUT_NAME=mylayout` for getting the
+  current asset contents using a specific paint layout.
+
 ## Assets
 
 * `/?a=12345` gets a given asset for the specified ID
@@ -61,3 +69,4 @@ The URLs might change based upon the configuration located in
   load.
 * `/?SQ_ACTION=clean_design_name` will clear the $_SESSION of your
   `SQ_DESIGN_NAME` variable
+

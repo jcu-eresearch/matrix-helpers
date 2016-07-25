@@ -25,7 +25,70 @@ trial and error.  Here's a few suggestions to help.
   request.  Be prepared to either have a copy of your data locally or copied
   to your clipboard before you click `Commit` or `Save`.
 
+## Sites
+
+To create a site, you'll find the `Site` asset in the admin asset map
+(left-hand side) by right-clicking and choosing `New Child` →  `Web` →
+`Site`.  Sites require a URL, which can actually be anything (though
+connecting arbitrary URLs to Matrix has not yet been explored), and you can
+configure an index page (home page), not found page (404 page), and an archive
+page (403 Forbidden page).  Sites have one or more Design assets associated
+with them, though just one Design is set as the main.
+
+When creating a Site, you should to consider locking the site's linkage
+(see the `Linking` page in the admin UI) to the given folder to prevent anyone
+trashing the Site accidentally.
+
 ## Metadata
+
+Metadata is the core to actually being able to create solutions and
+program (term used very loosely) within Matrix.  Essentially, you can test in
+various areas of Matrix whether a field is set or present, and show some HTML
+accordingly.  In most cases, it's possible to test the inverse and not show
+HTML until a condition is true.
+
+Schemas have sections and sections have fields; metadata fields and sections
+appear in the `Metadata` tab in Edit+ or the relevant Admin screen.  There are
+various types of fields, though ensure you get the field type right the first
+go.
+
+One can create and assign custom metadata fields to different assets by
+creating a Metadata Schema (`Schemas` →  `Metadata Schema`), and then
+assigning the Schema to a given asset.  It's possible to have a `Metadata
+Schema` cascade its application to newly created child Assets (such as a
+schema you want to apply to a whole site or folder); this needs configuration
+by an backend admin but will apply automatically and transparently for an
+editor who is creating content.
+
+From the technical side of Metadata Schemas, there is also the ability to filter
+fields based on asset type, so you could have a single Schema that applies in
+different ways to different assets.
+
+### Use in keywords
+
+Metadata can be used within keywords, such as within a Design or within a
+Page's content somewhere.  This example includes the value of the field called
+`Dummy` in the page content, and converts its value into uppercase:
+
+    %asset_metadata_Dummy^uppercase%
+
+Likewise, you could use this same field in the Design of a page like so:
+
+    <h1>%globals_asset_metadata_Dummy^uppercase%</h1>
+
+And finally, you could use the keyword as a conditional like so (only works in
+Page content areas):
+
+    %begin_globals_asset_metadata_Dummy%
+      Hey, the field Dummy was set!
+    %else_globals%
+      Sorry, it wasn't set.
+    %end_globals%
+
+See more info at the [official
+documentation](https://matrix-manuals.squiz.net/keyword-replacements/chapters/conditional-keywords).
+
+### Key notes
 
 * **Warning, warning, warning!** The **most important** thing to know about
   creating metadata schemas is that once you've created a field and people are
@@ -48,6 +111,10 @@ trial and error.  Here's a few suggestions to help.
     `Metadata` screen without needing to inspect rendered pages on the
     front-end.
 
+  * Once you're ready to go to production, then go through and turn off
+    anything that's not critical.  You'll just waste people's bandwidth in
+    downloading the metadata (and potentially expose sensitive data).
+
 * Your Design needs to have the `parse/metadata.xml` snippet in place in order
   to display front-end metadata in the `<head>` of a final rendered page.
 
@@ -60,12 +127,22 @@ trial and error.  Here's a few suggestions to help.
 
 ## Keywords
 
+Keywords are dynamic pieces of information that you can include in various
+areas of Matrix.  Keywords use the format `%keyword_replacement%` and can be
+filtered with one or more `^modifier` clauses, which operate like a Unix pipe
+on the data passing through.
+
 * Conditional Keywords **are not** available in Design files.
 
 * Keywords **are not** available in CSS/JS files.  In order to use keywords
   inside either of these, they would need to be inline CSS in a page, use
   declarative HTML attributes for JS (eg `data-*`) or use some weird hack
   involving Page assets, where keywords work.
+
+* Ignore the
+  [documentation](https://matrix-manuals.squiz.net/keyword-replacements) when
+  it says that non-existent keyword replacements won't be replaced: they're
+  just deleted entirely / replaced with an empty string.
 
 * Global keywords (eg `%globals_asset_type%`) may evaluate to a different
   result depending on where the keyword is called (eg for Site index pages,
@@ -108,3 +185,24 @@ trial and error.  Here's a few suggestions to help.
 
   * It is not known at this time whether Design Parse code has an equivalent
     escaping mechanism.
+  * Certain values are already escaped but need to be confirmed by hand as to
+    whether they are or aren't.
+
+## Git File Bridges
+
+These allows files to be exposed automatically within Matrix or linked to from
+other content areas (such as Web Framework Resources in a page template).
+
+You can generate URLs in the following manner:
+
+    ./?a=239694:dist/css/jcu.min.css
+
+See also [Referencing
+Files](https://manuals.matrix.squizsuite.net/git/examples/setting-up-a-git-file-bridge#Referencing-Files)
+for more information.  URLs aren't overly user-friendly but content will be
+served with the correct content type headers (eg HTML files, images, etc).
+
+Git File Bridges also support use as a webhook endpoint for automatic updating
+(such as those used by GitHub or BitBucket).
+
+
