@@ -38,9 +38,12 @@ As this is an unopinionated group of settings, it's possible that your
 behaviour may differ:
 
 * `TYPE_1`: an asset is displayed in both the frontend and backend navigation,
-*
+
 * `TYPE_2`: links are only displayed in the backend navigation and not
   displayed on the rendered HTML frontend.
+
+* `TYPE_3`: links have been referenced, but their purpose is unknown at this
+  stage.
 
 * `NOTICE`: not typically visible to edit users, this type of link indicates
   that something will be affected if the linked asset is deleted.  For
