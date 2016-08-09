@@ -1,4 +1,4 @@
-<!--@@ Stored design areas: custom CSS/JS via Site metadata @@-->
+<!-- Stored design areas: custom CSS/JS via Site metadata -->
 <MySource_AREA id_name="site_custom_css" design_area="nest_content" print="no" />
 <MySource_AREA id_name="site_custom_js" design_area="nest_content" print="no" />
 
@@ -13,8 +13,8 @@
       <head>
           <meta charset="utf-8" />
           <title>Loading Easy Edit Suite...</title>
-          <!--@@ Force IE10 to IE9 standards. 7,8,9 act unchanged. 11 & edge act unchanged @@-->
-          <!--@@ <meta http-equiv="X-UA-Compatible" content="IE=7,8,9,EmulateIE9,11" /> @@-->
+          <!-- Force IE10 to IE9 standards. 7,8,9 act unchanged. 11 & edge act unchanged -->
+          <!-- <meta http-equiv="X-UA-Compatible" content="IE=7,8,9,EmulateIE9,11" /> -->
           <MySource_PRINT id_name="nested_EES_code" />
 
           <!-- CSS from Design and custom CSS from Site metadata  -->
@@ -102,13 +102,13 @@
             <span class="icon-edit" aria-label="Edit icon"></span> Edit
           </button>
           <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="editMenuLabel">
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit#mode=edit&screen=content' title="Edit this current asset's content">
+              <span class="icon-edit" aria-label="Edit icon"></span> Edit page content
+            </a>
             <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit' title="Change page details, including name, status and thumbnail">
               <span class="icon-details1" aria-label="Details icon"></span> Change page details
             </a>
-            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit?SQ_BACKEND_PAGE=main#mode=edit&screen=content' title="Edit this current asset's content">
-              <span class="icon-edit" aria-label="Edit icon"></span> Edit page content
-            </a>
-            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit?SQ_BACKEND_PAGE=main#mode=edit&screen=metadata' title="Configure the current asset's metadata settings">
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit#mode=edit&screen=metadata' title="Configure the current asset's metadata settings">
               <span class="icon-settings5" aria-label="Settings icon"></span> Configure page settings
             </a>
             <div class="dropdown-divider"></div>
@@ -118,7 +118,7 @@
             <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />/_edit' title="Change site details, including name, status and thumbnail">
               <span class="icon-details1" aria-label="Details icon"></span> Change site details
             </a>
-            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />/_edit?SQ_BACKEND_PAGE=main#mode=edit&screen=metadata' title="Configure the current site's metadata settings">
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />/_edit#mode=edit&screen=metadata' title="Configure the current site's metadata settings">
               <span class="icon-cog" aria-label="Edit site icon"></span> Configure site settings
             </a>
             <div class="dropdown-divider"></div>
@@ -131,7 +131,7 @@
           </div>
         </div>
       </MySource_THEN>
-    </MySource_AREA>
+    </MySource_AREA><!--@@ /toolbar_edit @@-->
     <MySource_AREA id_name="toolbar_admin" design_area="show_if" print="no">
       <MySource_SET name="condition" value="admin_access" />
       <MySource_THEN>
@@ -155,7 +155,7 @@
           </div>
         </div>
       </MySource_THEN>
-    </MySource_AREA>
+    </MySource_AREA><!--@@ /toolbar_admin @@-->
     <MySource_AREA id_name="toolbar_help_for_editors" design_area="show_if" print="no">
       <MySource_SET name="condition" value="write_access" />
       <MySource_THEN>
@@ -168,7 +168,7 @@
           <small class="icon-opennewwindow" title="Opens in new window"></small>
         </a>
       </MySource_THEN>
-    </MySource_AREA>
+    </MySource_AREA><!--@@ /toolbar_help_for_editors @@-->
     <MySource_AREA id_name="toolbar_user_admin" design_area="show_if" print="no">
       <MySource_SET name="condition" value="user_type"/>
       <MySource_SET name="condition_user_types" value="backend_user" />
@@ -177,7 +177,7 @@
           <span class="icon-useralt" aria-label="User profile icon"></span> Edit my account details
         </a>
       </MySource_THEN>
-    </MySource_AREA>
+    </MySource_AREA><!--@@ /toolbar_user_admin @@-->
     <MySource_AREA id_name="page_tools" design_area="show_if">
       <MySource_SET name="condition" value="logged_in" />
       <MySource_THEN>
@@ -223,7 +223,7 @@
           </div>
         </div>
       </MySource_THEN>
-    </MySource_AREA>
+    </MySource_AREA><!--@@ /page_tools @@-->
 
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top">
