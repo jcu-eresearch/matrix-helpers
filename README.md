@@ -5,18 +5,30 @@ and make some form of development possible.
 
 ## Getting started
 
-To get started, ensure you don't think about Matrix as a traditional CMS; it
-is very unopinionated about every aspect of either content management,
-creation or configuration.  Expect you need to do effectively everything
-yourself in terms of wiring: such as creating page templates, setting up
-metadata for people to input and connecting it all together.
+First up, let's clone this stuff:
 
-If you're coming from a technical background, it's better you think of Matrix
-as a framework, with its own custom languages producing HTML output.  Under
-the hood, all pages are PHP so when you're writing keywords or Designs, you're
-actually outputting PHP behind the scenes that'll be executed for display.
-For security reasons, you can't manipulate that backend PHP directly, so
-implementing something has to be done in an *approved* manner.
+    git clone https://github.com/jcu-eresearch/matrix-helpers.git
+    git clone https://github.com/jcu-eresearch/squiz-matrix.git
+
+The former is this repo and the latter is the source code for Matrix itself.
+Despite calling themselves **open source** they aren't. This code was
+extracted from a VM image and is out-of-date, but all we have.
+
+To get started, ensure you don't think about Matrix as a traditional CMS; it's
+much more akin to a framework, like Django or Rails, except gimped out and
+written in PHP.  Matrix is very unopinionated about every aspect of either
+content management, creation or configuration.  Expect you need to do
+effectively everything yourself in terms of wiring: such as creating page
+templates, setting up metadata for people to input and connecting it all
+together.
+
+So if you're coming from a technical background, it's better you think of
+Matrix as a framework, with its own custom languages producing HTML output.
+Under the hood, all pages are PHP so when you're writing keywords or Designs,
+you're actually outputting PHP behind the scenes that'll be executed for
+display.  For security reasons, you can't manipulate that backend PHP
+directly, so implementing something has to be done in an *approved* manner,
+which may or may not be documented.
 
 ## About this repo
 
