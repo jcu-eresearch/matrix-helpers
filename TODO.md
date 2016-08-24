@@ -1,3 +1,41 @@
+# Outstanding tasks
+
+* Ongoing: follow up on Squiz Map issues
+* **Info banner:** metadata to configure a page/site-based alert (under
+  construction, outages, closures etc)
+* **Analytics:** connect for Google Analytics into the site
+  * Metadata: ability for users to connect their own Analytics profile
+* **Favicon** via metadata configuration
+* **Toolbar:**
+  * Add Asset ID to the toolbar
+  * Workflow approver interface (how to determine)
+  * Show info on hover or tags on page elements (admins? JavaScript?)
+    At present, determining where parts of the page come from are impossible
+    but we could attach data visually to indicate "this is the header" or
+    "this is the background image from metadata"
+* **Portlets:**
+  * Better name than 'portlets'?
+  * Left and right columns shown on pages
+  * Adjustable widths of left/centre/right columns (more page metadata)
+  * Calculate auto widths based upon presence of left/right? (eg 3-6-3, or
+    3-9, 9-3)
+  * Partially complete: inherit portlets from the site or parent level
+    (see Asset ID #299342)
+* **Content:**
+  * Content is driven by raw HTML at present (bugs + not complete)
+  * Content Container Templates (Metadata + Paint Layouts)
+  * For example, 2-column, 3-column, 4-column layouts, cards etc
+* **Documentation** for how editors use all of this (Sphinx, extend)
+  * Add documentation links into metadata schemas
+
+## Issues that need investigation/reporting
+
+* Caching issues: having to shift-reload on the first load of a Site (eg
+  Fletcherview)
+* Reorder, sort or group WYSIWYG styles for Design (Design -> Styles)
+* Clicking the binoculars on Firefox doesn't switch the asset map to something
+  on the 'second screen' (eg in the 100-200 group of items)
+
 ## Site object (or its metadata!) available in the Design context
 
 In order to successfully use the per-site (or per-asset) metadata, we need the
