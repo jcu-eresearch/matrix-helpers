@@ -4,7 +4,7 @@
 * **Info banner:** metadata to configure a page/site-based alert (under
   construction, outages, closures etc)
 * **Analytics:** connect for Google Analytics into the site
-  * Metadata: ability for users to connect their own Analytics profile
+  * Metadata: ability for users to connect their own alternate Analytics profile
 * **Favicon** via metadata configuration
 * **Google Maps** API via metadata configuration (eg home page is broken)
 * **Toolbar:**
@@ -26,6 +26,7 @@
   * Content is driven by raw HTML at present (bugs + not complete)
   * Content Container Templates (Metadata + Paint Layouts)
   * For example, 2-column, 3-column, 4-column layouts, cards etc
+* Any other things not exposed for customisation in the Metadata
 * **Documentation** for how editors use all of this (Sphinx, extend)
   * Add documentation links into metadata schemas
 
