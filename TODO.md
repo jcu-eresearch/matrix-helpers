@@ -1,6 +1,7 @@
 # Outstanding tasks
 
 * Ongoing: follow up on Squiz Map issues
+* **Edit+**: there are a lot of Edit+ options available (see asset ID 318177 and [docs](https://matrix-manuals.squiz.net/edit-plus/chapters/edit-plus-installation-guide#Constructing-the-Configuration-File)), but are there any options we *can*/*should* turn on?
 * **Info banner:** metadata to configure a page/site-based alert (under
   construction, outages, closures etc)
 * **Analytics:** connect for Google Analytics into the site
