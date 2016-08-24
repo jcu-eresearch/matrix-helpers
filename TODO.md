@@ -6,6 +6,7 @@
 * **Analytics:** connect for Google Analytics into the site
   * Metadata: ability for users to connect their own Analytics profile
 * **Favicon** via metadata configuration
+* **Google Maps** API via metadata configuration (eg home page is broken)
 * **Toolbar:**
   * Add Asset ID to the toolbar
   * Workflow approver interface (how to determine)
