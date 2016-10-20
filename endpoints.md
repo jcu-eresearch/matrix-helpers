@@ -70,3 +70,6 @@ The URLs might change based upon the configuration located in
 * `/?SQ_ACTION=clean_design_name` will clear the $_SESSION of your
   `SQ_DESIGN_NAME` variable
 
+## Backtraces
+
+`/_admin/?SQ_BACKEND_PAGE=main&backend_section=am&am_section=add_asset&parent_assetid=281446&pos=-1&type_code=file&link_type=1&asset_ei_screen=details&sq_link_path=&sq_asset_path=`
