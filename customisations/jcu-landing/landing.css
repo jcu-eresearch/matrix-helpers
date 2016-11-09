@@ -1,0 +1,408 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  -webkit-transition: all .2s ease-in-out;
+       -o-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+}
+
+.edit-toolbar {
+  z-index: 1050;
+  position: fixed;
+  left: 0;
+}
+
+.dropdown-toggle-right {
+  text-align: left;
+  padding-right: 2rem;
+}
+
+.dropdown-toggle-right::after {
+  position: absolute;
+  right: 0;
+  margin-top: .25em;
+  margin-right: .25em;
+  content: "\e39a";
+}
+
+.dropdown-menu-top-right {
+  top: 0;
+  left: 100%;
+}
+
+.truncate {
+  max-width: 10rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar-custom {
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(255,255,255,.3);
+}
+
+.navbar-custom .navbar-toggler {
+  color: #fff;
+}
+
+.navbar-custom .navbar-brand:focus {
+  color: #fff;
+}
+
+.navbar-brand .brand-img {
+  display: inline-block;
+  height: 4rem;
+  margin-top: .5rem;
+  margin-bottom: .75rem;
+  vertical-align: middle;
+  -webkit-transition: .3s ease-in-out;
+       -o-transition: .3s ease-in-out;
+          transition: .3s ease-in-out;
+}
+
+@media(min-width:768px) {
+  .navbar-brand .brand-img {
+    position: relative;
+    top: -.6rem;
+    height: 5rem;
+  }
+}
+
+.navbar-custom.navbar-collapsed .brand-img {
+  position: static;
+  top: auto;
+  height: 3.5rem;
+}
+
+.navbar-collapsed .navbar-nav .nav-link {
+  margin-top: 1rem;
+  line-height: 1rem;
+}
+
+.navbar-toggleable.in,
+.navbar-toggleable.collapsing {
+  clear: both;
+}
+
+.navbar-toggleable.in {
+  background: rgba(0,0,0,.9);
+}
+
+.nav-link.btn {
+  border: 0 none;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+  font-weight: 700;
+  color: #fff;
+  border-radius: .25em;
+  -webkit-transition: background .3s ease-in-out;
+       -o-transition: background .3s ease-in-out;
+          transition: background .3s ease-in-out;
+}
+
+.navbar-custom .navbar-nav .nav-link:hover,
+.navbar-custom .navbar-nav .nav-link:focus,
+.navbar-custom .navbar-nav .nav-link:active {
+  color: rgba(255,255,255,.8);
+  background-color: rgba(0,0,0,.4);
+}
+
+.navbar-collapsed .navbar-nav .nav-link:hover,
+.navbar-collapsed .navbar-nav .nav-link:focus,
+.navbar-collapsed .navbar-nav .nav-link:active {
+  background-color: #565656;
+}
+
+.navbar-custom .navbar-nav .active .nav-link {
+  background-color: rgba(255,255,255,.3);
+}
+
+.navbar-custom .navbar-nav .active .nav-link:hover {
+  color: #fff;
+}
+
+.navbar-custom,
+.navbar-custom.navbar-collapsed {
+  padding: 0;
+  background-color: rgba(0,0,0,.9);
+  border-bottom: 1px solid rgba(255,255,255,.3);
+}
+
+@media(min-width:768px) {
+  .navbar-custom {
+    padding: 1.5rem 0;
+    background-color: transparent;
+    border-bottom: 0;
+    -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+         -o-transition: background .5s ease-in-out,padding .5s ease-in-out;
+            transition: background .5s ease-in-out,padding .5s ease-in-out;
+  }
+}
+
+.intro {
+  display: table;
+  width: 100%;
+  height: auto;
+  color: #fff;
+  background-color: #000;
+  background-image: url(../img/A21W1282-cattle-muster.jpg);
+  background-attachment: fixed;
+}
+
+.layout-content .intro {
+  background-attachment: scroll;
+}
+
+.intro-body {
+  display: table-cell;
+  padding-top: 20vh;
+  vertical-align: middle;
+  background-color: rgba(0,0,0,.4);
+}
+
+@media(max-height:512px) {
+  .intro-body {
+    padding-top: 7rem;
+  }
+}
+
+.layout-landing .intro {
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  font-weight: 400;
+}
+
+@media(min-width:768px) {
+  .intro {
+    padding: 0;
+  }
+
+  .layout-landing .intro {
+    height: 100%;
+    margin-bottom: 5rem;
+  }
+
+  .layout-landing .intro-body {
+    padding-top: 40vh;
+  }
+
+  .page-title {
+    font-size: 3.5rem;
+  }
+}
+
+.btn-circle {
+  width: 5rem;
+  height: 5rem;
+  padding: .7rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  color: #fff;
+  background: 0 0;
+  border: 2px solid #fff;
+  border-radius: 100% !important;
+  -webkit-transition: background .3s ease-in-out;
+       -o-transition: background .3s ease-in-out;
+          transition: background .3s ease-in-out;
+}
+
+.btn-circle:hover,
+.btn-circle:focus {
+  color: #fff;
+  background-color: rgba(0,0,0,.3);
+}
+
+.text-inverse hr {
+  border-top-color: rgba(255,255,255,.4);
+}
+
+.content-section {
+  margin-bottom: 3rem;
+  overflow: hidden;
+}
+
+@media(min-width:767px) {
+  .content-section {
+    margin-bottom: 5rem;
+  }
+}
+
+.explore-section .card-deck .card {
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  margin-top: 4rem;
+}
+
+.explore-section .card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+@media(min-width:767px) {
+  .explore-section .card-title {
+    font-size: 1.7rem;
+  }
+}
+
+.card-icon {
+  position: absolute;
+  top: -2.75rem;
+  left: 50%;
+  width: 5rem;
+  height: 5rem;
+  padding-left: .1rem;
+  margin-left: -2.75rem;
+  font-size: 3.5rem;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.discover-section {
+  background-color: #000;
+  background-image: url(../img/CM1B7786-bush-sky.jpg);
+  background-position: bottom;
+  background-attachment: fixed;
+}
+
+.discover-section > .container-fluid {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.key-steps {
+  counter-reset: step-counter;
+  margin-left: 3.5rem;
+  position: relative;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.key-step {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.key-steps .key-step::before {
+  content: counter(step-counter, decimal);
+  counter-increment: step-counter;
+  position: absolute;
+  left: -1.2em;
+  font-size: 5em;
+  font-weight: 500;
+  line-height: 0.4;
+  width: 1em;
+  text-align: right;
+  top: 0.5rem;
+}
+
+.canvas-map {
+  /* Avoid position bug on resize, Maps adds inline position:absolute to child */
+  position: relative;
+  width: 100%;
+  height: 15rem;
+  margin-bottom: 1rem;
+}
+
+.location-callout .btn {
+  -webkit-box-shadow: 0 0 .5rem rgba(255,255,255,.2);
+          box-shadow: 0 0 .5rem rgba(255,255,255,.2);
+}
+
+@media(min-width:767px) {
+  .map-section {
+    position: relative;
+    padding: 5rem;
+    overflow: hidden;
+  }
+
+  .canvas-map {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 130%;
+    height: 50rem;
+  }
+
+  .canvas-map[style] {
+    /* Avoid position bug on resize, Maps adds inline position:relative */
+    position: absolute !important;
+  }
+
+  .location-callout {
+    padding-right: 0;
+    padding-left: 0;
+    -webkit-box-shadow: 0 0 1rem #000;
+            box-shadow: 0 0 1rem #000;
+  }
+
+  .location-callout-wrapper {
+    padding: 2rem;
+    background-color: #fff;
+  }
+}
+
+
+/* Research Infrastructure linking */
+.research-classrooms img {
+  max-height: 160px;
+  margin-bottom: 1rem;
+}
+
+@media(min-width:767px) {
+  .research-classrooms .col-sm-4 {
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+}
+
+.research-enablers img {
+  width: 64px;
+  height: 64px;
+}
+
+.research-enablers .media {
+  margin-bottom: .5rem;
+}
+
+.research-enablers .media-left {
+  padding-right: .4rem;
+}
+
+.research-enablers .research-enabler-name {
+  padding-top: .3em;
+  padding-bottom: .3em;
+  padding-left: .5rem;
+  font-size: .95rem;
+  line-height: 1;
+  border-left: 1px solid rgba(0,102,204,.3);
+}
+
+/* Footer */
+.jcu-footer__brand-img {
+  height: 5rem;
+}
+
+.jcu-footer__social--dark a {
+  display: block;
+  padding: .25em;
+  margin-bottom: .5rem;
+  color: #fff;
+  background-color: #565656;
+  border-radius: 50%;
+}
+
+.jcu-footer__social--dark a:hover,
+.jcu-footer__social--dark a:focus {
+  color: #000;
+  background: #fff;
+}
