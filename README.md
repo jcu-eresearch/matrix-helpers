@@ -47,6 +47,9 @@ Need even more help?  Try these locations.  Keep in mind that the
 Matrix community is a niche so don't expect help on common platforms like
 StackOverflow.
 
+* [Official manuals](http://matrix-manuals.squiz.net/) - the official
+  documentation for Matrix.
+
 * [Matrix Users blog](http://matrixusers.com/) - a blog created by Ladoo, an
   Australian provider, last updated circa 2012.  Again, the screenshots are a
   touch out of date but the content still applies.  Of particular note:
@@ -62,7 +65,7 @@ StackOverflow.
     list of common keywords and Design/Parse code used in Matrix.  Still lacks
     the exact output of the keywords (as the official documentation does) so use
     in combination with official documentation and our official test Design in
-    this respository.
+    this repository.
 
 ## Helpful dumps
 
