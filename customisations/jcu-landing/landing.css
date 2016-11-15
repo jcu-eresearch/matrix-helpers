@@ -406,3 +406,18 @@ a {
   color: #000;
   background: #fff;
 }
+
+/* content blocks on secondary Research Infrastructure pages */
+.content-block {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(0,0,0, 0.1);
+}
+.content-block:last-of-type {
+    border-bottom: none;
+}
+.content-block h3 {
+  padding-top: 0;
+  padding-bottom: 2rem;
+}
+
