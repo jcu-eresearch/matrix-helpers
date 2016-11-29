@@ -178,6 +178,11 @@ on the data passing through.
   details on how globals are constructed and see `_getKeywordReplacement` in
   `core/include/asset.inc:4173` for the code that builds local keywords.
 
+* Learn how Keyword Modifiers really work by examining the source code.
+  You'll find this inside `fudge/general/text.inc` inside `function
+  apply_keyword_modifier(…)` and look for a modifier such as `"xpathe"` to see
+  what the switch statement looks like.
+
 ## Security
 
 * To avoid further XSS vulnerabilities, any keywords should utilise the
