@@ -3,7 +3,7 @@
 string), with all forward slashes escaped.
 In this test, the value will show up as a h1 if configured and a message if not.
 @@-->
-<MySource_Area id_name="cobranding" design_area="show_if">
+<MySource_AREA id_name="cobranding" design_area="show_if">
   <MySource_SET name="condition" value="keyword_regexp"/>
   <MySource_SET name="condition_keyword" value="globals_site_metadata_jcu.site.cobranding"/>
   <MySource_SET name="condition_keyword_match" value="^.+$" />
@@ -12,9 +12,9 @@ In this test, the value will show up as a h1 if configured and a message if not.
     <h1>%globals_site_metadata_jcu.site.cobranding%</h1>
   </MySource_THEN>
   <MySource_ELSE><h1>Not configured!<h1></MySource_ELSE>
-</MySource_Area>
+</MySource_AREA>
 
-<MySource_Area id_name="cobranding" design_area="show_if">
+<MySource_AREA id_name="cobranding" design_area="show_if">
   <MySource_SET name="condition" value="keyword_regexp"/>
   <MySource_SET name="condition_keyword" value="globals_site_metadata_jcu.site.cobranding"/>
   <MySource_SET name="condition_keyword_match" value="^%globals_site_metadata_jcu.site.cobranding%$" />
@@ -23,4 +23,15 @@ In this test, the value will show up as a h1 if configured and a message if not.
   <MySource_THEN>
     %globals_site_metadata_jcu.site.cobranding^as_asset:asset_contents%
   </MySource_THEN>
-</MySource_Area>
+</MySource_AREA>
+
+<!--@@ Show if not -->
+<MySource_AREA id_name="metadata_schema_warning" design_area="show_if">
+  <MySource_SET name="condition" value="keyword_regexp"/>
+  <MySource_SET name="condition_keyword" value="globals_site_metadata_jcu.site.logo"/>
+  <MySource_SET name="condition_keyword_match" value="^(?!.+)$" />
+  <MySource_THEN>
+    This metadata doesn't exist, we just used a negative lookahead regex to test non-existance.
+  </MySource_THEN>
+</MySource_AREA>
+
