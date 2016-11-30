@@ -243,7 +243,9 @@ print inside `show_if` area.  For more info, see the [official
 documentation](https://matrix-manuals.squiz.net/designs/chapters/show-if-design-area#Nesting-Show-If-Design-Areas).
 
 There's a slightly undocumented feature called `replace_keyword_in_match` in
-the `show_if` area that allows you to match on resolved keywords.  The setting
+the `show_if` area (see
+`core/assets/system/conditions/condition_types/condition_keyword_regexp/condition_keyword_regexp.inc`)
+that allows you to match on resolved keywords.  The setting
 is present in the Matrix UI but not documented in XML. The code for this looks
 like so:
 
