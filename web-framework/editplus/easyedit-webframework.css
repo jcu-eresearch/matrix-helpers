@@ -16,6 +16,11 @@
 /*
  * General and Content
  */
+
+.guiButton .label {
+    color: #535353;
+}
+
 #ees_toolBarLogo {
   background-image: url("https://www.jcu.edu.au/?a=281218:dist/images/jcua-logo-colour.svg");
   background-repeat: no-repeat;
@@ -32,41 +37,35 @@
 }
 
 @-webkit-keyframes spinner {
-      to {-webkit-transform: rotate(360deg);}
+  to {-webkit-transform: rotate(360deg);}
 }
 
-#ees_overlayImage.loading img {
-    display: none;
-}
-
-#ees_overlayImage.loading,
-#ees_analyticsReportContents.status-loading {
+.spinner {
   position: relative;
   display: inline-block;
-  min-width: 8rem;
   min-height: 8rem;
-  background: none; /* Disable background from original CSS */
+  min-width: 8rem;
+  top: 35%;
+  left: 45%;
 }
 
-#ees_overlayImage.loading:before,
-#ees_analyticsReportContents.status-loading:before {
-  content: 'Loading…';
+.spinner:before {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  content: 'Loading…';
 }
 
-#ees_overlayImage.loading:not(:required):before,
-#ees_analyticsReportContents.status-loading:not(:required):before {
+.spinner:not(:required):before {
   content: '';
   border-radius: 50%;
   border-top: 1rem solid #06c;
   border-right: 1rem solid transparent;
-  animation: spinner .4s linear infinite;
-  -webkit-animation: spinner .4s linear infinite;
-  -moz-animation: spinner .4s linear infinite;
+  animation: spinner .8s linear infinite;
+  -webkit-animation: spinner .8s linear infinite;
+  -moz-animation: spinner .8s linear infinite;
 }
 
 /* .row conflicts with Framework so set no margins, and only configure margins
