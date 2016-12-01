@@ -95,6 +95,10 @@ var EasyEditConfig = {
 
     //GOOGLE ANALYTICS CONNECTOR
     // A new Analytics screen will be made available for your assets, displaying the analytics data of your assets.
-    analyticsViewId:             318119
+    analyticsViewId:             318119,
+
+    // SITE EDITING (for Matrix 5.4)
+    // This option allows you to enable the editing of Site Assets within Edit+.
+    enableSiteEditing:           true
 
 }; // End EasyEditConfig.
