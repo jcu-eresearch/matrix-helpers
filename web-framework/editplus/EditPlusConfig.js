@@ -66,7 +66,7 @@ var EasyEditConfig = {
 
     // Array of additional asset finder locations.
     // This can be used to add asset id's of frequently used site parents e.g. News, Events, Images.
-    assetFinderLocations:         [364552,283019,2311,70],
+    assetFinderLocations:         [364590,283019,2311,70],
 
     // PERFORMANCE FEATURE.
     // Maximum number of assets to show in an asset finder panel before
