@@ -32,9 +32,56 @@
     };
   })();
 </script>
+
 <!--@@ Edit+ Core Scripts @@-->
 <script src="/__data/ees/easyedit.min.js"></script>
 <script src="/__data/ees/Viper/viper.js"></script>
 
 <!--@@ Edit+ Plugins @@-->
-<script type="text/javascript" src="./?a=32519?v=%globals_asset_version:32519%"></script>
+<!--@@ See https://matrix.squiz.net/manuals/edit-plus/chapters/javascript-plugins for details @@-->
+<script>
+  /**
+   * Open Asset Wizard plugin - Automatically opens the Asset Wizard via the URL
+   */
+  EasyEdit.plugins.openAssetWizardViaUrl = {
+    init: function() {
+      EasyEditEventManager.bind('EasyEditAfterLoad', function() {
+        if (window.location.hash.startsWith('#openWizard')) {
+          EasyEdit.wizard.show()
+        }
+      })
+    }
+  }
+
+  /**
+  * Hotfix Plugin - Fixes various EasyEdit bugs
+  */
+  EasyEdit.plugins.fixBugs = {
+    init: function () {
+      // Bug fix: hides the 'undefined' string
+      // Add a function to the screen load event
+      EasyEditEventManager.bind("EasyEditScreenLoad", function () {
+        //check if we are on the metadata screen
+        if (EasyEditScreens.getCurrentScreenName() === "Metadata") {
+          $("#ees_editMetadata .notes:contains('undefined')").remove();
+        }
+      });
+    }
+  };
+
+  /**
+   * CSS loader animation plugin - Avoid using a huge animated GIF, use CSS3!
+   */
+  EasyEdit.plugins.cssLoaderAnimation = {
+    init: function () {
+      // Change the loader to be lighter
+      EasyEditOverlay.overlays.loading._getTemplate = function(msg) {
+        var output = "<div class='spinner'></div>";
+        if (msg) {
+            output += "<p class='h2 text-xs-center'>" + msg + "</p>";
+        }
+        return output;
+      };
+    }
+  };
+</script>
