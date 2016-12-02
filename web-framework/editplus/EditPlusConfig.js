@@ -93,11 +93,14 @@ var EasyEditConfig = {
     // If missing from config or false the linking screen will not display 'Direct Children'.
     showChildrenOnLinkingScreen: true,
 
-    //GOOGLE ANALYTICS CONNECTOR
+    //Google Analytics Connector
     // A new Analytics screen will be made available for your assets, displaying the analytics data of your assets.
     analyticsViewId:             318119,
 
-    // SITE EDITING (for Matrix 5.4)
+    // Markdown content type for content containers
+    markdownEnabled:             true,
+
+    // Site Editing (For Matrix 5.4)
     // This option allows you to enable the editing of Site Assets within Edit+.
     enableSiteEditing:           true
 
