@@ -1924,7 +1924,7 @@
             </table>
           </div>
           <h3>Global Asset Shortcuts</h3>
-          <p>A handful of commonly used global keyword replacements employ an abbreviated format. For more information on the common keyword replacements that can be used as global keyword replacement shortcuts, refer to the <a href="https://matrix-manuals.squiz.net/keyword-replacements/chapters/common-keywords">Common Keywords</a> chapter in this manual.</p>
+          <p>A handful of commonly used global keyword replacements employ an abbreviated format. For more information on the common keyword replacements that can be used as global keyword replacement shortcuts, refer to the <a href="https://matrix-manuals.squiz.net/keyword-replacements/chapters/common-keywords">Common Keywords</a> chapter in this manual. Any of the following can be passed an <em>:assetid</em> at the end to attach to a specific asset; several examples use the JCU site asset ID <em>4049</em> to demonstrate this.</p>
           <p>The asset global keyword replacement shortcuts available include:</p>
           <div class="table-responsive m-b-2">
             <table class="table">
@@ -1942,6 +1942,10 @@
                   <td>%globals_asset_name%</td>
                 </tr>
                 <tr>
+                  <td>&#37;globals_asset_name:4049&#37;</td>
+                  <td>%globals_asset_name:4049%</td>
+                </tr>
+                <tr>
                   <td>&#37;globals_asset_name_linked&#37;</td>
                   <td>%globals_asset_name_linked%</td>
                 </tr>
@@ -1952,6 +1956,10 @@
                 <tr>
                   <td>&#37;globals_asset_type&#37;</td>
                   <td>%globals_asset_type%</td>
+                </tr>
+                <tr>
+                  <td>&#37;globals_asset_type:4049&#37;</td>
+                  <td>%globals_asset_type:4049%</td>
                 </tr>
                 <tr>
                   <td>&#37;globals_asset_type_icon&#37;</td>
@@ -1974,6 +1982,10 @@
                   <td>%globals_asset_url%</td>
                 </tr>
                 <tr>
+                  <td>&#37;globals_asset_url:4049&#37;</td>
+                  <td>%globals_asset_url:4049%</td>
+                </tr>
+                <tr>
                   <td>&#37;globals_asset_urls&#37;</td>
                   <td>%globals_asset_urls%</td>
                 </tr>
@@ -1992,6 +2004,14 @@
                 <tr>
                   <td>&#37;globals_asset_published&#37;</td>
                   <td>%globals_asset_published%</td>
+                </tr>
+                <tr>
+                  <td>&#37;globals_asset_thumbnail&#37;</td>
+                  <td>%globals_asset_thumbnail%</td>
+                </tr>
+                <tr>
+                  <td>&#37;globals_asset_thumbnail_url&#37;</td>
+                  <td>%globals_asset_thumbnail_url%</td>
                 </tr>
               </tbody>
             </table>
