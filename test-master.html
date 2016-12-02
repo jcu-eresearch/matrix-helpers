@@ -2013,6 +2013,14 @@
                   <td>&#37;globals_asset_thumbnail_url&#37;</td>
                   <td>%globals_asset_thumbnail_url%</td>
                 </tr>
+                <tr>
+                  <td>&#37;globals_image_v_url_tiles:284584&#37;</td>
+                  <td>%globals_image_v_url_tiles:284584%</td>
+                </tr>
+                <tr>
+                  <td>&#37;globals_image_v_url_newsdetails:284584&#37;</td>
+                  <td>%globals_image_v_url_newsdetails:284584%</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -2257,7 +2265,8 @@
                 </tr>
                 <tr id="Entry-Asset">
                   <td>&#37;globals_entry_asset&#37;</td>
-                  <td>%globals_entry_asset%</td>
+                  <td>%globals_entry_asset%<br>(%globals_entry_asset^as_asset:asset_name%)
+                  </td>
                   <td>
                     <p>The following keyword replacement will display the asset ID that was first accessed in the user's current session.</p>
                     <p>So, for example, if the user first accessed the site through the site's Home<strong> </strong>page, which has an asset ID of #40, this global keyword replacement will display a value of <strong>40</strong>.</p>
