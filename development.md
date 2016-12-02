@@ -175,7 +175,12 @@ on the data passing through.
   for the term ``function getKeywordReplacement``.  This will yield all
   potential locations where keywords might be queried.  See also
   `replace_global_keywords()` inside `core/include/general.inc:2193` for more
-  details on how globals are constructed and see `_getKeywordReplacement` in
+  details on how globals are constructed, including juicy bits like:
+
+  * line 2362, where `%globals_asset_[common keyword]:[asset_id]%` are
+    resolved and matched
+
+  See `_getKeywordReplacement` in
   `core/include/asset.inc:4173` for the code that builds local keywords.
 
 * Learn how Keyword Modifiers really work by examining the source code.
