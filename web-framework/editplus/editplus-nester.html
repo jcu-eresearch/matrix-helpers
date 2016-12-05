@@ -16,7 +16,7 @@
 <!--@@ JCU workaround for not being able to edit Site metadata @@-->
 <script>
   (function() {
-    var oldFn = Squiz_Matrix_API.prototype.getKeywordsReplacements;
+    var oldFn = Squiz_Matrix_API.prototype.getKeywordsReplacements
     Squiz_Matrix_API.prototype.getKeywordsReplacements = function() {
       // Prevent redirection for Site assets
       // Avoid uses of Squiz percent global keywords which actually resolve
@@ -25,12 +25,12 @@
           arguments[0].keywords_array &&
           arguments[0].keywords_array.length === 1 &&
           arguments[0].keywords_array[0] === ('%' + 'asset_index_id%')) {
-        arguments[0].keywords_array[0] = '%' + 'nonexistent_keyword%';
+        arguments[0].keywords_array[0] = '%' + 'nonexistent_keyword%'
       }
       // getKeywordsReplacements is expecting either 0 or 1 arguments so apply
-      return oldFn.apply(this, arguments);
-    };
-  })();
+      return oldFn.apply(this, arguments)
+    }
+  })()
 </script>
 
 <!--@@ Edit+ Core Scripts @@-->
@@ -63,11 +63,11 @@
       EasyEditEventManager.bind("EasyEditScreenLoad", function () {
         //check if we are on the metadata screen
         if (EasyEditScreens.getCurrentScreenName() === "Metadata") {
-          $("#ees_editMetadata .notes:contains('undefined')").remove();
+          $("#ees_editMetadata .notes:contains('undefined')").remove()
         }
-      });
+      })
     }
-  };
+  }
 
   /**
    * CSS loader animation plugin - Avoid using a huge animated GIF, use CSS3!
@@ -76,12 +76,12 @@
     init: function () {
       // Change the loader to be lighter
       EasyEditOverlay.overlays.loading._getTemplate = function(msg) {
-        var output = "<div class='spinner'></div>";
+        var output = "<div class='spinner'></div>"
         if (msg) {
-            output += "<p class='h2 text-xs-center'>" + msg + "</p>";
+            output += "<p class='h2 text-xs-center'>" + msg + "</p>"
         }
-        return output;
-      };
+        return output
+      }
     }
-  };
+  }
 </script>
