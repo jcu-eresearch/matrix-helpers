@@ -119,6 +119,23 @@
   height: auto !important;
 }
 
+.assetId.screenHide {
+  display: inline-block;
+  position: relative;
+  overflow: auto;
+  top: 0;
+  height: auto;
+  width: auto;
+  line-height: 1;
+  font-style: italic;
+}
+
+.assetId.screenHide::before {
+  content: "New asset ID #";
+  font-style: normal;
+  font-weight: 600;
+}
+
 /*
  * Main Edit+ toolbar
  */
