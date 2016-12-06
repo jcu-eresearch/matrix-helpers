@@ -265,7 +265,9 @@
     <MySource_AREA id_name="header" design_area="nest_content" />
 
     <main id="main" role="main" aria-labelledby="page-title">
-      <MySource_AREA id_name="body" design_area="body" />
+      <MySource_AREA id_name="portlets_left" design_area="nest_content" />
+      <MySource_AREA id_name="content" design_area="body" />
+      <MySource_AREA id_name="portlets_right" design_area="nest_content" />
     </main>
 
     <MySource_AREA id_name="cobranding" design_area="show_if">
@@ -349,5 +351,24 @@
         </script>
       </MySource_THEN>
     </MySource_AREA><!--@@ /metadata_schema_warning @@-->
+
+    <!--@@ Workaround the caching issue by manipulating links & reloading page @@-->
+    <script>
+      if (document.cookie.search('jcuredirecturl=') >= 0) {
+        var suffix = '/_noproxycache'
+        if (!window.location.pathname.endsWith(suffix)) {
+          window.location = window.location.href + suffix
+        } else {
+          $('a[href*="www.jcu.edu.au"]:not([href^="mailto:"])').filter(function() {
+            return !this.href.match(/\/_(admin|edit|noproxycache|nocache|recache)/) && !this.href.match(/SQ_ACTION/)
+          }).attr('href', function(i, val) {
+            var url = document.createElement('a')
+            url.href = val
+            url.pathname += suffix.substring(url.pathname.endsWith('/') ? 1 : 0)
+            return url
+          })
+        }
+      }
+    </script>
   </body>
 </html>
