@@ -119,7 +119,8 @@
   height: auto !important;
 }
 
-.assetId.screenHide {
+/* Show the Asset ID after creation in the Wizard */
+.success .assetId.screenHide {
   display: inline-block;
   position: relative;
   overflow: auto;
@@ -130,11 +131,12 @@
   font-style: italic;
 }
 
-.assetId.screenHide::before {
-  content: "New asset ID #";
+.success .assetId.screenHide::before {
+  content: "Created asset ID #";
   font-style: normal;
   font-weight: 600;
 }
+
 
 /*
  * Main Edit+ toolbar
