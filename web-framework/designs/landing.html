@@ -33,6 +33,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--@@ Reload the page "logged in"; done early via JS so we can fast-forward the reload @@-->
+    <!--@@ Workaround for Squiz Issue 117992 @@-->
+    <script>
+      if (document.cookie.search('jcuredirecturl=') >= 0 &&
+          !window.location.pathname.endsWith('/_noproxycache')) {
+          window.location.pathname += window.location.pathname.endsWith('/') ? "_noproxycache" : "/_noproxycache"
+      }
+    </script>
     <link rel="icon" href="./?a=281218:dist/images/favicon.ico">
 
     <!--@@ Site title; nested content due to "inconsisent asset" keyword bug @@-->
@@ -352,22 +361,18 @@
       </MySource_THEN>
     </MySource_AREA><!--@@ /metadata_schema_warning @@-->
 
-    <!--@@ Workaround the caching issue by manipulating links & reloading page @@-->
+    <!--@@ Adjust all page links to avoid broken Edge proxy if logged in @@-->
+    <!--@@ Workaround for Squiz Issue: 117992 @@-->
     <script>
       if (document.cookie.search('jcuredirecturl=') >= 0) {
-        var suffix = '/_noproxycache'
-        if (!window.location.pathname.endsWith(suffix)) {
-          window.location = window.location.href + suffix
-        } else {
-          $('a[href*="www.jcu.edu.au"]:not([href^="mailto:"])').filter(function() {
-            return !this.href.match(/\/_(admin|edit|noproxycache|nocache|recache)/) && !this.href.match(/SQ_ACTION/)
-          }).attr('href', function(i, val) {
-            var url = document.createElement('a')
-            url.href = val
-            url.pathname += suffix.substring(url.pathname.endsWith('/') ? 1 : 0)
-            return url
-          })
-        }
+        $('a[href*="www.jcu.edu.au"]:not([href^="mailto:"])').filter(function() {
+          return !this.href.match(/\/_(admin|edit|noproxycache|nocache|recache)/) && !this.href.match(/SQ_ACTION/)
+        }).attr('href', function(i, val) {
+          var url = document.createElement('a')
+          url.href = val
+          url.pathname += url.pathname.endsWith('/') ? "_noproxycache" : "/_noproxycache"
+          return url
+        })
       }
     </script>
   </body>
