@@ -137,6 +137,15 @@
   font-weight: 600;
 }
 
+/* Show the form field editor buttons without needing to hover */
+.custom-form-question .custom-form-question__edit-tools {
+  display: table !important;
+}
+
+.custom-form-question .custom-form-question__drag-handle {
+  display: block;
+}
+
 
 /*
  * Main Edit+ toolbar
