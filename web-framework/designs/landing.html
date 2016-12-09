@@ -37,8 +37,9 @@
     <!--@@ Reload the page "logged in"; done early via JS so we can fast-forward the reload @@-->
     <!--@@ Workaround for Squiz Issue 117992 @@-->
     <script>
-      if (document.cookie.search('jcuredirecturl=') >= 0 &&
-          !window.location.pathname.endsWith('/_noproxycache')) {
+      if (!window.location.pathname.endsWith('/_noproxycache') &&
+         (document.cookie.search('jcuredirecturl=') >= 0 ||
+           document.body.className.search('user-authenticated') >= 0)) {
           window.location.pathname += window.location.pathname.endsWith('/') ? "_noproxycache" : "/_noproxycache"
       }
     </script>
