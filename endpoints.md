@@ -73,3 +73,8 @@ The URLs might change based upon the configuration located in
 ## Backtraces
 
 `/_admin/?SQ_BACKEND_PAGE=main&backend_section=am&am_section=add_asset&parent_assetid=281446&pos=-1&type_code=file&link_type=1&asset_ei_screen=details&sq_link_path=&sq_asset_path=`
+
+## Documentation
+
+See <https://www.jcu.edu.au/documentation> for details on how to maintain
+content within the environment that has been configured by Squiz for JCU.
