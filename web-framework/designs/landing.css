@@ -421,3 +421,10 @@ a {
   padding-bottom: 2rem;
 }
 
+/* Form controls */
+.custom-form .form-control[required] {
+  background-image: radial-gradient(#d9534f 50%, transparent 50%), radial-gradient(#d9534f 50%, transparent 50%);
+  background-size: 1em 1em;
+  background-position: right top;
+  background-repeat: no-repeat;
+}
