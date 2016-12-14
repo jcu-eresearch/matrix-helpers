@@ -82,24 +82,24 @@
       // Get the marker's lat and long from the DOM
       var mapData = $(mapElement).data()
       mapMarker = new google.maps.LatLng(
-        parseFloat(mapData.markerLat), parseFloat(mapData.markerLng))
+        parseFloat(mapData.markerLat || -25.608539), parseFloat(mapData.markerLng || 134.361731))
 
       // Basic options for a simple Google Map`
       // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
       var mapOptions = {
-        zoom: 6,
+        zoom: mapData.initialZoom || 6,
         center: mapMarker,
-        mapTypeId: google.maps.MapTypeId.HYBRID,
-        disableDefaultUI: true,
-        scrollwheel: false,
-        draggable: true
+        mapTypeId: mapData.mapTypeId || google.maps.MapTypeId.HYBRID,
+        disableDefaultUI: mapData.disableDefaultUI !== false,
+        scrollwheel: mapData.scrollwheel !== false,
+        draggable: mapData.draggable !== false
       }
 
       // Create the Google Map using out element and options defined above
       map = new google.maps.Map(mapElement, mapOptions)
 
       // Custom Map Marker icon
-      var image = 'https://www.jcu.edu.au/__data/assets/file/0007/285460/marker.svg'  // Mega hack for quick Squiz Matrix URL
+      var image = mapData.markerUrl || 'https://www.jcu.edu.au/__data/assets/file/0007/285460/marker.svg'  // Mega hack for quick Squiz Matrix URL
       var locationMarker = new google.maps.Marker({
         position: mapMarker,
         map: map,
@@ -107,7 +107,7 @@
       })
       locationMarker.addListener('click', function() {
         map.setCenter(mapMarker)
-        map.setZoom(16)
+        map.setZoom(mapData.fullZoom || 16)
       })
     })
     google.maps.event.addDomListener(window, 'resize', function() {
