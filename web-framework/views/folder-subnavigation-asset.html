@@ -1,5 +1,5 @@
 <!--@@ This supports 2nd-level navigation; could be extended to 3rd level or deeper @@-->
 <!--@@ This works around the lack of a well-defined global frontend_asset.
-    We expect a `frontend_asset` to be available in the POST, passed in from another context.
+    We expect a `frontend_asset` to be available in the GET, passed in from another context.
     See https://github.com/jcu-eresearch/matrix-helpers/issues/9 @@-->
-<li class="nav-item %asset_assetid^replace_keywords:eq:{globals_post_frontend_asset}:active%"><a class="nav-link" href="%asset_url%">%asset_short_name%</a></li>
+<li class="nav-item %asset_assetid^replace_keywords:eq:{globals_get_frontend_asset}:active%"><a class="nav-link" href="%asset_url%">%asset_short_name%</a></li>
