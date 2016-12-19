@@ -1,0 +1,10 @@
+<!--@@ Only show breadcrumbs if there's 2 or more objects in the lineage @@-->
+%begin_globals_asset_linking_lineage^count^gte:2%
+  <!--@@ Only show breadcrumbs on pages other than the homepage @@-->
+  %begin_globals_site_index_id^replace_keywords:neq:{globals_asset_assetid}%
+    <!--@@ Only show breadcrumbs if the metadata toggle is on (inherit from site) @@-->
+    %begin_globals_asset_metadata_jcu.features.breadcrumbs^replace_keywords:eq:inherit:{globals_site_metadata_jcu.features.breadcrumbs}:{globals_asset_metadata_jcu.features.breadcrumbs}^eq:true%
+      %globals_asset_contents:372564^replace_keywords:with_get:frontend_asset={globals_asset_assetid}^replace_keywords:with_get:lineage={globals_asset_linking_lineage}%
+    %end_globals%
+  %end_globals%
+%end_globals%

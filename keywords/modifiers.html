@@ -11,3 +11,10 @@
 
 <!-- Get the name of the 2nd-level item in your lineage (eg folder under site) -->
 <h1>%asset_linking_lineage^index:1^as_asset:asset_name%</h1>
+
+
+<!-- Boolean checking; test if a value equals "inherit" and then switch it to the site keyword, or just keep the one from the asset -->
+<h1>
+  %globals_asset_metadata_jcu.features.breadcrumbs^replace_keywords:eq:inherit:{globals_site_metadata_jcu.features.breadcrumbs} from site:{globals_asset_metadata_jcu.features.breadcrumbs} from asset%
+  %globals_asset_metadata_jcu.features.breadcrumbs^replace_keywords:eq:inherit:{globals_site_metadata_jcu.features.breadcrumbs}:{globals_asset_metadata_jcu.features.breadcrumbs}^eq:true:breadcrumbs-on:%
+</h1>

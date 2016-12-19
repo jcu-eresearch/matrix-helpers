@@ -28,14 +28,9 @@
         </div>
       </div>
       %else_begin_globals_asset_metadata_jcu.features.page.type^eq:content%
-
-        <!--TODO: %asset_linking_lineage%  ["281446","364547"]  into bootstrap breadcrumbs, but optionally based on metadata
-         %asset_short_name%,  %asset_short_name_linked%, %asset_url% -->
-
         %begin_globals_asset_linking_lineage^count^gte:2%
           %globals_asset_contents:372370^replace_keywords:with_get:frontend_asset={globals_asset_assetid}^replace_keywords:with_get:root={globals_asset_linking_lineage^json_decode^index:1}%
         %end_globals%
-
       %end_globals%
     </div>
   </div>

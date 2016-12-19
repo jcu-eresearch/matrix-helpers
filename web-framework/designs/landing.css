@@ -442,3 +442,9 @@ a {
   background-position: right top;
   background-repeat: no-repeat;
 }
+
+/* Backport Bootstrap fix https://github.com/twbs/bootstrap/pull/18789 */
+.breadcrumb-item::before {
+  display: inline-block;
+}
+

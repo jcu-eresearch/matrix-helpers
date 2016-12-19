@@ -1,0 +1,8 @@
+<!--@@ This works around the lack of a well-defined global frontend_asset.
+    We expect a `frontend_asset` to be available in the GET, passed in from another context.
+    See https://github.com/jcu-eresearch/matrix-helpers/issues/9 @@-->
+%begin_asset_assetid^replace_keywords:neq:{globals_get_frontend_asset}%
+  <a class="breadcrumb-item" href="%asset_url%">%asset_short_name%</a></li>
+%else_asset%
+  <span class="breadcrumb-item active">%asset_short_name%</span>
+%end_asset%
