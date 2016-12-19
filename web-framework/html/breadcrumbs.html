@@ -1,5 +1,5 @@
-<!--@@ Only show breadcrumbs if there's 2 or more objects in the lineage @@-->
-%begin_globals_asset_linking_lineage^count^gte:2%
+<!--@@ Only show breadcrumbs for deep objects; if there's more than 2 objects in the lineage @@-->
+%begin_globals_asset_linking_lineage^json_decode^count^gt:2%
   <!--@@ Only show breadcrumbs on pages other than the homepage @@-->
   %begin_globals_site_index_id^replace_keywords:neq:{globals_asset_assetid}%
     <!--@@ Only show breadcrumbs if the metadata toggle is on (inherit from site) @@-->
