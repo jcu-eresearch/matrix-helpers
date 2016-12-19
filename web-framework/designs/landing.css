@@ -266,6 +266,20 @@ a {
   border-radius: 50%;
 }
 
+.card-info-callout {
+  position: absolute;
+  top: .5rem;
+  right: 0;
+  max-width: 50%;
+  padding: .25rem .25rem .25rem .5rem;
+  border-bottom-left-radius: .25rem;
+  border-top-left-radius: .25rem;
+  line-height: 1;
+  background-color: #fff;
+  color: #2d2d2d;
+  text-align: center;
+}
+
 .discover-section {
   background-color: #000;
   background-image: url(../img/CM1B7786-bush-sky.jpg);
