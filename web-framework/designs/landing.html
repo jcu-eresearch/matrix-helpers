@@ -37,9 +37,9 @@
     <!--@@ Reload the page "logged in"; done early via JS so we can fast-forward the reload @@-->
     <!--@@ Workaround for Squiz Issue 117992 @@-->
     <script>
+      var current_user = '<MySource_PRINT id_name="__global__" var="current_user" default="" attr="name" />'
       if (!window.location.pathname.match(/_(noproxycache|nocache|recache)/) &&
-         (document.cookie.search('jcuredirecturl=') >= 0 ||
-           document.body.className.search('user-authenticated') >= 0)) {
+         (current_user || document.cookie.search('jcuredirecturl=') >= 0)) {
         var url = document.createElement('a')
         url.href = window.location.href
         url.pathname += url.pathname.endsWith('/') ? "_noproxycache" : "/_noproxycache"
