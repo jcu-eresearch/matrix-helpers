@@ -4,12 +4,22 @@
 
 The following are the key areas where HTML will "bubble up" and out of Matrix.
 
-* Design assets
-* Design Customisations (extends Designs, fills slots \[areas\])
-* Assets (such as Pages, which feature content)
-* Asset Listings
-* Content Containers
-* Metadata Schemas (indirectly for configuration via Metadata)
+* `Design` assets, which are master HTML templates and structure
+* `Design Customisations`, which are "concrete" implementations of Designs,
+  which fill the "areas" provided in a `Design`.
+* `Assets`, such as `Pages`, which feature content or `Asset Listings` which list
+  items based upon conditions
+* `Content Containers`, which are sections of content within an `Asset`.  They
+  can be reused in multiple `Assets` if need be.
+* `Paint Layouts`, which control the rendering of `Asset` contents (including
+  `Content Containers` themselves)
+
+From an indirect perspective, you also have these aspects playing a part as
+well:
+
+* `Metadata Schemas`, which affect the HTML if keywords are configured in any
+  of the above areas to reference either an `Asset` metadata or `Site`
+metadata
 
 ## Getting HTML out of Matrix
 
@@ -73,7 +83,9 @@ equivalent to template statements or expressions in other templating
 languages, such as `{% block foo %}` in Jinja2 or `<metal>` in TAL.
 
 For additional documentation, consult the
-[reference](https://matrix-manuals.squiz.net/designs/chapters/design-tags).
+[reference](https://matrix-manuals.squiz.net/designs/chapters/design-tags) or
+the source code located in `core/assets/designs/design_areas/*`, where all
+design areas are implemented in Matrix.
 
 * `MySource_AREA`: `Design Areas` are essentially template slots/fillable
   inheritance blocks. Can be more than just HTML and offer some control over
@@ -264,8 +276,46 @@ This all sums up to a very ambiguous answer of "it depends", because your
 condition needs to match the functionality available.  Sadly, access to just
 write in PHP is not allowed, which makes life quite difficult.
 
-## Paint layouts
+## Paint Layouts
 
-Paint Layouts are templates for assets to control how an asset is displayed in
-the overall rendered page.
+*Paint Layouts* are templates for assets to control how an asset's **content
+body** is displayed within the overall rendered page.  They allow you to add
+metadata fields to an asset as well as other information into the rendered
+content body in any way that you see fit.
 
+Displaying an asset through the Body Design Area will invoke the default Paint
+Layout applied for that asset in the same way that
+`%globals_asset_contents:12345%` will as well.  There's actually an
+[issue](https://github.com/jcu-eresearch/matrix-helpers/issues/23) open for
+this keyword at present but that's beside the point.
+
+Paint Layouts are applied via the `Paint Layouts` screen in the admin
+interface.  This requires a system administrator in order to make this change.
+In contrast to Metadata Schemas or Permissions, whose settings are applied at
+an individual level to each and every Asset, the `Paint Layout` is applied on
+a URL-basis and **automatically** cascades to sub-assets beneath that path in
+the URL.  So, for instance, the main site is `example.edu.au` and this has a
+`Paint Layout` applied.  Any new content added under this structure will
+implicitly inherit the same `Layout`.  If a path like `example.edu.au/foo/bar`
+then has a new `Paint Layout` applied, any content under
+`example.edu.au/foo/bar/*` will get that new `Layout` automatically.
+
+Individual content assets can be rendered using another `Paint Layout` through
+`Overrides`, which are applied to just that single `Asset` and not inherited
+at all.
+
+## Asset Listings
+
+Asset Listings are a content type within Matrix that allows you to list a set
+of assets in a specific manner of HTML.  You are able to customise how the
+listing looks (such as `<ul>`, set of `<div>` containers etc) and how the
+individual assets are shown (such as `<li>`, `<a>` and so on).  Think of an
+Asset Listing as a rather limited for-loop that's centric on assets; it can be
+used for navigation, menus and pretty much any other type of listing.  Assets
+listed can be a static set list, or dynamically populated based upon some
+other form of configuration (such as a GET or POST parameter, keyword,
+metadata and so on).
+
+The implementation of Asset Listings is messy and so is their configuration.
+You'll need to be extremely patient because trial-and-error is the only way to
+proceed.
