@@ -17,6 +17,12 @@
  * General and Content
  */
 
+/* Prevent Edit+ from being oversized */
+body.previewMode {
+  width: auto;
+  height: auto;
+}
+
 .guiButton .label {
     color: #535353;
 }

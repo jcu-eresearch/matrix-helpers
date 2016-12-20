@@ -66,6 +66,41 @@
           $("#ees_editMetadata .notes:contains('undefined')").remove()
         }
       })
+
+      // Bug fix: fix display issues on Preview mode
+      EasyEditEventManager.bind("EasyEditModeLoaded", function (mode) {
+        if (mode === "preview") {
+          // Handle resize actions adding overflow: auto the iframe by
+          // overriding the start() function. Other functions remain the same.
+          jQuery("#ees_PreviewFrameContainer").resizable({
+            start: function() {
+              jQuery("#ees_modePreviewFrame").css("pointer-events", "none");
+              EasyEditComponentsToolbar.deselectPreviewScreenSizeOption()
+            }
+          })
+
+          // The Edit+ code is at fault in two areas, setting the wrapper
+          // height to the height of iframe body. From easyedit.js:
+          // Line 20478 jQuery("div", $iFrameBody).length > 0 ? n.height($iFrameBody.height() + 40 + "px") : n.height(jQuery(window).height() + "px");
+          // Line 25159 c = jQuery("div", c).length > 0 ? c.height() + 40 : jQuery(window).height();
+          function correctIframeWrapperHeight() {
+            // Get rid of overflow: hidden from the preview iframe's HTML tag
+            var iframe = document.getElementById('ees_modePreviewFrame')
+            var iframeDocument = iframe.contentDocument || iframe.contentWindow.document
+            iframeDocument.documentElement.removeAttribute('style')
+
+            // Corrects the iframe wrapper height
+            document.getElementById('ees_PreviewFrameContainer').style.height =
+              (window.innerHeight - document.getElementById('ees_toolBar').scrollHeight) + 'px'
+          }
+          if (sessionStorage.getItem("preview_screen_size") === "auto") {
+            correctIframeWrapperHeight()
+          }
+          jQuery('#ees_selectedSize_0').click(function() {
+            correctIframeWrapperHeight()
+          })
+        }
+      })
     }
   }
 

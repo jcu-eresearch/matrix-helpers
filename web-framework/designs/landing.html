@@ -368,20 +368,23 @@
 
     <!--@@ Adjust all page links to avoid broken Edge proxy if logged in @@-->
     <!--@@ Workaround for Squiz Issue: 117992 @@-->
+    <!--@@ Only rewrite links if not embedded inside Edit+ iframe @@-->
     <MySource_AREA id_name="noproxycache_link_rewriting" design_area="show_if">
       <MySource_SET name="condition" value="logged_in" />
       <MySource_THEN>
         <script>
-          function rewriteUrlNoProxyCache(i, val) {
-            var url = document.createElement('a')
-            url.href = val
-            url.pathname += url.pathname.endsWith('/') ? "_noproxycache" : "/_noproxycache"
-            return url
+          if (window.parent.document.body.className.search('previewMode') === -1) {
+            function rewriteUrlNoProxyCache(i, val) {
+              var url = document.createElement('a')
+              url.href = val
+              url.pathname += url.pathname.endsWith('/') ? "_noproxycache" : "/_noproxycache"
+              return url
+            }
+            $('a[href*="www.jcu.edu.au"]:not([href^="mailto:"])').filter(function() {
+              return !this.href.match(/\/_(admin|edit|noproxycache|nocache|recache)/) && !this.href.match(/SQ_ACTION/)
+            }).attr('href', rewriteUrlNoProxyCache)
+            $('form[action*="www.jcu.edu.au"]').attr('action', rewriteUrlNoProxyCache)
           }
-          $('a[href*="www.jcu.edu.au"]:not([href^="mailto:"])').filter(function() {
-            return !this.href.match(/\/_(admin|edit|noproxycache|nocache|recache)/) && !this.href.match(/SQ_ACTION/)
-          }).attr('href', rewriteUrlNoProxyCache)
-          $('form[action*="www.jcu.edu.au"]').attr('action', rewriteUrlNoProxyCache)
         </script>
       </MySource_THEN>
     </MySource_AREA>
