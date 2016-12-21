@@ -152,11 +152,11 @@ a {
   color: #fff;
   background-color: #000;
   background-image: url(../img/A21W1282-cattle-muster.jpg);
-  background-attachment: fixed;
 }
 
-.layout-content .intro {
-  background-attachment: scroll;
+.layout-landing .intro {
+  height: 100%;
+  margin-bottom: 3rem;
 }
 
 .intro-body {
@@ -172,10 +172,6 @@ a {
   }
 }
 
-.layout-landing .intro {
-  margin-bottom: 3rem;
-}
-
 .page-title {
   font-weight: 400;
 }
@@ -186,8 +182,7 @@ a {
   }
 
   .layout-landing .intro {
-    height: 100%;
-    margin-bottom: 5rem;
+    background-attachment: fixed;
   }
 
   .layout-landing .intro-body {
@@ -268,9 +263,15 @@ a {
 
 .discover-section {
   background-color: #000;
-  background-image: url(../img/CM1B7786-bush-sky.jpg);
   background-position: bottom;
-  background-attachment: fixed;
+}
+
+/* Workaround issue with background-attachment: fixed / background-size: cover
+ * issue on iOS so only used `fixed` on large screens */
+@media(min-width:768px) {
+  .discover-section {
+    background-attachment: fixed;
+  }
 }
 
 .discover-section > .container-fluid {
