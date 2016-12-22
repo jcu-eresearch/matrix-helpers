@@ -154,7 +154,7 @@ a {
   background-image: url(../img/A21W1282-cattle-muster.jpg);
 }
 
-.layout-landing .intro {
+.theme-landing .intro {
   height: 100%;
   margin-bottom: 3rem;
 }
@@ -181,11 +181,11 @@ a {
     padding: 0;
   }
 
-  .layout-landing .intro {
+  .theme-landing .intro {
     background-attachment: fixed;
   }
 
-  .layout-landing .intro-body {
+  .theme-landing .intro-body {
     padding-top: 40vh;
   }
 
