@@ -10,54 +10,6 @@
   <div class="col-sm-3">
     <div class="card card-inverse bg-inverse">
       %begin_globals_user_type^neq:Public Access User%
-      <div class="card-info-callout small" style="background-color: %asset_status_colour%;">
-        %asset_status_description%
-      </div>
-      %end_globals%
-      %begin_asset_type^eq:Image%
-      <img class="card-img-top img-fluid" src="%asset_url%" alt="%asset_name%">
-      %else_begin_asset_thumbnail%
-      <img class="card-img-top img-fluid" src="%asset_thumbnail_url%" title="%asset_thumbnail_title%" alt="%asset_thumbnail_alt%">
-      %else_asset%
-        <!--@@ Workaround for undefined keywords being truthy;
-               see https://github.com/jcu-eresearch/matrix-helpers/issues/35 @@-->
-        %begin_asset_file_type^neq:svg%
-        %else_asset%
-         <img class="card-img-top img-fluid" src="%asset_url%" alt="%asset_name%">
-        %end_asset%
-      %end_asset%
-      <div class="card-block">
-        <div class="h4 card-title">
-          %begin_globals_user_type^neq:Public Access User%
-            <img src="%asset_type_icon_url%" alt="%asset_type% icon" title="%asset_type%">
-          %end_globals%
-          %asset_short_name%
-        </div>
-        %begin_asset_name^replace_keywords:neq:{asset_short_name}%
-        <p class="card-text">%asset_name%</p>
-        %end_asset%
-        %begin_globals_asset_metadata_jcu.features.byline%
-        <p class="card-text">%globals_asset_metadata_jcu.features.byline%</p>
-        %end_globals%
-      </div>
-    </div>
-  </div>
-</a>
-%begin_asset_position^modulo:4^eq:0%
-<div class="clearfix hidden-xs-down"></div>
-%end_asset%
-%begin_globals_user_type^eq:Public Access User%
-<a href="%asset_url%">
-%else_globals%
-  %begin_asset_type^contains:Folder%
-    <a href="%asset_url%">
-  %else_globals%
-    <a href="%globals_site_url%/_edit?limbo_assetid=%asset_assetid%">
-  %end_globals%
-%end_globals%
-  <div class="col-sm-3">
-    <div class="card card-inverse bg-inverse">
-      %begin_globals_user_type^neq:Public Access User%
       <div class="small text-xs-center" style="color: #2d2d2d; background-color: %asset_status_colour%;">
         %asset_status_description%
       </div>
