@@ -1,6 +1,13 @@
+<!--@@ Breadcrumbs @@-->
 %globals_asset_contents:372564^replace_keywords:with_get:frontend_asset={globals_asset_assetid}^replace_keywords:with_get:lineage={globals_asset_linking_lineage}%
 <div class="container jcu-content">
-  <!--@@ Get the folder lister and pass it the GET keyword of this folder's asset ID @@-->
-  <!--@@ TODO: This should be extended to allow selection of layouts for this folder @@-->
-  %globals_asset_contents:370347^replace_keywords:with_get:root={asset_assetid}%
+  <!--@@ Get the relevant Asset Listing and pass it the GET keyword of this folder's asset ID @@-->
+  %begin_asset_metadata_jcu.asset.view^eq:album%
+    %globals_asset_contents:370347^replace_keywords:with_get:root={asset_assetid}%
+  %else_begin_asset_metadata_jcu.asset.view^eq:table%
+    %globals_asset_contents:374332^replace_keywords:with_get:root={asset_assetid}%
+  %else_asset%
+    <!--@@ Default to the standard listing @@-->
+    %globals_asset_contents:374345^replace_keywords:with_get:root={asset_assetid}%
+  %end_asset%
 </div>

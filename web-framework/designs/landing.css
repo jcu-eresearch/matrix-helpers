@@ -422,6 +422,11 @@ a {
   padding-bottom: 2rem;
 }
 
+/* Asset Listings */
+.media-thumbnail {
+  width: 16.666667%;
+}
+
 /* Form controls */
 .custom-form .form-control[required] {
   background-image: radial-gradient(#d9534f 50%, transparent 50%), radial-gradient(#d9534f 50%, transparent 50%);
@@ -435,3 +440,31 @@ a {
   display: inline-block;
 }
 
+/* Table sort */
+.table-sortable .sort-header::selection,
+.table-sortable .sort-header::-moz-selection {
+  background: transparent;
+}
+.table-sortable .sort-header {
+  cursor: pointer;
+}
+.table-sortable .sort-header::after {
+  content: "\e39d";
+  margin-left: .5em;
+  font-family: webhostinghub-glyphs;
+  font-size: .8em;
+  visibility: hidden;
+}
+.table-sortable .sort-header:hover::after {
+  visibility:visible;
+}
+.table-sortable .sort-up::after,
+.table-sortable .sort-down::after,
+.table-sortable .sort-down:hover::after {
+  visibility: visible;
+  opacity: .4;
+
+}
+.table-sortable .sort-up::after {
+  content: "\e39c";
+}

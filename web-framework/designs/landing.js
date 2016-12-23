@@ -114,4 +114,8 @@
       map.setCenter(mapMarker)
     })
   }
+
+  // Table sorting
+  $('table.table-sortable').each(function () { new Tablesort(this) })
+
 })(jQuery)

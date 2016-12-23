@@ -1,0 +1,34 @@
+<li class="media">
+  <div class="media-body">
+    <h4 class="media-heading">
+      <a href="%asset_url%" title="%asset_short_name%">%asset_type_icon% %asset_name%</a>
+    %begin_globals_user_type^neq:Public Access User%
+      <span class="label small" style="color: #2d2d2d; background-color: %asset_status_colour%;">%asset_status_description%</span>
+    %end_globals%
+    </h4>
+    %begin_globals_asset_metadata_jcu.features.byline%
+    <p class="text-muted">%globals_asset_metadata_jcu.features.byline%</p>
+    %end_globals%
+    %begin_globals_user_type^neq:Public Access User%
+    <p>By <abbr title="%asset_created_by_email%">%asset_created_by_name%</abbr>, last modified %asset_updated_readable%</p>
+    %end_globals%
+    <p>%asset_metadata_description%</p>
+  </div>
+  <div class="media-right media-thumbnail">
+    <a href="%asset_url%">
+      <!--@@ This should be "templated with another asset/asset listing @@-->
+      %begin_asset_type^eq:Image%
+      <img class="img-thumbnail img-fluid" src="%asset_url%" alt="%asset_name%">
+      %else_begin_asset_thumbnail%
+      <img class="img-thumbnail img-fluid" src="%asset_thumbnail_url%" title="%asset_thumbnail_title%" alt="%asset_thumbnail_alt%">
+      %else_asset%
+        <!--@@ Workaround for undefined keywords being truthy;
+               see https://github.com/jcu-eresearch/matrix-helpers/issues/35 @@-->
+        %begin_asset_file_type^neq:svg%
+        %else_asset%
+         <img class="img-thumbnail img-fluid" src="%asset_url%" alt="%asset_name%">
+        %end_asset%
+      %end_asset%
+    </a>
+  </div>
+</li>
