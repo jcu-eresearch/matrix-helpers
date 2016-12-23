@@ -1,0 +1,12 @@
+%begin_asset_type^eq:Image%
+<img class="img-related %nested_get_image_class%" src="%asset_url%" alt="%asset_name%">
+%else_begin_asset_thumbnail%
+<img class="img-related %nested_get_image_class%" src="%asset_thumbnail_url%" title="%asset_thumbnail_title%" alt="%asset_thumbnail_alt%">
+%else_asset%
+  <!--@@ Workaround for undefined keywords being truthy;
+          see https://github.com/jcu-eresearch/matrix-helpers/issues/35 @@-->
+  %begin_asset_file_type^neq:svg%
+  %else_asset%
+    <img class="img-related %nested_get_image_class%" src="%asset_url%" alt="%asset_name%">
+  %end_asset%
+%end_asset%
