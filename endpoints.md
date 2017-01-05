@@ -78,3 +78,7 @@ The URLs might change based upon the configuration located in
 
 See <https://www.jcu.edu.au/documentation> for details on how to maintain
 content within the environment that has been configured by Squiz for JCU.
+
+## Locking
+
+http://matrixdemo.squiz.net/_admin/?SQ_BACKEND_PAGE=header&current_assetid=65&sq_lock_type=lookups&sq_popups_blocked=1

@@ -319,3 +319,23 @@ metadata and so on).
 The implementation of Asset Listings is messy and so is their configuration.
 You'll need to be extremely patient because trial-and-error is the only way to
 proceed.
+
+### Types to List
+
+Unfortunately in Matrix you can't just say "show me all content!" in an Asset
+Listing.  Whilst the ability to `Inherit` classes for Asset Types exists,
+there's not a value in the asset type drop-down menu for `Asset`, the root
+class.  Here's what you'll need to select instead; these are the core
+2nd-level classes:
+
+* File
+* File Bridge
+* Folder
+* Form
+* Page
+
+and ensure that you select the `Inherit` checkbox for all of these.
+
+If you want less than everything to be listed, use the `Asset Types` tree at
+the top-right of the Admin screen (next to `Logout`) to determine what type(s)
+you want to show.
