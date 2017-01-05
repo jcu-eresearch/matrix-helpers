@@ -1,37 +1,37 @@
-%begin_globals_user_type^eq:Public Access User%
-<a href="%asset_url%">
-%else_globals%
-  %begin_asset_type^contains:Folder%
-    <a href="%asset_url%">
-  %else_globals%
-    <a href="%globals_site_url%/_edit?limbo_assetid=%asset_assetid%">
-  %end_globals%
-%end_globals%
-  <div class="col-sm-3">
-    <div class="card card-inverse bg-inverse">
-      %begin_globals_user_type^neq:Public Access User%
-      <div class="small text-xs-center" style="color: #2d2d2d; background-color: %asset_status_colour%;">
-        %asset_status_description%
-      </div>
-      %end_globals%
-      %asset_contents_paint_374698^with_get:image_class=card-img-top img-fluid%
-      <div class="card-block">
-        <div class="h4 card-title">
+<div class="col-sm-3">
+  <div class="card card-inverse bg-inverse">
+    %begin_globals_user_type^neq:Public Access User%
+    <div class="small text-xs-center" style="color: #2d2d2d; background-color: %asset_status_colour%;">
+      %asset_status_description%
+    </div>
+    %end_globals%
+    %asset_contents_paint_374698^with_get:image_class=card-img-top img-fluid%
+    <div class="card-block">
+      <div class="h4">
+        %begin_globals_user_type^eq:Public Access User%
+        <a class="card-title" href="%asset_url%">
+        %else_globals%
+          %begin_asset_type^contains:Folder%
+            <a class="card-title" href="%asset_url%">
+          %else_globals%
+            <a class="card-title" href="%globals_site_url%/_edit?limbo_assetid=%asset_assetid%">
+          %end_globals%
+        %end_globals%
           %begin_globals_user_type^neq:Public Access User%
             <img src="%asset_type_icon_url%" alt="%asset_type% icon" title="%asset_type%">
           %end_globals%
           %asset_short_name%
-        </div>
-        %begin_asset_name^replace_keywords:neq:{asset_short_name}%
-        <p class="card-text">%asset_name%</p>
-        %end_asset%
-        %begin_globals_asset_metadata_jcu.features.byline%
-        <p class="card-text">%globals_asset_metadata_jcu.features.byline%</p>
-        %end_globals%
+        </a>
       </div>
+      %begin_asset_name^replace_keywords:neq:{asset_short_name}%
+      <p class="card-text">%asset_name%</p>
+      %end_asset%
+      %begin_globals_asset_metadata_jcu.features.byline%
+      <p class="card-text">%globals_asset_metadata_jcu.features.byline%</p>
+      %end_globals%
     </div>
   </div>
-</a>
+</div>
 %begin_asset_position^modulo:4^eq:0%
 <div class="clearfix hidden-xs-down"></div>
 %end_asset%
