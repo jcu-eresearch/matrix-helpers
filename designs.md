@@ -9,10 +9,13 @@ The following are the key areas where HTML will "bubble up" and out of Matrix.
   which fill the "areas" provided in a `Design`.
 * `Assets`, such as `Pages`, which feature content or `Asset Listings` which list
   items based upon conditions
-* `Content Containers`, which are sections of content within an `Asset`.  They
-  can be reused in multiple `Assets` if need be.
 * `Paint Layouts`, which control the rendering of `Asset` contents (including
   `Content Containers` themselves)
+* `Content Containers`, which are sections of content within an `Asset`.  They
+  can be reused in multiple `Assets` if need be.  The appearance and
+  configuration of a `Content Container` can be configured using a `Content
+  Container Template`, which is a mixture of a `Paint Layout`, `Metadata Schema`
+  and `Simple Edit Layout` applied to this one area of content.
 
 From an indirect perspective, you also have these aspects playing a part as
 well:
@@ -20,6 +23,10 @@ well:
 * `Metadata Schemas`, which affect the HTML if keywords are configured in any
   of the above areas to reference either an `Asset` metadata or `Site`
 metadata
+
+For a visual overview, see [Content Container
+Templates](https://matrix.squiz.net/manuals/content-templates), which covers
+both Page-level and Content-level templates.
 
 ## Getting HTML out of Matrix
 
