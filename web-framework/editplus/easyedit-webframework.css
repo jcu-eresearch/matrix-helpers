@@ -204,6 +204,27 @@ body.previewMode {
 }
 
 /*
+ * Content panel
+ */
+
+/* There's no reason to show this, there's only ever 1 metadata schema on a
+ * Content Container Template */
+.content_template_custom_layout .schemaHeading_0 {
+  display: none;
+}
+
+/* Fix spacing for Content Container Templates */
+.content_template_custom_layout #ees_editMetadata {
+  padding: 1rem;
+  border-top: 0 none;
+}
+
+.content_template_custom_layout .metadata h4,
+.content_template_custom_layout #ees_editMetadata h4 {
+  padding: 0;
+}
+
+/*
  * Metadata panel
  */
 
