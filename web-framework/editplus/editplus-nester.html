@@ -54,6 +54,29 @@
   }
 
   /**
+   * User menu plugin - Adds extra buttons to the user toolbar
+   */
+  EasyEdit.isBackendUser = function() {
+    return EasyEditAssetManager._currentUserAsset.attr.type.search(/Backend|System|Root/) >= 0
+  }
+  EasyEdit.plugins.addUserMenuButtons = {
+    init: function() {
+      EasyEditEventManager.bind('EasyEditBeforeLoad', function() {
+        var oldFn = EasyEditComponentsToolbar.addCurrentUser
+        EasyEditComponentsToolbar.addCurrentUser = function() {
+          var buttons = '<div role="group" class="m-l-1 btn-group btn-group-sm">'
+          if (EasyEdit.isBackendUser()) {
+            buttons += '<a href="' + EasyEdit.getURL().url + '/' + EasyEdit.systemInfo.suffixes.admin + '" title="Go to Admin mode" class="btn btn-secondary"><span aria-label="Admin icon" class="icon-pagesetup"></span></a>'
+          }
+          buttons += '<a href="' + EasyEdit.getURL().url + '" class="btn btn-secondary" title="Go to public view" target="_blank"><span class="icon-eye" aria-label="View icon"></span></a><a class="btn btn-secondary" href="https://www.jcu.edu.au/digital-marketing/" target="_blank" title="Get help from a human"><span class="icon-support" aria-label="Help icon"></span></a>'
+          buttons += '</div>'
+          return $(oldFn()).append(buttons)[0].outerHTML
+        }
+      })
+    }
+  }
+
+  /**
   * Hotfix Plugin - Fixes various EasyEdit bugs
   */
   EasyEdit.plugins.fixBugs = {
