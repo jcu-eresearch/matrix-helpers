@@ -346,3 +346,14 @@ and ensure that you select the `Inherit` checkbox for all of these.
 If you want less than everything to be listed, use the `Asset Types` tree at
 the top-right of the Admin screen (next to `Logout`) to determine what type(s)
 you want to show.
+
+## Content Container Templates
+
+Coming soon.
+
+### Caution
+
+* Editors **must** be warned that a change in CCT against a CC results in
+  destruction of the metadata associated with that CC.  This is a current
+  nuance with Matrix and people need to be careful.
+
