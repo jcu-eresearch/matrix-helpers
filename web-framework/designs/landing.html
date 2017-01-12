@@ -38,7 +38,7 @@
     <!--@@ Workaround for Squiz Issue 117992 @@-->
     <script>
       var current_user = '<MySource_PRINT id_name="__global__" var="current_user" default="" attr="name" />'
-      if (!window.location.pathname.match(/_(noproxycache|nocache|recache)/) &&
+      if (!window.location.pathname.match(/_(admin|edit|noproxycache|nocache|recache)/) &&
          (current_user || document.cookie.search('jcuredirecturl=') >= 0)) {
         var url = document.createElement('a')
         url.href = window.location.href
