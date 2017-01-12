@@ -381,7 +381,7 @@
               return url
             }
             $('a[href*="www.jcu.edu.au"]:not([href^="mailto:"])').filter(function() {
-              return !this.href.match(/\/_(admin|edit|noproxycache|nocache|recache)/) && !this.href.match(/SQ_ACTION/)
+              return !this.href.match(/\/_(admin|edit|performance|noproxycache|nocache|recache)/) && !this.href.match(/SQ_ACTION/)
             }).attr('href', rewriteUrlNoProxyCache)
             $('form[action*="www.jcu.edu.au"]').attr('action', rewriteUrlNoProxyCache)
           }
