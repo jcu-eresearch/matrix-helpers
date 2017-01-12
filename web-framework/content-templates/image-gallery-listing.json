@@ -1,0 +1,9 @@
+{
+    "assets_types": {"Image": "inherit"},
+    "root_nodes": [1],
+    "link_types": ["type_1", "type_2"],
+    "asset_selection": {"Set Value": "%globals_asset_metadata_images^json_decode^implode:,^append_if:,%%globals_asset_contents:379674^replace_keywords:with_get:root={globals_asset_metadata_images_area}^json_decode^implode:,%"},
+    "if_dynamic_root_not_found": "use static root node",
+    "if_asset_selection_not_found": "use static root node"
+}
+
