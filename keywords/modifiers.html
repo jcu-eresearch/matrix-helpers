@@ -18,3 +18,12 @@
   %globals_asset_metadata_jcu.features.breadcrumbs^replace_keywords:eq:inherit:{globals_site_metadata_jcu.features.breadcrumbs} from site:{globals_asset_metadata_jcu.features.breadcrumbs} from asset%
   %globals_asset_metadata_jcu.features.breadcrumbs^replace_keywords:eq:inherit:{globals_site_metadata_jcu.features.breadcrumbs}:{globals_asset_metadata_jcu.features.breadcrumbs}^eq:true:breadcrumbs-on:%
 </h1>
+
+<!-- Exploding based upon newline characters
+Because `explode` doesn't accept special characters like \r\n, we have
+to use the `replace` modifier first because that works with regular expressions to converts the newline characters first.  Oh the humanity.
+-->
+<h1>
+%asset_contents^replace:\r\n:NEWLINE^explode:NEWLINE^index:1%
+</h1>
+
