@@ -1,6 +1,6 @@
 <!--@@ This uses the Asset Related Image paint layout to get the asset's image @@-->
-<div class="%nested_get_content_container^as_asset:asset_metadata_column_classes%">
-  %begin_nested_get_content_container^as_asset:asset_metadata_lightbox.enabled%
+<div class="%nested_get_content_container^as_asset:asset_metadata_template.gallery.column_classes%">
+  %begin_nested_get_content_container^as_asset:asset_metadata_template.gallery.lightbox.enabled%
     %asset_contents_paint_374698^with_get:image_class=img-fluid^with_get:link_class=link-gallery%
   %else_nested%
     %asset_contents_paint_374698^with_get:image_class=img-fluid%
