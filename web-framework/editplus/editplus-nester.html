@@ -142,4 +142,38 @@
       }
     }
   }
+
+  /**
+   * Content Container Template plugin: warn if attempting to change template!
+     Also fix issue where template `<select>` only reflects original value
+   */
+  EasyEdit.plugins.contentContainerTemplateWarning = {
+    init: function () {
+
+      EasyEditEventManager.bind("EasyEditAfterLoad", function () {
+        // Warn the user if they try and set a template
+        var oldFn = EasyEditScreens.screen.contentPageStandard.bodycopyManager.editPropertiesPopup
+
+        // `this`: the EasyEditBodycopyManager
+        // `a`: the a.bodycopy-properties link that triggered the popup
+        // `b`: the tooltip identifer div index from this.bodycopies (eg first is `1`)
+        EasyEditScreens.screen.contentPageStandard.bodycopyManager.editPropertiesPopup = function(a, b) {
+          var bodycopyDiv = this.getDivByPosition(b)
+          var button = a
+          var returnValue = oldFn.apply(this, arguments)
+          jQuery('#edit_properties_ok_' + bodycopyDiv.id).click(function (event) {
+            if (jQuery('#template_' + bodycopyDiv.id).val().replace("--", "") !== bodycopyDiv.attribute("applied_template").toString()) {
+              if (!button.parents('.bodycopy_manager_div').prev().is('.template-alert')) {
+                button.closest('.bodycopy_manager_div').before('<div class="container m-y-1 template-alert"><div class="alert alert-warning" role="alert"><strong>Warning!</strong> Changing content templates may result in your current settings being inaccessible or unused in that new template. Take a copy of any settings in a text edit (such as Notepad) if you need them later.</div></div>')
+              }
+            }
+          })
+
+          // Bug fix: https://github.com/jcu-eresearch/matrix-helpers/issues/44
+          jQuery('#template_' + bodycopyDiv.id).val(bodycopyDiv.attribute('data').attributes.template)
+          return returnValue
+        }
+      })
+    }
+  }
 </script>
