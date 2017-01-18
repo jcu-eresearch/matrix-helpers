@@ -1,0 +1,37 @@
+<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
+<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+%asset_contents^preg_replace:379082^replace:>:%
+class="content-section text-inverse" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+    <div class="jcu-bg--cover" style="%asset_metadata_template.styled-bg.color^prepend_if:background-color\: ^append_if:;%%asset_metadata_template.styled-bg.image^as_asset:asset_url^prepend_if:background-image\: url(^append_if:);%%asset_metadata_template.styled-bg.attachment^prepend_if:background-attachment\: ^append_if:;%">
+      <div class="container-fluid jcu-bg--black-25pc" style="padding-top: %asset_metadata_template.styled-bg.padding%; padding-bottom: %asset_metadata_template.styled-bg.padding%;">
+        <div class="container">
+          %begin_asset_metadata_template.title.display^eq:show%
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2 %asset_metadata_template.title.alignment^empty:text-xs-center%">
+              <h2 class="h1">%asset_assetid^notempty:382695^as_asset:asset_contents:^replace_keywords:with_get:text={asset_metadata_template.title.title}%<br><span class="lead">%asset_assetid^notempty:382695^as_asset:asset_contents:^replace_keywords:with_get:text={asset_metadata_template.title.subtitle}%</span></h2>
+              <hr />
+            </div>
+          </div>
+          %end_asset%
+          <div class="row m-b-2">
+            <div class="col-md-8 col-md-offset-2 animated" data-animation="fadeInUp">
+              %asset_contents%
+            </div>
+          </div>
+          <div class="row m-t-3">
+            <div class="col-sm-12 %asset_metadata_template.buttons.alignment^empty:text-sm-center%">
+                %begin_asset_metadata_template.buttons.button1_text%
+                <a class="%asset_metadata_template.buttons.button1_class%" href="%asset_metadata_template.buttons.button1_link%">%asset_metadata_template.buttons.button1_text%</a>
+                %end_asset%
+                %begin_asset_metadata_template.buttons.button2_text%
+                <a class="%asset_metadata_template.buttons.button2_class%" href="%asset_metadata_template.buttons.button2_link%">%asset_metadata_template.buttons.button2_text%</a>
+                %end_asset%
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+<!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+%asset_contents^preg_replace:379097%
