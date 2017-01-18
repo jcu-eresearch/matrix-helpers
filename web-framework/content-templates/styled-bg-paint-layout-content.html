@@ -19,6 +19,7 @@ class="content-section text-inverse" aria-label="%asset_metadata_template.title.
               %asset_contents%
             </div>
           </div>
+          %begin_asset_metadata_template.buttons.button1_text^replace_keywords:empty:{asset_metadata_template.buttons.button2_text}%
           <div class="row m-t-3">
             <div class="col-sm-12 %asset_metadata_template.buttons.alignment^empty:text-sm-center%">
                 %begin_asset_metadata_template.buttons.button1_text%
@@ -28,7 +29,8 @@ class="content-section text-inverse" aria-label="%asset_metadata_template.title.
                 <a class="%asset_metadata_template.buttons.button2_class%" href="%asset_metadata_template.buttons.button2_link%">%asset_metadata_template.buttons.button2_text%</a>
                 %end_asset%
             </div>
-        </div>
+          </div>
+          %end_asset%
         </div>
       </div>
     </div>
