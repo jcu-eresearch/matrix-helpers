@@ -1,0 +1,63 @@
+<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
+<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+<!--@@ Only show the hacked up opening tag if there's something there @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379082^replace:>:%
+%else_asset%
+<div
+%end_begin%
+     class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 %asset_metadata_template.title.alignment^empty:text-xs-left%">
+      %begin_asset_metadata_template.title.display^eq:show%
+      <h1>%asset_assetid^notempty:382695^as_asset:asset_contents:^replace_keywords:with_get:text={asset_metadata_template.title.title}%</h1>
+      %begin_asset_assetid^notempty:382695^as_asset:asset_contents:^replace_keywords:with_get:text={asset_metadata_template.title.subtitle}%
+      <p class="lead">
+        %asset_assetid^notempty:382695^as_asset:asset_contents:^replace_keywords:with_get:text={asset_metadata_template.title.subtitle}%
+      </p>
+      %end_asset%
+      <hr>
+      %end_asset%
+
+      <div class="m-b-2">
+        %asset_contents%
+      </div>
+
+      <div class="m-b-3">
+        %begin_asset_metadata_template.embed.asset%
+          %asset_metadata_template.embed.asset^as_asset:asset_contents%
+        %else_begin_asset_metadata_template.embed.url%
+          <div class="embed-responsive %asset_metadata_template.embed.aspect_ratio%">
+            %begin_asset_metadata_template.embed.url^lastchars:4^eq:.mp4%
+              <video class="embed-responsive-item" controls="controls">
+                <source src="%asset_metadata_template.embed.url%" type="video/mp4"><a href="%asset_metadata_template.embed.url%">Access this video directly</a>
+              </video>
+            %else_asset%
+              <iframe class="embed-responsive-item" src="%asset_metadata_template.embed.url%" allowfullscreen="true"></iframe>
+            %end_asset%
+          </div>
+        %end_asset%
+      </div>
+      <!--@@ This *could* be extracted into its own Page, but it's getting complex as is @@-->
+      %begin_asset_metadata_template.buttons.button1_text^replace_keywords:empty:{asset_metadata_template.buttons.button2_text}%
+      <div class="row">
+        <div class="col-sm-12 %asset_metadata_template.buttons.alignment^empty:text-sm-center%">
+            %begin_asset_metadata_template.buttons.button1_text%
+            <a class="%asset_metadata_template.buttons.button1_class%" href="%asset_metadata_template.buttons.button1_link%">%asset_metadata_template.buttons.button1_text%</a>
+            %end_asset%
+            %begin_asset_metadata_template.buttons.button2_text%
+            <a class="%asset_metadata_template.buttons.button2_class%" href="%asset_metadata_template.buttons.button2_link%">%asset_metadata_template.buttons.button2_text%</a>
+            %end_asset%
+        </div>
+      </div>
+      %end_asset%
+    </div>
+  </div>
+<!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379097%
+%else_asset%
+</div>
+%end_asset%
