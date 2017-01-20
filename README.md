@@ -50,7 +50,7 @@ within needs to be compatibly licensed.
 ## More resources
 
 Need even more help?  Try these locations.  Keep in mind that the
-Matrix community is a niche so help on common platforms like
+Matrix software isn't in common use so help on general platforms like
 StackOverflow is unlikely.
 
 * [Official manuals](https://matrix.squiz.net/) - the official
