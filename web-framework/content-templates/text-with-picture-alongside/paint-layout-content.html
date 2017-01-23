@@ -1,0 +1,61 @@
+<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
+<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+<!--@@ Only show the hacked up opening tag if there's something there @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379082^replace:>:%
+%else_asset%
+<div
+%end_begin%
+    class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 container">
+
+            %begin_asset_metadata_template.title.display^eq:show%
+            <h3 class="%asset_metadata_template.title.alignment%">
+                %asset_assetid^notempty:382695^as_asset:asset_contents:^replace_keywords:with_get:text={asset_metadata_template.title.title}%
+                %begin_asset_assetid^notempty:382695^as_asset:asset_contents:^replace_keywords:with_get:text={asset_metadata_template.title.subtitle}%
+                <br><span class="lead">%asset_assetid^notempty:382695^as_asset:asset_contents:^replace_keywords:with_get:text={asset_metadata_template.title.subtitle}%</span>
+                %end_asset%
+            </h3>
+            %end_asset%
+
+            <div class="row">
+                %begin_asset_metadata_template.picture.picture%
+                <div class="col-sm-6 %begin_asset_metadata_template.picture.position^eq:right%col-sm-push-6%end_asset%">
+                    %asset_contents%
+                </div>
+                <div class="col-sm-6 %begin_asset_metadata_template.picture.position^eq:right%col-sm-pull-6%end_asset%">
+                    <img class="img-fluid" src="%asset_metadata_template.picture.picture^as_asset:asset_url%" />
+                    %asset_metadata_template.picture.picture^as_asset:asset_contents_paint_374698^with_get:image_class=img-fluid^with_get:link_class=link-gallery%
+                </div>
+                %else_asset%
+                <div class="col-xs-12">
+                    %asset_contents%
+                </div>
+                %end_asset%
+            </div>
+
+            %begin_asset_metadata_template.buttons.button1_text^replace_keywords:empty:{asset_metadata_template.buttons.button2_text}%
+            <div class="row">
+                <div class="col-sm-12 %asset_metadata_template.buttons.alignment^empty:text-sm-center%">
+                    %begin_asset_metadata_template.buttons.button1_text%
+                    <a class="%asset_metadata_template.buttons.button1_class%" href="%asset_metadata_template.buttons.button1_link%">%asset_metadata_template.buttons.button1_text%</a>
+                    %end_asset%
+                    %begin_asset_metadata_template.buttons.button2_text%
+                    <a class="%asset_metadata_template.buttons.button2_class%" href="%asset_metadata_template.buttons.button2_link%">%asset_metadata_template.buttons.button2_text%</a>
+                    %end_asset%
+                </div>
+            </div>
+            %end_asset%
+
+        </div>
+    </div>
+
+<!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379097%
+%else_asset%
+</div>
+%end_asset%
