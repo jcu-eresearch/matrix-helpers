@@ -41,7 +41,7 @@ var EasyEditConfig = {
     // Timeout to show a warning for overlays that are active for more than X number of
     // seconds. This is usually because of an ajax function that has for whatever
     // reason failed to return successfully and could indicate server error.
-    overlayTimeout:             180,
+    overlayTimeout:             31,
 
 
     // PERFORMANCE FEATURE.

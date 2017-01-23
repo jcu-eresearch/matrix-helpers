@@ -3,7 +3,8 @@
 /* Integration process:
  * 1. Remove all reset rules from easyedit.min.css
  * 2. Remove all rules for `* .content_type_wysiwyg *` from easyedit.min.css
- * 3. Apply these customisations on top of easyedit.min.css; they are
+ * 3. Remove all rules for `.content_template_custom_layout *` from easyedit.min.css
+ * 4. Apply these customisations on top of easyedit.min.css; they are
  *    separated out for ease of visibility.
  *
  * For linting, we ignore ID rules because Matrix Edit+ uses them and we can't

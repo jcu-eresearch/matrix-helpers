@@ -8241,20 +8241,6 @@ table.sq-backend-table {
     width: 206px;
 }
 
-.content_template_custom_layout ul {
-    list-style-type: none!important;
-}
-
-.content_template_custom_layout a {
-    color: inherit!important;
-}
-
-.content_template_custom_layout li {
-    margin: 0;
-    padding: 0 0 5px 0;
-    line-height: inherit;
-}
-
 #ees_editDetails {
     margin: 0 auto;
     color: #535353;
