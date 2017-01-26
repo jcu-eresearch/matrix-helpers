@@ -173,6 +173,23 @@
             <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />?SQ_DESIGN_NAME=test' title="Show this asset with the keyword and test design (if configured)">
               <span class="icon-checkbox" aria-label="Test icon"></span> Show asset tester
             </a>
+            <table class="table table-sm small m-t-1 m-b-0 dropdown-header">
+              <tbody>
+                <tr>
+                  <th scope="row">Frontend Asset</th>
+                  <td title="%frontend_asset_short_name%">%frontend_asset_assetid% (%frontend_asset_type_icon% %frontend_asset_type%)</td>
+                </tr>
+                </tr>
+                <tr>
+                  <th scope="row">Design</th>
+                  <td class="truncate" title="%globals_asset_design_id%"><a class="text-inverse" href="%globals_asset_design_id^as_asset:asset_url%/_admin">%globals_asset_design_id^as_asset:asset_name%</a></td>
+                </tr>
+                <tr>
+                  <th scope="row">Paint Layout</th>
+                <td class="truncate" title="%globals_asset_paint_layout_id%"><a class="text-inverse" href="%globals_asset_paint_layout_id^as_asset:asset_url%/_admin">%globals_asset_paint_layout_id^as_asset:asset_name%</a></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </MySource_THEN>
@@ -230,7 +247,7 @@
                   <span class="icon-user" aria-label="My account icon"></span> My account
                 </button>
                 <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="userMenuLabel">
-                  <div class="dropdown-header h6 t">Logged in as
+                  <div class="dropdown-header h6">Logged in as
                     <MySource_PRINT id_name="__global__" var="current_user" /><br>
                     (%globals_user_type_icon% %globals_user_type%)
                   </div>
