@@ -130,15 +130,15 @@
   EasyEdit.plugins.contentContainerTemplateWarning = {
     init: function () {
 
-      EasyEditEventManager.bind("EasyEditAfterLoad", function () {
-        if (EasyEditScreens.screen.contentPageStandard.bodycopyManager) {
+      EasyEditEventManager.bind("EasyEditScreenLoad", function () {
+        if (typeof EasyEditBodycopyManager !== "undefined") {
           // Warn the user if they try and set a template
-          var oldFn = EasyEditScreens.screen.contentPageStandard.bodycopyManager.editPropertiesPopup
+          var oldFn = EasyEditBodycopyManager.prototype.editPropertiesPopup
 
           // `this`: the EasyEditBodycopyManager
           // `a`: the a.bodycopy-properties link that triggered the popup
           // `b`: the tooltip identifer div index from this.bodycopies (eg first is `1`)
-          EasyEditScreens.screen.contentPageStandard.bodycopyManager.editPropertiesPopup = function(a, b) {
+          EasyEditBodycopyManager.prototype.editPropertiesPopup = function(a, b) {
             var bodycopyDiv = this.getDivByPosition(b)
             var button = a
             var returnValue = oldFn.apply(this, arguments)
@@ -149,9 +149,6 @@
                 }
               }
             })
-
-            // Bug fix: https://github.com/jcu-eresearch/matrix-helpers/issues/44
-            jQuery('#template_' + bodycopyDiv.id).val(bodycopyDiv.attribute('data').attributes.template)
             return returnValue
           }
         }
