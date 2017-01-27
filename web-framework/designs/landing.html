@@ -298,14 +298,9 @@
       <MySource_AREA id_name="portlets_right" design_area="nest_content" />
     </main>
 
-    <MySource_AREA id_name="cobranding" design_area="show_if">
-      <MySource_SET name="condition" value="keyword_regexp"/>
-      <MySource_SET name="condition_keyword" value="globals_site_metadata_jcu.site.cobranding"/>
-      <MySource_SET name="condition_keyword_match" value="^.+$" />
-      <MySource_THEN>
-        %globals_site_metadata_jcu.site.cobranding^as_asset:asset_contents%
-      </MySource_THEN>
-    </MySource_AREA>
+    %begin_globals_site_metadata_jcu.site.cobranding%
+      %globals_site_metadata_jcu.site.cobranding^as_asset:asset_contents%
+    %end_globals%
 
     <MySource_AREA id_name="footer" design_area="nest_content" />
 
@@ -347,38 +342,33 @@
     <MySource_AREA id_name="analytics" design_area="nest_content" />
 
     <!--@@ Alert if the metadata schema isn't applied to the site @@-->
-    <!--@@ TODO: Could this be adapated to be a generic error reporter? @@-->
-    <MySource_AREA id_name="metadata_schema_warning" design_area="show_if">
-      <MySource_SET name="condition" value="keyword_regexp"/>
-      <MySource_SET name="condition_keyword" value="globals_site_metadata_jcu.site.logo"/>
-      <MySource_SET name="condition_keyword_match" value="^(?!.+)$" />
-      <MySource_THEN>
-        <div class="modal" id="warningModal" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header bg-danger">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Metadata schema missing</h4>
-              </div>
-              <div class="modal-body">
-                <p>You <strong>must</strong> to configure the
-                  <em>JCU Theme Settings</em> metadata schema on your Site asset via the
-                  admin interface.
-                </p>
-              </div>
-              <div class="modal-footer">
-                <a class="btn btn-primary" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />/_admin/?asset_ei_screen=metadataSchemas'>Go there now</a>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        <script>
-          $('#warningModal').modal('show')
-        </script>
-      </MySource_THEN>
-    </MySource_AREA><!--@@ /metadata_schema_warning @@-->
+    %begin_globals_site_metadata_jcu.site.logo%
+    %else_globals%
+    <div class="modal" id="warningModal" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-danger">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Metadata schema missing</h4>
+          </div>
+          <div class="modal-body">
+            <p>You <strong>must</strong> to configure the
+              <em>JCU Theme Settings</em> metadata schema on your Site asset via the
+              admin interface.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-primary" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />/_admin/?asset_ei_screen=metadataSchemas'>Go there now</a>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <script>
+      $('#warningModal').modal('show')
+    </script>
+    %end_globals%
 
     <!--@@ Adjust all page links to avoid broken Edge proxy if logged in @@-->
     <!--@@ Workaround for Squiz Issue: 117992 @@-->
