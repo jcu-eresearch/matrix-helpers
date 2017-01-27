@@ -233,40 +233,6 @@
           </table>
         </div>
 
-        <h1 id="conditional-keywords">Conditional Keywords</h1>
-        <p class="alert alert-danger">Conditional keywords will <em>not</em>
-          function in Parse files as they only work in `Bodycopy` areas. The
-          following test harness proves this. This code should render a button
-          and not a failure message, but in Matrix 5.3.x both the button and
-          message are displayed.
-        </p>
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xs-6">
-              <pre>
-              <code>
-&#37;begin_asset_name&#37;
-  &lt;a class="btn btn-lg btn-primary" href="&#37;asset_url&#37;"&gt;
-    &#37;asset_name&#37;
-  &lt;/a&gt;
-&#37;else_asset&#37;
-  &lt;h2&gt;Sorry, this is false.&lt;/h2&gt;
-&#37;end_asset&#37;
-              </code>
-              </pre>
-            </div>
-            <div class="col-xs-6">
-%begin_asset_name%
-  <a class="btn btn-lg btn-primary" href="%asset_url%">
-    %asset_name%
-  </a>
-%else_asset%
-  <h2>Sorry, this is false.</h2.>
-%end_asset%
-            </div>
-          </div>
-        </div>
-
         <h1 id="common-keywords">Common Keywords</h1>
         <p class="lead">See <a href="https://matrix-manuals.squiz.net/keyword-replacements/chapters/keyword-modifiers">Keyword Modifiers</a> for the documentation on how to use modifiers to change the output.  At the time of writing, the document page had useful worked examples showing the keyword modifier and output.
         </p>
@@ -2291,6 +2257,37 @@
               </tbody>
             </table>
           </div>
+
+          <h2 id="Frontend-Asset">Frontend Asset Keywords</h2>
+          <table>
+            <tbody>
+              <tr>
+                <th>Keyword Replacement</th>
+                <th>Value</th>
+                <th>Information Shown</th>
+              </tr>
+              <tr>
+                <td><code class="token matrix-keyword language-markup">&#37;frontend_asset_assetid&#37;</code></td>
+                <td>%frontend_asset_assetid%</td>
+                <td>The asset ID of the frontend asset the user accessed the page on, no matter where the keyword is printed. </td>
+              </tr>
+              <tr>
+                <td><code class="token matrix-keyword language-markup">%frontend_asset_&lt;common_keyword&gt;%</code> (eg <code>name</code>)</td>
+                <td>%frontend_asset_name%</td>
+                <td>Any&nbsp;<a href="https://matrix.squiz.net/manuals/keyword-replacements/chapters/common-keywords">Common Keyword</a> of the frontend asset.&nbsp;For example&nbsp;<em><code class="token matrix-keyword language-markup">%frontend_asset_name%</code></em>.</td></tr>
+              <tr>
+                <td><code class="token matrix-keyword language-markup">%frontend_asset_attribute_&lt;attribute&gt;%</code></td>
+                <td>%frontend_asset_attribute_name%</td>
+                <td>Any attribute of the current frontend asset. For example, <code class="token matrix-keyword language-markup">%frontend_asset_attribute_name%</code> shows the Asset Name of the current frontend asset&nbsp;the user is currently viewing.&nbsp;</td>
+              </tr>
+              <tr>
+                <td><code class="token matrix-keyword language-markup">%frontend_asset_metadata_&lt;fieldname&gt;%</code></td>
+                <td>%frontend_asset_metadata_&lt;fieldname&gt;%</td>
+                <td headers="table61778r1c2">Any metadata value of the current frontend asset.&nbsp;For example, if you have a Description metadata field on your asset, <code class="token matrix-keyword language-markup">%frontend_asset_metadata_Description%</code> will show the value of this field.</td>
+              </tr>
+            </tbody>
+          </table>
+
 
           <h2 id="Server-Variable">Server Variable</h2>
           <p>The format of the global keyword replacement for the web server is:</p><pre>%globals_server_&lt;variable&gt;%</pre>
