@@ -61,15 +61,6 @@
   */
   EasyEdit.plugins.fixBugs = {
     init: function () {
-      // Bug fix: hides the 'undefined' string
-      // Add a function to the screen load event
-      EasyEditEventManager.bind("EasyEditScreenLoad", function () {
-        //check if we are on the metadata screen
-        if (EasyEditScreens.getCurrentScreenName() === "Metadata") {
-          $("#ees_editMetadata .notes:contains('undefined')").remove()
-        }
-      })
-
       // Bug fix: fix display issues on Preview mode
       EasyEditEventManager.bind("EasyEditModeLoaded", function (mode) {
         if (mode === "preview") {
