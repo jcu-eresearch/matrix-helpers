@@ -12,7 +12,7 @@ their contents via `%globals_asset_contents:12345^with_get:arg=value%` (if you
 want to use the globals scope) or the more exotic
 `%asset_assetid^notempty:12345^as_asset:asset_contents^with_get:arg=value` (if
 you want/need to use the local scope, such as when you need to refer to local
-keywords in `^replace_keywords`).
+keywords in keyword modifiers).
 
 ## Regex
 

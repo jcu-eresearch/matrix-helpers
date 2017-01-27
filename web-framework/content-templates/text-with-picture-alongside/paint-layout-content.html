@@ -13,9 +13,9 @@
 
             %begin_asset_metadata_template.title.display^eq:show%
             <h3 class="%asset_metadata_template.title.alignment%">
-                %asset_assetid^notempty:382695^as_asset:asset_contents:^replace_keywords:with_get:text={asset_metadata_template.title.title}%
-                %begin_asset_assetid^notempty:382695^as_asset:asset_contents:^replace_keywords:with_get:text={asset_metadata_template.title.subtitle}%
-                <br><span class="lead">%asset_assetid^notempty:382695^as_asset:asset_contents:^replace_keywords:with_get:text={asset_metadata_template.title.subtitle}%</span>
+                %asset_assetid^notempty:382695^as_asset:asset_contents^with_get:text={asset_metadata_template.title.title}%
+                %begin_asset_assetid^notempty:382695^as_asset:asset_contents^with_get:text={asset_metadata_template.title.subtitle}%
+                <br><span class="lead">%asset_assetid^notempty:382695^as_asset:asset_contents^with_get:text={asset_metadata_template.title.subtitle}%</span>
                 %end_asset%
             </h3>
             %end_asset%
@@ -36,19 +36,18 @@
                 %end_asset%
             </div>
 
-            %begin_asset_metadata_template.buttons.button1_text^replace_keywords:empty:{asset_metadata_template.buttons.button2_text}%
+            %begin_asset_metadata_template.buttons.button1_text^empty:{asset_metadata_template.buttons.button2_text}%
             <div class="row">
-                <div class="col-sm-12 %asset_metadata_template.buttons.alignment^empty:text-sm-center%">
-                    %begin_asset_metadata_template.buttons.button1_text%
-                    <a class="%asset_metadata_template.buttons.button1_class%" href="%asset_metadata_template.buttons.button1_link%">%asset_metadata_template.buttons.button1_text%</a>
-                    %end_asset%
-                    %begin_asset_metadata_template.buttons.button2_text%
-                    <a class="%asset_metadata_template.buttons.button2_class%" href="%asset_metadata_template.buttons.button2_link%">%asset_metadata_template.buttons.button2_text%</a>
-                    %end_asset%
-                </div>
+              <div class="col-sm-12 %asset_metadata_template.buttons.alignment^empty:text-sm-center%">
+                  %begin_asset_metadata_template.buttons.button1_text%
+                  <a class="%asset_metadata_template.buttons.button1_class%" href="%asset_metadata_template.buttons.button1_link^as_asset:asset_url^empty:{asset_metadata_template.buttons.button1_link}%">%asset_metadata_template.buttons.button1_text%</a>
+                  %end_asset%
+                  %begin_asset_metadata_template.buttons.button2_text%
+                  <a class="%asset_metadata_template.buttons.button2_class%" href="%asset_metadata_template.buttons.button2_link^as_asset:asset_url^empty:{asset_metadata_template.buttons.button2_link}%">%asset_metadata_template.buttons.button2_text%</a>
+                  %end_asset%
+              </div>
             </div>
             %end_asset%
-
         </div>
     </div>
 
