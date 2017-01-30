@@ -26,10 +26,7 @@
                     %asset_contents%
                 </div>
                 <div class="col-sm-6 %begin_asset_metadata_template.picture.position^eq:left%col-sm-pull-6%end_asset%">
-                    <img class="img-fluid" src="%asset_metadata_template.picture.picture^as_asset:asset_url%" />
-                    <!--
-                    %asset_metadata_template.picture.picture^as_asset:asset_contents_paint_374698^with_get:image_class=img-fluid^with_get:link_class=link-gallery%
-                    -->
+                    %asset_metadata_template.picture.picture^as_asset:asset_contents_paint_374698^replace:#image_class#:img-fluid%
                 </div>
                 %else_asset%
                 <div class="col-xs-12">
