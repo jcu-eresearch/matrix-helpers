@@ -24,11 +24,13 @@
   * Note any further conflicts, problems or inconsistencies and report
     accordingly.
 
-* Apply improvements
 * Update monkey patches and system integration for these areas:
 
   * Edit+ CSS: see `editplus/README.md` for upgrade info
   * Edit+ JS plugins
+
+* Apply improvements (see the change logs for the versions between the old and
+  new versions)
 
 ## Snippets
 
