@@ -13,9 +13,9 @@
 
             %begin_asset_metadata_template.title.display^eq:show%
             <h3 class="%asset_metadata_template.title.alignment%">
-              %asset_contents_paint_386956%
-              %begin_asset_contents_paint_387024%
-              <br><span class="lead">%asset_contents_paint_387024%</span>
+              %asset_contents_paint_386956%<!-- 386956: title with only phrasing-content html tags left in -->
+              %begin_asset_contents_paint_387024%<!-- 387024: subtitle with only phrasing-content html tags left in -->
+              <br><span class="lead">%asset_contents_paint_387024%<!-- 387024: subtitle with only phrasing-content html tags left in --></span>
               %end_asset%
             </h3>
             %end_asset%
@@ -27,7 +27,9 @@
                 </div>
                 <div class="col-sm-6 %begin_asset_metadata_template.picture.position^eq:right%col-sm-pull-6%end_asset%">
                     <img class="img-fluid" src="%asset_metadata_template.picture.picture^as_asset:asset_url%" />
+                    <!--
                     %asset_metadata_template.picture.picture^as_asset:asset_contents_paint_374698^with_get:image_class=img-fluid^with_get:link_class=link-gallery%
+                    -->
                 </div>
                 %else_asset%
                 <div class="col-xs-12">
@@ -57,4 +59,4 @@
 %asset_contents^preg_replace:379097%
 %else_asset%
 </div>
-%end_asset%
+``%end_asset%
