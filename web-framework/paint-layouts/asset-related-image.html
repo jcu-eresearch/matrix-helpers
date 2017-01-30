@@ -1,13 +1,19 @@
-%begin_asset_type^eq:Image%
-<a class="%nested_get_link_class%" href="%asset_url%" data-mfp-caption="&lt;p class='h3'&gt;%asset_name%&lt;/p&gt; %asset_attribute_caption%">
-  <img class="img-related %nested_get_image_class%" src="%asset_url%" alt="%asset_name%">
+<!--@@
+Replace the #link_class# and #image_class# strings to add link and image classes to the result of this layout.
+The replace keyword transformation is useful for this.
+E.g:
+  %asset_metadata_template.picture.picture^as_asset:asset_contents_paint_374698^replace:#image_class#:img-fluid^replace:#link_class#:link-gallery%
+..adds the `link-gallery` class to the `a` tag, and `img-fluid` to the `img` tag.
+@@-->%begin_asset_type^eq:Image%
+<a class="#link_class#" href="%asset_url%" data-mfp-caption="&lt;p class='h3'&gt;%asset_name%&lt;/p&gt; %asset_attribute_caption%">
+  <img class="img-related #image_class#" src="%asset_url%" alt="%asset_name%">
 </a>
 %else_begin_asset_file_type^eq:svg%
-<a class="%nested_get_link_class%" href="%asset_url%" data-mfp-caption="&lt;p class='h3'&gt;%asset_name%&lt;/p&gt; %asset_attribute_caption%">
-  <img class="img-related %nested_get_image_class%" src="%asset_url%" alt="%asset_name%">
+<a class="#link_class#" href="%asset_url%" data-mfp-caption="&lt;p class='h3'&gt;%asset_name%&lt;/p&gt; %asset_attribute_caption%">
+  <img class="img-related #image_class#" src="%asset_url%" alt="%asset_name%">
 </a>
 %else_begin_asset_thumbnail%
-<a class="%nested_get_link_class%" href="%asset_url%" data-mfp-src="%asset_thumbnail_url%" data-mfp-caption="%asset_name%">
-  <img class="img-related %nested_get_image_class%" src="%asset_thumbnail_url%" title="%asset_thumbnail_title%" alt="%asset_thumbnail_alt%">
+<a class="#link_class#" href="%asset_url%" data-mfp-src="%asset_thumbnail_url%" data-mfp-caption="%asset_name%">
+  <img class="img-related #image_class#" src="%asset_thumbnail_url%" title="%asset_thumbnail_title%" alt="%asset_thumbnail_alt%">
 </a>
 %end_asset%

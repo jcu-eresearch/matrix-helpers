@@ -1,9 +1,9 @@
 <!--@@ This uses the Asset Related Image paint layout to get the asset's image @@-->
 <div class="col-xs-%asset_assetid^notempty:12^divide:{nested_get_content_container^as_asset:asset_metadata_template.gallery.count}^floor% %nested_get_content_container^as_asset:asset_metadata_template.gallery.column_classes%">
   %begin_nested_get_content_container^as_asset:asset_metadata_template.gallery.lightbox.enabled%
-    %asset_contents_paint_374698^with_get:image_class=img-fluid^with_get:link_class=link-gallery%
+    %asset_contents_paint_374698^replace:#image_class#:img-fluid^replace:#link_class#:link-gallery%
   %else_nested%
-    %asset_contents_paint_374698^with_get:image_class=img-fluid%
+    %asset_contents_paint_374698^replace:#image_class#:img-fluid%
   %end_nested%
 </div>
 %begin_asset_position^modulo:{nested_get_content_container^as_asset:asset_metadata_template.gallery.count}^eq:0%
