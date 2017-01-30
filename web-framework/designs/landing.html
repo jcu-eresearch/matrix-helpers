@@ -3,28 +3,20 @@
 <MySource_AREA id_name="site_custom_js" design_area="nest_content" print="no" />
 
 <!--@@ Edit+ boilerplate configuration @@-->
-<MySource_AREA id_name="exit_area" design_area="exit" print="no" />
-<MySource_AREA id_name="nested_EES_code" design_area="nest_content" print="no" />
-<MySource_AREA id_name="simple_edit_EES" design_area="show_if">
-  <MySource_SET name="condition" value="simple_edit_mode" />
-  <MySource_THEN>
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-          <meta charset="utf-8" />
-          <title>Loading Easy Edit Suite...</title>
-          <!-- Force IE10 to IE9 standards. 7,8,9 act unchanged. 11 & edge act unchanged -->
-          <!-- <meta http-equiv="X-UA-Compatible" content="IE=7,8,9,EmulateIE9,11" /> -->
-          <MySource_PRINT id_name="nested_EES_code" />
+<MySource_AREA id_name="editplus_login" design_area="show_if" print="no">
+  <MySource_SET name="condition" value="logged_in" />
+  <MySource_ELSE>
+    <script>window.location = window.location.href.replace('/_edit','/_edit/_login');</script>
+  </MySource_ELSE>
+</MySource_AREA>
+<MySource_AREA id_name="editplus_custom" design_area="nest_content" print="no" />
+<MySource_AREA id_name="editplus" design_area="editplus">
+  <MySource_PRINT id_name="editplus_login" />
+  <MySource_PRINT id_name="editplus_custom" />
 
-          <!-- CSS from Design and custom CSS from Site metadata  -->
-          <link href="mysource_files/landing.min.css" rel="stylesheet">
-          <MySource_PRINT id_name="site_custom_css" />
-      </head>
-      <body></body>
-    </html>
-    <MySource_PRINT id_name="exit_area" />
-  </MySource_THEN>
+  <!--@@ CSS from Design and custom CSS from Site metadata @@-->
+  <link href="mysource_files/landing.min.css" rel="stylesheet">
+  <MySource_PRINT id_name="site_custom_css" />
 </MySource_AREA>
 
 <!DOCTYPE html>
