@@ -28,8 +28,9 @@
         </div>
       </div>
       %else_begin_globals_asset_metadata_jcu.features.theme^eq:content%
+        <!--@@ Subnavigation folder listing @@-->
         %begin_globals_asset_linking_lineage^count^gte:2%
-          %globals_asset_contents:372370^with_get:frontend_asset={globals_asset_assetid}^with_get:root={globals_asset_linking_lineage^json_decode^index:1}%
+          %globals_asset_contents:372370^with_get:root={globals_asset_linking_lineage^json_decode^index:1}%
         %end_globals%
       %end_globals%
     </div>
