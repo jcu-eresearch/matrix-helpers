@@ -22,10 +22,17 @@
 
             <div class="row">
                 %begin_asset_metadata_template.picture.picture%
-                <div class="col-sm-6 %begin_asset_metadata_template.picture.position^eq:left%col-sm-push-6%end_asset%">
+                <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
+                <div class="
+                  col-sm-%asset_metadata_template.picture.size^json_decode^index:textcols%
+                  %begin_asset_metadata_template.picture.position^eq:left%col-sm-push-%asset_metadata_template.picture.size^json_decode^index:piccols%%end_asset%
+                ">
                     %asset_contents%
                 </div>
-                <div class="col-sm-6 %begin_asset_metadata_template.picture.position^eq:left%col-sm-pull-6%end_asset%">
+                <div class="
+                  col-sm-%asset_metadata_template.picture.size^json_decode^index:piccols%
+                  %begin_asset_metadata_template.picture.position^eq:left%col-sm-pull-%asset_metadata_template.picture.size^json_decode^index:textcols%%end_asset%
+                ">
                     %asset_metadata_template.picture.picture^as_asset:asset_contents_paint_374698^replace:#image_class#:img-fluid%
                 </div>
                 %else_asset%
