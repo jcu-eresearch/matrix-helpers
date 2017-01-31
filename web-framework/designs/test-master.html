@@ -324,6 +324,11 @@
                 <td> Asset type.  </td>
               </tr>
               <tr>
+                <td> &#37;asset_type_code&#37; </td>
+                <td> %asset_type_code% </td>
+                <td> Asset type code.  </td>
+              </tr>
+              <tr>
                 <td> &#37;asset_type_icon&#37; </td>
                 <td> %asset_type_icon% </td>
                 <td> Asset Map icon of the asset being displayed.  </td>
@@ -363,6 +368,16 @@
                 <td> %asset_url_&lt;context&gt;% </td>
                 <td> URL of a context of an asset, where &lt;context&gt; is the name of the context. For example, &#37;asset_url_Default_Context&#37; (%asset_url_Default_Context%) will display the asset URL on the Default Context.
                 </td>
+              </tr>
+              <tr>
+                <td> &#37;asset_url_path&#37; </td>
+                <td> %asset_url_path% </td>
+                <td>The relative URL path of the asset based on the website domain. For example, if the URL of the asset is <em>https://www.site.com/dev/section/page</em>, this keyword would print <code class=" language-markup">/dev/section/page</code>.</td>
+              </tr>
+              <tr>
+                <td> &#37;asset_url_site_path&#37; </td>
+                <td> %asset_url_site_path% </td>
+                <td> The relative URL path of the asset based on the URL applied to the <em>Site</em> asset. For example, if the URL of the <em>Site</em> asset&nbsp;is <em>https://www.site.com/dev</em> and the URL of the asset is <em>https://www.site.com/dev/section/page</em>, this keyword would print <code class=" language-markup">/section/page</code>.</td>
               </tr>
               <tr>
                 <td> &#37;asset_urls&#37; </td>
@@ -1399,8 +1414,7 @@
                 <td>
                   %asset_status_code%
                 </td>
-                <td>
-                  The status code (value) of the current Status of the asset. For example, if the current Status of the asset is Live, this will print 16.
+                <td> The <a target="_blank" href="http://manuals.matrix.squizsuite.net/concepts/chapters/squiz-matrix-concepts#status-values">status code (value)</a>&nbsp;of the current <em>Status</em> of the asset. For example, if the current <em>Status</em> of the asset is <em>Live</em>, this will print <em>16</em>. 
                 </td>
               </tr>
             </tbody>
