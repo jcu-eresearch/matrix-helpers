@@ -1750,6 +1750,28 @@
             </tbody>
           </table>
         </div>
+        <h2>Personas</h2>
+        <div class="table-responsive m-b-2">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th> Keyword Replacement </th>
+                <th> Value </th>
+                <th> Information Shown </th>
+              </tr>
+              <tr>
+                <td>&#37;asset_variations&#37;</td>
+                <td>%asset_variations%</td>
+                <td>Returns an array of all variations on a <em>Standard Page</em> including information about each <em>Variation</em> such as: <ul><li><em>Asset ID</em></li><li><em>Asset Name</em></li><li>Array of <em>Persona Asset IDs</em> assigned</li><li>If the&nbsp;<em>Variation</em> is the default one or not (returns 1 for true and 0 for false)</li></ul></td>
+              </tr>
+              <tr>
+                <td>&#37;asset_variations_content&#37;</td>
+                <td>%asset_variations_content%</td>
+                <td>Returns an array of all the <em>Variations</em> and their contents. You can then use a <em>^index</em> keyword modifier to grab the contents of a specific <em>Variation</em> position.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h1>Global Keywords (<a href="https://matrix-manuals.squiz.net/keyword-replacements/chapters/global-keywords">Reference</a>)</h1>
         <div id="content_container_3003">
@@ -2196,6 +2218,11 @@
                   <td>&#37;globals_context&#37;</td>
                   <td>%globals_context%</td>
                   <td><p>will display the current context the user is viewing. For more information on contexts, refer to the <a href="https://matrix-manuals.squiz.net/contexts">Contexts</a> manual.</p></td>
+                </tr>
+                <tr id="Current-Personas">
+                  <td>&#37;globals_personas_active&#37;</td>
+                  <td>%globals_personas_active%</td>
+                  <td>Returns an asset ID array of all active <em>Personas</em> (server side only) that were used when generating the page. You can then use the <em>^in_array</em> keyword modifier to check if a specific <em>Persona</em> is active or not.</td>
                 </tr>
                 <tr id="Current-Protocol">
                   <td>&#37;globals_protocol&#37;</td>
