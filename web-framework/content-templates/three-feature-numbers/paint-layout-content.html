@@ -20,26 +20,32 @@
             </h3>
             %end_asset%
 
+
+            <div class="row text-xs-center">
+              <div class="col-xs-4 col-lg-2 col-lg-offset-3">
+                <p class="h1">
+                  %asset_metadata_template.numfeature.num1.
+                </p>
+                 hectares
+              </div>
+              <div class="col-xs-4 col-lg-2">
+                <p class="h1">
+                  2
+                </p>
+                 country types
+              </div>
+              <div class="col-xs-4 col-lg-2">
+                <p class="h1">
+                  12+
+                </p>
+                 grasses
+              </div>
+            </div>
+
             <div class="row">
-                %begin_asset_metadata_template.picture.picture%
-                <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
-                <div class="
-                  col-sm-%asset_metadata_template.picture.size^json_decode^index:textcols%
-                  %begin_asset_metadata_template.picture.position^eq:left%col-sm-push-%asset_metadata_template.picture.size^json_decode^index:piccols%%end_asset%
-                ">
-                    %asset_contents%
-                </div>
-                <div class="
-                  col-sm-%asset_metadata_template.picture.size^json_decode^index:piccols%
-                  %begin_asset_metadata_template.picture.position^eq:left%col-sm-pull-%asset_metadata_template.picture.size^json_decode^index:textcols%%end_asset%
-                ">
-                    %asset_metadata_template.picture.picture^as_asset:asset_contents_paint_374698^replace:#image_class#:img-fluid%
-                </div>
-                %else_asset%
                 <div class="col-xs-12">
                     %asset_contents%
                 </div>
-                %end_asset%
             </div>
 
             %begin_asset_metadata_template.buttons.btn1.text^empty:{asset_metadata_template.buttons.btn2.text}%
