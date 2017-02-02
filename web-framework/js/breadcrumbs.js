@@ -1,5 +1,4 @@
 // Only show breadcrumbs if enabled and on pages that aren't the homepage
-var data = {}
 data.site_index_id = '%globals_site_index_id%'
 data.site_breadcrumbs = '%globals_site_metadata_jcu.features.breadcrumbs%'
 data.frontend_id = '%frontend_asset_assetid%'  // This should be corrected for index pages
@@ -8,7 +7,7 @@ data.frontend_breadcrumbs = '%frontend_asset_metadata_jcu.features.breadcrumbs%'
 if (data.frontend_breadcrumbs === 'true' ||
     data.frontend_breadcrumbs === 'inherit' && data.site_breadcrumbs) {
   if (data.site_index_id !== data.frontend_id) {
-    var lineage = %globals_frontend_asset_linking_lineage%
+    var lineage = %frontend_asset_linking_lineage%
     if (lineage) {
       print(
         '<div class="container jcu-content">' +
