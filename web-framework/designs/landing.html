@@ -26,6 +26,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <script runat="server" id="underscore.js" src="./?a=389796"></script>
+    <script runat="server">
+      // If in a browser (via ?SQ_DISABLE_SERVER_JS), re-work the print() function
+      if (typeof window !== "undefined") {
+        window.print = function() {
+          _.each(arguments, function(val) { document.write('' + val)  } )
+        }
+        window.var_dump = function() {
+          _.each(arguments, function(val) { document.write(JSON.stringify(val)) } )
+        }
+      }
+    </script>
+
     <!--@@ Reload the page "logged in"; done early via JS so we can fast-forward the reload @@-->
     <!--@@ Workaround for Squiz Issue 117992 @@-->
     <script>
@@ -284,7 +297,7 @@
     <MySource_AREA id_name="header" design_area="nest_content" />
 
     <main id="main" role="main" aria-labelledby="page-title">
-      <MySource_AREA id_name="breadcrumbs" design_area="nest_content" />
+      <script runat="server" id="breadcrumbs" src="./?a=389917"></script>
       <MySource_AREA id_name="portlets_left" design_area="nest_content" />
       <MySource_AREA id_name="content" design_area="body" />
       <MySource_AREA id_name="portlets_right" design_area="nest_content" />
