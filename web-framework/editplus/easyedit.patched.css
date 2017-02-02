@@ -723,7 +723,7 @@ body.embedMode {
     left: 20px;
     padding-left: 20px;
     color: #f00;
-    background: #fff url(/__data/ees/'Images/white_exclamation.png') no-repeat 0 1px;
+    background: #fff url(/__data/ees/Images/white_exclamation.png) no-repeat 0 1px;
     cursor: pointer;
     font-size: 12px;
     text-overflow: ellipsis;
@@ -2673,7 +2673,7 @@ th {
 }
 
 #ees_contextSwitcherList .current {
-    background: #f2f7fc url(/__data/ees/'Images/tick-blue.png') no-repeat 222px 9px;
+    background: #f2f7fc url(/__data/ees/Images/tick-blue.png) no-repeat 222px 9px;
 }
 
 #ees_contextSwitcherList .current .name {
@@ -3881,7 +3881,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
     border: 1px solid #9f3732;
     color: #9f3732;
     padding: 6px 6px 6px 36px;
-    background: #f7e3e2 url(/__data/ees/'Images/error_white.png') no-repeat 8px 12px;
+    background: #f7e3e2 url(/__data/ees/Images/error_white.png) no-repeat 8px 12px;
     border-radius: 5px;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -4154,7 +4154,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 
 .uploadQueue .clear.clearAll div.button,
 .uploadQueue .clear.clearCompleted div.button {
-    background: url(/__data/ees/'Images/bulkFilesList-sprite.svg') no-repeat 0 0;
+    background: url(/__data/ees/Images/bulkFilesList-sprite.svg) no-repeat 0 0;
     margin-top: -1px;
     opacity: .7;
 }
@@ -4166,7 +4166,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 
 .uploadQueue .clear.clearAll div.button,
 .uploadQueue tr.ready .status div.icon {
-    background: url(/__data/ees/'Images/bulkFilesList-sprite.svg') no-repeat 0 0;
+    background: url(/__data/ees/Images/bulkFilesList-sprite.svg) no-repeat 0 0;
     cursor: pointer;
     width: 14px;
     height: 14px;
@@ -4181,16 +4181,16 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 }
 
 .uploadQueue tr.uploading .status div.icon {
-    background: url(/__data/ees/'Images/loader_white16x16.gif') no-repeat center;
+    background: url(/__data/ees/Images/loader_white16x16.gif) no-repeat center;
 }
 
 .uploadQueue tr.failed .status div.icon {
-    background: url(/__data/ees/'Images/cross-red.png') no-repeat center;
+    background: url(/__data/ees/Images/cross-red.png) no-repeat center;
     cursor: pointer;
 }
 
 .uploadQueue tr.completed .status div.icon {
-    background: url(/__data/ees/'Images/bulkFilesList-sprite.svg') no-repeat 0 -28px;
+    background: url(/__data/ees/Images/bulkFilesList-sprite.svg) no-repeat 0 -28px;
 }
 
 .uploadQueue tr.completed {
@@ -4359,11 +4359,11 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 }
 
 .uploadProgressStatus .pause.button div.icon {
-    background: url(/__data/ees/'Images/cross.png') no-repeat center;
+    background: url(/__data/ees/Images/cross.png) no-repeat center;
 }
 
 .uploadProgressStatus .resume.button div.icon {
-    background: url(/__data/ees/'Images/wrksp-rel-arrow.png') no-repeat center;
+    background: url(/__data/ees/Images/wrksp-rel-arrow.png) no-repeat center;
     float: none;
     display: inline-block;
     vertical-align: middle;
@@ -6306,7 +6306,7 @@ div#ees_addAutoRemap .slider {
 }
 
 #ees_conditionSwitcherContainer .current {
-    background: url(/__data/ees/'Images/tick-blue.png') no-repeat 187px 10px transparent;
+    background: url(/__data/ees/Images/tick-blue.png) no-repeat 187px 10px transparent;
 }
 
 #ees_conditionSwitcherContainer .current .name {
@@ -10145,7 +10145,7 @@ table.sq-backend-table {
 }
 
 .plus .tooltipDivConditions .delete {
-    background: url(/__data/ees/'Images/delete_recover_dark.png') no-repeat top left;
+    background: url(/__data/ees/Images/delete_recover_dark.png) no-repeat top left;
     width: 16px;
     height: 16px;
     overflow: hidden;
@@ -11477,7 +11477,7 @@ ul.ees_relatedAssets li {
 }
 
 .metadata .thesaurusContainer .loadingTerms {
-    background: #fff url(/__data/ees/'Images/loader_white16x16.gif') no-repeat 5px 5px;
+    background: #fff url(/__data/ees/Images/loader_white16x16.gif) no-repeat 5px 5px;
     padding: 3px 3px 3px 26px;
     width: 270px;
     margin-bottom: 10px;
@@ -13514,7 +13514,7 @@ div[id^="ees_analyticsAudienceReport"] table {
 .tooltipEditDiv.editVariationOptions li.selectable.selected {
     background-color: #f2f7fc;
     color: #2b7fd5;
-    background: #f2f7fc url(/__data/ees/'Images/tick-blue.png') no-repeat 293px 50%;
+    background: #f2f7fc url(/__data/ees/Images/tick-blue.png) no-repeat 293px 50%;
     font-weight: bold;
 }
 
