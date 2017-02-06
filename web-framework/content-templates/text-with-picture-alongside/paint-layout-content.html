@@ -33,7 +33,13 @@
                   col-sm-%asset_metadata_template.picture.size^json_decode^index:piccols%
                   %begin_asset_metadata_template.picture.position^eq:left%col-sm-pull-%asset_metadata_template.picture.size^json_decode^index:textcols%%end_asset%
                 ">
-                    %asset_metadata_template.picture.picture^as_asset:asset_contents_paint_374698^replace:#image_class#:img-fluid%
+                <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
+                  <script runat="server">
+                    var pictures = %asset_metadata_template.picture.picture%
+                    _.each(pictures, function(id) {
+                      print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
+                    })
+                  </script>
                 </div>
                 %else_asset%
                 <div class="col-xs-12">
@@ -63,4 +69,4 @@
 %asset_contents^preg_replace:379097%
 %else_asset%
 </div>
-``%end_asset%
+%end_asset%
