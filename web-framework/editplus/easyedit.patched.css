@@ -108,11 +108,6 @@
     line-height: 13px;
 }
 
-a,
-a:visited {
-    color: #3f98e1;
-}
-
 .screenHide {
     display: block;
     position: absolute;

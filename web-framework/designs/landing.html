@@ -12,11 +12,16 @@
 <MySource_AREA id_name="editplus_custom" design_area="nest_content" print="no" />
 <MySource_AREA id_name="editplus" design_area="editplus">
   <MySource_PRINT id_name="editplus_login_redirection" />
-  <MySource_PRINT id_name="editplus_custom" />
-  <link rel="icon" href="./?a=281218:dist/images/favicon.ico">
+  <!--@@ Web Framework Core CSS @@-->
+  <!--@@ Must be a full URL because of https://github.com/jcu-eresearch/matrix-helpers/issues/54 @@-->
+  <link rel="stylesheet" href="https://www.jcu.edu.au/__data/assets/git_bridge/0004/281218/dist/css/jcu.min.css" integrity="sha384-yvalFRKl+0g0tWrYJQwXPaf4oRFo9hOu7BssvfScVX9wdvvA+NjYtnAFm3sqP7LF" crossorigin="anonymous">
+
   <!--@@ CSS from Design and custom CSS from Site metadata @@-->
   <link href="mysource_files/landing.min.css" rel="stylesheet">
   <MySource_PRINT id_name="site_custom_css" />
+
+  <link rel="icon" href="./?a=281218:dist/images/favicon.ico">
+  <MySource_PRINT id_name="editplus_custom" />
 </MySource_AREA>
 
 <!DOCTYPE html>
