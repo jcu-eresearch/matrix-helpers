@@ -11,6 +11,7 @@ EasyEditConfig.assetFinderMaxAssets = 100
 EasyEditConfig.allowFutureStatusChange = true
 EasyEditConfig.mandatoryWorkflowLog = false
 EasyEditConfig.showChildrenOnLinkingScreen = true
+// Must leave enabled; see https://github.com/jcu-eresearch/matrix-helpers/issues/56
 EasyEditConfig.contextsEnabled = true
 EasyEditConfig.markdownEnabled = true
 EasyEditConfig.enableSiteEditing = true
