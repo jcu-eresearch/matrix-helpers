@@ -9,12 +9,6 @@ Overall, this project generally aims to shoehorn Matrix into an actual CMS.
 First up, let's clone this stuff:
 
     git clone https://github.com/jcu-eresearch/matrix-helpers.git
-    git clone https://github.com/jcu-eresearch/squiz-matrix.git
-
-The former is this repo and the latter is the source code for Matrix itself.
-Whilst billed as open source, it isn't quite that simple. This code was
-extracted from a VM image and is quite out-of-date, but it is all we have at this
-stage.
 
 To get started, ensure you don't think about Matrix as a traditional CMS where
 you're able to edit content and create sites out of the box.  It's
