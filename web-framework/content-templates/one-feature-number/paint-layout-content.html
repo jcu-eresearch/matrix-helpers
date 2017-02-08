@@ -1,0 +1,61 @@
+<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
+<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+<!--@@ Only show the hacked up opening tag if there's something there @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379082^replace:>:%
+%else_asset%
+<div
+%end_begin%
+    class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 container">
+
+            %begin_asset_metadata_template.title.display^eq:show%
+            <h3 class="%asset_metadata_template.title.alignment%">
+              %asset_contents_paint_386956%<!--@@ 386956: title with only phrasing-content html tags left in @@-->
+              %begin_asset_contents_paint_387024%<!--@@ 387024: subtitle with only phrasing-content html tags left in @@-->
+              <br><span class="lead">%asset_contents_paint_387024%<!--@@ 387024: subtitle with only phrasing-content html tags left in @@--></span>
+              %end_asset%
+            </h3>
+            %end_asset%
+
+            <div class="row">
+                <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
+                <div class="col-sm-3
+                  %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-push-9%end_asset%
+                  text-xs-center m-b-2">
+                  <span class="h1">
+                    %asset_metadata_template.numfeature.num1%
+                  </span><br />
+                  %asset_metadata_template.numfeature.units1%
+                </div>
+                <div class="col-sm-9
+                  %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-pull-3%end_asset%
+                ">
+                    %asset_contents%
+                </div>
+            </div>
+
+            %begin_asset_metadata_template.buttons.btn1.text^empty:{asset_metadata_template.buttons.btn2.text}%
+            <div class="row">
+              <div class="col-sm-12 %asset_metadata_template.buttons.alignment^empty:text-sm-center%">
+                  %begin_asset_metadata_template.buttons.btn1.text%
+                  <a class="%asset_metadata_template.buttons.btn1.class%" href="%asset_metadata_template.buttons.btn1.link^as_asset:asset_url^empty:{asset_metadata_template.buttons.btn1.link}%">%asset_metadata_template.buttons.btn1.text%</a>
+                  %end_asset%
+                  %begin_asset_metadata_template.buttons.btn2.text%
+                  <a class="%asset_metadata_template.buttons.btn2.class%" href="%asset_metadata_template.buttons.btn2.link^as_asset:asset_url^empty:{asset_metadata_template.buttons.btn2.link}%">%asset_metadata_template.buttons.btn2.text%</a>
+                  %end_asset%
+              </div>
+            </div>
+            %end_asset%
+        </div>
+    </div>
+
+<!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379097%
+%else_asset%
+</div>
+%end_asset%
