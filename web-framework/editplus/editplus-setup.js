@@ -136,7 +136,7 @@ EasyEdit.plugins.contentContainerTemplateWarning = {
           jQuery('#edit_properties_ok_' + bodycopyDiv.id).click(function () {
             if (jQuery('#template_' + bodycopyDiv.id).val().replace("--", "") !== bodycopyDiv.attribute("applied_template").toString()) {
               if (!button.parents('.bodycopy_manager_div').prev().is('.template-alert')) {
-                button.closest('.bodycopy_manager_div').before('<div class="container m-y-1 template-alert"><div class="alert alert-warning" role="alert"><strong>Warning!</strong> Changing content templates may result in your current settings being inaccessible or unused in that new template. Take a copy of any settings in a text edit (such as Notepad) if you need them later.</div></div>')
+                button.closest('.bodycopy_manager_div').before('<div class="container m-y-1 template-alert"><div class="alert alert-warning" role="alert"><strong>Warning!</strong> Changing content templates may result in your current settings being inaccessible or unused in that new template. Take a copy of any settings in a text editor (such as Notepad) if you need them later.</div></div>')
               }
             }
           })
