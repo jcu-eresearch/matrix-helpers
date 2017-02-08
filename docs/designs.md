@@ -83,6 +83,10 @@ like so:
 
     <!--@@ Comment goes here @@-->
 
+You can also use these types of comments in CSS files:
+
+    /*@@ Comment goes here @@*/
+
 ## Design Tags
 
 `Design Tags` are embedded XML within your HTML parse file.  They're somewhat
@@ -164,6 +168,9 @@ Then, upon a request being served by Matrix, the following happens:
     being seen by the end user. Make sure that you end the comments correctly;
     if you mix HTML and Squiz comments (like `<!-@@ foo -->`), you'll end up
     losing most of your page content without warning.
+
+1. Server-side JS is executed in the content area, then keywords are replaced
+   and then server-side JS is repeated (twice in succession??).
 
 1. Matrix URL references using `./?a=123456` are resolved
 

@@ -37,6 +37,7 @@
 1. Obtain a new copy of `easyedit.min.css` from the server.
 1. Unminify this file using <http://unminify.com/> and store as `easyedit.css`
 1. Remove all reset rules from easyedit.css (usually up to the `.ir` selector)
+   and including the `a, a:visited` selector.
 1. Remove all rules for `* .content_type_wysiwyg *` from `easyedit.css`,
    except for:
 
