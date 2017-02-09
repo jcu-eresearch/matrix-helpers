@@ -1,0 +1,46 @@
+<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
+<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+<!--@@ Only show the hacked up opening tag if there's something there @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379082^replace:>:%
+%else_asset%
+<div
+%end_begin%
+    class="map-section content-section %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+    <div class="canvas-map" id="map"
+         data-marker-lat="%asset_metadata_template.map.marker_lat%"
+         data-marker-lng="%asset_metadata_template.map.marker_lng%"
+         data-initial-zoom="%asset_metadata_template.map.initial_zoom%"
+         data-marker-url="%asset_metadata_template.map.marker^as_asset:asset_url%"
+         data-map-type-id="%asset_metadata_template.map.map_type_id%"
+         data-disable-default-ui="%asset_metadata_template.map.disable_default_ui%"
+         data-scrollwheel="%asset_metadata_template.map.scrollwheel%"
+         data-draggable="%asset_metadata_template.map.draggable%"
+         data-full-zoom="%asset_metadata_template.map.full_zoom%"></div>
+    <div class="container-fluid">
+      <div class="col-md-6 col-lg-4 col-md-offset-1 location-callout animated" data-animation="fadeInLeft" data-delay="500">
+        <div class="location-callout-wrapper">
+          <h2>Location &amp; Contact</h2>
+          <!--@@ Contact card paint layout @@-->
+          %asset_contents_paint_394355%
+        </div>
+        %begin_asset_metadata_template.buttons.btn1.text^empty:{asset_metadata_template.buttons.btn2.text}%
+        <div class="bg-inverse p-a-2 %asset_metadata_template.buttons.alignment^empty:text-sm-center%">
+          %begin_asset_metadata_template.buttons.btn1.text%
+          <a class="%asset_metadata_template.buttons.btn1.class%" href="%asset_metadata_template.buttons.btn1.link^as_asset:asset_url^empty:{asset_metadata_template.buttons.btn1.link}%">%asset_metadata_template.buttons.btn1.text%</a>
+          %end_asset%
+          %begin_asset_metadata_template.buttons.btn2.text%
+          <a class="%asset_metadata_template.buttons.btn2.class%" href="%asset_metadata_template.buttons.btn2.link^as_asset:asset_url^empty:{asset_metadata_template.buttons.btn2.link}%">%asset_metadata_template.buttons.btn2.text%</a>
+          %end_asset%
+        </div>
+        %end_asset%
+      </div>
+    </div>
+<!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379097%
+%else_asset%
+</div>
+%end_asset%
