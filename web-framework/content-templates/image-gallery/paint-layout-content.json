@@ -1,0 +1,7 @@
+{
+    "type": "Nested Content",
+    "id": 376876,
+    "get_params": {
+        "content_container": "%globals_asset_assetid%"
+    }
+}
