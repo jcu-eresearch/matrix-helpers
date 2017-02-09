@@ -1,5 +1,12 @@
 {
-    "assets_types": {"Image": "inherit"},
+    "assets_types": {
+        "File": "inherit"
+        "File Bridge": "inherit"
+        "Folder": "inherit"
+        "Form": "inherit"
+        "Page": "inherit"
+        "Image Variety": "inherit"
+    },
     "root_nodes": [1],
     "link_types": ["type_1", "type_2"],
     "asset_selection": {"Set Value": "%globals_asset_metadata_template.gallery.images^json_decode^implode:,^append_if:,%%globals_asset_contents:379674^with_get:root={globals_asset_metadata_template.gallery.images_area}^json_decode^implode:,%"},
