@@ -35,9 +35,15 @@
                 ">
                 <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
                   <script runat="server">
-                    var pictures = %asset_metadata_template.picture.picture%
+                    var pictures = %asset_metadata_template.picture.picture% //JSON array of numbers or strings
                     _.each(pictures, function(id) {
-                      print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
+                      if (typeof id === 'number') {
+                        // Standard asset (number)
+                        print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
+                      } else {
+                        // Shadow asset, like '12345:v2' (string)
+                        print('<img class="img-fluid" src="./?a=' + id + '">')
+                      }
                     })
                   </script>
                 </div>
