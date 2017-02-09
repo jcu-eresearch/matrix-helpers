@@ -1,0 +1,75 @@
+<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
+<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+<!--@@ Only show the hacked up opening tag if there's something there @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379082^replace:>:%
+%else_asset%
+<div
+%end_begin%
+    class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+
+    %begin_asset_metadata_template.title.display^eq:show%
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 %asset_metadata_template.title.alignment^empty:text-xs-center%">
+        <h2 class="h1">
+          %asset_contents_paint_386956%
+          %begin_asset_contents_paint_387024%
+          <br><span class="lead">%asset_contents_paint_387024%</span>
+          %end_asset%
+        </h2>
+        <hr>
+      </div>
+    </div>
+    %end_asset%
+    <div class="row">
+      <div class="col-xs-12 col-md-10 col-md-offset-1 container">
+        <div id="details" class="row">
+          <div class="col-md-4">
+            %begin_asset_metadata_template.contact.enquire_link%
+            <div class="m-b-1"><a class="btn btn-primary btn-block page-scroll" href="%asset_metadata_template.contact.enquire_link^as_asset:asset_url^empty:{asset_metadata_template.contact.enquire_link}%">Enquire Now</a>
+            </div>
+            %end_asset%
+            <ul class="list-bordered">
+              %begin_asset_metadata_template.contact.phone_local%
+              <li><span title="Phone" class="icon-phone"></span> <a href="tel:%asset_metadata_template.contact.phone_international%">%asset_metadata_template.contact.phone_local%</a> (<a href="tel:%asset_metadata_template.contact.phone_international%">%asset_metadata_template.contact.phone_international%</a>)
+              </li>
+              %end_asset%
+              %begin_asset_metadata_template.contact.email%
+              <li><span title="Email" class="icon-email2"></span> <a href="mailto:%asset_metadata_template.contact.email%?subject=JCU%20Website%20Enquiry">%globals_site_metadata_jcu.site.email%</a>
+              </li>
+              %else_globals_site_metadata_jcu.site.email%
+              <li><span title="Email" class="icon-email2"></span> <a href="mailto:%globals_site_metadata_jcu.site.email%?subject=JCU%20Website%20Enquiry">%globals_site_metadata_jcu.site.email%</a>
+              %end_asset%
+              %begin_asset_metadata_template.contact.radio%
+              <li><span title="UHF radio" class="icon-mobile"></span> %asset_metadata_template.contact.radio%
+              </li>
+              %end_asset%
+              %begin_asset_metadata_template.contact.address^striphtml%
+              <li>
+                <address><span title="Address" class="icon-home"></span> %asset_contents_paint_393621%</address>
+              </li>
+              %end_asset%
+              %begin_asset_metadata_template.contact.directions^striphtml%
+              <li><span title="Directions" class="icon-directions"></span> %asset_contents_paint_393629%
+              </li>
+              %end_asset%
+            </ul>
+          </div>
+          <div class="col-md-8">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="%asset_metadata_template.contact.map_url%"
+              allowfullscreen="true">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379097%
+%else_asset%
+</div>
+%end_asset%
