@@ -239,8 +239,8 @@ EasyEdit.plugins.colorPickerFields = {
                 })
                 EasyEditComponentsToolbar.enableSaveButton()
             }
-            })
-        }) //getScript
+          })
+        }
 
         // If library is already loaded
         if ($.fn.colorPicker) {
