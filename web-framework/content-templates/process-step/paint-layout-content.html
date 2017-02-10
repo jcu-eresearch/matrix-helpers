@@ -1,0 +1,61 @@
+<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
+<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+<!--@@ Only show the hacked up opening tag if there's something there @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379082^replace:>:%
+%else_asset%
+<div
+%end_begin%
+    class="container content-block process-step %asset_metadata_template.vizfx.border.south% %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml%">
+
+    <div class="row">
+        <div class="col-xs-2 col-md-1 col-md-offset-1 process-step-number">
+          <!--@@ empty div where CSS will place the step number @@-->
+        </div>
+
+        <div class="col-xs-10 col-sm-9">
+            <h2 class="h3">
+                %asset_contents_paint_386956%<!--@@ 386956: title with only phrasing-content html tags left in @@-->
+            </h2>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-xs-2 col-md-1 col-md-offset-1"></div><!--@@ empty div reserving space for the step number above @@-->
+        <div class="col-xs-10 col-sm-7">
+            %asset_contents%
+        </div>
+
+        <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0 col-md-2">
+
+          %begin_asset_metadata_template.buttons.btn1.text^empty:{asset_metadata_template.buttons.btn2.text}%
+              %begin_asset_metadata_template.buttons.btn1.text%
+              <a class="btn-block text-wrap %asset_metadata_template.buttons.btn1.class%" href="%asset_metadata_template.buttons.btn1.link^as_asset:asset_url^empty:{asset_metadata_template.buttons.btn1.link}%">%asset_metadata_template.buttons.btn1.text%</a>
+              %end_asset%
+              %begin_asset_metadata_template.buttons.btn2.text%
+              <a class="btn-block text-wrap %asset_metadata_template.buttons.btn2.class%" href="%asset_metadata_template.buttons.btn2.link^as_asset:asset_url^empty:{asset_metadata_template.buttons.btn2.link}%">%asset_metadata_template.buttons.btn2.text%</a>
+              %end_asset%
+          %end_asset%
+
+          %begin_asset_metadata_template.picture.picture%
+          <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
+          <script runat="server">
+            var pictures = %asset_metadata_template.picture.picture%
+            _.each(pictures, function(id) {
+              print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
+            })
+          </script>
+          %end_asset%
+
+        </div>
+    </div>
+
+<!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379097%
+%else_asset%
+</div>
+%end_asset%
