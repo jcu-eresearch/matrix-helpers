@@ -21,6 +21,27 @@ EasyEditConfig.analyticsViewId = 318119
 // See https://matrix.squiz.net/manuals/edit-plus/chapters/javascript-plugins for details
 
 /**
+  * JCU Web Framework JS: Edit+, meet Bootstrap's JavaScript.  Play nice.
+  */
+
+function jcuWebFrameworkCallback() { console.log('Loaded!') }
+
+EasyEdit.plugins.jcuWebFrameworkJS = {
+  init: function () {
+
+    EasyEditEventManager.bind("EasyEditAfterLoad", function () {
+      // Test for `collapse` from Bootstrap's JS
+      if (!$.fn.collapse) {
+        $.getScript('https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js', function() {
+            $.getScript('/?a=281218:dist/js/jcu.min.js', jcuWebFrameworkCallback)
+        })
+      }
+    })
+  }
+}
+
+
+/**
   * Open Asset Wizard plugin - Automatically opens the Asset Wizard via the URL
   */
 EasyEdit.plugins.openAssetWizardViaUrl = {
