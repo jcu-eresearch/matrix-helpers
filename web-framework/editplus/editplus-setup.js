@@ -24,7 +24,7 @@ EasyEditConfig.analyticsViewId = 318119
   * JCU Web Framework JS: Edit+, meet Bootstrap's JavaScript.  Play nice.
   */
 
-function jcuWebFrameworkCallback() { console.log('Loaded!') }
+function jcuWebFrameworkCallback() {}
 
 EasyEdit.plugins.jcuWebFrameworkJS = {
   init: function () {
