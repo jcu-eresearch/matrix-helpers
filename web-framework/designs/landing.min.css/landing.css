@@ -279,6 +279,11 @@ a {
   padding-bottom: 6rem;
 }
 
+/* key-steps were used by the old manually-constructed "Plan a trip" pages
+   on research infrastructure sites.  This styling should be replaced with
+   process-step styles that apply to the "Process Step" content container
+   template block.
+*/
 .key-steps {
   counter-reset: step-counter;
   margin-left: 3.5rem;
@@ -303,6 +308,26 @@ a {
   width: 1em;
   text-align: right;
   top: 0.5rem;
+}
+/* above: old key-step styles */
+/* below: new process-step styles */
+body {
+  counter-reset: process-step-counter;
+}
+.process-step .process-step-number {
+   position: relative;
+}
+.process-step .process-step-number::before {
+  content: counter(process-step-counter, decimal);
+  counter-increment: process-step-counter;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0.9rem;
+  font-size: 5em;
+  font-weight: 500;
+  line-height: 0.4;
+  text-align: center;
 }
 
 .canvas-map {
@@ -415,6 +440,10 @@ a {
   border-bottom: 1px solid rgba(0,0,0, 0.1);
 }
 .content-block:last-of-type {
+    border-bottom: none;
+}
+.content-block.border-s-none {
+    padding-bottom: 1rem;
     border-bottom: none;
 }
 .content-block h3 {
