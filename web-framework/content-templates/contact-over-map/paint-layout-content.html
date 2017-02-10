@@ -25,16 +25,11 @@
           <!--@@ Contact card paint layout @@-->
           %asset_contents_paint_394355%
         </div>
-        %begin_asset_metadata_template.buttons.btn1.text^empty:{asset_metadata_template.buttons.btn2.text}%
-        <div class="bg-inverse p-a-2 %asset_metadata_template.buttons.alignment^empty:text-sm-center%">
-          %begin_asset_metadata_template.buttons.btn1.text%
-          <a class="%asset_metadata_template.buttons.btn1.class%" href="%asset_metadata_template.buttons.btn1.link^as_asset:asset_url^empty:{asset_metadata_template.buttons.btn1.link}%">%asset_metadata_template.buttons.btn1.text%</a>
-          %end_asset%
-          %begin_asset_metadata_template.buttons.btn2.text%
-          <a class="%asset_metadata_template.buttons.btn2.class%" href="%asset_metadata_template.buttons.btn2.link^as_asset:asset_url^empty:{asset_metadata_template.buttons.btn2.link}%">%asset_metadata_template.buttons.btn2.text%</a>
-          %end_asset%
-        </div>
-        %end_asset%
+        <!--@@ Buttons paint layout @@-->
+        <script runat="server">
+          var btn_wrapper = {opening: '<div class="bg-inverse p-a-2">', closing: '</div>'}
+        </script>
+        %asset_contents_paint_394551%
       </div>
     </div>
 <!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
