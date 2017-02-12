@@ -21,6 +21,27 @@ EasyEditConfig.analyticsViewId = 318119
 // See https://matrix.squiz.net/manuals/edit-plus/chapters/javascript-plugins for details
 
 /**
+  * JCU Web Framework JS: Edit+, meet Bootstrap's JavaScript.  Play nice.
+  */
+
+function jcuWebFrameworkCallback() {}
+
+EasyEdit.plugins.jcuWebFrameworkJS = {
+  init: function () {
+
+    EasyEditEventManager.bind("EasyEditAfterLoad", function () {
+      // Test for `collapse` from Bootstrap's JS
+      if (!$.fn.collapse) {
+        $.getScript('https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js', function() {
+            $.getScript('/?a=281218:dist/js/jcu.min.js', jcuWebFrameworkCallback)
+        })
+      }
+    })
+  }
+}
+
+
+/**
   * Open Asset Wizard plugin - Automatically opens the Asset Wizard via the URL
   */
 EasyEdit.plugins.openAssetWizardViaUrl = {
@@ -155,70 +176,79 @@ EasyEdit.plugins.colorPickerFields = {
   init: function () {
 
     EasyEditEventManager.bind("EasyEditScreenLoad", function () {
-      $.getScript('https://cdnjs.cloudflare.com/ajax/libs/tinyColorPicker/1.1.1/jqColorPicker.min.js', function() {
-        $('.sq-metadata-description > .tool.tool-colorpicker').closest('.row').find('input[id*=metadata_field][type=text]').colorPicker({
-          // Plugin: shows input fields for rgb and hsv; changeable
-          animationSpeed: 0,
-          buildCallback: function($elm) {
-            var colorInstance = this.color,
-              colorPicker = this
+      if ($('.sq-metadata-description > .tool.tool-colorpicker')) {
+        function initialiseColorPickers() {
+            $('.sq-metadata-description > .tool.tool-colorpicker').closest('.row').find('input[id*=metadata_field][type=text]').colorPicker({
+            // Plugin: shows input fields for rgb and hsv; changeable
+            animationSpeed: 0,
+            buildCallback: function($elm) {
+                var colorInstance = this.color,
+                colorPicker = this
 
-            $elm.prepend('<div class="cp-panel">' +
-              'R <input type="text" class="cp-r"><br>' +
-              'G <input type="text" class="cp-g"><br>' +
-              'B <input type="text" class="cp-b"><hr>' +
-              'H <input type="text" class="cp-h"><br>' +
-              'S <input type="text" class="cp-s"><br>' +
-              'B <input type="text" class="cp-v"><hr>' +
-              '<div class="cp-HEX-wrapper"># <input class="cp-HEX" maxlength="6" type="text"></div>' +
-            '</div>').on('change', 'input', function() {
-              var value = this.value,
-                className = this.className,
-                type = className.split('-')[1],
-                color = {}
+                $elm.prepend('<div class="cp-panel">' +
+                'R <input type="text" class="cp-r"><br>' +
+                'G <input type="text" class="cp-g"><br>' +
+                'B <input type="text" class="cp-b"><hr>' +
+                'H <input type="text" class="cp-h"><br>' +
+                'S <input type="text" class="cp-s"><br>' +
+                'B <input type="text" class="cp-v"><hr>' +
+                '<div class="cp-HEX-wrapper"># <input class="cp-HEX" maxlength="6" type="text"></div>' +
+                '</div>').on('change', 'input', function() {
+                var value = this.value,
+                    className = this.className,
+                    type = className.split('-')[1],
+                    color = {}
 
-              color[type] = value
-              colorInstance.setColor(type === 'HEX' ? value : color,
-                type === 'HEX' ? 'HEX' : /(?:r|g|b)/.test(type) ? 'rgb' : 'hsv')
-              colorPicker.render()
-              this.blur()
-            })
-            var defaultCheckbox = $elm.closest('.row').find('.sq-form-field.defaultCheckbox')
-            if (defaultCheckbox) {
-              defaultCheckbox.change(function() {
-                $elm.trigger('change')
-              })
+                color[type] = value
+                colorInstance.setColor(type === 'HEX' ? value : color,
+                    type === 'HEX' ? 'HEX' : /(?:r|g|b)/.test(type) ? 'rgb' : 'hsv')
+                colorPicker.render()
+                this.blur()
+                })
+                var defaultCheckbox = $elm.closest('.row').find('.sq-form-field.defaultCheckbox')
+                if (defaultCheckbox) {
+                defaultCheckbox.change(function() {
+                    $elm.trigger('change')
+                })
+                }
+            },
+            cssAddon:
+                '.cp-color-picker{box-sizing:border-box; width:226px;}' +
+                '.cp-color-picker .cp-panel {line-height: 21px; float:right;' +
+                'padding:0 1px 0 8px; margin-top:-1px; overflow:visible}' +
+                '.cp-xy-slider:active {cursor:none;}' +
+                '.cp-panel, .cp-panel input {color:#bbb; font-family:monospace,' +
+                '"Courier New",Courier,mono; font-size:12px; font-weight:bold;}' +
+                '.cp-panel input {width:28px; padding:2px 3px 1px;' +
+                'text-align:right; line-height:12px; background:transparent;' +
+                'border:1px solid; border-color:#222 #666 #666 #222;}' +
+                '.cp-panel hr {margin:0 -2px 2px; height:1px; border:0;' +
+                'background:#666; border-top:1px solid #222;}' +
+                '.cp-panel .cp-HEX-wrapper {width:70px; position:absolute; left: -18px;}' +
+                '.cp-panel .cp-HEX {width:54px;}' +
+                '.cp-alpha {width:128px;}',
+            renderCallback: function() {
+                var colors = this.color.colors.RND,
+                modes = {
+                    r: colors.rgb.r, g: colors.rgb.g, b: colors.rgb.b,
+                    h: colors.hsv.h, s: colors.hsv.s, v: colors.hsv.v,
+                    HEX: this.color.colors.HEX
+                }
+                $('input', '.cp-panel').each(function() {
+                this.value = modes[this.className.substr(3)]
+                })
+                EasyEditComponentsToolbar.enableSaveButton()
             }
-          },
-          cssAddon:
-            '.cp-color-picker{box-sizing:border-box; width:226px;}' +
-            '.cp-color-picker .cp-panel {line-height: 21px; float:right;' +
-              'padding:0 1px 0 8px; margin-top:-1px; overflow:visible}' +
-            '.cp-xy-slider:active {cursor:none;}' +
-            '.cp-panel, .cp-panel input {color:#bbb; font-family:monospace,' +
-              '"Courier New",Courier,mono; font-size:12px; font-weight:bold;}' +
-            '.cp-panel input {width:28px; padding:2px 3px 1px;' +
-              'text-align:right; line-height:12px; background:transparent;' +
-              'border:1px solid; border-color:#222 #666 #666 #222;}' +
-            '.cp-panel hr {margin:0 -2px 2px; height:1px; border:0;' +
-              'background:#666; border-top:1px solid #222;}' +
-            '.cp-panel .cp-HEX-wrapper {width:70px; position:absolute; left: -18px;}' +
-            '.cp-panel .cp-HEX {width:54px;}' +
-            '.cp-alpha {width:128px;}',
-          renderCallback: function() {
-            var colors = this.color.colors.RND,
-              modes = {
-                r: colors.rgb.r, g: colors.rgb.g, b: colors.rgb.b,
-                h: colors.hsv.h, s: colors.hsv.s, v: colors.hsv.v,
-                HEX: this.color.colors.HEX
-              }
-            $('input', '.cp-panel').each(function() {
-              this.value = modes[this.className.substr(3)]
-            })
-            EasyEditComponentsToolbar.enableSaveButton()
-          }
-        })
-      })
+          })
+        }
+
+        // If library is already loaded
+        if ($.fn.colorPicker) {
+          initialiseColorPickers()
+        } else {
+          $.getScript('https://cdnjs.cloudflare.com/ajax/libs/tinyColorPicker/1.1.1/jqColorPicker.min.js', initialiseColorPickers)
+        }
+      }
     })
   }
 }

@@ -243,6 +243,19 @@ body.previewMode {
   background-color: #fff;
 }
 
+/* Reduce spacing for metadata fields */
+.cellData label {
+  margin-bottom: 0;
+}
+.metadata .cellData td {
+  padding-bottom: 0;
+}
+.metadata .cellData li {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 /*
  * Links panel
  */

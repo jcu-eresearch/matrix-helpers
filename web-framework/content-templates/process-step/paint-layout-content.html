@@ -30,14 +30,12 @@
 
         <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0 col-md-2">
 
-          %begin_asset_metadata_template.buttons.btn1.text^empty:{asset_metadata_template.buttons.btn2.text}%
-              %begin_asset_metadata_template.buttons.btn1.text%
-              <a class="btn-block text-wrap %asset_metadata_template.buttons.btn1.class%" href="%asset_metadata_template.buttons.btn1.link^as_asset:asset_url^empty:{asset_metadata_template.buttons.btn1.link}%">%asset_metadata_template.buttons.btn1.text%</a>
-              %end_asset%
-              %begin_asset_metadata_template.buttons.btn2.text%
-              <a class="btn-block text-wrap %asset_metadata_template.buttons.btn2.class%" href="%asset_metadata_template.buttons.btn2.link^as_asset:asset_url^empty:{asset_metadata_template.buttons.btn2.link}%">%asset_metadata_template.buttons.btn2.text%</a>
-              %end_asset%
-          %end_asset%
+          <!--@@ Buttons paint layout @@-->
+          <script runat="server">
+            var omit_alignment = true
+            var btn_class_prefix = 'btn-block text-wrap'
+          </script>
+          %asset_contents_paint_394551%
 
           %begin_asset_metadata_template.picture.picture%
           <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
