@@ -1,9 +1,1 @@
 %metadata-F_metadata_values%
-<h1>
-  Preview
-  %begin_globals_server_PHP_SELF^contains:/_admin/%
-  <span class="sq-backend-commit">%commit_button_clean^replace:class=":class="btn btn-success ^replace:value=".*?":value="Save to update"%</span>
-  %end_globals%
-  <button class="btn btn-primary" onclick="document.getElementById('iframe-preview-%asset_assetid%').src += ''; return false;">Refresh</button>
-</h1>
-<iframe id="iframe-preview-%asset_assetid%" style="width: 100%; height: 50vh;" src="%asset_parent^as_asset:asset_parent^as_asset:asset_url%?v=%asset_version%&embed=true&SQ_ASSET_CONTENTS=%asset_assetid%"></iframe>
