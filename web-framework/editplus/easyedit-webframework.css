@@ -119,6 +119,19 @@ body.previewMode {
   height: auto !important;
 }
 
+/* Shrinking vertical spacing */
+#ees_screenContentWrapper {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.plus .bodycopy_manager_div {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+#ees_viperContentWrapper.withViper, .ees_viperContentWrapper.withViper {
+  padding-top: 30px;
+}
+
 /* Show the Asset ID after creation in the Wizard */
 .success .assetId.screenHide {
   display: inline-block;
