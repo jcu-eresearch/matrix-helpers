@@ -24,7 +24,22 @@ EasyEditConfig.analyticsViewId = 318119
   * JCU Web Framework JS: Edit+, meet Bootstrap's JavaScript.  Play nice.
   */
 
-function jcuWebFrameworkCallback() {}
+function initWebFrameworkComponents() {
+  // Collapsing metadata sections
+  $('.content_template_custom_layout .metadata [class^=sectionHeading_], #ees_editMetadata [class^=sectionHeading_]').each(function(index) {
+    var that = $(this)
+
+    // Prepare the metadata section div
+    var metadata_section = that.next('.editSection').attr('id', function() {
+      return 'metadata_' + index + '_' + this.className.replace(' ', '_')
+    }).addClass('collapse')
+
+    // Prepare and initialise the section heading
+    //that.attr('data-toggle', 'collapse').attr('data-target', '#' + metadata_section[0].id).collapse()
+    that.wrap('<a class="collapse-toggle collapsed" data-toggle="collapse" href="#' + metadata_section[0].id + '"></a>').parent().collapse()
+  })
+}
+
 
 EasyEdit.plugins.jcuWebFrameworkJS = {
   init: function () {
@@ -33,7 +48,10 @@ EasyEdit.plugins.jcuWebFrameworkJS = {
       // Test for `collapse` from Bootstrap's JS
       if (!$.fn.collapse) {
         $.getScript('https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js', function() {
-            $.getScript('/?a=281218:dist/js/jcu.min.js', jcuWebFrameworkCallback)
+            $.getScript('/?a=281218:dist/js/jcu.min.js', initWebFrameworkComponents)
+
+            // Handle changes in screen (eg Content to Metadata)
+            EasyEditEventManager.bind("EasyEditScreenLoad", initWebFrameworkComponents)
         })
       }
     })
