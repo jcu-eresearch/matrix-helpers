@@ -279,7 +279,8 @@ body.previewMode {
   padding-bottom: 0;
 }
 .collapse-toggle,
-.collapse-toggle:hover {
+.collapse-toggle:hover,
+.collapse-toggle:focus {
   text-decoration: none;
 }
 .metadata .collapse-toggle {
