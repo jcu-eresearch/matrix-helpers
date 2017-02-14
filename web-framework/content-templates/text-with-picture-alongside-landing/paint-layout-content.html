@@ -1,0 +1,76 @@
+<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
+<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+<!--@@ Only show the hacked up opening tag if there's something there @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379082^replace:>:%
+%else_asset%
+<div
+%end_begin%
+    class="content-section" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+  <div class="container">
+    %begin_asset_metadata_template.title.display^eq:show%
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 %asset_metadata_template.title.alignment%">
+        <h2 class="h1">
+          %asset_contents_paint_386956%<!--@@ 386956: title with only phrasing-content html tags left in @@-->
+          %begin_asset_contents_paint_387024%<!--@@ 387024: subtitle with only phrasing-content html tags left in @@-->
+          <br><span class="lead">%asset_contents_paint_387024%<!--@@ 387024: subtitle with only phrasing-content html tags left in @@--></span>
+          %end_asset%
+        </h2>
+        <hr />
+      </div>
+    </div>
+    %end_asset%
+
+    <div class="row m-b-3">
+      %begin_asset_metadata_template.picture.picture%
+      <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
+      <div class="
+        col-sm-%asset_metadata_template.picture.size^json_decode^index:textcols%
+        %begin_asset_metadata_template.picture.position^eq:left%col-sm-push-%asset_metadata_template.picture.size^json_decode^index:piccols%%end_asset%
+        animated
+      " data-animation="fadeInUp" data-delay="0">
+        %asset_contents%
+      </div>
+      <div class="
+        col-sm-%asset_metadata_template.picture.size^json_decode^index:piccols%
+        %begin_asset_metadata_template.picture.position^eq:left%col-sm-pull-%asset_metadata_template.picture.size^json_decode^index:textcols%%end_asset%
+        animated
+      " data-animation="%asset_metadata_template.picture.position^eq:left:fadeInLeft:fadeInRight%" data-delay="250">
+      <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
+        <script runat="server">
+          var pictures = %asset_metadata_template.picture.picture% //JSON array of numbers or strings
+          _.each(pictures, function(id) {
+            if (typeof id === 'number') {
+              // Standard asset (number)
+              print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
+            } else {
+              // Shadow asset, like '12345:v2' (string)
+              print('<img class="img-fluid" src="./?a=' + id + '">')
+            }
+          })
+        </script>
+      </div>
+      %else_asset%
+      <div class="col-xs-12">
+        %asset_contents%
+      </div>
+      %end_asset%
+    </div>
+
+    <!--@@ Buttons paint layout @@-->
+    <script runat="server">
+      var btn_wrapper = {opening: '<div class="row"><div class="col-sm-12">', closing: '</div></div>'}
+    </script>
+    %asset_contents_paint_394551%
+
+  </div><!--@@ /.container @@-->
+
+<!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379097%
+%else_asset%
+</div>
+%end_asset%
