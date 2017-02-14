@@ -1,3 +1,6 @@
+/* jslint asi: true */
+/* globals _, print, data */
+
 // Only show breadcrumbs if enabled and on pages that aren't the homepage
 data.site_index_id = '%globals_site_index_id%'
 data.site_breadcrumbs = '%globals_site_metadata_jcu.features.breadcrumbs%'
