@@ -8,18 +8,12 @@
   </li>
   %else_begin_globals_site_metadata_jcu.site.email%
   <li><span title="Email" class="icon-email2"></span> <a href="mailto:%globals_site_metadata_jcu.site.email%?subject=JCU%20Website%20Enquiry">%globals_site_metadata_jcu.site.email%</a>
+  </li>
   %end_asset%
   %begin_asset_metadata_template.contact.radio%
   <li><span title="UHF radio" class="icon-mobile"></span> %asset_metadata_template.contact.radio%
   </li>
   %end_asset%
-  %begin_asset_metadata_template.contact.address^striphtml%
-  <li>
-    <address class="m-b-0"><span title="Address" class="icon-home"></span> %asset_contents_paint_393621%</address>
-  </li>
-  %end_asset%
-  %begin_asset_metadata_template.contact.directions^striphtml%
-  <li><span title="Directions" class="icon-directions"></span> %asset_contents_paint_393629%
-  </li>
-  %end_asset%
+  <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.contact.address:%asset_assetid%', {prepend: '<li><address class="m-b-0"><span title="Address" class="icon-home"></span>', append: '</address></li>'})</script>
+  <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.contact.directions:%asset_assetid%', {prepend: '<li><span title="Directions" class="icon-directions"></span>', append: '</li>'})</script>
 </ul>
