@@ -1,0 +1,106 @@
+<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
+<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+<!--@@ Only show the hacked up opening tag if there's something there @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379082^replace:>:%
+%else_asset%
+<div
+%end_begin%
+    class="container content-section featured-number-cards %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+    %begin_asset_metadata_template.title.display^eq:show%
+    <div class="row m-b-1">
+      <div class="col-md-6 col-md-offset-3 %asset_metadata_template.title.alignment%">
+        <h2 class="h1">
+          %asset_contents_paint_386956%<!--@@ 386956: title with only phrasing-content html tags left in @@-->
+          %begin_asset_contents_paint_387024%<!--@@ 387024: subtitle with only phrasing-content html tags left in @@-->
+          <br><span class="lead">%asset_contents_paint_387024%<!--@@ 387024: subtitle with only phrasing-content html tags left in @@--></span>
+          %end_asset%
+        </h2>
+        <hr>
+      </div>
+    </div>
+    %end_asset%
+
+    <div class="row m-b-2 text-xs-center">
+      <div class="col-lg-10 col-lg-offset-1 col-md-12">
+        <div class="card-deck-wrapper p-t-3">
+          <div class="card-deck">
+            %begin_asset_metadata_template.numfeature.units1%
+            <div class="card card-block">
+              <div class="card-icon %asset_metadata_template.numfeature.icon1% bg-inverse text-inverse"></div>
+              <p class="card-title animated counter" data-animation="fadeIn" data-delay="0">
+                <span class="timer display-4" data-from="0" data-to="%asset_metadata_template.numfeature.num1%">%asset_metadata_template.numfeature.num1%</span>
+                <br>%asset_metadata_template.numfeature.units1%
+              </p>
+              <p class="card-text">
+                %asset_metadata_template.numfeature.desc1%
+              </p>
+            </div><!--@@ /.card.card-block @@-->
+            %end_asset%
+            %begin_asset_metadata_template.numfeature.units2%
+            <div class="card card-block">
+              <div class="card-icon %asset_metadata_template.numfeature.icon2% bg-inverse text-inverse"></div>
+              <p class="card-title animated counter" data-animation="fadeIn" data-delay="150">
+                <span class="timer display-4" data-from="0" data-to="%asset_metadata_template.numfeature.num2%">%asset_metadata_template.numfeature.num2%</span>
+                <br>%asset_metadata_template.numfeature.units2%
+              </p>
+              <p class="card-text">
+                %asset_metadata_template.numfeature.desc2%
+              </p>
+            </div><!--@@ /.card.card-block @@-->
+            %end_asset%
+            %begin_asset_metadata_template.numfeature.units3%
+            <div class="card card-block">
+              <div class="card-icon %asset_metadata_template.numfeature.icon3% bg-inverse text-inverse"></div>
+              <p class="card-title animated counter" data-animation="fadeIn" data-delay="300">
+                <span class="timer display-4" data-from="0" data-to="%asset_metadata_template.numfeature.num3%">%asset_metadata_template.numfeature.num3%</span>
+                <br>%asset_metadata_template.numfeature.units3%
+              </p>
+              <p class="card-text">
+                %asset_metadata_template.numfeature.desc3%
+              </p>
+            </div><!--@@ /.card.card-block @@-->
+            %end_asset%
+            %begin_asset_metadata_template.numfeature.units4%
+            <div class="card card-block">
+              <div class="card-icon %asset_metadata_template.numfeature.icon4% bg-inverse text-inverse"></div>
+              <p class="card-title animated counter" data-animation="fadeIn" data-delay="450">
+                <span class="timer display-4" data-from="0" data-to="%asset_metadata_template.numfeature.num4%">%asset_metadata_template.numfeature.num4%</span>
+                <br>%asset_metadata_template.numfeature.units4%
+              </p>
+              <p class="card-text">
+                %asset_metadata_template.numfeature.desc4%
+              </p>
+            </div><!--@@ /.card.card-block @@-->
+            %end_asset%
+            %begin_asset_metadata_template.numfeature.units5%
+            <div class="card card-block">
+              <div class="card-icon %asset_metadata_template.numfeature.icon5% bg-inverse text-inverse"></div>
+              <p class="card-title animated counter" data-animation="fadeIn" data-delay="600">
+                <span class="timer display-4" data-from="0" data-to="%asset_metadata_template.numfeature.num5%">%asset_metadata_template.numfeature.num5%</span>
+                <br>%asset_metadata_template.numfeature.units5%
+              </p>
+              <p class="card-text">
+                %asset_metadata_template.numfeature.desc5%
+              </p>
+            </div><!--@@ /.card.card-block @@-->
+            %end_asset%
+          </div><!--@@ /.card-deck @@-->
+        </div><!--@@ /.card-deck-wrapper @@-->
+      </div><!--@@ /.col-lg-10 @@-->
+    </div><!--@@ /.row @@-->
+
+    <!--@@ Buttons paint layout @@-->
+    <script runat="server">
+      var btn_wrapper = {opening: '<div class="row"><div class="col-sm-12">', closing: '</div></div>'}
+    </script>
+    %asset_contents_paint_394551%
+
+<!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
+<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
+%begin_asset_contents^preg_replace:379082%
+%asset_contents^preg_replace:379097%
+%else_asset%
+</div>
+%end_asset%
