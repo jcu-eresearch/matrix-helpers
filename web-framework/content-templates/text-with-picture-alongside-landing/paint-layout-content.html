@@ -13,10 +13,8 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3 %asset_metadata_template.title.alignment%">
         <h2 class="h1">
-          %asset_contents_paint_386956%<!--@@ 386956: title with only phrasing-content html tags left in @@-->
-          %begin_asset_contents_paint_387024%<!--@@ 387024: subtitle with only phrasing-content html tags left in @@-->
-          <br><span class="lead">%asset_contents_paint_387024%<!--@@ 387024: subtitle with only phrasing-content html tags left in @@--></span>
-          %end_asset%
+          <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+          <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
         </h2>
         <hr>
       </div>
