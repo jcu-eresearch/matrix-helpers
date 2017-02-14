@@ -1,10 +1,11 @@
 <script runat="server">
+  this.args = this.args || {}
   function printButton(text, href, klass) {
     if (text) {
       print('<a class="' + klass + '" href="' + href + '">' + text + '</a>')
     }
   }
-  var btn_class_prefix = (this.btn_class_prefix || '') + ' '
+  var btn_class_prefix = (this.args.btn_class_prefix || '') + ' '
   var btn1_text = '%asset_metadata_template.buttons.btn1.text^escapequotes%'
   var btn1_link = '%asset_metadata_template.buttons.btn1.link^as_asset:asset_url%' || '%asset_metadata_template.buttons.btn1.link^escapequotes%'
   var btn1_class = btn_class_prefix + '%asset_metadata_template.buttons.btn1.class^escapequotes%'
@@ -13,8 +14,8 @@
   var btn2_class = btn_class_prefix + '%asset_metadata_template.buttons.btn2.class^escapequotes%'
   var alignment = '%asset_metadata_template.buttons.alignment%' || 'text-sm-center'
   if (btn1_text || btn2_text) {
-    if (this.btn_wrapper) {
-      print(this.btn_wrapper.opening)
+    if (this.args.btn_wrapper) {
+      print(this.args.btn_wrapper.opening)
     }
     if (!this.omit_alignment) {
       print('<div class="' + alignment + '">')
@@ -25,12 +26,10 @@
     if (!this.omit_alignment) {
       print('</div>')
     }
-    if (this.btn_wrapper) {
-      print(this.btn_wrapper.closing)
+    if (this.args.btn_wrapper) {
+      print(this.args.btn_wrapper.closing)
     }
   }
 
-  delete this.btn_wrapper
-  delete this.btn_class_prefix
-  delete this.omit_alignment
+  delete this.args
 </script>

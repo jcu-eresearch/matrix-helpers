@@ -61,7 +61,12 @@
 
     <!--@@ Buttons paint layout @@-->
     <script runat="server">
-      var btn_wrapper = {opening: '<div class="row"><div class="col-sm-12">', closing: '</div></div>'}
+      this.args = {
+        btn_wrapper: {
+          opening: '<div class="row"><div class="col-sm-12">',
+          closing: '</div></div>'
+        }
+      }
     </script>
     %asset_contents_paint_394551%
 
