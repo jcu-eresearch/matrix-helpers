@@ -13,14 +13,12 @@
 
             %begin_asset_metadata_template.title.display^eq:show%
             <h3 class="%asset_metadata_template.title.alignment%">
-              %asset_contents_paint_386956%<!--@@ 386956: title with only phrasing-content html tags left in @@-->
-              %begin_asset_contents_paint_387024%<!--@@ 387024: subtitle with only phrasing-content html tags left in @@-->
-              <br><span class="lead">%asset_contents_paint_387024%<!--@@ 387024: subtitle with only phrasing-content html tags left in @@--></span>
-              %end_asset%
+              <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+              <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
             </h3>
             %end_asset%
 
-            <div class="row">
+            <div class="row m-b-2">
                 %begin_asset_metadata_template.picture.picture%
                 <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
                 <div class="
@@ -56,7 +54,12 @@
 
             <!--@@ Buttons paint layout @@-->
             <script runat="server">
-              var btn_wrapper = {opening: '<div class="row"><div class="col-sm-12">', closing: '</div></div>'}
+              this.args = {
+                btn_wrapper: {
+                  opening: '<div class="row"><div class="col-sm-12">',
+                  closing: '</div></div>'
+                }
+              }
             </script>
             %asset_contents_paint_394551%
         </div>

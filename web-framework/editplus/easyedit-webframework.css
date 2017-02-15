@@ -71,6 +71,7 @@ body.previewMode {
 /* .row conflicts with Framework so set no margins, and only configure margins
  * for WYSIWYG fields.
  */
+.plus .content_type_wysiwyg .metadata .row,
 .row {
   margin-left: 0;
   margin-right: 0;
@@ -119,6 +120,19 @@ body.previewMode {
   height: auto !important;
 }
 
+/* Shrinking vertical spacing */
+#ees_screenContentWrapper {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.plus .bodycopy_manager_div {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+#ees_viperContentWrapper.withViper, .ees_viperContentWrapper.withViper {
+  padding-top: 30px;
+}
+
 /* Show the Asset ID after creation in the Wizard */
 .success .assetId.screenHide {
   display: inline-block;
@@ -145,7 +159,6 @@ body.previewMode {
 .custom-form-question .custom-form-question__drag-handle {
   display: block;
 }
-
 
 /*
  * Main Edit+ toolbar
@@ -256,6 +269,43 @@ body.previewMode {
   padding-bottom: 0;
 }
 
+/* Collapsing metadata sections */
+.metadata h3, #ees_editMetadata h3 {
+  margin-bottom: 0;
+}
+.metadata h4, #ees_editMetadata h4 {
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.collapse-toggle,
+.collapse-toggle:hover,
+.collapse-toggle:focus {
+  text-decoration: none;
+}
+.metadata .collapse-toggle {
+  padding-top: 0.5rem;
+  background: #fafafa;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #dce3ec;
+}
+.collapse-toggle [class^="sectionHeading_"]::after {
+  content: "–";
+  display: inline;
+  margin-left: 0.5rem;
+  padding: 0.1em;
+  color: #aaa;
+}
+.collapse-toggle.collapsed [class^="sectionHeading_"]::after {
+  content: "+";
+}
+.editSection {
+  border-top: 0 none;
+}
+.content_template_custom_layout {
+  margin-bottom: .5rem;
+}
+
 /*
  * Links panel
  */
@@ -279,3 +329,4 @@ body.previewMode {
 #ees_listCurrentUrls ul {
   margin-left: 0;
 }
+

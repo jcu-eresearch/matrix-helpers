@@ -15,10 +15,8 @@
           <div class="row">
             <div class="col-md-8 col-md-offset-2 %asset_metadata_template.title.alignment^empty:text-xs-center%">
               <h2 class="h1">
-                %asset_contents_paint_386956%
-                %begin_asset_contents_paint_387024%
-                <br><span class="lead">%asset_contents_paint_387024%</span>
-                %end_asset%
+                <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+                <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
               </h2>
               <hr>
             </div>
@@ -31,7 +29,12 @@
           </div>
           <!--@@ Buttons paint layout @@-->
           <script runat="server">
-            var btn_wrapper = {opening: '<div class="row m-t-3"><div class="col-sm-12">', closing: '</div></div>'}
+            this.args = {
+              btn_wrapper: {
+                opening: '<div class="row m-t-3"><div class="col-sm-12">',
+                closing: '</div></div>'
+              }
+            }
           </script>
           %asset_contents_paint_394551%
         </div>
