@@ -231,6 +231,30 @@ body.previewMode {
   padding: 0;
 }*/
 
+/* Fix Viper labels, buttons and other heights with non-pixel perfect design */
+#ees_imageEditorContainer .input-group-sm > .form-control,
+#ees_imageEditorContainer .input-group-sm > .input-group-addon,
+#ees_imageEditorContainer .input-group-sm > .input-group-btn > .btn,
+#ees_imageAttributes .inputText,
+#ees_imageVarietiesSelection .addVarietyButton,
+.Viper-chooseAssetRow .Viper-textbox-label {
+  height: auto;
+}
+
+#ees_imageEditorContainer .input-group .form-control {
+  width: auto;
+}
+
+#ees_imageEditorContainer .btn {
+  color: #636363;
+}
+
+/* Squiz Matrix is using FIXED WIDTHS for Bootstrap grids */
+#ees_imageEditorContainer .col-md-3 {
+  width: 280px;
+  text-align: inherit;
+}
+
 /*
  * Metadata panel
  */

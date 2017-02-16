@@ -1,5 +1,5 @@
 /* jslint browser: true, jquery: true, asi: true */
-/* globals EasyEdit, EasyEditConfig, EasyEditEventManager, EasyEditAssetManager, EasyEditComponentsToolbar, EasyEditOverlay, EasyEditBodycopyManager */
+/* globals EasyEdit, EasyEditConfig, EasyEditEventManager, EasyEditAssetManager, EasyEditComponentsToolbar, EasyEditOverlay, EasyEditBodycopyManager, EasyEditImageEditor */
 
 // Easy Edit Suite configuration options.
 EasyEditConfig.debug = false
@@ -117,8 +117,22 @@ EasyEdit.plugins.metadataRename = {
 }
 
 /**
-* Hotfix Plugin - Fixes various EasyEdit bugs
+* Hotfix Plugin - Fixes various EasyEdit bugs and incomatibilities
 */
+EasyEdit.plugins.fixImageEditorAspectRatio = {
+  init: function() {
+    EasyEditEventManager.bind("EasyEditBeforeLoad", function () {
+      var oldFn = EasyEditImageEditor.prototype._getTemplate
+
+      EasyEditImageEditor.prototype._getTemplate = function() {
+          var returnValue = oldFn.apply(this, arguments)
+          // This data attribute, unused by the image editor, conflicts
+          // with our Bootstrap JavaScript loaded above
+          return returnValue.replace('data-toggle="buttons"', '')
+      }
+    })
+  }
+}
 EasyEdit.plugins.fixBugs = {
   init: function () {
     // Bug fix: fix display issues on Preview mode
