@@ -22,7 +22,7 @@ body.previewMode {
 }
 
 #ees_toolBarLogo {
-  background-image: url("https://www.jcu.edu.au/?a=281218:dist/images/jcua-logo-colour.svg");
+  background-image: url("./?a=281218:dist/images/jcua-logo-colour.svg?v=%globals_asset_version:281218%");
   background-repeat: no-repeat;
   height: 43px;
   width: 120px;
