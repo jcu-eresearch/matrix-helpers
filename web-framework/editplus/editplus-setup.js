@@ -25,17 +25,28 @@ EasyEditConfig.analyticsViewId = 318119
 
 function initWebFrameworkComponents() {
   // Collapsing metadata sections
-  $('.content_template_custom_layout .metadata [class^=sectionHeading_], #ees_editMetadata [class^=sectionHeading_]').each(function(index) {
-    var that = $(this)
+  $('.content_template_custom_layout .metadata [class^=schemaHeading_], #ees_editMetadata [class^=schemaHeading_]').each(function(schema_index) {
 
-    // Prepare the metadata section div
-    var metadata_section = that.next('.editSection').attr('id', function() {
-      return 'metadata_' + index + '_' + this.className.replace(' ', '_')
-    }).addClass('collapse')
+    // Prepare the metadata section divs
+    $(this).nextUntil('[class^=schemaHeading]').filter('.editSection').addClass('collapse').each(function(section_index) {
+        // Add identifier to the section for targetting
+        var section_id = 'metadata_schema_' + schema_index + '_section_' + section_index
+        $(this).attr('id', section_id)
+        // Prepare and initialise the section heading
+        $(this).prev().wrap('<a class="collapse-toggle collapsed" data-toggle="collapse" href="#' + section_id + '"></a>').parent().collapse()
+    })
 
-    // Prepare and initialise the section heading
-    //that.attr('data-toggle', 'collapse').attr('data-target', '#' + metadata_section[0].id).collapse()
-    that.wrap('<a class="collapse-toggle collapsed" data-toggle="collapse" href="#' + metadata_section[0].id + '"></a>').parent().collapse()
+    // Add expand and collapse all buttons
+    $(this).append('<span class="pull-xs-right"><a class="collapse-toggle-expand" href="#">+ Expand all</a> <a class="collapse-toggle-collapse m-l-1" href="#">– Collapse all</a></span>')
+  })
+
+  $('.collapse-toggle-expand').click(function() {
+    $(this).parent().parent().nextUntil('[class^=schemaHeading]').filter('.editSection').collapse('show')
+    return false
+  })
+  $('.collapse-toggle-collapse').click(function() {
+    $(this).parent().parent().nextUntil('[class^=schemaHeading]').filter('.editSection').collapse('hide')
+    return false
   })
 }
 

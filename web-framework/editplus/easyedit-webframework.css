@@ -282,6 +282,13 @@ body.previewMode {
   padding-top: 0;
   padding-bottom: 0;
 }
+
+.collapse-toggle-expand,
+.collapse-toggle-collapse {
+  color: #aaa;
+  font-weight: 600;
+}
+
 .collapse-toggle,
 .collapse-toggle:hover,
 .collapse-toggle:focus {
