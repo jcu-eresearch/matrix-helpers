@@ -74,6 +74,29 @@ time a change needs to happen.
   expanded according to the File Reference Method field configured
   on the Design.
 
+## CSS Design Files
+
+Here's what these dynamic files actually support:
+
+    /* Testing asset resolution ./?a=281218:dist/images/jcua-logo-colour.svg */
+    /* Keyword resolution: %globals_asset_assetid% */
+    /* URLs beneath this CSS Design File: "mysource_files/screenIcon-settings.svg" */
+
+    <script runat="server">
+    print('This runs in CSS: ' + [1,2,3].length)
+    </script>
+
+    /*@@ Matrix comments go here @@*/
+
+And these just don't work:
+
+    /* This gets stripped out, always.  Yet another bug. */
+    %begin_globals_asset_assetid%
+    body {
+      color: %asset_assetid%;
+    }
+    %end_globals%
+
 ## Comments
 
 Comments within Design files look like this, with a special `<!--@@` start and
@@ -223,8 +246,10 @@ being hard-coded (or hard-configured).
 
 ## CSS Structure
 
-* Create `CSS Design File` when you need to add Matrix references inside it
-* Create `CSS File` when you just want static CSS
+* Create `CSS Design File` when you need to add Matrix references, keywords,
+  dynamic URLs or SSJS inside it
+* Create `CSS File` when you just want static CSS.  Faster, but it doesn't do
+  anything special.
 * Create `CSS File Folder`s for performance and linking.  Ensure that you link
   a given CSS file into the file folder's settings page, not just place the
   CSS file under the given folder.
