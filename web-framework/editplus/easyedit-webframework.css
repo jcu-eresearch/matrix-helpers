@@ -235,6 +235,10 @@ body.previewMode {
  * Metadata panel
  */
 
+#ees_screenMenuList .metadata {
+  background-image: none,url("mysource_files/screenIcon-settings.svg");
+}
+
 /* Metadata heading heights */
 .metadata h3, #ees_editMetadata h3 {
   margin-bottom: 1rem;

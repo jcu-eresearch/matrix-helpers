@@ -95,6 +95,17 @@ EasyEdit.plugins.addUserMenuButtons = {
 }
 
 /**
+* Metadata Rename Plugin - Change the use of 'Metadata' to 'Settings'
+*/
+EasyEdit.plugins.metadataRename = {
+  init: function () {
+    EasyEditEventManager.bind("EasyEditAfterLoad", function () {
+      document.getElementsByClassName('screenType metadata')[0].innerHTML = 'Settings'
+    })
+  }
+}
+
+/**
 * Hotfix Plugin - Fixes various EasyEdit bugs
 */
 EasyEdit.plugins.fixBugs = {
