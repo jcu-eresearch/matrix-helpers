@@ -3,7 +3,8 @@
 ## Terminology
 
 * **Frontend**: the rendered HTML output of a CMS page, as seen by an
-  unauthenticated or unprivileged user.
+  unauthenticated or unprivileged user.  May also refer to simply any server-side
+  rendering of HTML code by PHP or associated layers.
 * **Edit+**: the graphical interface for editing page content that most
   editors will be using. Features a WYSIWYG editor, asset map and other basic
   content-related tools. Typically accessed at `/_edit`.
@@ -40,7 +41,9 @@ behaviour may differ:
 * `TYPE_1`: an asset is displayed in both the frontend and backend navigation,
 
 * `TYPE_2`: links are only displayed in the backend navigation and not
-  displayed on the rendered HTML frontend.
+  displayed on the rendered HTML frontend.  Assets of this link type will
+  be shown with a small icon (an orange pause icon in the bottom left corner in
+  Matrix 5.4).
 
 * `TYPE_3`: links have been referenced, but their purpose is unknown at this
   stage.
