@@ -8,7 +8,7 @@
 <div
 %end_begin%
      class="content-section text-inverse" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
-    <div class="jcu-bg--cover" style="%asset_metadata_template.styled-bg.color^prepend_if:background-color\: ^append_if:;%%asset_metadata_template.styled-bg.image^as_asset:asset_url^prepend_if:background-image\: url(^append_if:);%%asset_metadata_template.styled-bg.attachment^prepend_if:background-attachment\: ^append_if:;%">
+     <div class="jcu-bg--cover" style="%asset_metadata_template.styled-bg.color^prepend_if:background-color\: ^append_if:;%%asset_metadata_template.styled-bg.image^as_asset:asset_url^prepend_if:background-image\: url(^append_if:?v={asset_metadata_template.styled-bg.image^as_asset:asset_version});%%asset_metadata_template.styled-bg.attachment^prepend_if:background-attachment\: ^append_if:;%">
       <div class="container-fluid jcu-bg--black-25pc" style="padding-top: %asset_metadata_template.styled-bg.padding%; padding-bottom: %asset_metadata_template.styled-bg.padding%;">
         <div class="container">
           %begin_asset_metadata_template.title.display^eq:show%
