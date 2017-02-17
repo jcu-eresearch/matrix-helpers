@@ -51,7 +51,8 @@ behaviour may differ:
 * `NOTICE`: not typically visible to edit users, this type of link indicates
   that something will be affected if the linked asset is deleted.  For
   instance, you'll see these appearing in CSS File Folders when linking CSS for
-  minification.
+  minification or when the asset URL notation (`./?a=1234`) is used
+  ([docs](https://matrix.squiz.net/manuals/asset-screens/chapters/linking#a-links)). 
 
 ### Permissions
 
