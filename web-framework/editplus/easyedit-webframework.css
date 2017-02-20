@@ -242,6 +242,17 @@ body.previewMode {
   padding: 0;
 }*/
 
+/* Alert users to permanency of edits made with the image editor */
+#ees_imageDetailsOverlay #ees_editDetails::before {
+  content: "Note: any edits you make here to this image are permanent and affect the original image itself. This means that changes will affect all pages that use this image too.";
+  margin: 1rem;
+  padding: 1rem;
+  display: block;
+  background-color: #fcf8e3;
+  border-color: #faf2cc;
+  color: #8a6d3b;
+}
+
 /* Fix Viper labels, buttons and other heights with non-pixel perfect design */
 #ees_imageEditorContainer .input-group-sm > .form-control,
 #ees_imageEditorContainer .input-group-sm > .input-group-addon,
