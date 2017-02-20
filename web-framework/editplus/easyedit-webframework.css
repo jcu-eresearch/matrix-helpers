@@ -210,6 +210,17 @@ body.previewMode {
   line-height: inherit;
 }
 
+/* Reset line height for rows on this screen */
+#ees_pageNaming .row,
+#ees_detailsRedirect .row {
+  line-height: initial;
+}
+
+/* Highlight the page name fields */
+#ees_pageNaming .cellName {
+  font-weight: 600;
+}
+
 /*
  * Content panel
  */
@@ -356,6 +367,12 @@ body.previewMode {
   background-position-x: 88%;
 }
 
+/* Hide the pointless Link Value field */
+.ees_locationLinks .linkValueHeading,
+.ees_locationLinks .linkValue {
+  display: none;
+}
+
 /*
  * URLs panel
  */
@@ -363,5 +380,27 @@ body.previewMode {
 /* Remove extraneous margin, padding already present */
 #ees_listCurrentUrls ul {
   margin-left: 0;
+}
+
+/* Reset line height for rows on this screen */
+#ees_editURLs .row {
+  line-height: initial;
+}
+
+/* Add helper text to web path input fields */
+#ees_webPaths {
+  counter-reset: path-row-counter;
+}
+#ees_newWebPath::before {
+  content: "New Path";
+}
+#ees_webPaths .row::before {
+  content: "Path " counter(path-row-counter,decimal);
+  counter-increment: path-row-counter;
+}
+#ees_newWebPath::before,
+#ees_webPaths .row::before {
+  font-weight: 600;
+  margin-right: 2rem;
 }
 

@@ -1,5 +1,5 @@
 /* jslint browser: true, jquery: true, asi: true */
-/* globals EasyEdit, EasyEditConfig, EasyEditEventManager, EasyEditAssetManager, EasyEditComponentsToolbar, EasyEditOverlay, EasyEditBodycopyManager, EasyEditImageEditor */
+/* globals EasyEdit, EasyEditConfig, EasyEditEventManager, EasyEditAssetManager, EasyEditComponentsToolbar, EasyEditOverlay, EasyEditBodycopyManager, EasyEditImageEditor, EasyEditLocalise */
 
 // Easy Edit Suite configuration options.
 EasyEditConfig.debug = false
@@ -15,6 +15,31 @@ EasyEditConfig.contextsEnabled = true
 EasyEditConfig.markdownEnabled = true
 EasyEditConfig.enableSiteEditing = true
 EasyEditConfig.analyticsViewId = 318119
+
+// Localisation of certain strings
+EasyEditLocalise.language = 'en'
+EasyEditLocalise.translations.en = {
+  strings: {
+    "Cascade Status Change": "Cascade status change to children",
+    "Context Switcher": "Language Switcher",
+    "Change Context": "Change Language",
+    "Changing context to %1": "Changing language to %1",
+    "Metadata": "Settings",
+    "Page Name": "Page Name (used as title/header)",
+    "Page Short Name": "Page Short Name (used in navigation)",
+    "Related Image": "Related Image (Thumbnail)",
+    "Styling": "Wrapper HTML",
+    "Presentation": "Element",
+    "CSS class": "CSS Classes (space separated)",
+    "Show in Menu": "Show in Navigation",
+    "Add Remaps?": "Automatically add redirections on path change?",
+    'When set to "%1", this option will add remaps for Web Paths that have been changed above.': 'When set to "%1", this option will create redirections for users accessing the old Web Paths to the new path. Leave this set to "%1" to ensure old URLs will continue to work.',
+    "1": "1 month",
+    "3": "3 months",
+    "6": "6 months"
+  }
+}
+
 
 // Edit+ Plugins
 // See https://matrix.squiz.net/manuals/edit-plus/chapters/javascript-plugins for details
@@ -101,17 +126,6 @@ EasyEdit.plugins.addUserMenuButtons = {
         buttons += '</div>'
         return $(oldFn()).append(buttons)[0].outerHTML
       }
-    })
-  }
-}
-
-/**
-* Metadata Rename Plugin - Change the use of 'Metadata' to 'Settings'
-*/
-EasyEdit.plugins.metadataRename = {
-  init: function () {
-    EasyEditEventManager.bind("EasyEditAfterLoad", function () {
-      document.getElementsByClassName('screenType metadata')[0].innerHTML = 'Settings'
     })
   }
 }
