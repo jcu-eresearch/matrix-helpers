@@ -1,10 +1,10 @@
 {
     "assets_types": {
-        "File": "inherit"
-        "File Bridge": "inherit"
-        "Folder": "inherit"
-        "Form": "inherit"
-        "Page": "inherit"
+        "File": "inherit",
+        "File Bridge": "inherit",
+        "Folder": "inherit",
+        "Form": "inherit",
+        "Page": "inherit",
         "Image Variety": "inherit"
     },
     "root_nodes": [1],
