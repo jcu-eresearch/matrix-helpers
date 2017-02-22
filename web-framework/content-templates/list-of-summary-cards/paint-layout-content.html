@@ -19,7 +19,62 @@
             %end_asset%
 
             <div class="row m-b-2">
-				<pre>%asset_metadata_template.list.items%</pre>
+
+
+        <script runat="server">
+          var assetList="%asset_metadata_template.list.items%"
+          var cardLayout = "%asset_metadata_template.card.layout%"
+
+          assetList = assetList.slice(1,-1)
+          var assets = assetList.split(",")
+
+          if (cardLayout == "column")
+            _.each(assets, drawCar
+          else if (cardLayout == "thumbnails")
+            _.each(assets, drawCard)
+          else
+            _.each(assets, drawCard)
+
+
+          function drawCard(assetId) {
+            var profileUrl = "%globals_asset_metadata_jcu.summarycard.override.url:" + assetId + "%"
+            var image = 'globals_asset_metadata_jcu.summarycard.image:' + assetId
+            var buttonText = "More Details"
+            var target = ""
+            var rel = ""
+            var imageOptions = { prepend: '<img class="card-img-top" src="./?a=', append: ':v4"/>' }
+
+ //           print('<pre>%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '%, profileUrl- ' + profileUrl + '</pre>') // debugging
+ //           print('<pre>%globals_asset_metadata_jcu.summarycard.image:' + assetId + '%, image- "' + image + '"</pre>') //debugging
+
+            print('<div class="card card-outline-secondary"><div class="card-block">')
+
+            print('%globals_asset_metadata_jcu.summarycard.image:' + assetId + '^prepend_if:<img class="card-img-top" src="./?a=^append_if:">%')
+
+
+            print('<h4 class="card-title">%globals_asset_attribute_name:' + assetId + '%</h4>')
+            print('<p class="card-text">%globals_asset_metadata_jcu.summarycard.description:' + assetId + '%</p>')
+            if (profileUrl == "") {
+              // we will be linking to the original page within this site
+              profileUrl = "./?a=" + assetId
+            } else {
+              // we will be linking to an external page
+              target = ' target="_blank" '
+              rel = ' rel="external noopener" '
+            }
+
+            print('<a class="btn btn-secondary"' + target + rel + ' href="' + profileUrl + '">' + buttonText + '</a>')
+            print('</div></div>')
+          }
+
+        </script>
+
+
+
+
+
+
+
             </div>
 
             <!--@@ Buttons paint layout @@-->
