@@ -6,7 +6,7 @@
 %asset_contents^preg_replace:379082^replace:>:%
 %else_asset%
 <div
-%end_begin%
+%end_asset%
     class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
     <div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1 container">
@@ -22,28 +22,34 @@
 
 
         <script runat="server">
-          var assetList="%asset_metadata_template.list.items%"
-          var cardLayout = "%asset_metadata_template.card.layout%"
+           var appendStriphtml = '^striphtml:<abbr><audio><b><bdo><br><button><canvas><cite><code><command><datalist><dfn><em><embed><i><iframe><img><input><kbd><keygen><label><mark><math><meter><noscript><object><output><progress><q><ruby><samp><script><select><small><span><strong><sub><sup><svg><textarea><time><var><video><wbr><a><area><del><ins><link><map><meta>'
+
+          var assetList="%asset_metadata_template.list.items%"  // debugging
+          var cardLayout = "%asset_metadata_template.card.layout%"  // debugging
 
           assetList = assetList.slice(1,-1)
           var assets = assetList.split(",")
 
-          if (cardLayout = "mosaicGrid") {
+          if (cardLayout == "mosaicGrid") {
             print('<div class="card-columns">')
             _.each(assets, drawGridCard)
             print('</div>')
-          } else if (cardLayout = "column")
+          } else if (cardLayout == "column") {
+            print('<div class="container-fluid">')
             _.each(assets, drawColumnCard)
-          else
+            print('</div>')
+          } else
             print("<h3>Card layout '" + cardLayout + "'' not supported yet </h3>")
 
 
           function drawGridCard(assetId) {
-            print('<div class="card card-outline-secondary"><div class="card-block">')
+            print('<div class="card card-outline-secondary">')
 
-            var imageWrapper = { prepend: '<img class="img-fluid" src="./?a=', append: '"/>' }
+            var imageShape = '%asset_metadata_template.card.image.shape^replace:circle:img-circle^replace:natural: %'
+            var imageWrapper = { prepend: '<img class="img-fluid ' + imageShape + '" src="./?a=', append: '"/>' }
             print('%globals_asset_metadata_jcu.summarycard.image:' + assetId + '^prepend_if:' + imageWrapper.prepend +'^append_if:' + imageWrapper.append + '%')
 
+            print('<div class="card-block">')
             print('<h4 class="card-title">%globals_asset_attribute_name:' + assetId + '%</h4>')
             print('<p class="card-text">%globals_asset_metadata_jcu.summarycard.description:' + assetId + '%</p>')
 
@@ -57,25 +63,31 @@
           }
 
           function drawColumnCard(assetId) {
- //           print('<pre>%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '%, profileUrl- ' + profileUrl + '</pre>') // debugging
- //           print('<pre>%globals_asset_metadata_jcu.summarycard.image:' + assetId + '%, image- "' + image + '"</pre>') //debugging
-            print('<div class="card card-outline-secondary"><div class="card-block">')
+            print('<div class="row m-y-2">')
 
-            var imageWrapper = { prepend: '<img class="card-img-top img-fluid" src="./?a=', append: '"/>' }
+            // image section
+            var imageShape = '%asset_metadata_template.card.image.shape^replace:circle:img-circle^replace:natural: %'
+            var imageWrapper = { prepend: '<div class="col-sm-3"><img class="img-fluid ' + imageShape + '" src="./?a=', append: '"/></div>' }
             print('%globals_asset_metadata_jcu.summarycard.image:' + assetId + '^prepend_if:' + imageWrapper.prepend +'^append_if:' + imageWrapper.append + '%')
 
-            print('<h4 class="card-title">%globals_asset_attribute_name:' + assetId + '%</h4>')
-            print('<div class="row"')
+            print('<div class="col-sm-9">')
+
+            // text section
+            var byline = '%globals_asset_metadata_jcu.features.byline:' + assetId + appendStriphtml + '%'
+            print('<h4>%globals_asset_attribute_name:' + assetId + '%</h4>')
+            print('<h5>' + byline + '</h5>')
             print('<p class="card-text">%globals_asset_metadata_jcu.summarycard.description:' + assetId + '%</p>')
-            print('</div>')
+
             var buttonText = "More Details"
             var externalUrlTarget = ' target="_blank" rel="external noopener" '
-            var href = '%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'%'
+            var href = '%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"%'
+ 
+            print('<a class="btn btn-link" ' + href + '>' + buttonText + '</a>')
 
-
-            print('<a class="btn btn-secondary" ' + href + '">' + buttonText + '</a>')
             print('</div></div>')
           }
+
+
         </script>
 
 
