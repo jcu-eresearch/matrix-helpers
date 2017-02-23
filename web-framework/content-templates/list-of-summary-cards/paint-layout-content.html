@@ -28,45 +28,54 @@
           assetList = assetList.slice(1,-1)
           var assets = assetList.split(",")
 
-          if (cardLayout == "column")
-            _.each(assets, drawCar
-          else if (cardLayout == "thumbnails")
-            _.each(assets, drawCard)
+          if (cardLayout = "mosaicGrid") {
+            print('<div class="card-columns">')
+            _.each(assets, drawGridCard)
+            print('</div>')
+          } else if (cardLayout = "column")
+            _.each(assets, drawColumnCard)
           else
-            _.each(assets, drawCard)
+            print("<h3>Card layout '" + cardLayout + "'' not supported yet </h3>")
 
 
-          function drawCard(assetId) {
-            var profileUrl = "%globals_asset_metadata_jcu.summarycard.override.url:" + assetId + "%"
-            var image = 'globals_asset_metadata_jcu.summarycard.image:' + assetId
-            var buttonText = "More Details"
-            var target = ""
-            var rel = ""
-            var imageOptions = { prepend: '<img class="card-img-top" src="./?a=', append: ':v4"/>' }
-
- //           print('<pre>%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '%, profileUrl- ' + profileUrl + '</pre>') // debugging
- //           print('<pre>%globals_asset_metadata_jcu.summarycard.image:' + assetId + '%, image- "' + image + '"</pre>') //debugging
-
+          function drawGridCard(assetId) {
             print('<div class="card card-outline-secondary"><div class="card-block">')
 
-            print('%globals_asset_metadata_jcu.summarycard.image:' + assetId + '^prepend_if:<img class="card-img-top" src="./?a=^append_if:">%')
-
+            var imageWrapper = { prepend: '<img class="img-fluid" src="./?a=', append: '"/>' }
+            print('%globals_asset_metadata_jcu.summarycard.image:' + assetId + '^prepend_if:' + imageWrapper.prepend +'^append_if:' + imageWrapper.append + '%')
 
             print('<h4 class="card-title">%globals_asset_attribute_name:' + assetId + '%</h4>')
             print('<p class="card-text">%globals_asset_metadata_jcu.summarycard.description:' + assetId + '%</p>')
-            if (profileUrl == "") {
-              // we will be linking to the original page within this site
-              profileUrl = "./?a=" + assetId
-            } else {
-              // we will be linking to an external page
-              target = ' target="_blank" '
-              rel = ' rel="external noopener" '
-            }
 
-            print('<a class="btn btn-secondary"' + target + rel + ' href="' + profileUrl + '">' + buttonText + '</a>')
+            var buttonText = "More Details"
+            var externalUrlTarget = ' target="_blank" rel="external noopener" '
+            var href = '%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'%'
+
+
+            print('<a class="btn btn-secondary" ' + href + '">' + buttonText + '</a>')
             print('</div></div>')
           }
 
+          function drawColumnCard(assetId) {
+ //           print('<pre>%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '%, profileUrl- ' + profileUrl + '</pre>') // debugging
+ //           print('<pre>%globals_asset_metadata_jcu.summarycard.image:' + assetId + '%, image- "' + image + '"</pre>') //debugging
+            print('<div class="card card-outline-secondary"><div class="card-block">')
+
+            var imageWrapper = { prepend: '<img class="card-img-top img-fluid" src="./?a=', append: '"/>' }
+            print('%globals_asset_metadata_jcu.summarycard.image:' + assetId + '^prepend_if:' + imageWrapper.prepend +'^append_if:' + imageWrapper.append + '%')
+
+            print('<h4 class="card-title">%globals_asset_attribute_name:' + assetId + '%</h4>')
+            print('<div class="row"')
+            print('<p class="card-text">%globals_asset_metadata_jcu.summarycard.description:' + assetId + '%</p>')
+            print('</div>')
+            var buttonText = "More Details"
+            var externalUrlTarget = ' target="_blank" rel="external noopener" '
+            var href = '%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'%'
+
+
+            print('<a class="btn btn-secondary" ' + href + '">' + buttonText + '</a>')
+            print('</div></div>')
+          }
         </script>
 
 
