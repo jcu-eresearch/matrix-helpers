@@ -333,7 +333,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js" integrity="sha384-MWq1Lnqj72tmjGdOKuNBn3E0gj3vWfy/1EmR5TVL8d8nGvwgy32YkCpKpTUhwBVv" crossorigin="anonymous"></script>
     <script src="./?a=281218:dist/js/jcu.min.js" integrity="sha384-GXpe6UW5FXR+By2fTo2YeI+yVoY1QGkZdZpppWl3qboYFMqHL7zFEq+X6hRoB1gH" crossorigin="anonymous"></script>
 
-    <MySource_AREA id_name="maps_api" design_area="nest_content" />
+    <!--@@ Google Maps API - You must use your own API key to enable the map
+    feature. More information on the Google Maps API can be found at
+    https://developers.google.com/maps/ @@-->
+    <!--@@ This will automatically get enabled via SSJS inclusion @@-->
+    <script runat="server">
+      var api_key = '%globals_site_metadata_jcu.maps.api_key^escapequotes%'
+      if (data.includes.js.google_maps) {
+        print('<script src="https://maps.googleapis.com/maps/api/js?key=' + api_key + '"></script' + '>')
+      }
+    </script>
 
     <!--@@ Landing template JS, referenced by Matrix Design mysource syntax  @@-->
     <script src="mysource_files/landing.min.js"></script>

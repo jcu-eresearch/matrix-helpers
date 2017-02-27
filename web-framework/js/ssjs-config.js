@@ -10,7 +10,12 @@ if (typeof window !== "undefined") {
     _.each(arguments, function(val) { document.write(JSON.stringify(val)) } )
   }
 }
-var data = {}
+var data = {
+  includes: {
+    css: [],
+    js: []
+  }
+}
 
 function phrasingHtmlFromKeyword(keyword, options) {
   options = options || {}
