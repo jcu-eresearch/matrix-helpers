@@ -13,8 +13,8 @@
 
             %begin_asset_metadata_template.title.display^eq:show%
             <h3 class="%asset_metadata_template.title.alignment%">
-              <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
-              <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
+              <script runat="server">printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+              <script runat="server">printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
             </h3>
             %end_asset%
 

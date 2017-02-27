@@ -13,8 +13,8 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2 %asset_metadata_template.title.alignment^empty:text-xs-center%">
         <h2 class="h1">
-          <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
-          <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
+          <script runat="server">printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+          <script runat="server">printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
         </h2>
         <hr>
       </div>

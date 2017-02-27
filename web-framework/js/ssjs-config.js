@@ -22,12 +22,16 @@ function phrasingHtmlFromKeyword(keyword, options) {
   var strip_modifier = 'striphtml:<abbr><audio><b><bdo><br><button><canvas><cite><code><command><datalist><dfn><em><embed><i><iframe><img><input><kbd><keygen><label><mark><math><meter><noscript><object><output><progress><q><ruby><samp><script><select><small><span><strong><sub><sup><svg><textarea><time><var><video><wbr><a><area><del><ins><link><map><meta>'
 
   if (keyword) {
-    print('%' + keyword + '^' + strip_modifier +
+    return '%' + keyword + '^' + strip_modifier +
       (options.prepend ? '^prepend_if:' + options.prepend : '') +
-      (options.append ? '^append_if:' + options.append : '') + '%')
+      (options.append ? '^append_if:' + options.append : '') + '%'
   } else {
     print('<div class="alert alert-danger" role="alert"><strong>Error!</strong> Phrasing HTML paint layout called without a keyword specified.</div>')
   }
+}
+
+function printPhrasingHtmlFromKeyword(keyword, options) {
+  print(phrasingHtmlFromKeyword(keyword, options))
 }
 
 // Add jcu function execution here...
