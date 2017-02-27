@@ -5,7 +5,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js" integrity="sha384-MWq1Lnqj72tmjGdOKuNBn3E0gj3vWfy/1EmR5TVL8d8nGvwgy32YkCpKpTUhwBVv" crossorigin="anonymous"></script>
   <script src="./?a=281218:dist/js/jcu.min.js?v=%globals_asset_version:281218%" integrity="sha384-GXpe6UW5FXR+By2fTo2YeI+yVoY1QGkZdZpppWl3qboYFMqHL7zFEq+X6hRoB1gH" crossorigin="anonymous"></script>
 
-  <!--@@ landing.min.js @@-->
+  <!--@@ Google maps inclusion @@-->
+  <script runat="server">
+    var api_key = '%globals_site_metadata_jcu.maps.api_key^escapequotes%'
+    if (data.includes.js.google_maps) {
+      print('<script src="https://maps.googleapis.com/maps/api/js?key=' + api_key + '"></script' + '>')
+    }
+  </script>
+
+  <!--@@ landing.min.js; hardcoded as no `my_source/` syntax here @@-->
   <script src="%globals_asset_url:280410%?v=%globals_asset_version:280410%"></script>
 
   <!--@@ Site custom JS @@-->
