@@ -16,7 +16,7 @@ svg.diag {
     /*transform: rotate(-3deg);*/
     float: right;
     clear: right;
-    width: 12em;
+    width: 18em;
     /*width: 240px;*/
     margin: 0 1em 1em; 
 }
