@@ -30,7 +30,7 @@ svg use.highlight {
 }
 </style>
 
-<svg id="diags" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg id="diags" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none">
     <defs>
         <symbol id="block-bg">
             <rect x="0" y="0" width="60" height="50" stroke="none" />
