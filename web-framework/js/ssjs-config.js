@@ -24,19 +24,19 @@ var JCU = {
 
   js: {
     require: function(name) {
-      this._includes.js[name] = true
+      JCU._includes.js[name] = true
     },
     specified: function(name) {
-      return !!this._includes.js[name]
+      return !!JCU._includes.js[name]
     }
   },
 
   css: {
     require: function(name) {
-      this._includes.css[name] = true
+      JCU._includes.css[name] = true
     },
     specified: function(name) {
-      return !!this._includes.css[name]
+      return !!JCU._includes.css[name]
     }
   },
 
@@ -54,13 +54,13 @@ var JCU = {
   },
 
   printPhrasingHtmlFromKeyword: function(keyword, options) {
-    print(this.phrasingHtmlFromKeyword(keyword, options))
+    print(JCU.phrasingHtmlFromKeyword(keyword, options))
   }
 }
 
 // BBB Compatibility
-phrasingHtmlFromKeyword = JCU.phrasingHtmlFromKeyword
-printPhrasingHtmlFromKeyword = JCU.printPhrasingHtmlFromKeyword
+var phrasingHtmlFromKeyword = JCU.phrasingHtmlFromKeyword
+var printPhrasingHtmlFromKeyword = JCU.printPhrasingHtmlFromKeyword
 
 
 // Add jcu function execution here...

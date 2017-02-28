@@ -182,7 +182,6 @@
                   <th scope="row">Frontend Asset</th>
                   <td title="%frontend_asset_short_name%">%frontend_asset_assetid% (%frontend_asset_type_icon% %frontend_asset_type%)</td>
                 </tr>
-                </tr>
                 <tr>
                   <th scope="row">Design</th>
                   <td class="truncate" title="%globals_asset_design_id%"><a class="text-inverse" href="%globals_asset_design_id^as_asset:asset_url%/_admin">%globals_asset_design_id^as_asset:asset_name%</a></td>
@@ -339,7 +338,7 @@
     <!--@@ This will automatically get enabled via SSJS inclusion @@-->
     <script runat="server">
       var api_key = '%globals_site_metadata_jcu.maps.api_key^escapequotes%'
-      if (JCU.js.specified('google_maps') {
+      if (JCU.js.specified('google_maps')) {
         print('<script src="https://maps.googleapis.com/maps/api/js?key=' + api_key + '"></script' + '>')
       }
     </script>
