@@ -13,12 +13,14 @@ svg {
     stroke: none;
 }
 svg.diag {
+    display: inline-block;
+    vertical-align: top;
     /*transform: rotate(-3deg);*/
-    float: right;
-    clear: right;
-    width: 18em;
+    /*float: right;*/
+    /*clear: right;*/
+    width: 10em;
     /*width: 240px;*/
-    margin: 0 1em 1em; 
+    margin: 0 0.5em 0.5em; 
 }
 svg use.highlight {
     fill: #ff9;
