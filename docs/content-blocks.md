@@ -1,38 +1,36 @@
 
 <style>
-
-h1 { padding: 1em 0; }
-h2 { padding: 0.5em 0 1em; }
-
-/* SVG diagrams */
-svg {
-    fill: rgba(200,200,200, 0.25);
-    stroke: #999;
-    stroke-width: 0.3;
-}
-#sourcesvg {
-    display: none;
-}
-#diag-bg {
-    fill: rgba(255,255,255, 1);
-    stroke: none;
-}
-svg.diag {
-    display: inline-block;
-    vertical-align: top;
-    /*transform: rotate(-3deg);*/
-    /*float: right;*/
-    /*clear: right;*/
-    width: 10em;
-    /*width: 240px;*/
-    margin: 0 0.5em 0.5em; 
-}
-svg use.highlight {
-    fill: #ff9;
-    fill: rgba(255,255,153, 0.9);
-    stroke: #333;
-    stroke-width: 0.6;
-}
+    h1 { padding: 1em 0; }
+    h2 { padding: 0.5em 0 1em; }
+    /* SVG diagrams */
+    svg {
+        fill: rgba(200,200,200, 0.25);
+        stroke: #999;
+        stroke-width: 0.3;
+    }
+    #sourcesvg {
+        display: none;
+    }
+    #diag-bg {
+        fill: rgba(255,255,255, 1);
+        stroke: none;
+    }
+    svg.diag {
+        display: inline-block;
+        vertical-align: top;
+        /*transform: rotate(-3deg);*/
+        /*float: right;*/
+        /*clear: right;*/
+        width: 10em;
+        /*width: 240px;*/
+        margin: 0 0.5em 0.5em; 
+    }
+    svg use.highlight {
+        fill: #ff9;
+        fill: rgba(255,255,153, 0.9);
+        stroke: #333;
+        stroke-width: 0.6;
+    }
 </style>
 
 <svg id="diags" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none">
@@ -116,7 +114,32 @@ This content block includes a section of text, with:
     - the picture can be wide, medium or narrow (two thirds, one half, or one third of the page respectively)
 - optionally, one or two buttons following the block of text
 
-Note that as everything other than the text block is optional, this content block can be used for a plain block of text.
+Note that as everything other than the text block is optional, this 
+content block can be used for a plain block of text.
+
+This block is excellent for making a point supported by a vivid image.
+
+
+### Introductory text
+
+<svg class="diag" viewBox="0 0 60 24">
+    <use xlink:href="#block-bg" x="0" y="0"></use>
+    <use xlink:href="#block-text-med" x="6" y="6"></use>
+    <use xlink:href="#block-text-med" x="15" y="6"></use>
+    <use xlink:href="#block-text-med" x="33" y="6"></use>
+    <use xlink:href="#block-border" x="0" y="20"></use>
+</svg>
+
+This block is simply a block of text, displayed in a larger-than-usual font.  
+The intention of this block is to be used at the top of a page to introduce 
+or outline the page's content.
+
+This is sometimes called a lede paragraph or standfirst.
+
+
+
+
+
 
 <!-- <svg class="diag"><use class="highlight" xlink:href="#block"></use></svg> -->
 
