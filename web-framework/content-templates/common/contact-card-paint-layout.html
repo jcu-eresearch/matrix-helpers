@@ -14,6 +14,6 @@
   <li><span title="UHF radio" class="icon-mobile"></span> %asset_metadata_template.contact.radio%
   </li>
   %end_asset%
-  <script runat="server">printPhrasingHtmlFromKeyword('globals_asset_metadata_template.contact.address:%asset_assetid%', {prepend: '<li><address class="m-b-0"><span title="Address" class="icon-home"></span>', append: '</address></li>'})</script>
-  <script runat="server">printPhrasingHtmlFromKeyword('globals_asset_metadata_template.contact.directions:%asset_assetid%', {prepend: '<li><span title="Directions" class="icon-directions"></span>', append: '</li>'})</script>
+  <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.contact.address:%asset_assetid%', {prepend: '<li><address class="m-b-0"><span title="Address" class="icon-home"></span>', append: '</address></li>'})</script>
+  <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.contact.directions:%asset_assetid%', {prepend: '<li><span title="Directions" class="icon-directions"></span>', append: '</li>'})</script>
 </ul>

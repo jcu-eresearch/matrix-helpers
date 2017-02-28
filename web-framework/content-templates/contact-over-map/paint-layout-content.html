@@ -9,7 +9,7 @@
 %end_begin%
     class="map-section content-section %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
     <script runat="server">
-      data.includes.js.google_maps = true
+      JCU.js.require('google_maps')
     </script>
     <div class="canvas-map" id="canvas-map-%asset_assetid%"
          data-marker-lat="%asset_metadata_template.map.marker_lat%"
