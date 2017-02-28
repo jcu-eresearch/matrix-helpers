@@ -13,8 +13,8 @@
 
             %begin_asset_metadata_template.title.display^eq:show%
             <h3 class="%asset_metadata_template.title.alignment%">
-              <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
-              <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
+              <script runat="server">printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+              <script runat="server">printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
             </h3>
             %end_asset%
 
@@ -51,8 +51,14 @@
             print('<div class="alert alert-info">Card layout ' + cardLayout + ' not supported yet </div>')
 
 
-           function buildCardHref2(assetId) {
+          function buildCardHref(assetId) {
             const externalUrlTarget = ' target="_blank" rel="external noopener" '
+
+            return('%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"%')
+          }   // buildCardHref
+ 
+           function buildCardHref2(assetId) {
+            var externalUrlTarget = ' target="_blank" rel="external noopener" '
 
             return('globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"')
           }   // buildCardHref
@@ -68,12 +74,6 @@
              '%'
              return('<pre>' + value + '</pre>')
           }   // buildCardLinkedImage
- 
-          function buildCardHref(assetId) {
-            const externalUrlTarget = ' target="_blank" rel="external noopener" '
-
-            return('%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"%')
-          }   // buildCardHref
  
           function buildCardImage(assetId, options) {
             options = options || { prepend : '', append : ''}
@@ -110,9 +110,7 @@
 
             print('<div class="card-block">')
             print('<h4 class="card-title">%globals_asset_attribute_name:' + assetId + '%</h4>')
-            print('<p class="card-text">')
-            phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + assetId)
-            print('</p>')
+            print('<p class="card-text">' + phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + assetId) + '</p>')
 
             var buttonText = "More Details"
             print('<a class="btn btn-secondary" ' + buildCardHref(assetId) + '>' + buttonText + '</a>')
@@ -133,12 +131,8 @@
 
             var byline = 'globals_asset_metadata_jcu.features.byline:' + assetId
 
-            print('<h5>%globals_asset_attribute_name:' + assetId + '%    <small>')
-            phrasingHtmlFromKeyword(byline)
-            print('</small></h5>')
-            print('<p>')
-            phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + assetId)
-            print('</p>')
+            print('<h5>%globals_asset_attribute_name:' + assetId + '%    <small>' + phrasingHtmlFromKeyword(byline) + '</small></h5>')
+            print('<p>' + phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + assetId) + '</p>')
 
             var buttonText = "More Details"
             print('<a class="btn-link" ' + buildCardHref(assetId) + '>' + buttonText + '</a>')
