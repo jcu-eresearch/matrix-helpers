@@ -90,7 +90,7 @@ svg use.highlight {
     <use xlink:href="#block-pic-sml" x="6" y="6"></use>
     <use xlink:href="#block-border" x="0" y="22"></use>
 </svg>
-<svg class="diag" viewBox="0 0 60 41">
+<svg class="diag" viewBox="0 0 60 37">
     <use xlink:href="#block-bg" x="0" y="0"></use>
     <use xlink:href="#block-heading"></use>
     <use xlink:href="#block-text-med" x="6" y="14"></use>
