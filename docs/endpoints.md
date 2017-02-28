@@ -40,6 +40,8 @@ The URLs might change based upon the configuration located in
 * `?SQ_ASSET_CONTENTS=123&SQ_PAINT_LAYOUT=456` or
   `?SQ_ASSET_CONTENTS=123&SQ_PAINT_LAYOUT_NAME=mylayout` for getting the
   current asset contents using a specific paint layout.
+* `?SQ_SHOW_ERRORS=1` to show errors hidden from the frontend (requires System
+  Administrator access, sadly)
 
 ## Assets
 
