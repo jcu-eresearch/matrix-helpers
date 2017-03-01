@@ -1,12 +1,5 @@
-<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
-<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
-<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
-<!--@@ Only show the hacked up opening tag if there's something there @@-->
-%begin_asset_contents^preg_replace:379082%
-%asset_contents^preg_replace:379082^replace:>:%
-%else_asset%
-<div
-%end_begin%
+<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
+<script runat="server">print(parts.opening)</script>
     class="container content-block process-step %asset_metadata_template.vizfx.border.south% %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml%">
 
     <div class="row">
@@ -25,7 +18,7 @@
 
         <div class="col-xs-2 col-md-1 col-md-offset-1"></div><!--@@ empty div reserving space for the step number above @@-->
         <div class="col-xs-10 col-sm-7">
-            %asset_contents%
+          <script runat="server">print(parts.innerHTML)</script>
         </div>
 
         <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0 col-md-2">
@@ -48,11 +41,4 @@
 
         </div>
     </div>
-
-<!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
-<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
-%begin_asset_contents^preg_replace:379082%
-%asset_contents^preg_replace:379097%
-%else_asset%
-</div>
-%end_asset%
+<script runat="server">print(parts.closing)</script>
