@@ -1,3 +1,3 @@
 
 
-[Content blocks]{content-blocks.html}
+[Content blocks](content-blocks.html)
