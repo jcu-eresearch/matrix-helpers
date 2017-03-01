@@ -120,7 +120,7 @@ content block can be used for a plain block of text.
 This block is excellent for making a point supported by a vivid image.
 
 
-### Introductory text
+### Introductory Text
 
 <svg class="diag" viewBox="0 0 60 24">
     <use xlink:href="#block-bg" x="0" y="0"></use>
@@ -137,6 +137,20 @@ or outline the page's content.
 This is sometimes called a lede paragraph or standfirst.
 
 
+### Text with Styled Background
+
+<svg class="diag" viewBox="0 0 60 37">
+    <use xlink:href="#block-bg" x="0" y="0"></use>
+    <use xlink:href="#block-heading"></use>
+    <use xlink:href="#block-text-med" x="6" y="14"></use>
+    <use xlink:href="#block-text-med" x="15" y="14"></use>
+    <use xlink:href="#block-text-med" x="33" y="14"></use>
+    <use xlink:href="#block-btn" x="25" y="26"></use>
+    <use xlink:href="#block-border" x="0" y="33"></use>
+</svg>
+
+This is a paragraph of text, optionally with a heading before and buttons after,
+but with a photo or coloured background.
 
 
 
