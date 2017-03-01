@@ -1,25 +1,18 @@
-<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
-<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
-<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
-<!--@@ Only show the hacked up opening tag if there's something there @@-->
-%begin_asset_contents^preg_replace:379082%
-%asset_contents^preg_replace:379082^replace:>:%
-%else_asset%
-<div
-%end_begin%
+<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
+<script runat="server">print(parts.opening)</script>
      class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
   <div class="row">
     <div class="col-xs-12 col-md-10 col-md-offset-1 %asset_metadata_template.title.alignment^empty:text-xs-left%">
       %begin_asset_metadata_template.title.display^eq:show%
       <h1>
-        <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+        <script runat="server">printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
       </h1>
-      <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<p class="lead">', append: '</p>'})</script>
+      <script runat="server">printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<p class="lead">', append: '</p>'})</script>
       <hr>
       %end_asset%
 
       <div class="m-b-2">
-        %asset_contents%
+        <script runat="server">print(parts.innerHTML)</script>
       </div>
 
       <div class="m-b-3">
@@ -44,10 +37,4 @@
       %asset_contents_paint_394551%
     </div>
   </div>
-<!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
-<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
-%begin_asset_contents^preg_replace:379082%
-%asset_contents^preg_replace:379097%
-%else_asset%
-</div>
-%end_asset%
+<script runat="server">print(parts.closing)</script>

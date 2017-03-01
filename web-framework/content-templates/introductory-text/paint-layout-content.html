@@ -1,0 +1,9 @@
+<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
+<script runat="server">print(parts.opening)</script>
+  class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 lead">
+      <script runat="server">print(parts.innerHTML)</script>
+    </div>
+  </div>
+<script runat="server">print(parts.closing)</script>

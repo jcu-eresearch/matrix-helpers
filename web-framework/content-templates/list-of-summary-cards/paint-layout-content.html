@@ -1,12 +1,5 @@
-<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
-<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
-<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
-<!--@@ Only show the hacked up opening tag if there's something there @@-->
-%begin_asset_contents^preg_replace:379082%
-%asset_contents^preg_replace:379082^replace:>:%
-%else_asset%
-<div
-%end_asset%
+<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
+<script runat="server">print(parts.opening)</script>
     class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
     <div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1 container">
@@ -56,7 +49,7 @@
 
             return('globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"')
           }   // buildCardHref
- 
+
           function buildCardLinkedImage(assetId, options) {
             options = options || { prepend : '', append : ''}
 
@@ -64,17 +57,17 @@
 
             var value ='%globals_asset_metadata_jcu.summarycard.image:' + assetId +
              '^prepend_if:' + options.prepend + imageWrapper.prepend +
-             '^append_if:' + imageWrapper.append + options.append + 
+             '^append_if:' + imageWrapper.append + options.append +
              '%'
              return('<pre>' + value + '</pre>')
           }   // buildCardLinkedImage
- 
+
           function buildCardHref(assetId) {
             const externalUrlTarget = ' target="_blank" rel="external noopener" '
 
             return('%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"%')
           }   // buildCardHref
- 
+
           function buildCardImage(assetId, options) {
             options = options || { prepend : '', append : ''}
 
@@ -82,7 +75,7 @@
 
             return('%globals_asset_metadata_jcu.summarycard.image:' + assetId +
              '^prepend_if:' + options.prepend + imageWrapper.prepend +
-             '^append_if:' + imageWrapper.append + options.append + 
+             '^append_if:' + imageWrapper.append + options.append +
              '%'
             )
           }
@@ -169,11 +162,4 @@
             %asset_contents_paint_394551%
         </div>
     </div>
-
-<!--@@ Pull out the last closing tag from the Content Container's rendering @@-->
-<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
-%begin_asset_contents^preg_replace:379082%
-%asset_contents^preg_replace:379097%
-%else_asset%
-</div>
-%end_asset%
+<script runat="server">print(parts.closing)</script>

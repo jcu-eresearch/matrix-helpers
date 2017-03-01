@@ -1,4 +1,2 @@
-<!--@@ Regex is the only way to (currently) get how the Content Container should be rendered @@-->
-<!--@@ Pull out the first opening tag from the Content Container's rendering @@-->
-<!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/41 @@-->
-%asset_contents^preg_replace:379082%
+<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
+<script runat="server">print(parts.opening + '>')</script>
