@@ -1,7 +1,7 @@
 
 <style>
     h1 { padding: 1em 0; }
-    h2 { padding: 0.5em 0 1em; }
+    h2 { padding: 2em 0 1em; }
     /* SVG diagrams */
     svg {
         fill: rgba(200,200,200, 0.25);
