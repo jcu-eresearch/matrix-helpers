@@ -6,13 +6,33 @@
 
             %begin_asset_metadata_template.title.display^eq:show%
             <h3 class="%asset_metadata_template.title.alignment%">
-              <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
-              <script runat="server">phrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
+              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
             </h3>
             %end_asset%
 
             <div class="row m-b-2">
+                <div class="col-xs-12">
+                    %asset_contents%
+                </div>
 
+        <style>
+            .thumbnail-gradient {
+              padding : 4px;
+              line-height: 5em;
+              min-height: 5em;
+              background-image : linear-gradient(to top, rgba(200,200,200, 0.2), rgba(200,200,200, 0) 2em);
+              border-top : 1px solid rgb(200,200,200);
+              border-bottom : 1px solid rgb(200,200,200);
+            }
+
+            .thumbnail-gradient p {
+              line-height: 1.3;
+              display: inline-block;
+              margin: 0;
+              vertical-align: middle;
+            }
+        </style>
 
         <script runat="server">
           var assetList="%asset_metadata_template.list.items%"
@@ -21,6 +41,8 @@
           assetList = assetList.slice(1,-1)
           var assets = assetList.split(",")
           var imageShape = '%asset_metadata_template.card.image.shape^replace:circle:img-circle^replace:natural: %'
+
+          print('<pre>' + imageShape + '</pre>')  // debugging
 
 
           // only used for thumbnail grid
@@ -44,9 +66,16 @@
             print('<div class="alert alert-info">Card layout ' + cardLayout + ' not supported yet </div>')
 
 
-           function buildCardHref2(assetId) {
+          function buildCardHref(assetId) {
             const externalUrlTarget = ' target="_blank" rel="external noopener" '
 
+            return('%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"%')
+          }   // buildCardHref
+
+           function buildCardHref2(assetId) {
+            var externalUrlTarget = ' target="_blank" rel="external noopener" '
+
+//            return('href="globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '"')
             return('globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"')
           }   // buildCardHref
 
@@ -55,18 +84,14 @@
 
             var imageWrapper = { prepend: '<a {' + buildCardHref2(assetId) + '}> <img class="img-fluid ' + imageShape + '" src="./?a=', append: '\\:v3"/></a>' }
 
-            var value ='%globals_asset_metadata_jcu.summarycard.image:' + assetId +
+            var result = 'globals_asset_metadata_jcu.summarycard.image:' + assetId +
              '^prepend_if:' + options.prepend + imageWrapper.prepend +
              '^append_if:' + imageWrapper.append + options.append +
-             '%'
-             return('<pre>' + value + '</pre>')
+             ''
+
+             print('<!--\n' + result + '\n-->')
+             return('%' + result + '%')
           }   // buildCardLinkedImage
-
-          function buildCardHref(assetId) {
-            const externalUrlTarget = ' target="_blank" rel="external noopener" '
-
-            return('%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"%')
-          }   // buildCardHref
 
           function buildCardImage(assetId, options) {
             options = options || { prepend : '', append : ''}
@@ -83,15 +108,14 @@
           function drawThumbnailGridCard(assetId, index, list) {
             ++columnCount;
             if (columnCount > columnsPerRow) {
-              print('</div><div class="row">')    // close the row and start a new one
+              print('</div><div class="row m-t-1">')    // close the row and start a new one
               columnCount = 1
               rowCount++
             }
 
             print('<div class="col-sm-2">')
-
             print('<a ' + buildCardHref(assetId) + '>' + buildCardImage(assetId) + '</a>')
-            print('<p class="small">%globals_asset_attribute_name:' + assetId + '%</p>')
+            print('<div class="small thumbnail-gradient"><p>%globals_asset_attribute_name:' + assetId + '%</p></div>')
             print('</div>')
           }   // drawThumbnailGridCard
 
@@ -103,9 +127,7 @@
 
             print('<div class="card-block">')
             print('<h4 class="card-title">%globals_asset_attribute_name:' + assetId + '%</h4>')
-            print('<p class="card-text">')
-            phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + assetId)
-            print('</p>')
+            print('<p class="card-text">' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + assetId) + '</p>')
 
             var buttonText = "More Details"
             print('<a class="btn btn-secondary" ' + buildCardHref(assetId) + '>' + buttonText + '</a>')
@@ -121,17 +143,14 @@
             print(buildCardLinkedImage(assetId, imageOptions))
 
             // text section
-            var columnWidth = '%globals_asset_metadata_jcu.summarycard.image:' + assetId + '^empty:12:9%'
-            print('<div class="col-sm-' + columnWidth + ' m-l-2">')
+            var columnWidth = '%globals_asset_metadata_jcu.summarycard.image:' + assetId + '^notempty:9^empty:12%'
+
+            print('<div class="col-sm-' + columnWidth + '">')
 
             var byline = 'globals_asset_metadata_jcu.features.byline:' + assetId
 
-            print('<h5>%globals_asset_attribute_name:' + assetId + '%    <small>')
-            phrasingHtmlFromKeyword(byline)
-            print('</small></h5>')
-            print('<p>')
-            phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + assetId)
-            print('</p>')
+            print('<h5>%globals_asset_attribute_name:' + assetId + '%    <small>' + JCU.phrasingHtmlFromKeyword(byline) + '</small></h5>')
+            JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + assetId, { prepend : "<p>", append : "</p>"})
 
             var buttonText = "More Details"
             print('<a class="btn-link" ' + buildCardHref(assetId) + '>' + buttonText + '</a>')

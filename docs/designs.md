@@ -114,7 +114,7 @@ You can also use these types of comments in CSS files:
 
 `Design Tags` are embedded XML within your HTML parse file.  They're somewhat
 equivalent to template statements or expressions in other templating
-languages, such as `{% block foo %}` in Jinja2 or `<metal>` in TAL.
+languages, such as `{%raw%}{% block foo %}{%endraw%}` in Jinja2 or `<metal>` in TAL.
 
 For additional documentation, consult the
 [reference](https://matrix-manuals.squiz.net/designs/chapters/design-tags) or
