@@ -20,7 +20,6 @@
               line-height: 5em;
               min-height: 5em;
               background-image : linear-gradient(to top, rgba(200,200,200, 0.2), rgba(200,200,200, 0) 2em);
-              border-top : 1px solid rgb(200,200,200);
               border-bottom : 1px solid rgb(200,200,200);
             }
 
@@ -31,10 +30,17 @@
               vertical-align: middle;
             }
 
-            .thumbnail-wrapper {
+            .image-shape-natural .thumbnail-wrapper {
               height : 0;
               padding-bottom: 100%;
-              background-image : linear-gradient(to top, rgba(200,200,200, 0.2), rgba(200,200,200, 0) 2em);
+              border-bottom : 1px solid rgb(200,200,200);
+              background-image : linear-gradient(to bottom, rgba(200,200,200, 0.2), rgba(200,200,200, 0) 2em);
+            }
+
+            .image-shape-circle .thumbnail-wrapper {
+              height : 0;
+              padding-bottom: 100%;
+              background-image : radial-gradient(closest-side, transparent, transparent 40%, rgba(200,200,200, 0.4) 40%, rgba(200,200,200, 0.1) 70%, rgba(200,200,200, 0) 70%);
             }
         </style>
 
@@ -45,23 +51,22 @@
           assetList = assetList.slice(1,-1)
           var assets = assetList.split(",")
           var imageShape = '%asset_metadata_template.card.image.shape^replace:circle:img-circle^replace:natural: %'
-
-          print('<pre>imageShape is ' + imageShape + '</pre>')  // debugging
+          var imageShapeClass = 'image-shape-' + '%asset_metadata_template.card.image.shape%'
 
 
           // only used for thumbnail grid
           var columnCount = 0
 
           if (cardLayout == "mosaicGrid") {
-            print('<div class="card-columns">')
+            print('<div class="card-columns ' + imageShapeClass + '">')
             _.each(assets, drawGridCard)
             print('</div>')
           } else if (cardLayout == "column") {
-            print('<div class="container-fluid">')
+            print('<div class="container-fluid ' + imageShapeClass + '">')
             _.each(assets, drawColumnCard)
             print('</div>')
           } else if (cardLayout == "thumbnails") {
-              print('<div class="container-fluid"><div class="row">')
+              print('<div class="container-fluid ' + imageShapeClass + '"><div class="row">')
               _.each(assets, drawThumbnailGridCard)
               print('</div></div>')
           } else
@@ -69,78 +74,82 @@
 
 
           function buildCardHref(assetId) {
+            // if there is an override.url set then use that, otherwise get the url for the original asset
+            // override.urls should open in a separate window
             const externalUrlTarget = ' target="_blank" rel="external noopener" '
 
             return('%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"%')
           }   // buildCardHref
  
+          function buildCardImage(assetId, imageWrapper) {
+            //  if there is an image then build the tag, otherwise return nothing
+
+            imageWrapper = imageWrapper || { prepend : '', append : ''}
+
+            var imageTag = { prepend: '<img class="img-fluid ' + imageShape + '" src="./?a=', append: '\\:v3"/>' }
+
+            return('%globals_asset_metadata_jcu.summarycard.image:' + assetId +
+             '^prepend_if:' + imageWrapper.prepend + imageTag.prepend +
+             '^append_if:' + imageTag.append + imageWrapper.append +
+             '%'
+            )
+          }
+
           function buildCardLinkedImage(assetId, imageContainer) {
+            //  If there is an image set then build an image tag for it
+            //  Wrap the image tag (or the lack of it) with a link tag and any wrapper tags 
+            //  passed in via imageContainer.
+            //  It was intended to use conditional keywords to not output the link if the image 
+            //  didn't exist but they don't work in SSJS.
+
             imageContainer = imageContainer || { prepend : '', append : ''}
+
+            var linkTagOpen = imageContainer.prepend + '<a ' + buildCardHref(assetId) + '>'
 /*
-// there is still a problem here - it is ignoring the begin_globals conditionals and always outputting the content they wrap
-
-print('<pre>buildCardLinkedImage jcu.summarycard.image - ' + '%globals_asset_metadata_jcu.summarycard.image:' + assetId + '^empty:image is empty%</pre>')
-
-print('%begin_globals_asset_metadata_jcu.summarycard.image:' + assetId + '%')
-print('<pre>we have an image</pre>')
-print('%end_globals' + '%')
-print('%begin_globals_asset_metadata_jcu.summarycard.image:' + assetId + '^empty:0%')
-print('<pre>returning 0 if image is empty</pre>')
-print('%end_globals' + '%')
-print('%begin_globals_asset_metadata_jcu.summarycard.image:' + assetId + '^empty:false%')
-print('<pre>returning false if image is empty</pre>')
-print('%end_globals' + '%')
-*/
-            // if an image exists then wrap it with the image container and link
-            var linkTagOpen = 'begin_globals_asset_metadata_jcu.summarycard.image:' + assetId + '%\n' +
-              imageContainer.prepend + '<a ' + buildCardHref(assetId) + '>' + '\n%end_globals'
-//            print('<!--\n' + linkTagOpen + '\n-->')
-
             // build the image tag
             var imageWrapper = { prepend: '<img class="img-fluid ' + imageShape + '" src="./?a=', append: '\\:v3"/>' }
             var imageTag = 'globals_asset_metadata_jcu.summarycard.image:' + assetId +
              '^prepend_if:' + imageWrapper.prepend +
              '^append_if:' + imageWrapper.append + ''
-//             print('<!-- buildCardLinkedImage - imageTag \n' + imageTag + '\n-->')
+*/
+            var linkTagClose = '</a>' + imageContainer.append
 
-            var linkTagClose = 'begin_globals_asset_metadata_jcu.summarycard.image:' + assetId + '%\n' + 
-              '</a>' + imageContainer.append + '\n%end_globals'
-//          print('<!--\n' + linkTagClose + '\n-->')
-
-            return('\n%' + linkTagOpen + '%\n%' + imageTag + '%\n%' + linkTagClose + '%')
+            return linkTagOpen + buildCardImage(assetId) + linkTagClose
           }   // buildCardLinkedImage
 
-          function buildCardImage(assetId, options) {
-            options = options || { prepend : '', append : ''}
-
-            var imageWrapper = { prepend: '<img class="img-fluid ' + imageShape + '" src="./?a=', append: '\\:v3"/>' }
-
-            return('%globals_asset_metadata_jcu.summarycard.image:' + assetId +
-             '^prepend_if:' + options.prepend + imageWrapper.prepend +
-             '^append_if:' + imageWrapper.append + options.append +
-             '%'
-            )
-          }
-
           function drawThumbnailGridCard(assetId, index, list) {
+            //  The thumbnail grid will responsively show 3 columns for xs screens, 
+            //  4 columns for small and medium screens and 6 columns for large and xlarge screens.
+            //  Since the cells may not be exactly the same height we need to add an invisible
+            //  full width row at each break point to make sure the layout looks good.
+
+            //  The thumbnail grid assumes that there should always be an image.
+
             ++columnCount;
-            print('<div class="col-sm-2 col-xs-4">')
+            print('<div class="col-xs-4 col-sm-3 col-lg-2">')
             print('<div class="thumbnail-wrapper"><a ' + buildCardHref(assetId) + '>' + buildCardImage(assetId) + '</a></div>')
             print('<div class="small thumbnail-text"><p>%globals_asset_attribute_name:' + assetId + '%</p></div>')
             print('</div>')
 
             if (columnCount % 3 == 0) {
-              print('<div class="hidden-sm-up col-xs-12"></div>')    // close the row and start a new one
+              print('<div class="hidden-sm-up col-xs-12"></div>')    // show 3 columns for xs screens
+            }
+
+            if (columnCount % 4 == 0) {
+              print('<div class="hidden-xs-down hidden-lg-up col-xs-12"></div>')    // show 4 columns for small and medium screens
             }
 
             if (columnCount % 6 == 0) {
-              print('<div class="hidden-xs-down col-xs-12"></div>')    // close the row and start a new one
+              print('<div class="hidden-md-down col-xs-12"></div>')    // show 6 columns for large screens
             }
 
           }   // drawThumbnailGridCard
 
 
           function drawGridCard(assetId) {
+            //  Uses the bootstrap Card tags to layout the assets summary cards
+            //  These cards look good with or without an image
+
             print('<div class="card card-outline-secondary">')
 
             print('<a ' + buildCardHref(assetId) + '>' + buildCardImage(assetId) + '</a>')
@@ -155,6 +164,7 @@ print('%end_globals' + '%')
           }   // drawGridCard
 
           function drawColumnCard(assetId) {
+            //  Summary cards are displayed as a single column. Images are optional.
             print('<div class="row m-b-3">')
 
             // image section
