@@ -1,22 +1,24 @@
-<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
-<script runat="server">print(parts.opening)</script>
+<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%");</script>
+<script runat="server">print(parts.opening);</script>
     class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
     <div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1 container">
 
             %begin_asset_metadata_template.title.display^eq:show%
             <h3 class="%asset_metadata_template.title.alignment%">
-              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
-              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
+              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%');</script>
+              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead m-t-2">', append: '</span>'});</script>
             </h3>
             %end_asset%
+            <div class="m-b-2">
 
-            <div class="row m-b-2">
-<!--@@
-                <div class="col-xs-12 m-b-2">
-                  <script runat="server">print(parts.innerHTML)</script>
-                </div>
-@@-->
+              <div class="row">
+                  <div class="col-xs-12 m-b-2">
+                    <script runat="server">print(parts.innerHTML);</script>
+                  </div>
+              </div>
+
+
         <style>
             .thumbnail-flair .thumbnail-wrapper {
               filter: drop-shadow(4px 4px lightgrey);
@@ -53,52 +55,52 @@
 
         <script runat="server">
 
-          var assetList="%asset_metadata_template.list.items%"
-          assetList = assetList.slice(1,-1)
-          var assets = assetList.split(",")
+          var assetList="%asset_metadata_template.list.items%";
+          assetList = assetList.slice(1,-1);
+          var assets = assetList.split(",");
 
-          var imageShape = '%asset_metadata_template.card.image.shape^replace:circle:img-circle^replace:natural: %'
-          var imageShapeClass = 'image-shape-' + '%asset_metadata_template.card.image.shape%'
-          var flairText = '%asset_metadata_template.card.initial.flair%'
-          var cardLayout = '%asset_metadata_template.card.layout%'
-          var columnCount = 0 // required by drawThumbnailGridCard
+          var imageShape = '%asset_metadata_template.card.image.shape^replace:circle:img-circle^replace:natural: %';
+          var imageShapeClass = 'image-shape-' + '%asset_metadata_template.card.image.shape%';
+          var flairText = '%asset_metadata_template.card.initial.flair%';
+          var cardLayout = '%asset_metadata_template.card.layout%';
+          var columnCount = 0; // required by drawThumbnailGridCard
 
           if (cardLayout == "mosaicGrid") {
-            print('<div class="card-columns ' + imageShapeClass + '">')
-            assets.forEach(drawGridCard)
-            print('</div>')
+            print('<div class="card-columns ' + imageShapeClass + '">');
+            assets.forEach(drawGridCard);
+            print('</div>');
           } else if (cardLayout == "column") {
-            print('<div class="container-fluid ' + imageShapeClass + '">')
-            assets.forEach(drawColumnCard)
-            print('</div>')
+            print('<div class="container-fluid ' + imageShapeClass + '">');
+            assets.forEach(drawColumnCard);
+            print('</div>');
           } else if (cardLayout == "thumbnails") {
-            print('<div class="container-fluid ' + imageShapeClass + '"><div class="row">')
-            assets.forEach(drawThumbnailGridCard)
-            print('</div></div>')
+            print('<div class="container-fluid ' + imageShapeClass + '"><div class="row">');
+            assets.forEach(drawThumbnailGridCard);
+            print('</div></div>');
           } else
-            print('<div class="alert alert-info">Card layout ' + cardLayout + ' not supported yet </div>')
+            print('<div class="alert alert-info">Card layout ' + cardLayout + ' not supported yet </div>');
 
 
           function buildCardHref(assetId) {
             // if there is an override.url set then use that, otherwise get the url for the original asset
             // override.urls should open in a separate window
-            const externalUrlTarget = ' target="_blank" rel="external noopener" '
+            const externalUrlTarget = ' target="_blank" rel="external noopener" ';
 
-            return('%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"%')
+            return('%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"%');
           }   // buildCardHref
  
           function buildCardImage(assetId, imageWrapper) {
             //  if there is an image then build the tag, otherwise return nothing
 
-            imageWrapper = imageWrapper || { prepend : '', append : ''}
+            imageWrapper = imageWrapper || { prepend : '', append : ''};
 
-            var imageTag = { prepend: '<img class="img-fluid ' + imageShape + '" src="./?a=', append: '\\:v3"/>' }
+            var imageTag = { prepend: '<img class="img-fluid ' + imageShape + '" src="./?a=', append: '\\:v3"/>' };
 
             return('%globals_asset_metadata_jcu.summarycard.image:' + assetId +
              '^prepend_if:' + imageWrapper.prepend + imageTag.prepend +
              '^append_if:' + imageTag.append + imageWrapper.append +
              '%'
-            )
+            );
           }
 
           function buildCardLinkedImage(assetId, imageContainer) {
@@ -108,12 +110,12 @@
             //  It was intended to use conditional keywords to not output the link if the image 
             //  didn't exist but they don't work in SSJS.
 
-            imageContainer = imageContainer || { prepend : '', append : ''}
+            imageContainer = imageContainer || { prepend : '', append : ''};
 
-            var linkTagOpen = imageContainer.prepend + '<a ' + buildCardHref(assetId) + '>'
-            var linkTagClose = '</a>' + imageContainer.append
+            var linkTagOpen = imageContainer.prepend + '<a ' + buildCardHref(assetId) + '>';
+            var linkTagClose = '</a>' + imageContainer.append;
 
-            return linkTagOpen + buildCardImage(assetId) + linkTagClose
+            return linkTagOpen + buildCardImage(assetId) + linkTagClose;
           }   // buildCardLinkedImage
 
           function drawThumbnailGridCard(assetId, index, list) {
@@ -126,24 +128,24 @@
 
             ++columnCount;
 
-            print('<div class="col-xs-4 col-sm-3 col-lg-2 ' + (flairText == "" ? '' : ' thumbnail-flair ') + '">')
-            print('<div class="thumbnail-wrapper"><a ' + buildCardHref(assetId) + '>' + buildCardImage(assetId) + '</a></div>')
-            print('<div class="small thumbnail-text"><p>' + (flairText ? '<strong>' + flairText + '</strong>' : '') + '<br/>%globals_asset_attribute_name:' + assetId + '%</p></div>')
-            print('</div>')
+            print('<div class="col-xs-4 col-sm-3 col-lg-2 ' + (flairText == "" ? '' : ' thumbnail-flair ') + '">');
+            print('<div class="thumbnail-wrapper"><a ' + buildCardHref(assetId) + '>' + buildCardImage(assetId) + '</a></div>');
+            print('<div class="small thumbnail-text"><p>' + (flairText ? '<strong>' + flairText + '</strong>' : '') + '<br/>%globals_asset_attribute_name:' + assetId + '%</p></div>');
+            print('</div>');
 
             if (columnCount % 3 == 0) {
-              print('<div class="hidden-sm-up col-xs-12"></div>')    // show 3 columns for xs screens
+              print('<div class="hidden-sm-up col-xs-12"></div>');    // show 3 columns for xs screens
             }
 
             if (columnCount % 4 == 0) {
-              print('<div class="hidden-xs-down hidden-lg-up col-xs-12"></div>')    // show 4 columns for small and medium screens
+              print('<div class="hidden-xs-down hidden-lg-up col-xs-12"></div>');    // show 4 columns for small and medium screens
             }
 
             if (columnCount % 6 == 0) {
-              print('<div class="hidden-md-down col-xs-12"></div>')    // show 6 columns for large screens
+              print('<div class="hidden-md-down col-xs-12"></div>');    // show 6 columns for large screens
             }
 
-            flairText = ""
+            flairText = "";
 
           }   // drawThumbnailGridCard
 
@@ -152,41 +154,41 @@
             //  Uses the bootstrap Card tags to layout the assets summary cards
             //  These cards look good with or without an image
 
-            print('<div class="card card-outline-secondary">')
+            print('<div class="card card-outline-secondary">');
 
-            print('<a ' + buildCardHref(assetId) + '>' + buildCardImage(assetId) + '</a>')
+            print('<a ' + buildCardHref(assetId) + '>' + buildCardImage(assetId) + '</a>');
 
-            print('<div class="card-block">')
-            print('<h4 class="card-title">%globals_asset_attribute_name:' + assetId + '%</h4>')
-            print('<p class="card-text">' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + assetId) + '</p>')
+            print('<div class="card-block">');
+            print('<h4 class="card-title">%globals_asset_attribute_name:' + assetId + '%</h4>');
+            print('<p class="card-text">' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + assetId) + '</p>');
 
-            var buttonText = "More Details"
-            print('<a class="btn btn-secondary" ' + buildCardHref(assetId) + '>' + buttonText + '</a>')
-            print('</div></div>')
+            var buttonText = "More Details";
+            print('<a class="btn btn-secondary" ' + buildCardHref(assetId) + '>' + buttonText + '</a>');
+            print('</div></div>');
           }   // drawGridCard
 
           function drawColumnCard(assetId) {
             //  Summary cards are displayed as a single column. Images are optional.
-            print('<div class="row m-b-3">')
+            print('<div class="row m-b-3">');
 
             // image section
-            var imageOptions = { prepend : '<div class="col-sm-3 ">', append : '</div>'}
-            print(buildCardLinkedImage(assetId, imageOptions))
+            var imageOptions = { prepend : '<div class="col-sm-3 ">', append : '</div>'};
+            print(buildCardLinkedImage(assetId, imageOptions));
 
             // text section
-            var columnWidth = '%globals_asset_metadata_jcu.summarycard.image:' + assetId + '^notempty:9^empty:12%'
+            var columnWidth = '%globals_asset_metadata_jcu.summarycard.image:' + assetId + '^notempty:9^empty:12%';
 
-            print('<div class="col-sm-' + columnWidth + '">')
+            print('<div class="col-sm-' + columnWidth + '">');
 
-            var byline = 'globals_asset_metadata_jcu.features.byline:' + assetId
+            var byline = 'globals_asset_metadata_jcu.features.byline:' + assetId;
 
-            print('<h5>%globals_asset_attribute_name:' + assetId + '%    <small>' + JCU.phrasingHtmlFromKeyword(byline) + '</small></h5>')
-            JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + assetId, { prepend : "<p>", append : "</p>"})
+            print('<h5>%globals_asset_attribute_name:' + assetId + '%    <small>' + JCU.phrasingHtmlFromKeyword(byline) + '</small></h5>');
+            JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + assetId, { prepend : "<p>", append : "</p>"});
 
-            var buttonText = "More Details"
-            print('<a class="btn-link" ' + buildCardHref(assetId) + '>' + buttonText + '</a>')
+            var buttonText = "More Details";
+            print('<a class="btn-link" ' + buildCardHref(assetId) + '>' + buttonText + '</a>');
 
-            print('</div></div>')
+            print('</div></div>');
           }   // drawColumnCard
 
 
@@ -207,9 +209,9 @@
                   opening: '<div class="row"><div class="col-sm-12">',
                   closing: '</div></div>'
                 }
-              }
+              };
             </script>
             %asset_contents_paint_394551%
         </div>
     </div>
-<script runat="server">print(parts.closing)</script>
+<script runat="server">print(parts.closing);</script>
