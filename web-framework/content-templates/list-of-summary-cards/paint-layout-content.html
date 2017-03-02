@@ -59,16 +59,16 @@
 
           if (cardLayout == "mosaicGrid") {
             print('<div class="card-columns ' + imageShapeClass + '">')
-            _.each(assets, drawGridCard)
+            assets.forEach(drawGridCard)
             print('</div>')
           } else if (cardLayout == "column") {
             print('<div class="container-fluid ' + imageShapeClass + '">')
-            _.each(assets, drawColumnCard)
+            assets.forEach(drawColumnCard)
             print('</div>')
           } else if (cardLayout == "thumbnails") {
-              print('<div class="container-fluid ' + imageShapeClass + '"><div class="row">')
-              _.each(assets, drawThumbnailGridCard)
-              print('</div></div>')
+            print('<div class="container-fluid ' + imageShapeClass + '"><div class="row">')
+            assets.forEach(drawThumbnailGridCard)
+            print('</div></div>')
           } else
             print('<div class="alert alert-info">Card layout ' + cardLayout + ' not supported yet </div>')
 
@@ -105,13 +105,6 @@
             imageContainer = imageContainer || { prepend : '', append : ''}
 
             var linkTagOpen = imageContainer.prepend + '<a ' + buildCardHref(assetId) + '>'
-/*
-            // build the image tag
-            var imageWrapper = { prepend: '<img class="img-fluid ' + imageShape + '" src="./?a=', append: '\\:v3"/>' }
-            var imageTag = 'globals_asset_metadata_jcu.summarycard.image:' + assetId +
-             '^prepend_if:' + imageWrapper.prepend +
-             '^append_if:' + imageWrapper.append + ''
-*/
             var linkTagClose = '</a>' + imageContainer.append
 
             return linkTagOpen + buildCardImage(assetId) + linkTagClose
