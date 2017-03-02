@@ -10,7 +10,7 @@ JCU.data.frontend_breadcrumbs = '%frontend_asset_metadata_jcu.features.breadcrum
 if (JCU.data.frontend_breadcrumbs === 'true' ||
     JCU.data.frontend_breadcrumbs === 'inherit' && JCU.data.site_breadcrumbs) {
   if (JCU.data.site_index_id !== JCU.data.frontend_id) {
-    var lineage = %frontend_asset_linking_lineage%
+    var lineage = JSON.parse("%frontend_asset_linking_lineage^json_encode%")
     if (lineage) {
       print(
         '<div class="container jcu-content">' +
