@@ -97,8 +97,4 @@ var JCU = {
   }
 }
 
-// BBB Compatibility
-var phrasingHtmlFromKeyword = JCU.phrasingHtmlFromKeyword
-var printPhrasingHtmlFromKeyword = JCU.printPhrasingHtmlFromKeyword
-
 // Add jcu function execution here...
