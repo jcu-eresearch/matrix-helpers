@@ -26,7 +26,7 @@
                 ">
                 <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
                   <script runat="server">
-                    var pictures = %asset_metadata_template.picture.picture% //JSON array of numbers or strings
+                    var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%") //JSON array of numbers or strings
                     _.each(pictures, function(id) {
                       if (typeof id === 'number') {
                         // Standard asset (number)
