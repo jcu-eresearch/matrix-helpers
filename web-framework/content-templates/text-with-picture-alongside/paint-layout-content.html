@@ -18,7 +18,7 @@
                   col-sm-%asset_metadata_template.picture.size^json_decode^index:textcols%
                   %begin_asset_metadata_template.picture.position^eq:left%col-sm-push-%asset_metadata_template.picture.size^json_decode^index:piccols%%end_asset%
                 ">
-                    %asset_contents%
+                  <script runat="server">print(parts.innerHTML)</script>
                 </div>
                 <div class="
                   col-sm-%asset_metadata_template.picture.size^json_decode^index:piccols%
