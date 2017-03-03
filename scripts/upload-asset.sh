@@ -2,6 +2,8 @@
 
 # TODO: watch filesystem, upload multiple files/folder at once, upload to multiple asset_ids from one source file (if required?)
 # TODO: re-pull the SQ_CSRF_TOKEN if it changes?  Report this -- detect the "invalid" message
+# TODO: recache, open in browser
+# TODO: handle lock acquisition via HIPO (eg Design files)
 
 # USAGE
 #
@@ -15,6 +17,7 @@
 
 # Start the timer
 start=$SECONDS
+counter=0
 
 METADATA_ASSET_ID_ATTRIBUTE='asset_id'     # The key in the .yml for the asset ID
 METADATA_TYPE_ATTRIBUTE='type'             # The key in the .yml for the upload type
@@ -24,21 +27,21 @@ base_url=$MATRIX_BASE_URL
 [ -z "$base_url" ] && base_url="https://www.jcu.edu.au/_admin"
 
 function display_help {
-    echo "Usage: upload_asset.sh FILE_PATH [FILE_PATH] ..."
-    echo "This script updates the contents of all file paths given to a given "
-    echo "Squiz Matrix instance."
-    echo ""
-    echo "We look for the corresponding asset IDs via a YAML file"
-    echo "with the same name (plus '.yml') as the file.  For instance"
-    echo "'content.html.yml' corresponds to a file named 'content.html'."
+  echo "Usage: upload_asset.sh FILE_PATH [FILE_PATH] ..."
+  echo "This script updates the contents of all file paths given to a given "
+  echo "Squiz Matrix instance."
+  echo ""
+  echo "We look for the corresponding asset IDs via a YAML file"
+  echo "with the same name (plus '.yml') as the file.  For instance"
+  echo "'content.html.yml' corresponds to a file named 'content.html'."
 }
 
 function echo_error {
-    echo -e "\e[31m✘\e[39m  $1"
+  echo -e "\e[31m✘\e[39m  $1"
 }
 
 function echo_success {
-    echo -e "\e[32m✔︎\e[39m  $1"
+  echo -e "\e[32m✔︎\e[39m  $1"
 }
 
 if [ "$1" == "--help" ]; then
@@ -58,8 +61,9 @@ fi
 
 for file in "${@:1}"; do
 
+  echo "Processing $file:"
+
   if ! [ -f "$file" ]; then
-    echo
     echo_error "File not found: $file"
     echo
     continue
@@ -75,7 +79,6 @@ for file in "${@:1}"; do
       continue
     fi
   else
-    echo
     echo_error "No metadata file found; create one at $metadata_file"
     echo
     continue
@@ -84,20 +87,24 @@ for file in "${@:1}"; do
   asset_type=$(shyaml get-value "$METADATA_TYPE_ATTRIBUTE" "$METADATA_TYPE_DEFAULT" < "$metadata_file")
 
   if [ "$asset_type" == "$METADATA_TYPE_DEFAULT" ]; then
-    lock_type='content'         # Type of Matrix locks to acquire (inspect the POST request)
     screen_type='contents'      # Which screen to load (inspect the frame URL)
+    lock_type='content'         # Type of Matrix locks to acquire (inspect the POST request)
     field_type='textarea'     # Where to get the field name to upload (inspect the frame's HTML)
   elif [ "$asset_type" == "text_file" ]; then
-    lock_type='attributes'
     screen_type='edit_file'
+    lock_type='attributes'
     field_type='textarea'
+  elif [ "$asset_type" == "design" ]; then
+    # TODO: not working because of HIPO jobs being invoked; need a workaround
+    screen_type='parse_file'
+    lock_type='parsing'
+    field_type="textarea"
   elif [ "$asset_type" == "file" ]; then
-    lock_type='attr_links'
+    # TODO: File uploads not working yet
     screen_type='details'
+    lock_type='attr_links'
     field_type="input_file"
   fi
-
-  echo "Processing $file ($asset_type type):"
 
   # Create temporary file for data storage
   tmpfile=$(mktemp)
@@ -122,7 +129,12 @@ for file in "${@:1}"; do
   if grep -q 'to release the locks you hold on' "$tmpfile"; then
     echo_success "Successfully acquired locks for asset $asset_id."
   else
-    echo_error "Lock aquisition failed for asset $asset_id."
+    echo_error "Lock acquisition failed for asset $asset_id."
+    lock_debug=$(grep 'Held by user' "$tmpfile" | head -n 1 | cut -d "<" -f 1 | xargs)
+    if [ -z "$lock_debug" ]; then
+      echo -e "   \e[31m⁈\e[39m $lock_debug"
+    fi
+    echo
     continue
   fi
 
@@ -198,14 +210,19 @@ for file in "${@:1}"; do
 
   # Cleanup temp file
   rm -f "$tmpfile"
+
+  # Newline
+  echo
+
+  # Increase counter
+  counter=$(( counter + 1 ))
 done
 
-# At least 54 seconds per upload
-script_duration=$(( SECONDS - start ))
-arg_count=$#
-copy_paste_duration=$(( arg_count * 54 ))
-seconds_diff=$(( copy_paste_duration - script_duration ))
-percent_diff=$(( (copy_paste_duration / script_duration - 1) * 100 ))
-echo
-echo "💖  You just saved $seconds_diff""s ($percent_diff""% faster) versus copy & paste! 💖"
-
+if [ "$counter" -gt 0 ]; then
+  # At least 54 seconds per upload
+  script_duration=$(( SECONDS - start ))
+  copy_paste_duration=$(( counter * 54 ))
+  seconds_diff=$(( copy_paste_duration - script_duration ))
+  percent_diff=$(( (copy_paste_duration / script_duration - 1) * 100 ))
+  echo "💖  You just saved $seconds_diff""s ($percent_diff""% faster) versus copy & paste! 💖"
+fi
