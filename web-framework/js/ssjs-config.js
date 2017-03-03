@@ -88,12 +88,18 @@ var JCU = {
    * @returns {Object} The container's parts
    */
   extractContentContainerParts: function(content) {
+    var result
     if (JCU.isContentWrapped(content)) {
       var lines = content.split('\r\n')
-      return {opening: lines[1].replace('>', ''), innerHTML: _.slice(lines, 2, -2).join('\r\n'), closing: _.nth(lines, -2)}
+      result = {opening: lines[1].replace('>', ''), innerHTML: _.slice(lines, 2, -2).join('\r\n'), closing: _.nth(lines, -2)}
     } else {
-      return {opening: '<div', innerHTML: content, closing: '</div>'}
+      result = {opening: '<div', innerHTML: content, closing: '</div>'}
     }
+    // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/12
+    if (result.innerHTML === "<p></p>") {
+      result.innerHTML = ''
+    }
+    return result
   }
 }
 
