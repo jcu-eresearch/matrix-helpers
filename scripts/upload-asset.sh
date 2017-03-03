@@ -13,7 +13,13 @@
 # can't get it any other way) and get your SQ_CSRF_TOKEN via
 # `https://www.jcu.edu.au/_admin/?SQ_ACTION=getToken`
 
-METADATA_ASSET_ID_ATTRIBUTE='asset_id'
+# Start the timer
+start=$SECONDS
+
+METADATA_ASSET_ID_ATTRIBUTE='asset_id'     # The key in the .yml for the asset ID
+METADATA_TYPE_ATTRIBUTE='type'             # The key in the .yml for the upload type
+METADATA_TYPE_DEFAULT='content'            # What we default to if the .yml file doesn't have a `type`
+
 base_url=$MATRIX_BASE_URL
 [ -z "$base_url" ] && base_url="https://www.jcu.edu.au/_admin"
 
@@ -52,9 +58,7 @@ fi
 
 for file in "${@:1}"; do
 
-  if [ -f "$file" ]; then
-    upload_file="$file"
-  else
+  if ! [ -f "$file" ]; then
     echo
     echo_error "File not found: $file"
     echo
@@ -62,9 +66,14 @@ for file in "${@:1}"; do
   fi
 
   # Test that an asset ID can be found in the associated metadata file
-  metadata_file="$upload_file.yml"
+  metadata_file="$file.yml"
   if [ -f "$metadata_file" ]; then
     asset_id=$(shyaml get-value "$METADATA_ASSET_ID_ATTRIBUTE" < "$metadata_file")
+
+    if [ -z "$asset_id" ]; then
+      echo_error "asset_id key is missing from $metadata_file"
+      continue
+    fi
   else
     echo
     echo_error "No metadata file found; create one at $metadata_file"
@@ -72,13 +81,29 @@ for file in "${@:1}"; do
     continue
   fi
 
-  echo "Processing $file:"
+  asset_type=$(shyaml get-value "$METADATA_TYPE_ATTRIBUTE" "$METADATA_TYPE_DEFAULT" < "$metadata_file")
+
+  if [ "$asset_type" == "$METADATA_TYPE_DEFAULT" ]; then
+    lock_type='content'         # Type of Matrix locks to acquire (inspect the POST request)
+    screen_type='contents'      # Which screen to load (inspect the frame URL)
+    field_type='textarea'     # Where to get the field name to upload (inspect the frame's HTML)
+  elif [ "$asset_type" == "text_file" ]; then
+    lock_type='attributes'
+    screen_type='edit_file'
+    field_type='textarea'
+  elif [ "$asset_type" == "file" ]; then
+    lock_type='attr_links'
+    screen_type='details'
+    field_type="input_file"
+  fi
+
+  echo "Processing $file ($asset_type type):"
 
   # Create temporary file for data storage
   tmpfile=$(mktemp)
 
   # Backend administrator URL
-  matrix_url="$base_url/?SQ_BACKEND_PAGE=main&backend_section=am&am_section=edit_asset&assetid=$asset_id&asset_ei_screen=contents"
+  matrix_url="$base_url/?SQ_BACKEND_PAGE=main&backend_section=am&am_section=edit_asset&assetid=$asset_id&asset_ei_screen=$screen_type"
 
   # Acquire locks
   curl "$matrix_url" \
@@ -91,22 +116,33 @@ for file in "${@:1}"; do
       --form "asset_action=edit" \
       --form "sq_lock_acquire=1" \
       --form "sq_lock_acquire_by_force=0" \
-      --form "sq_lock_type=content" > "$tmpfile"
+      --form "sq_lock_type=$lock_type" > "$tmpfile"
 
   # Test to ensure that the locks are ours
   if grep -q 'to release the locks you hold on' "$tmpfile"; then
-      echo_success "Successfully acquired locks for asset $asset_id."
+    echo_success "Successfully acquired locks for asset $asset_id."
   else
-      echo_error "Lock aquisition failed for asset $asset_id."
-      exit 1
+    echo_error "Lock aquisition failed for asset $asset_id."
+    continue
   fi
 
   # Get the field name from the HTML:
   #   <textarea name="bodycopy_div_393564_content_type_raw_html_864657_html"  [...]
-  fieldname=$(grep -o -E 'name="bodycopy_div_.*?"' "$tmpfile" | cut -d '"' -f 2)
+  #   <textarea name="js_file_391595_new_file"  [...]
+  if [ "$field_type" == "textarea" ]; then
+    fieldname=$(grep -o -E '<textarea name=".*?"' "$tmpfile" | cut -d '"' -f 2)
+  elif [ "$field_type" == "input_file" ]; then
+    fieldname=$(grep -o -E '<input type="file" name=".*?"' "$tmpfile" | cut -d '"' -f 4)
+  fi
 
-  # Send content
-  response=$(curl "$matrix_url" \
+  if [ -z "$fieldname" ]; then
+    echo_error "Could not locate a suitable field for asset $asset_id; check the YAML file or else this asset type isn't supported."
+    continue
+  fi
+
+  # Send content in different manners depending on field type
+  if [ "$field_type" == "textarea" ]; then
+    response=$(curl "$matrix_url" \
       --silent \
       --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
       --form "token=$SQ_CSRF_TOKEN" \
@@ -114,38 +150,62 @@ for file in "${@:1}"; do
       --form "am_form_submitted=1" \
       --form "backend_assetid=$asset_id" \
       --form "asset_action=edit" \
-      --form "$fieldname=<$upload_file" \
+      --form "$fieldname=<$file" \
       --output /dev/null \
       --write-out "%{http_code}")
-
-  # Test to ensure that the content saved correctly
-  if [ "$response" -eq 200 ]; then
-      echo_success "Successfully uploaded content to asset $asset_id."
-  else
-      echo_error "Content upload failed for asset $asset_id. ($response)"
-      exit 1
-  fi
-
-  # Release locks
-  curl "$matrix_url" \
+  elif [ "$field_type" == "input_file" ]; then
+    filename=$(basename "$file")
+    response=$(curl "$matrix_url" \
       --silent \
       --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
       --form "token=$SQ_CSRF_TOKEN" \
       --form "process_form=1" \
       --form "am_form_submitted=1" \
-      --form "backend_assetid=393564" \
+      --form "backend_assetid=$asset_id" \
       --form "asset_action=edit" \
-      --form "sq_lock_release_manual=1" \
-      --form "sq_lock_type=content" > "$tmpfile"
+      --form "$fieldname=@\"$file\"; filename=\"$filename\"" \
+      --output /dev/null \
+      --write-out "%{http_code}")
+  fi
+
+  # Test to ensure that the content saved correctly
+  if [ "$response" -eq 200 ]; then
+    echo_success "Successfully uploaded content to asset $asset_id."
+  else
+    echo_error "Content upload failed for asset $asset_id. ($response)"
+    continue
+  fi
+
+  # Release locks
+  curl "$matrix_url" \
+    --silent \
+    --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
+    --form "token=$SQ_CSRF_TOKEN" \
+    --form "process_form=1" \
+    --form "am_form_submitted=1" \
+    --form "backend_assetid=$asset_id" \
+    --form "asset_action=edit" \
+    --form "sq_lock_release_manual=1" \
+    --form "sq_lock_type=$lock_type" > "$tmpfile"
 
   # Test to ensure that the locks were released
   if grep -q 'button to lock' "$tmpfile"; then
-      echo_success "Successfully released locks for asset $asset_id."
+    echo_success "Successfully released locks for asset $asset_id."
   else
-      echo_success "Lock release failed for asset $asset_id."
-      exit 1
+    echo_success "Lock release failed for asset $asset_id."
+    continue
   fi
 
   # Cleanup temp file
   rm -f "$tmpfile"
 done
+
+# At least 54 seconds per upload
+script_duration=$(( SECONDS - start ))
+arg_count=$#
+copy_paste_duration=$(( arg_count * 54 ))
+seconds_diff=$(( copy_paste_duration - script_duration ))
+percent_diff=$(( (copy_paste_duration / script_duration - 1) * 100 ))
+echo
+echo "💖  You just saved $seconds_diff""s ($percent_diff""% faster) versus copy & paste! 💖"
+
