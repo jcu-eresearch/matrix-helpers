@@ -4,6 +4,7 @@
 # TODO: re-pull the SQ_CSRF_TOKEN if it changes?  Report this -- detect the "invalid" message
 # TODO: recache, open in browser
 # TODO: handle lock acquisition via HIPO (eg Design files)
+# TODO: File, CSS Design File support
 
 # USAGE
 #
@@ -94,8 +95,8 @@ for file in "${@:1}"; do
     screen_type='edit_file'
     lock_type='attributes'
     field_type='textarea'
-  elif [ "$asset_type" == "design" ]; then
-    # TODO: not working because of HIPO jobs being invoked; need a workaround
+  elif [ "$asset_type" == "parse_file" ]; then
+    # TODO: not fully working because of HIPO jobs being invoked on Design; need a workaround
     screen_type='parse_file'
     lock_type='parsing'
     field_type="textarea"
@@ -104,6 +105,10 @@ for file in "${@:1}"; do
     screen_type='details'
     lock_type='attr_links'
     field_type="input_file"
+  else
+    echo_error "Unknown type \"$asset_type\", cannot continue."
+    echo
+    continue
   fi
 
   # Create temporary file for data storage
@@ -219,9 +224,9 @@ for file in "${@:1}"; do
 done
 
 if [ "$counter" -gt 0 ]; then
-  # At least 54 seconds per upload
+  # Average of around 100 seconds per upload (54, 107 ...)
   script_duration=$(( SECONDS - start ))
-  copy_paste_duration=$(( counter * 54 ))
+  copy_paste_duration=$(( counter * 100 ))
   seconds_diff=$(( copy_paste_duration - script_duration ))
   percent_diff=$(( (copy_paste_duration / script_duration - 1) * 100 ))
   echo "💖  You just saved $seconds_diff""s ($percent_diff""% faster) versus copy & paste! 💖"
