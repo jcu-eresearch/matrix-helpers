@@ -1,5 +1,0 @@
-# Use Regex to extract the last closing HTML tag
-# Strip out the tag if it is only a <p> (that's default bodycopy div content in Matrix and not a legit tag here)
-
-/.*(<\/.*?>).*/s        $1
-/.*<\/p>.*/s

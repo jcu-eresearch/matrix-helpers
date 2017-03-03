@@ -5,6 +5,8 @@
 # TODO: recache, open in browser
 # TODO: handle lock acquisition via HIPO (eg Design files)
 # TODO: File, CSS Design File support
+# TODO: Empty linebreak at the end of the files being uploaded (affects things like the JSON listing)
+# TODO: Convert all listing assets over to being metadata'd
 
 # USAGE
 #
