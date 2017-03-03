@@ -3,10 +3,12 @@
 # TODO: watch filesystem, upload multiple files/folder at once, upload to multiple asset_ids from one source file (if required?)
 # TODO: re-pull the SQ_CSRF_TOKEN if it changes?  Report this -- detect the "invalid" message
 # TODO: recache, open in browser
-# TODO: handle lock acquisition via HIPO (eg Design files)
+# TODO: handle lock acquisition via HIPO (eg Design files) and HIPO jobs after the commit (eg CSS Design File)
 # TODO: File, CSS Design File support
 # TODO: Empty linebreak at the end of the files being uploaded (affects things like the JSON listing)
 # TODO: Convert all listing assets over to being metadata'd
+# TODO: cleanup tempfile on failure
+# TODO: Save to Page Contents (with one section -- doesn't save?) -- but tells you it saved with a 200...
 
 # USAGE
 #
@@ -17,6 +19,10 @@
 # You need to login to Squiz and retrieve your SQ_SYSTEM_SESSION cookie (we
 # can't get it any other way) and get your SQ_CSRF_TOKEN via
 # `https://www.jcu.edu.au/_admin/?SQ_ACTION=getToken`
+#
+# For Page or any other assets with "Page Contents", you must target the Bodycopy Div asset ID specifically.
+# This reason for this is that we can only operate on one chunk at a time and "Page Contents" views operate
+# on multiple chunks simultaneously.
 
 # Start the timer
 start=$SECONDS
@@ -148,8 +154,10 @@ for file in "${@:1}"; do
   # Get the field name from the HTML:
   #   <textarea name="bodycopy_div_393564_content_type_raw_html_864657_html"  [...]
   #   <textarea name="js_file_391595_new_file"  [...]
+  # TODO: need to be flexible enough to deal with:
+  #   <textarea id="bodycopy_div_364549_content_type_wysiwyg_802610_contents_div_viper_input" style="display:none;" name="bodycopy_div_364549_content_type_wysiwyg_802610_contents_div_viper_input"
   if [ "$field_type" == "textarea" ]; then
-    fieldname=$(grep -o -E '<textarea name=".*?"' "$tmpfile" | cut -d '"' -f 2)
+    fieldname=$(grep -o -E '<textarea.*?name=".*?"' "$tmpfile" | cut -d '"' -f 2)
   elif [ "$field_type" == "input_file" ]; then
     fieldname=$(grep -o -E '<input type="file" name=".*?"' "$tmpfile" | cut -d '"' -f 4)
   fi
