@@ -1,5 +1,3 @@
-<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
-<script runat="server">print(parts.opening)</script>
      class="content-section text-inverse" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
      <div class="jcu-bg--cover" style="%asset_metadata_template.styled-bg.color^prepend_if:background-color\: ^append_if:;%%asset_metadata_template.styled-bg.image^as_asset:asset_url^prepend_if:background-image\: url(^append_if:?v={asset_metadata_template.styled-bg.image^as_asset:asset_version});%%asset_metadata_template.styled-bg.attachment^prepend_if:background-attachment\: ^append_if:;%">
       <div class="container-fluid jcu-bg--black-25pc" style="padding-top: %asset_metadata_template.styled-bg.padding%; padding-bottom: %asset_metadata_template.styled-bg.padding%;">
@@ -17,7 +15,9 @@
           %end_asset%
           <div class="row m-b-2">
             <div class="col-md-8 col-md-offset-2 animated" data-animation="fadeInUp">
-              <script runat="server">print(parts.innerHTML)</script>
+              <script runat="server">
+                print(parts.innerHTML) //Hack for #72: %asset_assetid%
+              </script>
             </div>
           </div>
           <!--@@ Buttons paint layout @@-->
@@ -33,4 +33,3 @@
         </div>
       </div>
     </div>
-<script runat="server">print(parts.closing)</script>

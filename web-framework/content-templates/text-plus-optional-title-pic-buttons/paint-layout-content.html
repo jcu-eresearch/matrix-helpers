@@ -1,5 +1,3 @@
-<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
-<script runat="server">print(parts.opening)</script>
     class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
     <div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1 container">
@@ -18,7 +16,9 @@
                   col-sm-%asset_metadata_template.picture.size^json_decode^index:textcols%
                   %begin_asset_metadata_template.picture.position^eq:left%col-sm-push-%asset_metadata_template.picture.size^json_decode^index:piccols%%end_asset%
                 ">
-                  <script runat="server">print(parts.innerHTML)</script>
+                  <script runat="server">
+                    print(parts.innerHTML) //Hack for #72: %asset_assetid%
+                  </script>
                 </div>
                 <div class="
                   col-sm-%asset_metadata_template.picture.size^json_decode^index:piccols%
@@ -40,7 +40,9 @@
                 </div>
                 %else_asset%
                 <div class="col-xs-12">
-                  <script runat="server">print(parts.innerHTML)</script>
+                  <script runat="server">
+                    print(parts.innerHTML) //Hack for #72: %asset_assetid%
+                  </script>
                 </div>
                 %end_asset%
             </div>
@@ -57,4 +59,3 @@
             %asset_contents_paint_394551%
         </div>
     </div>
-<script runat="server">print(parts.closing)</script>

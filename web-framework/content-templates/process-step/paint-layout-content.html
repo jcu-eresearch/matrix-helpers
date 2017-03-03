@@ -1,5 +1,3 @@
-<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
-<script runat="server">print(parts.opening)</script>
     class="container content-block process-step %asset_metadata_template.vizfx.border.south% %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml%">
 
     <div class="row">
@@ -18,7 +16,9 @@
 
         <div class="col-xs-2 col-md-1 col-md-offset-1"></div><!--@@ empty div reserving space for the step number above @@-->
         <div class="col-xs-10 col-sm-7">
-          <script runat="server">print(parts.innerHTML)</script>
+          <script runat="server">
+            print(parts.innerHTML) //Hack for #72: %asset_assetid%
+          </script>
         </div>
 
         <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0 col-md-2">
@@ -41,4 +41,3 @@
 
         </div>
     </div>
-<script runat="server">print(parts.closing)</script>

@@ -1,5 +1,3 @@
-<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
-<script runat="server">print(parts.opening)</script>
      class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
   <div class="row">
     <div class="col-xs-12 col-md-10 col-md-offset-1 %asset_metadata_template.title.alignment^empty:text-xs-left%">
@@ -12,7 +10,9 @@
       %end_asset%
 
       <div class="m-b-2">
-        <script runat="server">print(parts.innerHTML)</script>
+        <script runat="server">
+          print(parts.innerHTML) //Hack for #72: %asset_assetid%
+        </script>
       </div>
 
       <div class="m-b-3">
@@ -37,4 +37,3 @@
       %asset_contents_paint_394551%
     </div>
   </div>
-<script runat="server">print(parts.closing)</script>

@@ -1,7 +1,5 @@
-<script runat="server">JCU.js.require('google_maps')</script>
-<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
-<script runat="server">print(parts.opening)</script>
     class="map-section content-section %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+    <script runat="server">JCU.js.require('google_maps')</script>
     <div class="canvas-map" id="canvas-map-%asset_assetid%"
          data-marker-lat="%asset_metadata_template.map.marker_lat%"
          data-marker-lng="%asset_metadata_template.map.marker_lng%"
@@ -26,4 +24,3 @@
         %asset_contents_paint_394551%
       </div>
     </div>
-<script runat="server">print(parts.closing)</script>

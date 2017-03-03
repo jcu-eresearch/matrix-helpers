@@ -1,5 +1,3 @@
-<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%");</script>
-<script runat="server">print(parts.opening);</script>
     class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
     <div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1 container">
@@ -14,7 +12,9 @@
 
               <div class="row">
                   <div class="col-xs-12 m-b-2">
-                    <script runat="server">print(parts.innerHTML);</script>
+                    <script runat="server">
+                      print(parts.innerHTML) //Hack for #72: %asset_assetid%
+                    </script>
                   </div>
               </div>
 
@@ -53,7 +53,7 @@
 
             return('%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"%');
           }   // buildCardHref
- 
+
           function buildCardImage(assetId, imageWrapper) {
             //  if there is an image then build the tag, otherwise return nothing
 
@@ -70,9 +70,9 @@
 
           function buildCardLinkedImage(assetId, imageContainer) {
             //  If there is an image set then build an image tag for it
-            //  Wrap the image tag (or the lack of it) with a link tag and any wrapper tags 
+            //  Wrap the image tag (or the lack of it) with a link tag and any wrapper tags
             //  passed in via imageContainer.
-            //  It was intended to use conditional keywords to not output the link if the image 
+            //  It was intended to use conditional keywords to not output the link if the image
             //  didn't exist but they don't work in SSJS.
 
             imageContainer = imageContainer || { prepend : '', append : ''};
@@ -84,7 +84,7 @@
           }   // buildCardLinkedImage
 
           function drawThumbnailGridCard(assetId, index, list) {
-            //  The thumbnail grid will responsively show 3 columns for xs screens, 
+            //  The thumbnail grid will responsively show 3 columns for xs screens,
             //  4 columns for small and medium screens and 6 columns for large and xlarge screens.
             //  Since the cells may not be exactly the same height we need to add an invisible
             //  full width row at each break point to make sure the layout looks good.
@@ -173,4 +173,3 @@
             %asset_contents_paint_394551%
         </div>
     </div>
-<script runat="server">print(parts.closing);</script>
