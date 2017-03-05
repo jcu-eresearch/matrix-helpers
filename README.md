@@ -10,6 +10,11 @@ First up, let's clone this stuff:
 
     git clone https://github.com/jcu-eresearch/matrix-helpers.git
 
+If you want to run the scripts, install `shyaml` for metadata parsing, via:
+
+    brew install shyaml  # Mac
+    pip install shyaml   # Everything else
+
 To get started, ensure you don't think about Matrix as a traditional CMS where
 you're able to edit content and create sites out of the box.  It's
 much more akin to a framework, like Django or Rails, except it is very limiting
@@ -40,6 +45,11 @@ of the key bits of info.
 You're welcome to use any or all of it. The licence is the Affero GPL 
 (see LICENCE.txt), which means that the system you're using it
 within needs to be compatibly licensed.
+
+The current useful scripts are:
+
+* `scripts/upload_asset.sh`: replaces the content of a Matrix asset with the
+  given contents of a file.
 
 ## More resources
 

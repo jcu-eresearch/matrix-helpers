@@ -1,0 +1,36 @@
+    class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 container">
+
+            %begin_asset_metadata_template.title.display^eq:show%
+            <h3 class="%asset_metadata_template.title.alignment%">
+              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
+            </h3>
+            %end_asset%
+
+            <div class="row">
+                <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
+                <div class="col-sm-3
+                  %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-push-9%end_asset%
+                  text-xs-center m-b-2">
+                  <span class="h1">
+                    %asset_metadata_template.numfeature.num1%
+                  </span><br />
+                  %asset_metadata_template.numfeature.units1%
+                </div>
+                <div class="col-sm-9
+                  %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-pull-3%end_asset%
+                ">
+                  <script runat="server">
+                    print(parts.innerHTML) //Hack for #72: %asset_assetid%
+                  </script>
+                </div>
+            </div>
+
+            <script runat="server">
+              var btn_wrapper = {opening: '<div class="row"><div class="col-sm-12">', closing: '</div></div>'}
+            </script>
+            %asset_contents_paint_394551%
+        </div>
+    </div>

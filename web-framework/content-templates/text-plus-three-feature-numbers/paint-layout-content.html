@@ -1,0 +1,59 @@
+    class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 container">
+
+            %begin_asset_metadata_template.title.display^eq:show%
+            <h3 class="%asset_metadata_template.title.alignment%">
+              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
+            </h3>
+            %end_asset%
+
+
+            <div class="row text-xs-center m-b-1">
+              %begin_asset_metadata_template.numfeature.num1%
+              <div class="col-xs-4 col-lg-2 col-lg-offset-3">
+                <p class="h1">
+                  %asset_metadata_template.numfeature.num1%
+                </p>
+                %asset_metadata_template.numfeature.units1%
+              </div>
+              %end_asset%
+              %begin_asset_metadata_template.numfeature.num2%
+              <div class="col-xs-4 col-lg-2">
+                <p class="h1">
+                  %asset_metadata_template.numfeature.num2%
+                </p>
+                %asset_metadata_template.numfeature.units2%
+              </div>
+              %end_asset%
+              %begin_asset_metadata_template.numfeature.num3%
+              <div class="col-xs-4 col-lg-2">
+                <p class="h1">
+                  %asset_metadata_template.numfeature.num3%
+                </p>
+                %asset_metadata_template.numfeature.units3%
+              </div>
+              %end_asset%
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                  <script runat="server">
+                    print(parts.innerHTML) //Hack for #72: %asset_assetid%
+                  </script>
+                </div>
+            </div>
+
+            <!--@@ Buttons paint layout @@-->
+            <script runat="server">
+              this.args = {
+                btn_wrapper: {
+                  opening: '<div class="row"><div class="col-sm-12">',
+                  closing: '</div></div>'
+                }
+              }
+            </script>
+            %asset_contents_paint_394551%
+        </div>
+    </div>

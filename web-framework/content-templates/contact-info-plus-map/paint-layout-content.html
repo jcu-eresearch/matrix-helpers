@@ -1,0 +1,33 @@
+    class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+    %begin_asset_metadata_template.title.display^eq:show%
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 %asset_metadata_template.title.alignment^empty:text-xs-center%">
+        <h2 class="h1">
+          <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+          <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
+        </h2>
+        <hr>
+      </div>
+    </div>
+    %end_asset%
+    <div class="row">
+      <div class="col-xs-12 col-md-10 col-md-offset-1 container">
+        <div id="details" class="row">
+          <div class="col-md-4">
+            %begin_asset_metadata_template.contact.enquire_link%
+            <div class="m-b-1"><a class="btn btn-primary btn-block page-scroll" href="%asset_metadata_template.contact.enquire_link^as_asset:asset_url^empty:{asset_metadata_template.contact.enquire_link}%">Enquire Now</a>
+            </div>
+            %end_asset%
+            <!--@@ Contact card paint layout @@-->
+            %asset_contents_paint_394355%
+          </div>
+          <div class="col-md-8">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="%asset_metadata_template.contact.map_url%"
+              allowfullscreen="true">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

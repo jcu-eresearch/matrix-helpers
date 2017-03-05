@@ -40,6 +40,12 @@ var JCU = {
     }
   },
 
+  /**
+   * Create a Matrix keyword and modifiers to strip all but phrasing HTML from the input.
+   * @param {string} keyword - The base Matrix keyword that generates input.
+   * @param {Object} options - Options to configure the output keyword
+   * @returns {string} Matrix keyword and modifiers
+   */
   phrasingHtmlFromKeyword: function(keyword, options) {
     options = options || {}
     var strip_modifier = 'striphtml:<abbr><audio><b><bdo><br><button><canvas><cite><code><command><datalist><dfn><em><embed><i><iframe><img><input><kbd><keygen><label><mark><math><meter><noscript><object><output><progress><q><ruby><samp><script><select><small><span><strong><sub><sup><svg><textarea><time><var><video><wbr><a><area><del><ins><link><map><meta>'
@@ -53,14 +59,48 @@ var JCU = {
     }
   },
 
+  /**
+   * Prints the a Matrix keyword to strip all but phrasing HTML from the input.
+   * @param {string} keyword - The base Matrix keyword that generates input.
+   * @param {Object} options - Options to configure the output keyword
+   */
   printPhrasingHtmlFromKeyword: function(keyword, options) {
     print(JCU.phrasingHtmlFromKeyword(keyword, options))
+  },
+
+  /**
+   * Determine if a Content Container's HTML has a wrapper applied.
+   * @param {string} content - Content Container's rendering from asset_contents keyword
+   * @returns {Boolean}
+   */
+  isContentWrapped: function(content) {
+    // Only presentaation tag-wrapped Content Containers start and end with a new line
+    return _.startsWith(content, '\r\n') && _.endsWith(content, '\r\n')
+  },
+
+  /**
+   * Break a Content Container's HTML into parts for use in CCT Paint Layouts.
+   * This solves the problems with not being able to access the Content
+   * Container properties presented in:
+   * https://github.com/jcu-eresearch/matrix-helpers/issues/41
+   * https://github.com/jcu-eresearch/matrix-helpers/issues/59
+   * @param {string} content - Content Container's rendering from asset_contents keyword
+   * @returns {Object} The container's parts
+   */
+  extractContentContainerParts: function(content) {
+    var result
+    if (JCU.isContentWrapped(content)) {
+      var lines = content.split('\r\n')
+      result = {opening: lines[1].replace('>', ''), innerHTML: _.slice(lines, 2, -2).join('\r\n'), closing: _.nth(lines, -2)}
+    } else {
+      result = {opening: '<div', innerHTML: content, closing: '</div>'}
+    }
+    // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/12
+    if (result.innerHTML === "<p></p>") {
+      result.innerHTML = ''
+    }
+    return result
   }
 }
-
-// BBB Compatibility
-var phrasingHtmlFromKeyword = JCU.phrasingHtmlFromKeyword
-var printPhrasingHtmlFromKeyword = JCU.printPhrasingHtmlFromKeyword
-
 
 // Add jcu function execution here...
