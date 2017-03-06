@@ -129,7 +129,6 @@ function upload {
       lock_type='parsing'
       field_type="textarea"
     elif [ "$asset_type" == "file" ]; then
-      # TODO: File uploads not working yet
       screen_type='details'
       lock_type='attr_links'
       field_type="input_file"
@@ -204,6 +203,7 @@ function upload {
         --write-out "%{http_code}")
     elif [ "$field_type" == "input_file" ]; then
       filename=$(basename "$file")
+      # field_12345_server_file= is a mandatory blank field to validate save
       response=$(curl "$matrix_url" \
         --silent \
         --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
@@ -213,6 +213,7 @@ function upload {
         --form "backend_assetid=$asset_id" \
         --form "asset_action=edit" \
         --form "$fieldname=@\"$file\"; filename=\"$filename\"" \
+        --form "$fieldname""_server_file=" \
         --output /dev/null \
         --write-out "%{http_code}")
     fi
