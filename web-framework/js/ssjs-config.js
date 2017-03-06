@@ -1,5 +1,6 @@
 /* jslint browser: true, asi: true */
 /* globals _, print */
+/* David */
 
 // If in a browser (via ?SQ_DISABLE_SERVER_JS), re-work the print() function
 if (typeof window !== "undefined") {
