@@ -8,7 +8,7 @@
 # TODO: Save to Page Contents (with one section -- doesn't save?) -- but tells you it saved with a 200...
 # TODO: Potentially add saving of properties for Nested Content (bodycopy
 #       divs), Asset Listings (see Image Gallery CCT), Design Customisations, CSS/JS File Folder, Folder,
-#       CSS Design File,
+#       CSS Design File, Metadata Schemas/Sections/Fields, Regular Expressions
 
 # USAGE
 
@@ -180,12 +180,14 @@ function upload {
     # Get the field name from the HTML:
     #   <textarea name="bodycopy_div_393564_content_type_raw_html_864657_html"  [...]
     #   <textarea name="js_file_391595_new_file"  [...]
+    # *Here be dragons*: we hope that the first field on the page is the one we want
+
     # TODO: need to be flexible enough to deal with:
     #   <textarea id="bodycopy_div_364549_content_type_wysiwyg_802610_contents_div_viper_input" style="display:none;" name="bodycopy_div_364549_content_type_wysiwyg_802610_contents_div_viper_input"
     if [ "$field_type" == "textarea" ]; then
-      fieldname=$(grep -o -E '<textarea.*?name=".*?"' "$tmpfile" | cut -d '"' -f 2)
+      fieldname=$(grep -o -E '<textarea.*?name=".*?"' "$tmpfile" | cut -d '"' -f 2 | head -n 1)
     elif [ "$field_type" == "input_file" ]; then
-      fieldname=$(grep -o -E '<input type="file" name=".*?"' "$tmpfile" | cut -d '"' -f 4)
+      fieldname=$(grep -o -E '<input type="file" name=".*?"' "$tmpfile" | cut -d '"' -f 4 | head -n 1)
     fi
 
     if [ -z "$fieldname" ]; then
