@@ -17,7 +17,7 @@ start=$SECONDS
 counter=0
 
 [[ $OSTYPE == "darwin"*  ]] && _IS_MAC=yes
-SCRIPT_NAME='pill'
+SCRIPT_NAME='construct'
 SCRIPT_PATH="$0"
 
 METADATA_ASSET_ID_ATTRIBUTE='asset_id'     # The key in the .yml for the asset ID
@@ -51,10 +51,16 @@ function cleanup {
 
 function help {
   echo_bold "$SCRIPT_NAME Usage:"
-  echo "  $SCRIPT_NAME upload [FILE_PATH...] "
+  echo
+  echo "  $SCRIPT_NAME [FILE_PATH...]          (defaults to upload)"
+  echo "  $SCRIPT_NAME upload [FILE_PATH...]"
   echo "  $SCRIPT_NAME watch [FILE_PATH...]"
   echo "  $SCRIPT_NAME install-deps"
   echo "  $SCRIPT_NAME help"
+  echo
+  echo "This is the Construct. It is our loading program. We can load"
+  echo "anything from CSS, to HTML, JavaScript, immages, anything we"
+  echo "need.   ~ Morpheus"
 }
 
 function upload {
@@ -321,11 +327,17 @@ function install-deps {
 }
 
 if [ $# -eq 0 ] || [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
+  # Show help first
   help
   exit 0
 elif [[ $1 =~ ^(help|upload|watch|install-deps)$ ]]; then
+  # Run the corresponding sub-command (^^ function above)
   "$@"
+elif [ -f "$1" ]; then
+  # Default to uploading by filename, if arg was a file that exists
+  upload "$@"
 else
+  # Derp
   echo "Invalid subcommand $1" >&2
   exit 1
 fi
