@@ -48,8 +48,8 @@ within needs to be compatibly licensed.
 
 The current useful scripts are:
 
-* `scripts/upload_asset.sh`: replaces the content of a Matrix asset with the
-  given contents of a file.
+* `scripts/construct`: replaces the content of a Matrix asset with the
+  given contents of a file, image, JS, CSS or more.
 
 ## More resources
 
