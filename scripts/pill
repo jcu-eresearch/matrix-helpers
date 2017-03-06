@@ -1,0 +1,324 @@
+#!/usr/bin/env bash
+
+# TODO: upload to multiple asset_ids from one source file (if required?)
+# TODO: re-pull the SQ_CSRF_TOKEN if it changes?  Report this -- detect the "invalid" message
+# TODO: recache and/or open in browser
+# TODO: handle lock acquisition via HIPO (eg Design files) and HIPO jobs after the commit (eg CSS Design File)
+# TODO: File, CSS Design File support
+# TODO: Empty linebreak at the end of the files being uploaded (affects things like the JSON listing)
+# TODO: Convert all listing assets over to being metadata'd
+# TODO: cleanup tempfile on failure
+# TODO: Save to Page Contents (with one section -- doesn't save?) -- but tells you it saved with a 200...
+
+# USAGE
+
+# Start the timer
+start=$SECONDS
+counter=0
+
+[[ $OSTYPE == "darwin"*  ]] && _IS_MAC=yes
+SCRIPT_NAME='pill'
+SCRIPT_PATH="$0"
+
+METADATA_ASSET_ID_ATTRIBUTE='asset_id'     # The key in the .yml for the asset ID
+METADATA_TYPE_ATTRIBUTE='type'             # The key in the .yml for the upload type
+METADATA_TYPE_DEFAULT='content'            # What we default to if the .yml file doesn't have a `type`
+
+BASE_URL=$MATRIX_BASE_URL
+[ -z "$BASE_URL" ] && BASE_URL="https://www.jcu.edu.au/_admin"
+
+# Global functions
+function echo_error {
+  echo -e "\e[31m✘\e[39m  $1"
+}
+
+function echo_success {
+  echo -e "\e[32m✔︎\e[39m  $1"
+}
+
+function echo_bold {
+  echo -e "\e[1m$1 \e[0m"
+}
+
+function command_exists {
+  command -v "$1" &> /dev/null
+}
+
+function help {
+  echo "Usage:"
+  echo "  $SCRIPT_NAME upload [FILE_PATH...] "
+  echo "  $SCRIPT_NAME watch [FILE_PATH...]"
+  echo "  $SCRIPT_NAME install-deps"
+  echo "  $SCRIPT_NAME help"
+}
+
+function upload {
+  if [ "$1" == "--help" ]; then
+    echo_bold "$SCRIPT_NAME upload [PATH...]"
+    echo "    Upload the specified file paths to Matrix."
+    echo
+    echo "    We look for the corresponding asset IDs via a YAML file"
+    echo "    with the same name (plus '.yml') as the file.  For instance"
+    echo "    'content.html.yml' corresponds to a file named 'content.html'."
+    echo
+    echo "This script requires Backend User access.  It will not work for Simple Edit users."
+    echo "Create a .env file in your matrix-helpers/ folder with the contents like:"
+    echo
+    echo "    export SQ_SYSTEM_SESSION="
+    echo "    export SQ_CSRF_TOKEN="
+    echo
+    echo "You need to login to Squiz and retrieve your SQ_SYSTEM_SESSION cookie via your browser"
+    echo "(we can't get it any other way) and get your SQ_CSRF_TOKEN via the URL:"
+    echo
+    echo '    https://www.jcu.edu.au/_admin/?SQ_ACTION=getToken'
+    echo
+    echo 'For Page or any other assets with `Page Contents`, you must target the Bodycopy Div asset ID specifically.'
+    echo 'This reason for this is that we can only operate on one chunk at a time and `Page Contents` views operate'
+    echo 'on multiple chunks simultaneously.'
+    exit 0
+  fi
+
+  if [ -z "$SQ_CSRF_TOKEN" ] || [ -z "$SQ_SYSTEM_SESSION" ]; then
+    echo "No security data found. Set \$SQ_CSRF_TOKEN and \$SQ_SYSTEM_SESSION. Exiting."
+    exit 1
+  fi
+
+  for file in "${@:1}"; do
+
+    echo "Processing $file:"
+
+    if ! [ -f "$file" ]; then
+      echo_error "File not found: $file"
+      echo
+      continue
+    fi
+
+    # Test that an asset ID can be found in the associated metadata file
+    metadata_file="$file.yml"
+    if [ -f "$metadata_file" ]; then
+      asset_id=$(shyaml get-value "$METADATA_ASSET_ID_ATTRIBUTE" < "$metadata_file")
+
+      if [ -z "$asset_id" ]; then
+        echo_error "asset_id key is missing from $metadata_file"
+        continue
+      fi
+    else
+      echo_error "No metadata file found; create one at $metadata_file"
+      echo
+      continue
+    fi
+
+    asset_type=$(shyaml get-value "$METADATA_TYPE_ATTRIBUTE" "$METADATA_TYPE_DEFAULT" < "$metadata_file")
+
+    if [ "$asset_type" == "$METADATA_TYPE_DEFAULT" ]; then
+      screen_type='contents'      # Which screen to load (inspect the frame URL)
+      lock_type='content'         # Type of Matrix locks to acquire (inspect the POST request)
+      field_type='textarea'     # Where to get the field name to upload (inspect the frame's HTML)
+    elif [ "$asset_type" == "text_file" ]; then
+      screen_type='edit_file'
+      lock_type='attributes'
+      field_type='textarea'
+    elif [ "$asset_type" == "parse_file" ]; then
+      # TODO: not fully working because of HIPO jobs being invoked on Design; need a workaround
+      screen_type='parse_file'
+      lock_type='parsing'
+      field_type="textarea"
+    elif [ "$asset_type" == "file" ]; then
+      # TODO: File uploads not working yet
+      screen_type='details'
+      lock_type='attr_links'
+      field_type="input_file"
+    else
+      echo_error "Unknown type \"$asset_type\", cannot continue."
+      echo
+      continue
+    fi
+
+    # Create temporary file for data storage
+    tmpfile=$(mktemp)
+
+    # Backend administrator URL
+    matrix_url="$BASE_URL/?SQ_BACKEND_PAGE=main&backend_section=am&am_section=edit_asset&assetid=$asset_id&asset_ei_screen=$screen_type"
+
+    # Acquire locks
+    curl "$matrix_url" \
+      --silent \
+      --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
+      --form "token=$SQ_CSRF_TOKEN" \
+      --form "process_form=1" \
+      --form "am_form_submitted=1" \
+      --form "backend_assetid=$asset_id" \
+      --form "asset_action=edit" \
+      --form "sq_lock_acquire=1" \
+      --form "sq_lock_acquire_by_force=0" \
+      --form "sq_lock_type=$lock_type" > "$tmpfile"
+
+    # Test to ensure that the locks are ours
+    if grep -q 'to release the locks you hold on' "$tmpfile"; then
+      echo_success "Successfully acquired locks for asset $asset_id."
+    else
+      echo_error "Lock acquisition failed for asset $asset_id."
+      lock_debug=$(grep 'Held by user' "$tmpfile" | head -n 1 | cut -d "<" -f 1 | xargs)
+      if [ -z "$lock_debug" ]; then
+        echo -e "   \e[31m⁈\e[39m $lock_debug"
+      fi
+      echo
+      continue
+    fi
+
+    # Get the field name from the HTML:
+    #   <textarea name="bodycopy_div_393564_content_type_raw_html_864657_html"  [...]
+    #   <textarea name="js_file_391595_new_file"  [...]
+    # TODO: need to be flexible enough to deal with:
+    #   <textarea id="bodycopy_div_364549_content_type_wysiwyg_802610_contents_div_viper_input" style="display:none;" name="bodycopy_div_364549_content_type_wysiwyg_802610_contents_div_viper_input"
+    if [ "$field_type" == "textarea" ]; then
+      fieldname=$(grep -o -E '<textarea.*?name=".*?"' "$tmpfile" | cut -d '"' -f 2)
+    elif [ "$field_type" == "input_file" ]; then
+      fieldname=$(grep -o -E '<input type="file" name=".*?"' "$tmpfile" | cut -d '"' -f 4)
+    fi
+
+    if [ -z "$fieldname" ]; then
+      echo_error "Could not locate a suitable field for asset $asset_id; check the YAML file or else this asset type isn't supported."
+      continue
+    fi
+
+    # Send content in different manners depending on field type
+    if [ "$field_type" == "textarea" ]; then
+      response=$(curl "$matrix_url" \
+        --silent \
+        --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
+        --form "token=$SQ_CSRF_TOKEN" \
+        --form "process_form=1" \
+        --form "am_form_submitted=1" \
+        --form "backend_assetid=$asset_id" \
+        --form "asset_action=edit" \
+        --form "$fieldname=<$file" \
+        --output /dev/null \
+        --write-out "%{http_code}")
+    elif [ "$field_type" == "input_file" ]; then
+      filename=$(basename "$file")
+      response=$(curl "$matrix_url" \
+        --silent \
+        --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
+        --form "token=$SQ_CSRF_TOKEN" \
+        --form "process_form=1" \
+        --form "am_form_submitted=1" \
+        --form "backend_assetid=$asset_id" \
+        --form "asset_action=edit" \
+        --form "$fieldname=@\"$file\"; filename=\"$filename\"" \
+        --output /dev/null \
+        --write-out "%{http_code}")
+    fi
+
+    # Test to ensure that the content saved correctly
+    # TODO Handle incorrect 200 responses
+    if [ "$response" -eq 200 ]; then
+      echo_success "Successfully uploaded content to asset $asset_id."
+    else
+      echo_error "Content upload failed for asset $asset_id. ($response)"
+      continue
+    fi
+
+    # Release locks
+    curl "$matrix_url" \
+      --silent \
+      --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
+      --form "token=$SQ_CSRF_TOKEN" \
+      --form "process_form=1" \
+      --form "am_form_submitted=1" \
+      --form "backend_assetid=$asset_id" \
+      --form "asset_action=edit" \
+      --form "sq_lock_release_manual=1" \
+      --form "sq_lock_type=$lock_type" > "$tmpfile"
+
+    # Test to ensure that the locks were released
+    if grep -q 'button to lock' "$tmpfile"; then
+      echo_success "Successfully released locks for asset $asset_id."
+    else
+      echo_success "Lock release failed for asset $asset_id."
+      continue
+    fi
+
+    # Cleanup temp file
+    rm -f "$tmpfile"
+
+    # Newline
+    echo
+
+    # Increase counter
+    counter=$(( counter + 1 ))
+  done
+
+  if [ "$counter" -gt 0 ]; then
+    # Average of around 100 seconds per upload (54, 107 ...)
+    script_duration=$(( SECONDS - start ))
+    copy_paste_duration=$(( counter * 100 ))
+    seconds_diff=$(( copy_paste_duration - script_duration ))
+    percent_diff=$(( (copy_paste_duration / script_duration - 1) * 100 ))
+    echo "💖  You just saved $seconds_diff""s ($percent_diff""% faster) versus copy & paste! 💖"
+  fi
+}
+
+function watch {
+  if [ "$1" == "--help" ]; then
+    echo_bold "$SCRIPT_NAME watch [PATH...]"
+    echo "    Watch the specified file paths to Matrix and upload"
+    echo "    automatically on changes."
+    echo
+    echo "Omitting a path defaults to watching the current directory and its"
+    echo "contents. We automatically exclude any hidden files and .yml "
+    echo "metadata files."
+    exit
+  fi
+  # Pass in arguments, run our script again with "upload" arg
+  echo 'Starting filesystem watch (Control-C to quit)...'
+
+  # If no arguments, then we use the current directory
+  if [ $# -eq 0 ]; then
+    paths=( '.' )
+  else
+    paths=( "$@" )
+  fi
+
+  # pass all incoming paths via `find` and `grep` to filter, hand them to
+  # `entr` to monitor and filter out `entr`'s "bash returned exit code 0" lines
+  find "${paths[@]}" -type f -exec realpath {} + |
+    grep -E -v '(/\.|yml$)' |
+    entr -p -s "$SCRIPT_PATH upload \$0" |
+    grep -v 'returned exit code 0'
+}
+
+function install-deps {
+  if [ "$1" == "--help" ]; then
+    echo_bold "$SCRIPT_NAME install-deps"
+    echo "    Installs the dependencies for this script."
+    exit 0
+  fi
+  if [ $_IS_MAC ]; then
+    if ! command_exists brew; then
+      echo 'This script requires Homebrew. Install via https://brew.sh and come back.'
+      exit 1
+    else
+      cmd='brew install shyaml entr'
+      echo "We are about to run this: "
+      echo "    $cmd"
+      read -p "Are you sure? [Y/n] " -r
+      if [[ $REPLY =~ ^[Yy]$ ]]; then
+        $cmd
+      fi
+    fi
+  else
+    echo 'You need to install `shyaml` and `entr` using your package manager.'
+  fi
+}
+
+if [ $# -eq 0 ] || [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
+  help
+  exit 0
+elif [[ $1 =~ ^(help|upload|watch|install-deps)$ ]]; then
+  "$@"
+else
+  echo "Invalid subcommand $1" >&2
+  exit 1
+fi
+
