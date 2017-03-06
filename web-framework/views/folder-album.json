@@ -1,9 +1,0 @@
-{
-    "assets_types": "all",
-    "root_nodes": [1],
-    "link_types": ["type_1", "type_2"],
-    "replacement_root": {"GET": "root"},
-    "if_dynamic_root_not_found": false,
-    "if_asset_selection_not_found": false
-}
-

@@ -8,6 +8,7 @@
 # TODO: Empty linebreak at the end of the files being uploaded (affects things like the JSON listing)
 # TODO: Convert all listing assets over to being metadata'd
 # TODO: Save to Page Contents (with one section -- doesn't save?) -- but tells you it saved with a 200...
+# TODO: Potentially add saving of properties for Nested Content (bodycopy divs), Asset Listings (see Image Gallery CCT)
 
 # USAGE
 

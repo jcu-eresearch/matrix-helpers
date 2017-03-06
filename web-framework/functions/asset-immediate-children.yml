@@ -1,0 +1,15 @@
+asset_id: 379674
+type: asset_listing
+system_design_override: JSON
+listing:
+  asset_types: all
+  root_nodes: [1]
+  link_types:
+    - type_1
+    - type_2
+  asset_selection:
+    replacement_root:
+      GET: root
+    if_dynamic_root_not_found: false
+    if_asset_selection_not_found: false
+

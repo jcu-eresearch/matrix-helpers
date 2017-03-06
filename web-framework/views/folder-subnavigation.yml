@@ -1,0 +1,12 @@
+asset_id: 372370
+type: asset_listing
+listing:
+  asset_types: all
+  root_nodes: [1]
+  link_types:
+    - type_1
+  asset_selection:
+    replacement_root:
+      GET: root
+    if_dynamic_root_not_found: false
+    if_asset_selection_not_found: false
