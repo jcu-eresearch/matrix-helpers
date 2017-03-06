@@ -7,7 +7,6 @@
 # TODO: File, CSS Design File support
 # TODO: Empty linebreak at the end of the files being uploaded (affects things like the JSON listing)
 # TODO: Convert all listing assets over to being metadata'd
-# TODO: cleanup tempfile on failure
 # TODO: Save to Page Contents (with one section -- doesn't save?) -- but tells you it saved with a 200...
 
 # USAGE
@@ -42,6 +41,11 @@ function echo_bold {
 
 function command_exists {
   command -v "$1" &> /dev/null
+}
+
+function cleanup {
+  # Cleanup temp file
+  rm -f "$1"
 }
 
 function help {
@@ -134,11 +138,11 @@ function upload {
       continue
     fi
 
-    # Create temporary file for data storage
-    tmpfile=$(mktemp)
-
     # Backend administrator URL
     matrix_url="$BASE_URL/?SQ_BACKEND_PAGE=main&backend_section=am&am_section=edit_asset&assetid=$asset_id&asset_ei_screen=$screen_type"
+
+    # Create temporary file for data storage
+    tmpfile=$(mktemp)
 
     # Acquire locks
     curl "$matrix_url" \
@@ -163,6 +167,7 @@ function upload {
         echo -e "   \e[31m⁈\e[39m $lock_debug"
       fi
       echo
+      cleanup "$tmpfile"
       continue
     fi
 
@@ -179,6 +184,7 @@ function upload {
 
     if [ -z "$fieldname" ]; then
       echo_error "Could not locate a suitable field for asset $asset_id; check the YAML file or else this asset type isn't supported."
+      cleanup "$tmpfile"
       continue
     fi
 
@@ -216,6 +222,7 @@ function upload {
       echo_success "Successfully uploaded content to asset $asset_id."
     else
       echo_error "Content upload failed for asset $asset_id. ($response)"
+      cleanup "$tmpfile"
       continue
     fi
 
@@ -239,8 +246,7 @@ function upload {
       continue
     fi
 
-    # Cleanup temp file
-    rm -f "$tmpfile"
+    cleanup "$tmpfile"
 
     # Newline
     echo
