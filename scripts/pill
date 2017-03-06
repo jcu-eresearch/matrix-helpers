@@ -4,11 +4,11 @@
 # TODO: re-pull the SQ_CSRF_TOKEN if it changes?  Report this -- detect the "invalid" message
 # TODO: recache and/or open in browser
 # TODO: handle lock acquisition via HIPO (eg Design files) and HIPO jobs after the commit (eg CSS Design File)
-# TODO: File, CSS Design File support
 # TODO: Empty linebreak at the end of the files being uploaded (affects things like the JSON listing)
-# TODO: Convert all listing assets over to being metadata'd
 # TODO: Save to Page Contents (with one section -- doesn't save?) -- but tells you it saved with a 200...
-# TODO: Potentially add saving of properties for Nested Content (bodycopy divs), Asset Listings (see Image Gallery CCT)
+# TODO: Potentially add saving of properties for Nested Content (bodycopy
+#       divs), Asset Listings (see Image Gallery CCT), Design Customisations, CSS/JS File Folder, Folder,
+#       CSS Design File,
 
 # USAGE
 
@@ -50,7 +50,7 @@ function cleanup {
 }
 
 function help {
-  echo "Usage:"
+  echo_bold "$SCRIPT_NAME Usage:"
   echo "  $SCRIPT_NAME upload [FILE_PATH...] "
   echo "  $SCRIPT_NAME watch [FILE_PATH...]"
   echo "  $SCRIPT_NAME install-deps"
@@ -58,7 +58,7 @@ function help {
 }
 
 function upload {
-  if [ "$1" == "--help" ]; then
+  if [ $# -eq 0 ] || [ "$1" == "--help" ]; then
     echo_bold "$SCRIPT_NAME upload [PATH...]"
     echo "    Upload the specified file paths to Matrix."
     echo
@@ -221,7 +221,7 @@ function upload {
     # Test to ensure that the content saved correctly
     # TODO Handle incorrect 200 responses
     if [ "$response" -eq 200 ]; then
-      echo_success "Successfully uploaded content to asset $asset_id."
+      echo_success "Successfully uploaded content to asset $asset_id ($asset_type)."
     else
       echo_error "Content upload failed for asset $asset_id. ($response)"
       cleanup "$tmpfile"
