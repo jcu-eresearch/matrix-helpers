@@ -11,17 +11,15 @@
 
             <div class="row">
                 <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
-                <div class="col-sm-3
-                  %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-push-9%end_asset%
-                  text-xs-center m-b-2">
+                <div class="col-sm-3 text-xs-center m-b-2
+                  %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-push-9%end_asset%">
                   <span class="h1">
                     %asset_metadata_template.numfeature.num1%
                   </span><br />
                   %asset_metadata_template.numfeature.units1%
                 </div>
                 <div class="col-sm-9
-                  %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-pull-3%end_asset%
-                ">
+                  %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-pull-3%end_asset%">
                   <script runat="server">
                     print(parts.innerHTML) //Hack for #72: %asset_assetid%
                   </script>
