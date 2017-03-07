@@ -8,7 +8,7 @@
 # * Potentially add saving of properties for Nested Content (bodycopy
 #   divs), Asset Listings (see Image Gallery CCT), Design Customisations, CSS/JS File Folder, Folder,
 #   CSS Design File, Metadata Schemas/Sections/Fields, Regular Expressions
-# * Detect error if not saved correctly...? And/or Detect errors ("message" table row notification)
+# * Detect error if not locked/saved correctly...? And/or Detect errors ("message" table row notification)
 # * Verbose/debug mode
 
 # Start the timer
@@ -29,6 +29,10 @@ BASE_URL=$MATRIX_ADMIN_URL
 # Global functions
 function echo_error {
   echo -e "\e[31m✘\e[39m  $1"
+}
+
+function echo_error_reason {
+  echo -e "   \e[31m⁈\e[39m $1"
 }
 
 function echo_success {
@@ -153,8 +157,10 @@ function upload {
     tmpfile=$(mktemp)
 
     # Acquire locks
-    curl "$matrix_url" \
+    response_code=$(curl "$matrix_url" \
       --silent \
+      --output "$tmpfile" \
+      --write-out "%{http_code}" \
       --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
       --form "token=$SQ_CSRF_TOKEN" \
       --form "process_form=1" \
@@ -163,18 +169,37 @@ function upload {
       --form "asset_action=edit" \
       --form "sq_lock_acquire=1" \
       --form "sq_lock_acquire_by_force=0" \
-      --form "sq_lock_type=$lock_type" > "$tmpfile"
+      --form "sq_lock_type=$lock_type")
 
     # Test to ensure that the locks are ours
-    if grep -q 'to release the locks you hold on' "$tmpfile"; then
-      echo_success "Successfully acquired locks for asset $asset_id."
-    else
-      echo_error "Lock acquisition failed for asset $asset_id."
-      lock_debug=$(grep 'Held by user' "$tmpfile" | head -n 1 | cut -d "<" -f 1 | xargs)
-      if [ -z "$lock_debug" ]; then
-        echo -e "   \e[31m⁈\e[39m $lock_debug"
+    if [ "$response_code" -eq 200 ]; then
+      # Check for false 200s
+      if grep -q 'to release the locks you hold on' "$tmpfile"; then
+        echo_success "Successfully acquired locks for asset $asset_id."
+        exit
+      else
+        echo_error "Lock acquisition failed for asset $asset_id."
+
+        # Look for [SYS...] error codes like this in the page's HTML:
+        #     Asset #12345 does not exist [SYS0087]
+        #     No Asset found for Id #12345 [SYS0195]
+        grep -o '.*\[SYS.*\]' "$tmpfile" | while read -r reason; do
+          echo_error_reason "$( echo "$reason" | xargs)"
+        done
+
+        # Look for "Held by user ... at .... The lock is due to expire in" text on a 200 page
+        lock_debug=$(grep 'Held by user' "$tmpfile" | head -n 1 | cut -d "<" -f 1 | xargs | sed 's/Held/Locked/')
+        if [ "$lock_debug" ]; then
+          echo_error_reason "$lock_debug"
+        fi
+
+        cleanup "$tmpfile"
+        continue
       fi
-      echo
+    elif [ "$response_code" -eq 403 ]; then
+      echo_error_reason "Invalid login credentials. Check your environment variables or server URL. ($response_code)"
+    else
+      echo_error "Lock acquisition failed for asset $asset_id. ($response_code)"
       cleanup "$tmpfile"
       continue
     fi
