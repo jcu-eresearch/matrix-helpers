@@ -324,7 +324,7 @@ function install-deps {
       fi
     fi
   else
-    echo 'You need to install `shyaml` and `entr` using your package manager.'
+    echo 'You need to install `shyaml`, `entr` and `coreutils` using your package manager.'
   fi
 }
 
@@ -343,4 +343,3 @@ else
   echo "Invalid subcommand $1" >&2
   exit 1
 fi
-
