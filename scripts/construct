@@ -18,13 +18,13 @@ counter=0
 [[ $OSTYPE == "darwin"*  ]] && _IS_MAC=yes
 SCRIPT_NAME='construct'
 SCRIPT_PATH="$0"
-
-METADATA_ASSET_ID_ATTRIBUTE='asset_id'     # The key in the .yml for the asset ID
-METADATA_TYPE_ATTRIBUTE='type'             # The key in the .yml for the upload type
-METADATA_TYPE_DEFAULT='content'            # What we default to if the .yml file doesn't have a `type`
-
 BASE_URL=$MATRIX_ADMIN_URL
 [ -z "$BASE_URL" ] && BASE_URL="https://www.jcu.edu.au/_admin"
+
+_METADATA_ASSET_ID_ATTRIBUTE='asset_id'     # The key in the .yml for the asset ID
+_METADATA_TYPE_ATTRIBUTE='type'             # The key in the .yml for the upload type
+_METADATA_TYPE_DEFAULT='content'            # What we default to if the .yml file doesn't have a `type`
+
 
 # Global functions
 function echo_error {
@@ -113,7 +113,7 @@ function upload {
     # Test that an asset ID can be found in the associated metadata file
     metadata_file="$file.yml"
     if [ -f "$metadata_file" ]; then
-      asset_id=$(shyaml get-value "$METADATA_ASSET_ID_ATTRIBUTE" < "$metadata_file" 2> /dev/null)
+      asset_id=$(shyaml get-value "$_METADATA_ASSET_ID_ATTRIBUTE" < "$metadata_file" 2> /dev/null)
 
       if [ -z "$asset_id" ]; then
         echo_error "asset_id key is missing from $metadata_file"
@@ -125,22 +125,25 @@ function upload {
       continue
     fi
 
-    asset_type=$(shyaml get-value "$METADATA_TYPE_ATTRIBUTE" "$METADATA_TYPE_DEFAULT" < "$metadata_file" 2> /dev/null)
-
-    if [ "$asset_type" == "$METADATA_TYPE_DEFAULT" ]; then
+    asset_type=$(shyaml get-value "$_METADATA_TYPE_ATTRIBUTE" "$_METADATA_TYPE_DEFAULT" < "$metadata_file" 2> /dev/null)
+    if [ "$asset_type" == "$_METADATA_TYPE_DEFAULT" ]; then
+      # Bodycopy Div
       screen_type='contents'      # Which screen to load (inspect the frame URL)
       lock_type='content'         # Type of Matrix locks to acquire (inspect the POST request)
-      field_type='textarea'     # Where to get the field name to upload (inspect the frame's HTML)
+      field_type='textarea'       # Where to get the field name to upload (inspect the frame's HTML)
+    elif [ "$asset_type" == "file" ]; then
+      # File assets (File, CSS File, JS File, Image, ...)
+      screen_type='details'
+      lock_type='attr_links'
+      field_type="input_file"
     elif [ "$asset_type" == "text_file" ]; then
+      # File assets editable as text (CSS File, JS File, ...)
       screen_type='edit_file'
       lock_type='attributes'
       field_type='textarea'
     elif [ "$asset_type" == "parse_file" ]; then
       # TODO: not fully working because of HIPO jobs being invoked on Design; need a workaround
-      screen_type='parse_file'
-      lock_type='parsing'
-      field_type="textarea"
-    elif [ "$asset_type" == "file" ]; then
+      # Design assets (Design, CSS Design File, ...)
       screen_type='details'
       lock_type='attr_links'
       field_type="input_file"
@@ -176,7 +179,6 @@ function upload {
       # Check for false 200s
       if grep -q 'to release the locks you hold on' "$tmpfile"; then
         echo_success "Successfully acquired locks for asset $asset_id."
-        exit
       else
         echo_error "Lock acquisition failed for asset $asset_id."
 
@@ -351,7 +353,7 @@ function install-deps {
       fi
     fi
   else
-    echo 'You need to install `shyaml`, `entr` and `coreutils` using your package manager.'
+    echo 'You need to install `shyaml`, `entr` and `coreutils` (realpath) using your package manager.'
   fi
 }
 
