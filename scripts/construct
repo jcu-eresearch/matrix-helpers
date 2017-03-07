@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
 
-# TODO: upload to multiple asset_ids from one source file (if required?)
-# TODO: re-pull the SQ_CSRF_TOKEN if it changes?  Report this -- detect the "invalid" message
-# TODO: recache and/or open in browser
-# TODO: handle lock acquisition via HIPO (eg Design files) and HIPO jobs after the commit (eg CSS Design File)
-# TODO: Empty linebreak at the end of the files being uploaded (affects things like the JSON listing)
-# TODO: Save to Page Contents (with one section -- doesn't save?) -- but tells you it saved with a 200...
-# TODO: Potentially add saving of properties for Nested Content (bodycopy
-#       divs), Asset Listings (see Image Gallery CCT), Design Customisations, CSS/JS File Folder, Folder,
-#       CSS Design File, Metadata Schemas/Sections/Fields, Regular Expressions
-
-# USAGE
+# TODO:
+# * Handle lock acquisition via HIPO (eg Design files) and HIPO jobs after the commit (eg CSS Design File)
+# * Recache and/or open in browser
+# * Upload to multiple asset_ids from one source file (if required?)
+# * Save to Page Contents (with one section -- doesn't save?) -- but tells you it saved with a 200...
+# * Potentially add saving of properties for Nested Content (bodycopy
+#   divs), Asset Listings (see Image Gallery CCT), Design Customisations, CSS/JS File Folder, Folder,
+#   CSS Design File, Metadata Schemas/Sections/Fields, Regular Expressions
+# * Detect error if not saved correctly...? And/or Detect errors ("message" table row notification)
+# * Verbose/debug mode
 
 # Start the timer
 start=$SECONDS
