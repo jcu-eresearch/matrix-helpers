@@ -23,7 +23,7 @@ METADATA_ASSET_ID_ATTRIBUTE='asset_id'     # The key in the .yml for the asset I
 METADATA_TYPE_ATTRIBUTE='type'             # The key in the .yml for the upload type
 METADATA_TYPE_DEFAULT='content'            # What we default to if the .yml file doesn't have a `type`
 
-BASE_URL=$MATRIX_BASE_URL
+BASE_URL=$MATRIX_ADMIN_URL
 [ -z "$BASE_URL" ] && BASE_URL="https://www.jcu.edu.au/_admin"
 
 # Global functions
@@ -76,6 +76,7 @@ function upload {
     echo
     echo "    export SQ_SYSTEM_SESSION="
     echo "    export SQ_CSRF_TOKEN="
+    echo "    export MATRIX_ADMIN_URL=https://example.org/_admin"
     echo
     echo "You need to login to Squiz and retrieve your SQ_SYSTEM_SESSION cookie via your browser"
     echo "(we can't get it any other way) and get your SQ_CSRF_TOKEN via the URL:"
@@ -85,6 +86,8 @@ function upload {
     echo 'For Page or any other assets with `Page Contents`, you must target the Bodycopy Div asset ID specifically.'
     echo 'This reason for this is that we can only operate on one chunk at a time and `Page Contents` views operate'
     echo 'on multiple chunks simultaneously.'
+    echo
+    echo 'MATRIX_ADMIN_URL can be set to any Matrix instance. By default, we are set to JCU.'
     exit 0
   fi
 
