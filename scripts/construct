@@ -337,9 +337,9 @@ function upload {
     # TODO: need to be flexible enough to deal with:
     #   <textarea id="bodycopy_div_364549_content_type_wysiwyg_802610_contents_div_viper_input" style="display:none;" name="bodycopy_div_364549_content_type_wysiwyg_802610_contents_div_viper_input"
     if [ "$field_type" == "textarea" ]; then
-      fieldname=$(grep -o -E '<textarea.*?name=".*?"' "$tmpfile" | cut -d '"' -f 2 | head -n 1)
+      fieldname=$(grep -m 1 -o -E '<textarea.*?name=".*?"' "$tmpfile" | cut -d \" -f 2)
     elif [ "$field_type" == "input_file" ]; then
-      fieldname=$(grep -o -E '<input type="file" name=".*?"' "$tmpfile" | cut -d '"' -f 4 | head -n 1)
+      fieldname=$(grep -m 1 -o -E '<input type="file" name=".*?"' "$tmpfile" | cut -d \" -f 4)
     fi
 
     if [ -z "$fieldname" ]; then
