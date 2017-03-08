@@ -42,9 +42,9 @@
               assets.forEach(drawColumnCard);
               print('</div>');
             } else if (cardLayout == "thumbnails") {
-              print('<div class="' + imageShapeClass + '"><div class="row">');
+              print('<div class="row ' + imageShapeClass + '">');
               assets.forEach(drawThumbnailGridCard);
-              print('</div></div>');
+              print('</div>');
             } else
               print('<div class="alert alert-warning">Card layout ' + cardLayout + ' not supported yet </div>');
           } else
@@ -66,13 +66,15 @@
             imageWrapper = imageWrapper || { prepend : '', append : ''};
 
             var imageTag = { prepend: '<img class="img-fluid ' + imageShape + '" src="./?a=', append: '\\:v3"/>' };
-//            var imageTag = { prepend: '<img class="img-fluid ' + imageShape + '" src="./?a=', append: '"/>' };
-
-            return('%globals_asset_metadata_jcu.summarycard.image:' + assetId +
+            var result = '%globals_asset_thumbnail_assetid:' + assetId +
              '^prepend_if:' + imageWrapper.prepend + imageTag.prepend +
              '^append_if:' + imageTag.append + imageWrapper.append +
              '%'
-            );
+/*
+            var debugResult = result.replace('%', '')
+            print('<!-- buildCardImage result(' + debugResult + ') -->')
+*/
+            return(result)
           }
 
           function buildCardLinkedImage(assetId, imageContainer) {
@@ -148,7 +150,7 @@
             print(buildCardLinkedImage(assetId, imageOptions));
 
             // text section
-            var columnWidth = '%globals_asset_metadata_jcu.summarycard.image:' + assetId + '^notempty:9^empty:12%';
+            var columnWidth = '%globals_asset_thumbnail_assetid:' + assetId + '^notempty:9^empty:12%';
 
             print('<div class="col-sm-' + columnWidth + '">');
 
