@@ -20,6 +20,9 @@ SCRIPT_NAME='construct'
 SCRIPT_PATH="$0"
 BASE_URL=$MATRIX_ADMIN_URL
 [ -z "$BASE_URL" ] && BASE_URL="https://www.jcu.edu.au/_admin"
+debug=false
+show_help=false
+subcommand_args=()
 
 _METADATA_ASSET_ID_ATTRIBUTE='asset_id'     # The key in the .yml for the asset ID
 _METADATA_TYPE_ATTRIBUTE='type'             # The key in the .yml for the upload type
@@ -52,6 +55,27 @@ function cleanup {
   rm -f "$1"
 }
 
+function parse_subcommand_args {
+  # Parses arguments passed to subcommands, setting the `subcommand_args`
+  # global to the remaining unparsed arguments
+  for arg in "$@"; do
+    case $arg in
+      --help)
+        show_help=true
+        shift # past argument with no value
+        ;;
+      --debug)
+        debug=true
+        shift # past argument with no value
+        ;;
+      *)
+        # Unknown option
+        subcommand_args+=("$arg")
+        ;;
+    esac
+  done
+}
+
 function help {
   echo_bold "$SCRIPT_NAME Usage:"
   echo
@@ -63,13 +87,15 @@ function help {
   echo
   echo "This is the Construct. It is our loading program. We can load"
   echo "anything from CSS, to HTML, JavaScript, immages, anything we"
-  echo "need.   ~ Morpheus"
+  echo "need.   ~ Morpheus (v2)"
 }
 
 function upload {
-  if [ $# -eq 0 ] || [ "$1" == "--help" ]; then
-    echo_bold "$SCRIPT_NAME upload [PATH...]"
-    echo "    Upload the specified file paths to Matrix."
+  parse_subcommand_args "$@"
+
+  if [ $# -eq 0 ] || [ "$show_help" = true ]; then
+    echo_bold "$SCRIPT_NAME upload PATH [PATH...] [--debug]"
+    echo "    Upload the specified file path(s) to Matrix."
     echo
     echo "    We look for the corresponding asset IDs via a YAML file"
     echo "    with the same name (plus '.yml') as the file.  For instance"
@@ -100,7 +126,7 @@ function upload {
     exit 1
   fi
 
-  for file in "${@:1}"; do
+  for file in "${subcommand_args[@]}"; do
 
     echo "Processing $file:"
 
@@ -156,8 +182,8 @@ function upload {
     # Backend administrator URL
     matrix_url="$BASE_URL/?SQ_BACKEND_PAGE=main&backend_section=am&am_section=edit_asset&assetid=$asset_id&asset_ei_screen=$screen_type"
 
-    # Create temporary file for data storage
-    tmpfile=$(mktemp)
+    # Create temporary file for HTTP request data storage
+    tmpfile=$(mktemp --tmpdir "$file".XXXXXX.html)
 
     # Acquire locks
     response_code=$(curl "$matrix_url" \
@@ -182,21 +208,40 @@ function upload {
       else
         echo_error "Lock acquisition failed for asset $asset_id."
 
-        # Look for [SYS...] error codes like this in the page's HTML:
-        #     Asset #12345 does not exist [SYS0087]
-        #     No Asset found for Id #12345 [SYS0195]
-        grep -o '.*\[SYS.*\]' "$tmpfile" | while read -r reason; do
-          echo_error_reason "$( echo "$reason" | xargs)"
-        done
+        if [ "$debug" = true ]; then
+          # Raw debugging
+          echo_error_reason "Raw request is available in $tmpfile"
+          continue
+        else
+          # User-friendly error detection
 
-        # Look for "Held by user ... at .... The lock is due to expire in" text on a 200 page
-        lock_debug=$(grep 'Held by user' "$tmpfile" | head -n 1 | cut -d "<" -f 1 | xargs | sed 's/Held/Locked/')
-        if [ "$lock_debug" ]; then
-          echo_error_reason "$lock_debug"
+          found_reason=false
+
+          # TODO: this is brittle; Matrix seems to change its error format reporting...
+          #       Eg for lines without HTML, use grep -o '.*\[SYS.*\]' "$tmpfile"
+          # Look for [SYS...] error codes like this in the page's HTML:
+          #     Asset #12345 does not exist [SYS0087]
+          #     No Asset found for Id #12345 [SYS0195]
+          while read -r reason; do
+            echo_error_reason "$( echo "$reason" | xargs)"
+            found_reason=true
+          done < <(grep -E -o '>.*\[[A-Z]+[0-9]+\]' "$tmpfile" | sed 's/>//')
+
+          # Look for "Held by user ... at .... The lock is due to expire in" text on a 200 page
+          lock_debug=$(grep 'Held by user' "$tmpfile" | head -n 1 | cut -d "<" -f 1 | xargs | sed 's/Held/Locked/')
+          if [ "$lock_debug" ]; then
+            echo_error_reason "$lock_debug"
+            found_reason=true
+          fi
+
+          if [ "$found_reason" = false ]; then
+            matrix_type=$(grep -o 'data-type-code=".*"' "$tmpfile" | cut -d \" -f 2)
+            echo_error_reason "Check the asset type; is 'type: $asset_type' appropriate for a $matrix_type asset?"
+          fi
+
+          cleanup "$tmpfile"
+          continue
         fi
-
-        cleanup "$tmpfile"
-        continue
       fi
     elif [ "$response_code" -eq 403 ]; then
       echo_error_reason "Invalid login credentials. Check your environment variables or server URL. ($response_code)"
@@ -305,12 +350,14 @@ function upload {
 }
 
 function watch {
-  if [ "$1" == "--help" ]; then
-    echo_bold "$SCRIPT_NAME watch [PATH...]"
+  parse_subcommand_args "$@"
+
+  if [ "$show_help" = true ]; then
+    echo_bold "$SCRIPT_NAME watch [PATH...] [--debug]"
     echo "    Watch the specified file paths to Matrix and upload"
     echo "    automatically on changes."
     echo
-    echo "Omitting a path defaults to watching the current directory and its"
+    echo "Omitting any path defaults to watching the current directory and its"
     echo "contents. We automatically exclude any hidden files and .yml "
     echo "metadata files."
     exit
@@ -319,15 +366,13 @@ function watch {
   echo 'Starting filesystem watch (Control-C to quit)...'
 
   # If no arguments, then we use the current directory
-  if [ $# -eq 0 ]; then
-    paths=( '.' )
-  else
-    paths=( "$@" )
+  if [ "${#subcommand_args[@]}" -eq 0 ]; then
+    subcommand_args+=('.')
   fi
 
   # pass all incoming paths via `find` and `grep` to filter, hand them to
   # `entr` to monitor and filter out `entr`'s "bash returned exit code 0" lines
-  find "${paths[@]}" -type f -exec realpath {} + |
+  find "${subcommand_args[@]}" -type f -exec realpath {} + |
     grep -E -v '(/\.|yml$)' |
     entr -p -s "$SCRIPT_PATH upload \$0" |
     grep -v 'returned exit code 0'
