@@ -427,7 +427,7 @@ function upload {
   if [ "$counter" -gt 0 ]; then
     # Average of around 100 seconds per upload (54, 107, 200 ...)
     script_duration=$(( SECONDS - start ))
-    copy_paste_duration=$(( counter * 100 ))
+    copy_paste_duration=$(( counter * 150 ))
     seconds_diff=$(( copy_paste_duration - script_duration ))
     percent_diff=$(( (copy_paste_duration / script_duration - 1) * 100 ))
     echo "💖  You just saved $seconds_diff""s ($percent_diff""% faster) versus copy & paste! 💖"
