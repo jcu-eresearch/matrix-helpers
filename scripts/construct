@@ -145,7 +145,7 @@ function handle_hipo {
       fi
     done
 
-    echo -en "\033[1K\r" # Clear the line and go back to start
+    echo -en " \033[1K\r" # Clear the line and go back to start
     echo_success "Successfully ran HIPO job to $job_description for asset $asset_id."
 
     # Load the original asset's admin page so we can continue normally
@@ -383,7 +383,7 @@ function upload {
     # Test to ensure that the content saved correctly
     # TODO Handle incorrect 200 responses
     if [ "$response_code" -eq 200 ]; then
-      echo -en "\033[1K\r" # Clear the line and go back to start
+      echo -en " \033[1K\r" # Clear the line and go back to start
       echo_success "Successfully uploaded content to asset $asset_id ($asset_type)."
     else
       echo
