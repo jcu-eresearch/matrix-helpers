@@ -507,7 +507,7 @@ body {
 .thumbnail-flair .thumbnail-wrapper {
   filter: drop-shadow(4px 4px lightgrey);
 }
-.thumbnail-text { 
+.thumbnail-text {
   padding : 0 4px;
   margin-bottom: 1em;
   line-height: 5em;

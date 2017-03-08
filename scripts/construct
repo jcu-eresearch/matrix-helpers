@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # TODO:
-# * Handle lock acquisition via HIPO (eg Design files) and HIPO jobs after the commit (eg CSS Design File)
 # * Recache and/or open in browser
 # * Upload to multiple asset_ids from one source file (if required?)
 # * Save to Page Contents (with one section -- doesn't save?) -- but tells you it saved with a 200...
@@ -42,6 +41,18 @@ function echo_success {
   echo -e "\033[00;32m✔︎\033[00;39m  $1"
 }
 
+function echo_warning {
+  echo -e "\033[00;33m⚠︎\033[00;39m  $1"
+}
+
+function echo_warning_reason {
+  echo -e "   \033[00;33m⚠︎\033[00;39m  $1"
+}
+
+function echo_warning_inline {
+  echo -en "\033[00;33m⚠︎\033[00;39m  $1"
+}
+
 function echo_bold {
   echo -e "\033[00;1m$1 \033[00;0m"
 }
@@ -55,8 +66,13 @@ function unescape_html {
 }
 
 function cleanup {
-  # Cleanup temp file
-  rm -f "$1"
+  if [ "$debug" = true ]; then
+    # Don't cleanup for raw debugging
+    echo_warning "Last raw request is available in $tmpfile"
+  else
+    # Cleanup temp file
+    rm -f "$1"
+  fi
 }
 
 function parse_subcommand_args {
@@ -78,6 +94,67 @@ function parse_subcommand_args {
         ;;
     esac
   done
+}
+
+function _get_hipo_url_from_file {
+  grep -o '"http.*\?SQ_ACTION=hipo.*"' "$1" | cut -d \" -f 2
+}
+
+function _get_percentage_from_file {
+  grep -m 1 -E -o '[0-9]{1,3}%' "$1"
+}
+
+function handle_hipo {
+  # $1 is a human-readable description (eg "acquire locks")
+  job_description="$1"
+  hipo_next_url=$(_get_hipo_url_from_file "$tmpfile")
+
+  # Only run HIPO if we're being asked to
+  if [ "$hipo_next_url" ]; then
+    local hipo_log_prefix="Running HIPO job to $job_description for asset $asset_id...   "
+    local progress="  0%"
+
+    echo_warning_inline "$hipo_log_prefix $progress"
+
+    until [ -z "$hipo_next_url" ]; do
+      if [ "$debug" = true ]; then
+        echo
+        echo_warning_reason "HIPO job now loading $hipo_next_url"
+        echo_warning_inline "$hipo_log_prefix $progress"
+      fi
+
+      response_code=$(curl "$hipo_next_url" \
+        --silent \
+        --output "$tmpfile" \
+        --write-out "%{http_code}" \
+        --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION")
+
+      if [ "$response_code" -eq 200 ]; then
+        # TODO Check for HIPO already running?
+        # Display progress percentage from HIPO
+        echo -en "\b\b\b\b\b"
+        progress=$(printf '%4s' "$(_get_percentage_from_file "$tmpfile")")
+        echo -n "$progress"
+
+        # Prepare next URL for being loaded
+        hipo_next_url=$(_get_hipo_url_from_file "$tmpfile")
+      else
+        echo_error "Execution of HIPO job failed for asset $asset_id. ($response_code)"
+        cleanup "$tmpfile"
+        return 1
+      fi
+    done
+
+    echo -en "\033[1K\r" # Clear the line and go back to start
+    echo_success "Successfully ran HIPO job to $job_description for asset $asset_id."
+
+    # Load the original asset's admin page so we can continue normally
+    response_code=$(curl "$matrix_url" \
+      --silent \
+      --output "$tmpfile" \
+      --write-out "%{http_code}" \
+      --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION")
+  fi
 }
 
 function help {
@@ -173,10 +250,9 @@ function upload {
       lock_type='attributes'
       field_type='textarea'
     elif [ "$asset_type" == "parse_file" ]; then
-      # TODO: not fully working because of HIPO jobs being invoked on Design; need a workaround
       # Design assets (Design, CSS Design File, ...)
       screen_type='details'
-      lock_type='attr_links'
+      lock_type='parsing'
       field_type="input_file"
     else
       echo_error "Unknown type \"$asset_type\", cannot continue."
@@ -188,7 +264,7 @@ function upload {
     matrix_url="$BASE_URL/?SQ_BACKEND_PAGE=main&backend_section=am&am_section=edit_asset&assetid=$asset_id&asset_ei_screen=$screen_type"
 
     # Create temporary file for HTTP request data storage
-    tmpfile=$(mktemp --tmpdir "$file".XXXXXX.html)
+    tmpfile=$(mktemp --tmpdir XXXXXXXXXXX.html)
 
     # Acquire locks
     response_code=$(curl "$matrix_url" \
@@ -205,6 +281,9 @@ function upload {
       --form "sq_lock_acquire_by_force=0" \
       --form "sq_lock_type=$lock_type")
 
+    # Handle HIPO when locking (is optional depending on asset type)
+    handle_hipo "acquire locks"
+
     # Test to ensure that the locks are ours
     if [ "$response_code" -eq 200 ]; then
       # Check for false 200s
@@ -213,40 +292,34 @@ function upload {
       else
         echo_error "Lock acquisition failed for asset $asset_id."
 
-        if [ "$debug" = true ]; then
-          # Raw debugging
-          echo_error_reason "Raw request is available in $tmpfile"
-          continue
-        else
-          # User-friendly error detection
+        # User-friendly error detection
 
-          found_reason=false
+        found_reason=false
 
-          # TODO: this is brittle; Matrix seems to change its error format reporting...
-          #       Eg for lines without HTML, use grep -o '.*\[SYS.*\]' "$tmpfile"
-          # Look for [SYS...] error codes like this in the page's HTML:
-          #     Asset #12345 does not exist [SYS0087]
-          #     No Asset found for Id #12345 [SYS0195]
-          while read -r reason; do
-            echo_error_reason "$( echo "$reason" | xargs)"
-            found_reason=true
-          done < <(grep -E -o '>.*\[[A-Z]+[0-9]+\]' "$tmpfile" | sed 's/>//')
+        # TODO: this is brittle; Matrix seems to change its error format reporting...
+        #       Eg for lines without HTML, use grep -o '.*\[SYS.*\]' "$tmpfile"
+        # Look for [SYS...] error codes like this in the page's HTML:
+        #     Asset #12345 does not exist [SYS0087]
+        #     No Asset found for Id #12345 [SYS0195]
+        while read -r reason; do
+          echo_error_reason "$( echo "$reason" | xargs)"
+          found_reason=true
+        done < <(grep -E -o '>.*\[[A-Z]+[0-9]+\]' "$tmpfile" | sed 's/>//')
 
-          # Look for "Held by user ... at .... The lock is due to expire in" text on a 200 page
-          lock_debug=$(grep 'Held by user' "$tmpfile" | head -n 1 | cut -d "<" -f 1 | xargs | sed 's/Held/Locked/')
-          if [ "$lock_debug" ]; then
-            echo_error_reason "$lock_debug"
-            found_reason=true
-          fi
-
-          if [ "$found_reason" = false ]; then
-            matrix_type=$(grep -o 'data-type-code=".*"' "$tmpfile" | cut -d \" -f 2)
-            echo_error_reason "Check the asset type; is 'type: $asset_type' appropriate for a $matrix_type asset?"
-          fi
-
-          cleanup "$tmpfile"
-          continue
+        # Look for "Held by user ... at .... The lock is due to expire in" text on a 200 page
+        lock_debug=$(grep -m 1 'Held by user' "$tmpfile" | cut -d "<" -f 1 | xargs | sed 's/Held/Locked/')
+        if [ "$lock_debug" ]; then
+          echo_error_reason "$lock_debug"
+          found_reason=true
         fi
+
+        if [ "$found_reason" = false ]; then
+          matrix_type=$(grep -o 'data-type-code=".*"' "$tmpfile" | cut -d \" -f 2)
+          echo_error_reason "Check the asset type; is 'type: $asset_type' appropriate for a $matrix_type asset?"
+        fi
+
+        cleanup "$tmpfile"
+        continue
       fi
     elif [ "$response_code" -eq 403 ]; then
       echo_error_reason "Invalid login credentials. Check your environment variables or server URL. ($response_code)"
@@ -277,8 +350,9 @@ function upload {
 
     # Send content in different manners depending on field type
     if [ "$field_type" == "textarea" ]; then
-      response=$(curl "$matrix_url" \
+      response_code=$(curl "$matrix_url" \
         --silent \
+        --output "$tmpfile" \
         --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
         --form "token=$SQ_CSRF_TOKEN" \
         --form "process_form=1" \
@@ -286,13 +360,14 @@ function upload {
         --form "backend_assetid=$asset_id" \
         --form "asset_action=edit" \
         --form "$fieldname=<$file" \
-        --output /dev/null \
         --write-out "%{http_code}")
     elif [ "$field_type" == "input_file" ]; then
       filename=$(basename "$file")
       # field_12345_server_file= is a mandatory blank field to validate save
-      response=$(curl "$matrix_url" \
+      response_code=$(curl "$matrix_url" \
         --silent \
+        --output "$tmpfile" \
+        --write-out "%{http_code}" \
         --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
         --form "token=$SQ_CSRF_TOKEN" \
         --form "process_form=1" \
@@ -300,20 +375,21 @@ function upload {
         --form "backend_assetid=$asset_id" \
         --form "asset_action=edit" \
         --form "$fieldname=@\"$file\"; filename=\"$filename\"" \
-        --form "$fieldname""_server_file=" \
-        --output /dev/null \
-        --write-out "%{http_code}")
+        --form "$fieldname""_server_file=")
     fi
 
     # Test to ensure that the content saved correctly
     # TODO Handle incorrect 200 responses
-    if [ "$response" -eq 200 ]; then
+    if [ "$response_code" -eq 200 ]; then
       echo_success "Successfully uploaded content to asset $asset_id ($asset_type)."
     else
-      echo_error "Content upload failed for asset $asset_id. ($response)"
+      echo_error "Content upload failed for asset $asset_id. ($response_code)"
       cleanup "$tmpfile"
       continue
     fi
+
+    # Handle HIPO after uploading/saving content
+    handle_hipo "post-process upload"
 
     # Release locks
     curl "$matrix_url" \
