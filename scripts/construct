@@ -35,7 +35,7 @@ function echo_error {
 }
 
 function echo_error_reason {
-  echo -e "   \e[31m⁈\e[39m $1"
+  echo -e "   \e[31m⁈\e[39m $(unescape_html "$1")"
 }
 
 function echo_success {
@@ -48,6 +48,10 @@ function echo_bold {
 
 function command_exists {
   command -v "$1" &> /dev/null
+}
+
+function unescape_html {
+  echo "$1" | sed 's/&amp;/\&/g; s/\&lt;/</g; s/\&gt;/>/g; s/\&quot;/"/g; s/\&#39;/'"'"'/g'
 }
 
 function cleanup {
@@ -152,6 +156,7 @@ function upload {
     fi
 
     asset_type=$(shyaml get-value "$_METADATA_TYPE_ATTRIBUTE" "$_METADATA_TYPE_DEFAULT" < "$metadata_file" 2> /dev/null)
+
     if [ "$asset_type" == "$_METADATA_TYPE_DEFAULT" ]; then
       # Bodycopy Div
       screen_type='contents'      # Which screen to load (inspect the frame URL)
