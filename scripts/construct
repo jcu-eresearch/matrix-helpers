@@ -123,6 +123,7 @@ function handle_hipo {
         echo_warning_inline "$hipo_log_prefix $progress"
       fi
 
+      # HIPO hits with POST, but GET seems to work fine
       response_code=$(curl "$hipo_next_url" \
         --silent \
         --output "$tmpfile" \
@@ -130,7 +131,6 @@ function handle_hipo {
         --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION")
 
       if [ "$response_code" -eq 200 ]; then
-        # TODO Check for HIPO already running?
         # Display progress percentage from HIPO
         echo -en "\b\b\b\b\b"
         progress=$(printf '%4s' "$(_get_percentage_from_file "$tmpfile")")
