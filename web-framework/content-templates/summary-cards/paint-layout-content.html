@@ -8,42 +8,48 @@
               <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead m-t-2">', append: '</span>'});</script>
             </h3>
             %end_asset%
-            <div class="m-b-2">
 
-              <div class="row">
-                  <div class="col-xs-12 m-b-2">
-                    <script runat="server">
-                      print(parts.innerHTML) //Hack for #72: %asset_assetid%
-                    </script>
-                  </div>
-              </div>
+            <!-- content container asset contents -->
+            <script runat="server">
+              print(parts.innerHTML) //Hack for #72: %asset_assetid%
+            </script>
+
+        <!--    Now draw the summary card list    -->
 
         <script runat="server">
 
-          var assetList="%asset_metadata_template.list.items%";
-          assetList = assetList.slice(1,-1);
-          var assets = assetList.split(",");
+          var assets = []
+          var assetList = "%asset_metadata_template.list.items%"
 
+          if (assetList.length > 0) {
+            assetList = assetList.slice(1,-1);
+            assets = assetList.split(",");
+          }
+          
           var imageShape = '%asset_metadata_template.card.image.shape^replace:circle:img-circle^replace:natural: %';
           var imageShapeClass = 'image-shape-' + '%asset_metadata_template.card.image.shape%';
           var flairText = '%asset_metadata_template.card.initial.flair%';
           var cardLayout = '%asset_metadata_template.card.layout%';
           var columnCount = 0; // required by drawThumbnailGridCard
 
-          if (cardLayout == "mosaicGrid") {
-            print('<div class="card-columns ' + imageShapeClass + '">');
-            assets.forEach(drawGridCard);
-            print('</div>');
-          } else if (cardLayout == "column") {
-            print('<div class="container-fluid ' + imageShapeClass + '">');
-            assets.forEach(drawColumnCard);
-            print('</div>');
-          } else if (cardLayout == "thumbnails") {
-            print('<div class="container-fluid ' + imageShapeClass + '"><div class="row">');
-            assets.forEach(drawThumbnailGridCard);
-            print('</div></div>');
+          if (assets.length > 0) {
+            if (cardLayout == "mosaicGrid") {
+              print('<div class="card-columns ' + imageShapeClass + '">');
+              assets.forEach(drawGridCard);
+              print('</div>');
+            } else if (cardLayout == "column") {
+              print('<div class="' + imageShapeClass + '">');
+              assets.forEach(drawColumnCard);
+              print('</div>');
+            } else if (cardLayout == "thumbnails") {
+              print('<div class="' + imageShapeClass + '"><div class="row">');
+              assets.forEach(drawThumbnailGridCard);
+              print('</div></div>');
+            } else
+              print('<div class="alert alert-warning">Card layout ' + cardLayout + ' not supported yet </div>');
           } else
-            print('<div class="alert alert-info">Card layout ' + cardLayout + ' not supported yet </div>');
+              print('<div class="alert alert-info">No items to display </div>');
+
 
 
           function buildCardHref(assetId) {
@@ -60,6 +66,7 @@
             imageWrapper = imageWrapper || { prepend : '', append : ''};
 
             var imageTag = { prepend: '<img class="img-fluid ' + imageShape + '" src="./?a=', append: '\\:v3"/>' };
+//            var imageTag = { prepend: '<img class="img-fluid ' + imageShape + '" src="./?a=', append: '"/>' };
 
             return('%globals_asset_metadata_jcu.summarycard.image:' + assetId +
              '^prepend_if:' + imageWrapper.prepend + imageTag.prepend +
