@@ -70,6 +70,11 @@
 
     <!--@@ Design area: Matrix boilerplate, see https://matrix-manuals.squiz.net/designs/chapters/metadata-design-area @@-->
     <MySource_AREA id_name="metadata" design_area="metadata" />
+
+    <script runat="server">
+      // Run global functions in the <head> of the page
+      JCU.runGlobalFunctions('JCU_head_')
+    </script>
   </head>
 
   <!--@@ Body opening tag; nested content due to "inconsisent asset" keyword bug @@-->
@@ -406,5 +411,9 @@
         </script>
       </MySource_THEN>
     </MySource_AREA>
+
+    <script runat="server">
+      JCU.runGlobalFunctions('JCU_body_')
+    </script>
   </body>
 </html>

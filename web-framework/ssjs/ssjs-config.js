@@ -1,21 +1,27 @@
 /* jslint browser: true, asi: true */
-/* globals _, print */
-/* David */
+/* globals _, print, root, GLOBAL, self */
 
 // If in a browser (via ?SQ_DISABLE_SERVER_JS), re-work the print() function
 if (typeof window !== "undefined") {
   window.print = function() {
-    _.forEach(arguments, function(val) { document.write('' + val)  } )
+    _.forEach(arguments, function(val) { document.write('' + val) } )
   }
   window.var_dump = function() {
     _.forEach(arguments, function(val) { document.write(JSON.stringify(val)) } )
   }
 }
 
+// Store a reference to the global object ("this" in V8js, or
+// "window" in a browser)
+var global = this || window || root || global || GLOBAL || self
+
 /* Public API for JCU SSJS functions */
 var JCU = {
   // Data and information used in rendering
   data: {},
+
+  // Debugging on or off
+  debug: false,
 
   // Libraries to be included later
   _includes: {
@@ -100,8 +106,34 @@ var JCU = {
     if (result.innerHTML === "<p></p>") {
       result.innerHTML = ''
     }
+
     return result
+  },
+
+  /**
+   * Run globally-defined functions with a given string `prefix`
+   * When run at different points in SSJS execution, this allows the execution
+   * of a function that is otherwise definied later (due to hoisting).
+   * @param {string} prefix - Function prefix to inspect for
+   */
+  runGlobalFunctions: function (prefix) {
+    if (JCU.debug) {
+      print('<!-- Running global SSJS functions prefixed as `' + prefix + '` -->\n')
+    }
+    Object.getOwnPropertyNames(global).forEach(function (value) {
+      if (value.search(prefix) === 0) {
+        if (JCU.debug) {
+          print('<!-- Running ' + value + '() now -->\n')
+        }
+        global[value]()
+      }
+    })
   }
 }
 
-// Add jcu function execution here...
+// Run global functions after SSJS initialises
+JCU.runGlobalFunctions('JCU_ssjs_')
+
+if (JCU.debug) {
+  print('<!-- Server-side JavaScript (SSJS) successfully initialised -->')
+}
