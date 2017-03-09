@@ -19,16 +19,20 @@
   </style>
   <script runat="server">
     const S = {
+      mdnUrl: function(path, text) {
+        return '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/' + path + '"><code>' + text + '</code></a>'
+      },
+
       mdnLink: function(scope, id) {
         var path = scope ? scope + '/' + id : id
         var text = id
-        return '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/' + path + '"><code>' + text + '</code></a>'
+        return S.mdnUrl(path, text)
       },
 
       mdnLinkDotted: function(scope, id) {
         var path = scope ? scope + '/' + id : id
         var text = scope ? scope + '.' + id : id
-        return '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/' + path + '"><code>' + text + '</code></a>'
+        return S.mdnUrl(path, text)
       },
 
       printInCode: function(scope) {
@@ -41,22 +45,27 @@
         print('<a href="#' + id + '"><code>' + id + '</code></a> ')
       },
 
-      printPropertyNames: function(identifier) {
-        var obj = this[identifier]
+      printObjectPropertyNames: function(identifier, obj) {
         print('<h2 id="' + identifier + '">' + S.mdnLink(null, identifier) + '</h2>')
         print('<p class="lead">Type:')
         S.printInCode()(typeof obj)
         print('Value: <code>' + obj + '</code></p>')
         if (obj instanceof Object) {
-          Object.getOwnPropertyNames(obj).sort().forEach(S.printInCode(identifier))
+          Object.getOwnPropertyNames(obj).sort().filter(S.filterLocals).forEach(S.printInCode(identifier))
           if (obj.prototype) {
             print('<h3>' + S.mdnLinkDotted(identifier, 'prototype') + '</h3>')
-            Object.getOwnPropertyNames(obj.prototype).sort().forEach(S.printInCode(identifier))
+            Object.getOwnPropertyNames(obj.prototype).sort().filter(S.filterLocals).forEach(S.printInCode(identifier))
           }
         }
       },
 
+      printPropertyNames: function(identifier) {
+        S.printObjectPropertyNames(identifier, this[identifier])
+      },
+
       filterLocals: function(id) {
+        // Filters anything in a list that is local to this SSJS page
+        // At present it's just this object itself
         return id !== 'S'
       },
 
@@ -74,7 +83,7 @@
       <div class="col-xs-12">
         <h1 id="introspector">SSJS Introspector</h1>
         <p class="alert alert-warning">This page is dynamically populated with all available information about our SSJS environment (V8js is somewhere between ECMAScript 5.1 and 6). Any MDN links are provided for <em>convenience only</em> and no guarantees are given as to this JS environment's implementation. <strong>Test everything and assume nothing!</strong></p>
-        <h2 id="syntax">Syntax <small class="text-muted">(Manually tested)</small></h2>
+        <h2 id="syntax">Syntax <small class="text-muted">(Manually tested as of 9 March 2017)</small></h2>
         <ul>
           <li><script runat="server">print(S.testConst())</script></li>
           <li><code>let</code> is unavailable</li>
