@@ -17,7 +17,7 @@
         <!--    Now draw the summary card list    -->
 
         <script runat="server">
-
+          const imageVariety = "newsdetails"
           var assets = []
           var assetList = "%asset_metadata_template.list.items%"
 
@@ -64,16 +64,14 @@
             //  if there is an image then build the tag, otherwise return nothing
 
             imageWrapper = imageWrapper || { prepend : '', append : ''};
+            var imageTag = { prepend: '<img class="img-fluid ' + imageShape + '" src="', append: '"/>' };
 
-            var imageTag = { prepend: '<img class="img-fluid ' + imageShape + '" src="./?a=', append: '\\:v3"/>' };
-            var result = '%globals_asset_thumbnail_assetid:' + assetId +
+            var result = '%globals_asset_thumbnail_v_' + imageVariety + '_url:' + assetId + 
+              '^empty:{globals_asset_thumbnail_url:' + assetId + '}' +
              '^prepend_if:' + imageWrapper.prepend + imageTag.prepend +
              '^append_if:' + imageTag.append + imageWrapper.append +
              '%'
-/*
-            var debugResult = result.replace('%', '')
-            print('<!-- buildCardImage result(' + debugResult + ') -->')
-*/
+
             return(result)
           }
 
