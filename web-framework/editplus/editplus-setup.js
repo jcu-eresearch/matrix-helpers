@@ -329,6 +329,8 @@ EasyEdit.plugins.colorPickerFields = {
   */
 
 var iconJsonAssetId = '413526'
+var iconData = []
+
 EasyEdit.plugins.iconPickerFields = {
   init: function () {
 
@@ -354,12 +356,15 @@ EasyEdit.plugins.iconPickerFields = {
         }
 
         // If library is already loaded
-        if ($.fn.select2) {
-          initialiseIconPickers()
+        if ($.fn.select2 && iconData) {
+          initialiseIconPickers(iconData)
         } else {
           $("head link[rel='stylesheet']").last().after('<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />');
           $.getScript('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js', function () {
-            $.getJSON("/?a=" + iconJsonAssetId, initialiseIconPickers)
+            $.getJSON("/?a=" + iconJsonAssetId, function(data) {
+              iconData = data
+              initialiseIconPickers(iconData)
+            })
           })
         }
       }
