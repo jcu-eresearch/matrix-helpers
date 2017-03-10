@@ -35,7 +35,7 @@
     <script runat="server" id="ssjs-config.js" src="./?a=391595"></script>
 
     <!--@@ Reload the page "logged in"; done early via JS so we can fast-forward the reload @@-->
-    <!--@@ Workaround for Squiz Issue 117992 @@-->
+    <!--@@ Workaround for Squiz Edge serving only public content: https://github.com/jcu-eresearch/matrix-helpers/issues/20 @@-->
     <script>
       var current_user = '<MySource_PRINT id_name="__global__" var="current_user" default="" attr="name" />'
       if (!window.location.pathname.match(/_(admin|edit|noproxycache|nocache|recache)/) &&
@@ -389,8 +389,8 @@
     </script>
     %end_globals%
 
-    <!--@@ Adjust all page links to avoid broken Edge proxy if logged in @@-->
-    <!--@@ Workaround for Squiz Issue: 117992 @@-->
+    <!--@@ Workaround for Squiz Edge serving only public content: https://github.com/jcu-eresearch/matrix-helpers/issues/20 @@-->
+    <!--@@ Adjust all page links to avoid broken Edge proxy if *actually* logged in @@-->
     <!--@@ Only rewrite links if not embedded inside Edit+ iframe @@-->
     <MySource_AREA id_name="noproxycache_link_rewriting" design_area="show_if">
       <MySource_SET name="condition" value="logged_in" />
