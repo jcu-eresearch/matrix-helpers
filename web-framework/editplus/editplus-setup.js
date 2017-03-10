@@ -244,7 +244,7 @@ EasyEdit.plugins.colorPickerFields = {
 
     EasyEditEventManager.bind("EasyEditScreenLoad", function () {
       if ($('.sq-metadata-description > .tool.tool-colorpicker')) {
-        function initialiseColorPickers() {
+        var initialiseColorPickers = function() {
             $('.sq-metadata-description > .tool.tool-colorpicker').closest('.row').find('input[id*=metadata_field][type=text]').colorPicker({
             // Plugin: shows input fields for rgb and hsv; changeable
             animationSpeed: 0,
@@ -314,6 +314,50 @@ EasyEdit.plugins.colorPickerFields = {
           initialiseColorPickers()
         } else {
           $.getScript('https://cdnjs.cloudflare.com/ajax/libs/tinyColorPicker/1.1.1/jqColorPicker.min.js', initialiseColorPickers)
+        }
+      }
+    })
+  }
+}
+
+/**
+  * Icon picker fields: add a helpful icon autocompleter  if the field description contains
+    any element matching `.tool.tool-iconpicker`
+  */
+
+var iconJsonAssetId = '413526'
+EasyEdit.plugins.iconPickerFields = {
+  init: function () {
+
+    EasyEditEventManager.bind("EasyEditScreenLoad", function () {
+      if ($('.sq-metadata-description > .tool.tool-iconpicker')) {
+        var formatItem = function(data) {
+          if (!data.id) { return data.text; }
+          return $('<span><span class="' + data.id + '" aria-label=""></span> ' + data.text + '</span>')
+        }
+
+        var initialiseIconPickers = function(icon_data) {
+            $('.sq-metadata-description > .tool.tool-iconpicker')
+              .closest('.row')
+              .find('input[id*=metadata_field][type=text]')
+              .replaceWith(function() {
+                return '<select class="form-control form-control-lg icon-picker" name="' + this.name + '"><option value="' + this.value + '" selected>' + this.value + '</option></select>'
+              })
+            $('select.icon-picker').select2({
+              data: icon_data,
+              templateResult: formatItem,
+              templateSelection: formatItem
+            })
+        }
+
+        // If library is already loaded
+        if ($.fn.select2) {
+          initialiseIconPickers()
+        } else {
+          $("head link[rel='stylesheet']").last().after('<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />');
+          $.getScript('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js', function () {
+            $.getJSON("/?a=" + iconJsonAssetId, initialiseIconPickers)
+          })
         }
       }
     })

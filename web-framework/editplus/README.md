@@ -43,7 +43,7 @@
 
   * `.plus .content_type_wysiwyg .bodycopy_content`
   * `.plus .content_type_wysiwyg`
-  *
+
 1. Remove all rules for `.plus .bodycopy_content *` from `easyedit.css`
 1. Append `/__data/ees/` to all URLs in the file.  For Vim users, try:
 
@@ -54,3 +54,15 @@
    `easyedit-webframework.css` for ease of visibility and separation.
 
 1. Commit results to repository.
+
+1. If necessary, update our Edit+ list of icons by running (in this
+   directory):
+
+       ../../scripts/icon_json.py path/to/webhostinghub-glyphs/config.json > webhostinghub-glyphs.json
+
+   You may also need to update the ID of the icon JSON at:
+
+       var iconJsonAssetId = '413526'
+
+
+

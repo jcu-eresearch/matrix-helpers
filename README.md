@@ -49,7 +49,12 @@ within needs to be compatibly licensed.
 The current useful scripts are:
 
 * `scripts/construct`: replaces the content of a Matrix asset with the
-  given contents of a file, image, JS, CSS or more.
+  given contents of a file, image, JS, CSS or more.  It can even watch the
+  filesystem for changes and auto-upload your content; welcome to a true
+  development workflow!
+
+* `scripts/icon_json.py`: build the JSON file needed for the icon picker in
+  Edit+, loading all the CSS identifiers from webhostinghub-glyphs.
 
 ## More resources
 
