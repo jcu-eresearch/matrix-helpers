@@ -323,6 +323,9 @@ EasyEdit.plugins.colorPickerFields = {
 /**
   * Icon picker fields: add a helpful icon autocompleter  if the field description contains
     any element matching `.tool.tool-iconpicker`
+  *
+  * Known issue: performance due to showing all rows
+  *   See https://github.com/select2/select2/issues/813
   */
 
 var iconJsonAssetId = '413526'
