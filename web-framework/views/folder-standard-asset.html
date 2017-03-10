@@ -7,7 +7,7 @@
     %end_globals%
     </h4>
     %begin_globals_asset_metadata_jcu.features.byline%
-    <p class="text-muted">%globals_asset_metadata_jcu.features.byline%</p>
+    <div class="text-muted">%globals_asset_metadata_jcu.features.byline%</div>
     %end_globals%
     %begin_globals_user_type^neq:Public Access User%
     <p>By <abbr title="%asset_created_by_email%">%asset_created_by_name%</abbr>, last modified %asset_updated_readable%</p>
@@ -15,8 +15,6 @@
     <p>%asset_metadata_description%</p>
   </div>
   <div class="media-right media-thumbnail">
-    <a href="%asset_url%">
-      %asset_contents_paint_374698^replace:#image_class#:img-thumbnail img-fluid%
-    </a>
+    %asset_contents_paint_374698^replace:#image_class#:img-thumbnail img-fluid%
   </div>
 </li>
