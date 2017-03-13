@@ -52,6 +52,34 @@
 
 
 
+          function buildLinkOpenTagIfImageFound(assetId, linkWrapper) {
+            // if there is an override.url set then use that, otherwise get the url for the original asset
+            // override.urls should open in a separate window
+            const externalUrlTarget = ' target="_blank" rel="external noopener" '
+            linkWrapper = linkWrapper || { prepend : '', append : ''};
+
+print('<!-- buildLinkOpenTagIfImageFound - externalURL(%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '%) -->')
+
+            var result = '%globals_asset_thumbnail_url:' + assetId + 
+              '^notempty:{globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '}' +
+              '^prepend_if:' + linkWrapper.prepend + '<a ' + externalUrlTarget + ' href="' +
+              '^empty:{globals_asset_thumbnail_url:' + assetId + '}' +
+              '^notempty:' + linkWrapper.prepend + '<a href="./?a=' + assetId +
+              '^append_if:">%'
+
+            var resultDebug = result.replace(/%/, '')
+            print('<!-- ' + resultDebug + '-->')
+
+            return result;
+//            return('%globals_asset_metadata_jcu.summarycard.override.url:' + assetId + '^prepend_if:' + externalUrlTarget + 'href="^empty:href="./?a=' + assetId +'^append_if:"%')
+          }   // buildLinkOpenTagIfImageFound
+
+          function buildLinkCloseTagIfImageFound(assetId, linkWrapper) {
+            linkWrapper = linkWrapper || { prepend : '', append : ''};
+
+            return('%globals_asset_thumbnail_url:' + assetId + '^notempty:</a>' + linkWrapper.append + '%')
+          }
+
           function buildCardHref(assetId) {
             // if there is an override.url set then use that, otherwise get the url for the original asset
             // override.urls should open in a separate window
@@ -84,10 +112,7 @@
 
             imageContainer = imageContainer || { prepend : '', append : ''};
 
-            var linkTagOpen = imageContainer.prepend + '<a ' + buildCardHref(assetId) + '>';
-            var linkTagClose = '</a>' + imageContainer.append;
-
-            return linkTagOpen + buildCardImage(assetId) + linkTagClose;
+            return buildLinkOpenTagIfImageFound(assetId, imageContainer) + buildCardImage(assetId) + buildLinkCloseTagIfImageFound(assetId, imageContainer);
           }   // buildCardLinkedImage
 
           function drawThumbnailGridCard(assetId, index, list) {
@@ -101,7 +126,11 @@
             ++columnCount;
 
             print('<div class="col-xs-4 col-sm-3 col-lg-2 ' + (flairText == "" ? '' : ' thumbnail-flair ') + '">');
-            print('<div class="thumbnail-wrapper"><a ' + buildCardHref(assetId) + '>' + buildCardImage(assetId) + '</a></div>');
+            print('<div class="thumbnail-wrapper">' +
+              buildLinkOpenTagIfImageFound(assetId) + 
+              buildCardImage(assetId) + 
+              buildLinkCloseTagIfImageFound(assetId) + 
+              '</div>')
             print('<div class="small thumbnail-text"><p>' + (flairText ? '<strong>' + flairText + '</strong>' : '') + '<br/>%globals_asset_attribute_name:' + assetId + '%</p></div>');
             print('</div>');
 
@@ -160,7 +189,7 @@
             var buttonText = "More Details";
             print('<a class="btn-link" ' + buildCardHref(assetId) + '>' + buttonText + '</a>');
 
-            print('</div></div>');
+            print('</div></div>');  // close text column, close row
           }   // drawColumnCard
 
 
