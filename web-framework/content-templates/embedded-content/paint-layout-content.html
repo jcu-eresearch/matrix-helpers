@@ -6,7 +6,9 @@
         <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
       </h1>
       <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<p class="lead">', append: '</p>'})</script>
+      %begin_globals_asset_metadata_jcu.features.theme^eq:landing%
       <hr>
+      %end_globals%
       %end_asset%
 
       <div class="m-b-2">
