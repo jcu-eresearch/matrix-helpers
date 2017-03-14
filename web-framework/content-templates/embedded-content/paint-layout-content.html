@@ -1,14 +1,16 @@
      class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
   <div class="row">
-    <div class="col-xs-12 col-md-10 col-md-offset-1 %asset_metadata_template.title.alignment^empty:text-xs-left%">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
       %begin_asset_metadata_template.title.display^eq:show%
-      <h1>
-        <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
-      </h1>
-      <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<p class="lead">', append: '</p>'})</script>
-      %begin_globals_asset_metadata_jcu.features.theme^eq:landing%
-      <hr>
-      %end_globals%
+      <div class="%asset_metadata_template.title.alignment^empty:text-xs-left%">
+        <h1>
+          <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+        </h1>
+        <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<p class="lead">', append: '</p>'})</script>
+        %begin_globals_asset_metadata_jcu.features.theme^eq:landing%
+        <hr>
+        %end_globals%
+      </div>
       %end_asset%
 
       <div class="m-b-2">
