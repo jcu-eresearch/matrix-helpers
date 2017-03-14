@@ -346,7 +346,11 @@ EasyEdit.plugins.iconPickerFields = {
               .closest('.row')
               .find('input[id*=metadata_field][type=text]')
               .replaceWith(function() {
-                return '<select class="form-control form-control-lg icon-picker" name="' + this.name + '"><option value="' + this.value + '" selected>' + this.value + '</option></select>'
+                return $('<select></select>', {
+                  class: "form-control form-control-lg icon-picker",
+                  name: this.name,
+                  disabled: this.disabled
+                }).append('<option value="' + this.value + '" selected>' + this.value + '</option></select>')
               })
             $('select.icon-picker').select2({
               data: icon_data,
