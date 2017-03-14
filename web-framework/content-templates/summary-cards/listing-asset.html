@@ -1,0 +1,115 @@
+<script runat="server">
+  // %asset_assetid%
+  
+  if (layout.cardLayout == "mosaicGrid") {
+    drawGridCard()
+  } else if (layout.cardLayout == "column") {
+    drawColumnCard()
+  } else if (layout.cardLayout == "thumbnails") {
+    drawThumbnailGridCard()
+  } 
+  
+  
+  function linkedImageHtml(linkWrapper) {
+    linkWrapper = linkWrapper || { prepend : '', append : ''}
+
+    const imageVarietyUrl = '%asset_thumbnail_v_' + layout.imageVariety + '_url^escapequotes'
+    const imageUrl = imageVarietyUrl || '%asset_thumbnail_url^escapequotes%')  // get the desired variety if possible
+    var imageTitle = '%asset_thumbnail_title^escapequotes%'
+    var imageAlt = '%asset_thumbnail_alt^escapequotes%'
+    var imageHtml = ''
+    
+    if imageUrl {
+      imageHtml = linkWrapper.prepend + linkTagOpen() +
+        '<img class="img-fluid ' + layout.imageShape + '" src="' + imageUrl + ' alt="' + imageAlt + '" title="' + imageTitle + '"/>' +
+        linkTagClose() + linkWrapper.append
+    }
+        
+    return imageHtml
+  }   // linkedImageHtml
+
+  function linkTagOpen(linkClasses) {
+    // if there is an override.url set then use that, otherwise get the url for the original asset
+    // override.urls should open in a separate window
+    linkClasses = linkClasses || ''
+    const overrideUrl = '%asset_metadata_jcu.summarycard.override.url%'
+    const linkUrl = overrideUrl || '%asset_url%'
+    const externalUrlTarget = ' target="_blank" rel="external noopener" '
+    const targetAttribute = ( overrideUrl ? externalUrlTarget : '_self' )
+
+    return '<a class="' + linkClasses + '" target="' + targetAttribute + '" href="' + linkUrl + '">'
+  }   // linkTagOpen
+  
+  function linkTagClose() {
+    return '</a>'
+  }
+ 
+  function drawThumbnailGridCard() {
+    //  The thumbnail grid will responsively show 3 columns for xs screens,
+    //  4 columns for small and medium screens and 6 columns for large and xlarge screens.
+    //  Since the cells may not be exactly the same height we need to add an invisible
+    //  full width row at each break point to make sure the layout looks good.
+
+    //  The thumbnail grid assumes that there should always be an image.
+
+    var columnCount = %asset_position%
+    const imageWrapper = { prepend : ''<div class="thumbnail-wrapper">'', append : '</div>'}
+
+    print('<div class="col-xs-4 col-sm-3 col-lg-2 ' + (layout.flairText == "" ? '' : ' thumbnail-flair ') + '">')
+    print(linkedImageHtml(imageWrapper))
+    print('<div class="small thumbnail-text"><p>' + (layout.flairText ? '<strong>' + layout.flairText + '</strong>' : '') + '<br/>%asset_attribute_name%</p></div>');
+    print('</div>');
+
+    if (columnCount % 3 == 0) {
+      print('<div class="hidden-sm-up col-xs-12"></div>');    // show 3 columns for xs screens
+    }
+
+    if (columnCount % 4 == 0) {
+      print('<div class="hidden-xs-down hidden-lg-up col-xs-12"></div>');    // show 4 columns for small and medium screens
+    }
+
+    if (columnCount % 6 == 0) {
+      print('<div class="hidden-md-down col-xs-12"></div>');    // show 6 columns for large screens
+    }
+
+    layout.flairText = "";
+
+  }   // drawThumbnailGridCard
+
+
+  function drawGridCard() {
+    //  Uses the bootstrap Card tags to layout the assets summary cards
+    //  These cards look good with or without an image
+
+    print('<div class="card card-outline-secondary">');
+    print(linkedImageHtml())
+    print('<div class="card-block">');
+    print('<h4 class="card-title">%asset_attribute_name%</h4>');
+    print('<p class="card-text">' + JCU.phrasingHtmlFromKeyword('asset_metadata_jcu.summarycard.description') + '</p>');
+
+    print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose())
+    print('</div></div>');
+  }   // drawGridCard
+
+  function drawColumnCard(assetId) {
+    //  Summary cards are displayed as a single column. Images are optional.
+    print('<div class="row m-b-3">');
+
+    // image section
+    var imageOptions = { prepend : '<div class="col-sm-3 ">', append : '</div>'}
+    print(linkedImageHtml(imageOptions))
+
+    // text section
+    var columnWidth = '%asset_thumbnail_assetid^notempty:9^empty:12%'
+
+    print('<div class="col-sm-' + columnWidth + '">')
+
+    print('<h5>%asset_attribute_name%    <small>' + JCU.phrasingHtmlFromKeyword('asset_metadata_jcu.features.byline') + '</small></h5>');
+    JCU.printPhrasingHtmlFromKeyword('asset_metadata_jcu.summarycard.description', { prepend : "<p>", append : "</p>"});
+
+    print(linkTagOpen("btn-link") + layout.buttonText + linkTagClose())
+    print('</div></div>');  // close text column, close row
+  }   // drawColumnCard
+
+
+</script>
