@@ -1,0 +1,9 @@
+%begin_nested_get_content_container^as_asset:asset_metadata_template.card.layout^eq:mosaicGrid%
+%else_begin_nested_get_content_container^as_asset:asset_metadata_template.card.layout^eq:column%
+%else_begin_nested_get_content_container^as_asset:asset_metadata_template.card.layout^eq:thumbnails%
+%else_asset%
+    <div class="alert alert-warning">Card layout %nested_get_content_container^as_asset:asset_metadata_template.card.layout% not supported yet </div>
+%end_asset%
+%asset_listing%
+%nested_get_content_container%
+<div class="alert alert-warning">Card layout %nested_get_content_container^as_asset:asset_metadata_template.card.layout%</div>
