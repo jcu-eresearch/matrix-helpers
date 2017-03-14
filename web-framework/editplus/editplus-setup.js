@@ -108,6 +108,19 @@ EasyEdit.plugins.openAssetWizardViaUrl = {
 }
 
 /**
+  * Open Asset Finder plugin - Automatically opens the Asset Finder via the URL
+  */
+EasyEdit.plugins.openAssetWizardViaUrl = {
+  init: function() {
+    EasyEditEventManager.bind('EasyEditAfterLoad', function() {
+      if (window.location.hash.startsWith('#openFinder')) {
+        EasyEditComponents.openAssetFinder()
+      }
+    })
+  }
+}
+
+/**
   * User menu plugin - Adds extra buttons to the user toolbar
   */
 EasyEdit.isBackendUser = function() {
