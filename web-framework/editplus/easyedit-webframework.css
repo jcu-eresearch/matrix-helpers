@@ -287,6 +287,12 @@ body.previewMode {
   text-align: inherit;
 }
 
+/* Un-fix widths for comment buttons */
+.Matrix-Viper-commentdialog-buttonArea a,
+.Matrix-Viper-commentdialog-buttonArea a:visited {
+  width: auto;
+}
+
 /*
  * Metadata panel
  */
