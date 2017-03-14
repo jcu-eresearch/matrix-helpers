@@ -151,7 +151,6 @@ a {
   height: auto;
   color: #fff;
   background-color: #000;
-  background-image: url(../img/A21W1282-cattle-muster.jpg);
 }
 
 .theme-landing .intro {
@@ -164,6 +163,11 @@ a {
   padding-top: 20vh;
   vertical-align: middle;
   background-color: rgba(0,0,0,.2);
+}
+
+.theme-content .intro-body {
+  background-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.8));
+  background-color: transparent;
 }
 
 @media(max-height:512px) {
