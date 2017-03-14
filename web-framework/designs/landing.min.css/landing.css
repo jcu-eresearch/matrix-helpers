@@ -163,7 +163,7 @@ a {
   display: table-cell;
   padding-top: 20vh;
   vertical-align: middle;
-  background-color: rgba(0,0,0,.4);
+  background-color: rgba(0,0,0,.2);
 }
 
 @media(max-height:512px) {
