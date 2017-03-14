@@ -1,8 +1,15 @@
 # Designs
 
-## Landing
+## Explore
 
-`landing.html`
+The Explore layout (`explore.html`) is designed to allow visitors to
+experience and engage with one specific topic area.  Originally, this was a
+specific remote research station, showcasing things the user has likely never
+seen and encouraging them to learn more, to discover, and to *explore*.  The
+visual layout is striking, with large cover images and fonts used throughout,
+animations on home pages and cohesive branding across a site.
+
+### Configuration
 
 * Set `JCU.debug = true` in any area of SSJS on any page get debugging
   information outputted from SSJS as HTML comments
