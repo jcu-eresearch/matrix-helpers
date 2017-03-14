@@ -1,0 +1,23 @@
+     class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      %begin_asset_metadata_template.title.display^eq:show%
+      <div class="%asset_metadata_template.title.alignment^empty:text-xs-left%">
+        <h1>
+          <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+        </h1>
+        <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<p class="lead">', append: '</p>'})</script>
+        %begin_frontend_asset_metadata_jcu.features.theme^eq:landing%
+        <hr>
+        %end_frontend%
+      </div>
+      %end_asset%
+
+      <div class="m-b-2">
+        <script runat="server">
+          print(parts.innerHTML) //Hack for #72: %asset_assetid%
+        </script>
+      </div>
+
+      <div class="m-b-3">
+        <!--@@ Listing content from nested content @@-->
