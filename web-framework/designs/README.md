@@ -9,6 +9,17 @@ seen and encouraging them to learn more, to discover, and to *explore*.  The
 visual layout is striking, with large cover images and fonts used throughout,
 animations on home pages and cohesive branding across a site.
 
+### Technical info
+
+Many of the aspects of the layout rely on the JCU Web Framework, and thus in
+turn, Boostrap.
+
+Content Container Templates (CCTs) have been built to work on both landing
+pages and content pages and will automatically adjust themselves.  For
+instance, on content pages, their layout is thinner and they add a white
+background, whereas on a landing page, the background is removed and they are
+wider.
+
 ### Configuration
 
 * Set `JCU.debug = true` in any area of SSJS on any page get debugging
