@@ -112,7 +112,7 @@ EasyEdit.plugins.openAssetWizardViaUrl = {
 /**
   * Open Asset Finder plugin - Automatically opens the Asset Finder via the URL
   */
-EasyEdit.plugins.openAssetWizardViaUrl = {
+EasyEdit.plugins.openAssetFinderViaUrl = {
   init: function() {
     EasyEditEventManager.bind('EasyEditAfterLoad', function() {
       if (window.location.hash.startsWith('#openFinder')) {
