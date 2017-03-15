@@ -20,6 +20,8 @@ EasyEditConfig.analyticsViewId = 318119
 EasyEditLocalise.language = 'en'
 EasyEditLocalise.translations.en = {
   strings: {
+    "News Item": "Media Release",
+    "A News Item allows you to add articles to your site. These articles could be anything from a media release to a general article on your site.": "A Media Release allows you to add an article to your site; usually only for use by Media and Communication.",
     "Cascade Status Change": "Cascade status change to children",
     "Context Switcher": "Language Switcher",
     "Change Context": "Change Language",
