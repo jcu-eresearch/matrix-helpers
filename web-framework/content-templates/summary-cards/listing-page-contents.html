@@ -1,19 +1,4 @@
-<div class="alert alert-warning">Card layout %nested_get_content_container^as_asset:asset_metadata_template.card.layout%</div><
-<script runat="server">
-  // %asset_assetid%
-  // get the summary card list settings
-  const preKey = '%nested_get_content_container^as_asset:asset_metadata_template.'
-  const postKey = '%'
-  var layout = { 
-        imageShape : preKey + 'card.image.shape^replace:circle:img-circle^replace:natural: ' + postKey,
-        imageShapeClass : 'image-shape-' +  preKey + 'card.image.shape' + postKey,
-        flairText : preKey + 'card.initial.flair' + postKey,
-        cardLayout : preKey + 'card.layout' + postKey,
-        imageVariety : 'newsdetails',
-        buttonText : 'More Details'
-    }
-  
-</script>
+<div class="alert alert-warning">Card layout '%nested_get_content_container^as_asset:asset_metadata_template.card.layout%'</div>
 %begin_nested_get_content_container^as_asset:asset_metadata_template.card.layout^eq:mosaicGrid%
 <!--@@   Mosaic Grid layout   @@-->
   <div class="card-columns image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape%">
@@ -26,7 +11,7 @@
   </div>
 
 %else_begin_nested_get_content_container^as_asset:asset_metadata_template.card.layout^eq:thumbnails%
-<!--@@   Thumbnail Grid layout  @-->
+<!--@@   Thumbnail Grid layout  @@-->
   <div class="row image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape%">
   %asset_listing%
   </div>
