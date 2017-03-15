@@ -3,7 +3,7 @@
         <div class="col-xs-12 col-md-10 col-md-offset-1 container">
 
             %begin_asset_metadata_template.title.display^eq:show%
-            <h3 class="%asset_metadata_template.title.alignment%">
+            <h3 class="%asset_metadata_template.title.alignment^empty:text-xs-left%">
               <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%');</script>
               <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead m-t-2">', append: '</span>'});</script>
             </h3>
