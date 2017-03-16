@@ -10,9 +10,9 @@ Firstly, the information you'll need to know are:
 * **Site URL:** the proposed URL of the new site, such as
   `www.jcu.edu.au/orpheus-island`.
 
+  > The path should be all lowercase and only use hyphens as separators.
   > Domains other than `www.jcu.edu.au` can be used, but they're quite
-  > complicated to configure. The path should be all lowercase and only
-  > use hyphens as separators.
+  > complicated to configure.
 
 * **Site Name:** the full name of the site, such as `Orpheus Island Research
   Station`.
@@ -39,7 +39,7 @@ asset.  If in doubt, please ask.
 
 <div class="alert alert-warning">Note that we don't repeat the acquisition or
 release of locks through this setup process.  Assuming you complete this
-process quickly, you'll only need locks on the Site asset one time</div>
+process quickly, you'll only need locks on the Site asset one time.</div>
 
 1. Login to the Matrix Admin interface via
    <https://www.jcu.edu.au/web-framework/_login>.
@@ -47,13 +47,15 @@ process quickly, you'll only need locks on the Site asset one time</div>
 1. Right-click on `JCU Web Framework Sites` > `New Child` > `Web` > `Site` to
    create the new `Site` asset.
 
-1. Set the `Site Name` to the full textual name of the site; this shows up in
-   the site's `<title>` and various other areas, such as contact emails.  Set
-   the  `Link Type` choose `TYPE_2` (don’t show in navigation). Click
-   `Commit`.
+    a. Set the `Site Name` to the full textual name of the site; this shows up in
+       the site's `<title>` and various other areas, such as contact emails.  Set
+       the  `Link Type` choose `TYPE_2` (don’t show in navigation). Click
+       `Commit`.
 
-1. Right-click on your site and go to `URLs`.  Enter the proposed URL for the site and
-   tick `HTTPS-only`.  Click `Commit`.
+    b. Right-click on your site and go to `URLs`.  Enter the proposed URL for the site and
+       tick `HTTPS-only`.
+
+    c. Click `Commit`.
 
 1. Right-click on your site and go to `Metadata Schemas` and do the following:
 
@@ -64,13 +66,12 @@ process quickly, you'll only need locks on the Site asset one time</div>
       Refer to an existing site to check best-practice setup.
 
    a. Change `JCU Web Framework Site Settings` > `Cascade` to being unchecked.
-      Click `Commit`.
+
+   a. Click `Commit`.
 
 1. **Set the Paint Layout:** Right-click the site and go to `Paint Layouts`.
    Within `Effective Paint Layouts` > `Paint Layout` choose the asset located
-   at:
-
-   * `JCU Web Framework Resources` > `Paint Layouts` > `Default Paint Layout`.
+   at: `JCU Web Framework Resources` > `Paint Layouts` > `Default Paint Layout`.
 
    Click `Commit`.
 
@@ -90,7 +91,7 @@ process quickly, you'll only need locks on the Site asset one time</div>
    at:
 
    * `JCU Web Framework Resources` > `Designs` > `Test
-     Environment` > `Test Environment - Defaults`
+     Environment` > `Test Environment - Defaults`  
 
 1. **Grant permissions to other users:** if you know the identities of users
    or groups that should have edit access to this site, set them now via
@@ -126,13 +127,14 @@ process quickly, you'll only need locks on the Site asset one time</div>
    a. For `Index`, select the `Home` page asset for this site.
    a. For `Not Found Page`, select the `404 Not Found` page for this site (the
    one located underneath this site).
-   a. For `Archived Asset`, choose the `404 Not Found` page as well
+   a. For `Archived Asset`, choose the `404 Not Found` page as well.
+   a. Click `Commit`.
 
-   Click `Commit`.
-
-**Congratulations!** The basic site is now live. You can now see your work by
-right-clicking the site and choosing `Preview` > `In New Window` - or just by
-manually typing the URL in.
+<div class="alert alert-success">
+<strong>Congratulations!</strong> The basic site is now live. You can now see
+your work by right-clicking the site and choosing <code>Preview</code> >
+<code>In New Window</code> - or just by manually typing the URL in.
+</div>
 
 Adding and editing content is now possible using the `Page Tools` menu on
 the front end (the blue menu at top-left).  Edit+ editing is preferred, even
