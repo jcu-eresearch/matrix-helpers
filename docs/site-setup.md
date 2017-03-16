@@ -45,8 +45,8 @@ process quickly, you'll only need locks on the Site asset one time.</div>
    <https://www.jcu.edu.au/web-framework/_login> and then visiting
    <https://www.jcu.edu.au/web-framework/_admin>.
 
-1. Right-click on `JCU Web Framework Sites` > `New Child` > `Web` > `Site` to
-   create the new `Site` asset.
+1. **Create the Site::** Right-click on `JCU Web Framework Sites` > `New
+   Child` > `Web` > `Site` to create the new `Site` asset.
 
     1. Set the `Site Name` to the full textual name of the site; this shows up in
        the site's `<title>` and various other areas, such as contact emails.
@@ -61,7 +61,8 @@ process quickly, you'll only need locks on the Site asset one time.</div>
 
    1. Click `Commit`.
 
-1. Right-click on your site and go to `Metadata Schemas` and do the following:
+1. **Configure Metadata Schemas**: right-click on your site and go to
+   `Metadata Schemas` and do the following:
 
    1. Confirm that `Asset Settings` and `JCU Web Framework Site Settings` are
       present. These **must** be applied to every asset, the `Site` included,
@@ -73,14 +74,14 @@ process quickly, you'll only need locks on the Site asset one time.</div>
 
    1. Click `Commit`.
 
-1. **Set the Paint Layout:** Right-click the site and go to `Paint Layouts`.
+1. **Set the Paint Layout:** right-click the site and go to `Paint Layouts`.
 
    1. Within `Effective Paint Layouts` > `Paint Layout` choose the asset located
       at: `JCU Web Framework Resources` > `Paint Layouts` > `Default Paint Layout`.
 
    1. Click `Commit`.
 
-1. **Set the Design: Right-click** the site and go to `Settings`.  In
+1. **Set the Design:** right-click the site and go to `Settings`.  In
    `System Defined Frontend Design` > `New?`, choose the overarching design
    you wish to apply to your site.  The options are:
 

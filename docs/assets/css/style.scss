@@ -3,10 +3,10 @@
 
 @import "https://cdn.web.jcu.io/1.0.0-beta.1/css/jcu.min.css";
 
-li li {
+li > ol > li {
   list-style-type: lower-alpha;
 }
 
-li li li{
+li > ol > li > ol > li{
   list-style-type: lower-roman;
 }
