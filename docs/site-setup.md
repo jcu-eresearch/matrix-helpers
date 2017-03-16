@@ -101,7 +101,7 @@ before each action and release locks afterwards.</div>
 
 1. **Grant permissions to other users:** if you know the identities of users
    or groups that should have edit access to this site, set them now via
-   right-clicking on your site and choosing `Site` > `Permissions`.  You
+   right-clicking on your site and choosing `Permissions`.  You
    should assign `Read`, `Write` and `Admin` permissions to your editors - the
    ability to `Admin` is necessary to publish content and, in general, change
    the `Status` of content.  You can also do this later, but take care to
@@ -112,15 +112,18 @@ before each action and release locks afterwards.</div>
    `LINK_2` (so it won't be shown in navigation).
 
     1. Set the `Home` page to be a *landing* page via right-clicking the `Home`
-       asset and going to `Metadata` > `Theme` > `Landing Theme`.
+       asset and going to `Metadata` > `Theme` > `Landing Theme` (disabling
+       `Use default` in the process).
 
     1. **Optional:** enable animations on the `Home` page via right-clicking
-       the `Home` asset and going to `Metadata` > `Animations` > `Enable`.
+       the `Home` asset and going to `Metadata` > `Enable Animations` >
+       `Enabled` (disabling `Use default` in the process).
 
 1. **Link the 404 page to the site:** locate the common `404 Not Found` page
-   at `Common` > `Content` > `404 Not Found`.  Drag this into the new site and
-   choose `Link` to re-use the 404 page or `Clone`, if you want a custom 404
-   page.  Accept any permission changes in `HIPO` by clicking `Next`.
+   at `JCU Web Framework Sites` > `Common` > `Content` > `404 Not Found`.
+   Drag this into the new site and choose `Link` to re-use the 404 page or
+   `Clone`, if you want a custom 404 page.  Accept any permission changes in
+   `HIPO` by clicking `Next`.
 
    The 404 page must be linked in this way due to how Matrix looks up the
    "site" associated with this type of page.  If we were to use the common
