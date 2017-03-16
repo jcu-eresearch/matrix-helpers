@@ -45,7 +45,7 @@ process quickly, you'll only need locks on the Site asset one time.</div>
    <https://www.jcu.edu.au/web-framework/_login> and then visiting
    <https://www.jcu.edu.au/web-framework/_admin>.
 
-1. **Create the Site::** Right-click on `JCU Web Framework Sites` > `New
+1. **Create the Site:** Right-click on `JCU Web Framework Sites` > `New
    Child` > `Web` > `Site` to create the new `Site` asset.
 
     1. Set the `Site Name` to the full textual name of the site; this shows up in
