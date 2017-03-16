@@ -49,22 +49,22 @@ process quickly, you'll only need locks on the Site asset one time.</div>
    create the new `Site` asset.
 
     a. Set the `Site Name` to the full textual name of the site; this shows up in
-       the site's `<title>` and various other areas, such as contact emails.  Set
-       the  `Link Type` choose `TYPE_2` (don’t show in navigation). Click
-       `Commit`.
+       the site's `<title>` and various other areas, such as contact emails.
+    a. Set the  `Link Type` choose `TYPE_2` (don’t show in navigation).
+    a. Click `Commit`.
 
-    b. Right-click on your site and go to `URLs`.  Enter the proposed URL for the site and
-       tick `HTTPS-only`.
+1. **Set your Site URL:** right-click on your site and go to `URLs`.
 
-    c. Click `Commit`.
+   a. Enter the proposed URL for the site and tick `HTTPS-only`.
+   a. Click `Commit`.
 
 1. Right-click on your site and go to `Metadata Schemas` and do the following:
 
    a. Confirm that `Asset Settings` and `JCU Web Framework Site Settings` are
       present. These **must** be applied to every asset, the `Site` included,
       so we try and detect if these aren't available and alert the user on the
-      frontend.  If these aren't present on the `Site`, you must add them.
-      Refer to an existing site to check best-practice setup.
+      frontend.  If these aren't present on the `Site`, you must add them;
+      refer to an existing site to check best-practice setup.
 
    a. Change `JCU Web Framework Site Settings` > `Cascade` to being unchecked.
 
