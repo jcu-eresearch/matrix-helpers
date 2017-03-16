@@ -7,6 +7,7 @@ JCU.data.is_homepage = !JCU.data.url_site_path
 
 JCU.data.frontend_id = '%frontend_asset_assetid%'
 JCU.data.frontend_breadcrumbs = '%frontend_asset_metadata_jcu.features.breadcrumbs%'
+JCU.data.frontend_theme = '%frontend_asset_metadata_jcu.features.theme%'
 JCU.data.homepage_breadcrumbs = '%globals_site_index_id^as_asset:asset_metadata_jcu.features.breadcrumbs%'
 JCU.data.site_breadcrumbs = '%globals_site_metadata_jcu.features.breadcrumbs%'
 
@@ -30,9 +31,14 @@ if (JCU.data.is_homepage) {
 
 if (JCU.data.breadcrumbs_enabled) {
   var lineage = JSON.parse("%frontend_asset_linking_lineage^json_encode%")
+  var theme_css = ''
   if (lineage) {
+    // If on a content page, we style accordingly
+    if (JCU.data.frontend_theme === 'content') {
+      theme_css = 'jcu-content'
+    }
     print(
-      '<div class="container jcu-content">' +
+      '<div class="container ' + theme_css + '">' +
       '<nav class="breadcrumb jcu-bg--transparent">')
     lineage.forEach(function(id) {
       if (id !== JCU.data.frontend_id) {
