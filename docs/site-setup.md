@@ -175,6 +175,9 @@ relink and reconfigure the following settings:
 * Permissions will need to be changed on all cloned assets
 * The `404 Not Found` asset will need to be re-linked (unless you want a clone
   of the 404 page, in which case, you already have it)
+* Any content that is using `Nest Content` Content Containers or other types
+  of CCT that link to specific assets; for instance, the `Contact` page on the
+  Research Infrastructure sites.
 
 Also remember that if you want to clone a `Site` **and** its contents, you'll
 have to clone in two stages: clone the `Site`, then clone its contents under
