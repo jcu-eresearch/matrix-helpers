@@ -50,12 +50,15 @@ process quickly, you'll only need locks on the Site asset one time.</div>
 
     a. Set the `Site Name` to the full textual name of the site; this shows up in
        the site's `<title>` and various other areas, such as contact emails.
+
     a. Set the  `Link Type` choose `TYPE_2` (don’t show in navigation).
+
     a. Click `Commit`.
 
 1. **Set your Site URL:** right-click on your site and go to `URLs`.
 
    a. Enter the proposed URL for the site and tick `HTTPS-only`.
+
    a. Click `Commit`.
 
 1. Right-click on your site and go to `Metadata Schemas` and do the following:
@@ -71,10 +74,11 @@ process quickly, you'll only need locks on the Site asset one time.</div>
    a. Click `Commit`.
 
 1. **Set the Paint Layout:** Right-click the site and go to `Paint Layouts`.
-   Within `Effective Paint Layouts` > `Paint Layout` choose the asset located
-   at: `JCU Web Framework Resources` > `Paint Layouts` > `Default Paint Layout`.
 
-   Click `Commit`.
+   a. Within `Effective Paint Layouts` > `Paint Layout` choose the asset located
+      at: `JCU Web Framework Resources` > `Paint Layouts` > `Default Paint Layout`.
+
+   a. Click `Commit`.
 
 1. **Set the Design: Right-click** the site and go to `Settings`.  In
    `System Defined Frontend Design` > `New?`, choose the overarching design
@@ -126,9 +130,12 @@ process quickly, you'll only need locks on the Site asset one time.</div>
    choose `Details`.
 
    a. For `Index`, select the `Home` page asset for this site.
+
    a. For `Not Found Page`, select the `404 Not Found` page for this site (the
-   one located underneath this site).
+      one located underneath this site).
+
    a. For `Archived Asset`, choose the `404 Not Found` page as well.
+
    a. Click `Commit`.
 
 <div class="alert alert-success">
