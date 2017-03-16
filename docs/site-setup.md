@@ -48,37 +48,37 @@ process quickly, you'll only need locks on the Site asset one time.</div>
 1. Right-click on `JCU Web Framework Sites` > `New Child` > `Web` > `Site` to
    create the new `Site` asset.
 
-    a. Set the `Site Name` to the full textual name of the site; this shows up in
+    1. Set the `Site Name` to the full textual name of the site; this shows up in
        the site's `<title>` and various other areas, such as contact emails.
 
-    a. Set the  `Link Type` choose `TYPE_2` (don’t show in navigation).
+    1. Set the  `Link Type` choose `TYPE_2` (don’t show in navigation).
 
-    a. Click `Commit`.
+    1. Click `Commit`.
 
 1. **Set your Site URL:** right-click on your site and go to `URLs`.
 
-   a. Enter the proposed URL for the site and tick `HTTPS-only`.
+   1. Enter the proposed URL for the site and tick `HTTPS-only`.
 
-   a. Click `Commit`.
+   1. Click `Commit`.
 
 1. Right-click on your site and go to `Metadata Schemas` and do the following:
 
-   a. Confirm that `Asset Settings` and `JCU Web Framework Site Settings` are
+   1. Confirm that `Asset Settings` and `JCU Web Framework Site Settings` are
       present. These **must** be applied to every asset, the `Site` included,
       so we try and detect if these aren't available and alert the user on the
       frontend.  If these aren't present on the `Site`, you must add them;
       refer to an existing site to check best-practice setup.
 
-   a. Change `JCU Web Framework Site Settings` > `Cascade` to being unchecked.
+   1. Change `JCU Web Framework Site Settings` > `Cascade` to being unchecked.
 
-   a. Click `Commit`.
+   1. Click `Commit`.
 
 1. **Set the Paint Layout:** Right-click the site and go to `Paint Layouts`.
 
-   a. Within `Effective Paint Layouts` > `Paint Layout` choose the asset located
+   1. Within `Effective Paint Layouts` > `Paint Layout` choose the asset located
       at: `JCU Web Framework Resources` > `Paint Layouts` > `Default Paint Layout`.
 
-   a. Click `Commit`.
+   1. Click `Commit`.
 
 1. **Set the Design: Right-click** the site and go to `Settings`.  In
    `System Defined Frontend Design` > `New?`, choose the overarching design
@@ -110,10 +110,10 @@ process quickly, you'll only need locks on the Site asset one time.</div>
    `Standard Page` and name it `Home` (by convention) and set its link type to
    `LINK_2` (so it won't be shown in navigation).
 
-    a. Set the `Home` page to be a *landing* page via right-clicking the `Home`
+    1. Set the `Home` page to be a *landing* page via right-clicking the `Home`
        asset and going to `Metadata` > `Theme` > `Landing Theme`.
 
-    a. **Optional:** enable animations on the `Home` page via right-clicking
+    1. **Optional:** enable animations on the `Home` page via right-clicking
        the `Home` asset and going to `Metadata` > `Animations` > `Enable`.
 
 1. **Link the 404 page to the site:** locate the common `404 Not Found` page
@@ -129,14 +129,14 @@ process quickly, you'll only need locks on the Site asset one time.</div>
 1. **Configure site for index and 404 pages**: right-click on the site and
    choose `Details`.
 
-   a. For `Index`, select the `Home` page asset for this site.
+   1. For `Index`, select the `Home` page asset for this site.
 
-   a. For `Not Found Page`, select the `404 Not Found` page for this site (the
+   1. For `Not Found Page`, select the `404 Not Found` page for this site (the
       one located underneath this site).
 
-   a. For `Archived Asset`, choose the `404 Not Found` page as well.
+   1. For `Archived Asset`, choose the `404 Not Found` page as well.
 
-   a. Click `Commit`.
+   1. Click `Commit`.
 
 <div class="alert alert-success">
 <strong>Congratulations!</strong> The basic site is now live. You can now see
