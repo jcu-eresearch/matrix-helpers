@@ -139,3 +139,21 @@ the front end (the blue menu at top-left).  Edit+ editing is preferred, even
 for `Backend Users` over the admin interface because of the various plugins
 developed to help support editors.
 
+Go forth and set the `Site`-level metadata to configure the site as a whole,
+and start building pages.
+
+## Cloning an existing site
+
+It's possible to clone an existing site, but you'll have to take care to
+relink and reconfigure the following settings:
+
+* `Site` URL will need to be set correctly
+* `Index`, `Not Found Page`, `Archived Asset` will point at the old site
+* Any `Site`-level metadata will need to be changed (such as the logo)
+* Permissions will need to be changed on all cloned assets
+* The `404 Not Found` asset will need to be re-linked (unless you want a clone
+  of the 404 page, in which case, you already have it)
+
+Also remember that if you want to clone a `Site` **and** its contents, you'll
+have to clone in two stages: clone the `Site`, then clone its contents under
+the copy of the `Site`.
