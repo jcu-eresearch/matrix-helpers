@@ -145,6 +145,11 @@ a {
   }
 }
 
+/* Ensure everything is visible if animations are off */
+.animations-off .animated.transparent {
+  opacity: 1;
+}
+
 .intro {
   display: table;
   width: 100%;
