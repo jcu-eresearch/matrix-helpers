@@ -153,6 +153,14 @@ the front end (the blue menu at top-left).  Edit+ editing is preferred, even
 for `Backend Users` over the admin interface because of the various plugins
 developed to help support editors.
 
+<div class="alert alert-warning">
+<strong>Bug alert!</strong> If you've just logged in, you might not see the
+blue Page Tools menu.  There's currently a caching issue that causes the wrong
+version of the page to be shown.  Whilst our vendor fixes the problem, you
+need to shift-refresh the site; this takes you to a workaround we have
+developed.
+</div>
+
 Go forth and set the `Site`-level metadata to configure the site as a whole,
 and start building pages.
 
