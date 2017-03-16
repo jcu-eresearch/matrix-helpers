@@ -5,7 +5,7 @@
 EasyEditConfig.debug = false
 EasyEditConfig.titleBar = "@asset_name@ : James Cook University Edit+"
 EasyEditConfig.overlayTimeout = 61
-// Research Infrastructure, Web Framework, Australia, Singapore
+// Web Framework Sites, Web Framework Resources, Australia, Singapore
 EasyEditConfig.assetFinderLocations = [364590,283019,2311,70]
 EasyEditConfig.assetFinderMaxAssets = 100
 EasyEditConfig.allowFutureStatusChange = true
@@ -14,7 +14,8 @@ EasyEditConfig.showChildrenOnLinkingScreen = true
 EasyEditConfig.contextsEnabled = true
 EasyEditConfig.markdownEnabled = true
 EasyEditConfig.enableSiteEditing = true
-EasyEditConfig.analyticsViewId = 318119
+// Disabled for now until we get an analytics view asset again
+//EasyEditConfig.analyticsViewId = 318119
 
 // Localisation of certain strings
 EasyEditLocalise.language = 'en'
@@ -30,6 +31,9 @@ EasyEditLocalise.translations.en = {
     "Page Name": "Page Name (used as title/header)",
     "Page Short Name": "Page Short Name (used in navigation)",
     "Related Image": "Related Image (Thumbnail)",
+    "Insert New Container": "Add New Content Block",
+    "Edit Container Properties": "Edit Content Block",
+    "Re-order Content Containers": "Re-order Content Blocks",
     "Styling": "Wrapper HTML",
     "Presentation": "Element",
     "CSS class": "CSS Classes (space separated)",
@@ -239,7 +243,7 @@ EasyEdit.plugins.contentContainerTemplateWarning = {
           jQuery('#edit_properties_ok_' + bodycopyDiv.id).click(function () {
             if (jQuery('#template_' + bodycopyDiv.id).val().replace("--", "") !== bodycopyDiv.attribute("applied_template").toString()) {
               if (!button.parents('.bodycopy_manager_div').prev().is('.template-alert')) {
-                button.closest('.bodycopy_manager_div').before('<div class="container m-y-1 template-alert"><div class="alert alert-warning" role="alert"><strong>Warning!</strong> Changing content templates may result in your current settings being inaccessible or unused in that new template. Take a copy of any settings in a text editor (such as Notepad) if you need them later.</div></div>')
+                button.closest('.bodycopy_manager_div').before('<div class="container m-y-1 template-alert"><div class="alert alert-warning" role="alert"><strong>Warning!</strong> Changing content block templates may result in your current settings being inaccessible or unused in that new template. Take a copy of any settings in a text editor (such as Notepad) if you need them later.</div></div>')
               }
             }
           })
