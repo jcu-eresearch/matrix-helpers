@@ -12,6 +12,7 @@
 
   //  get details about the current card / asset
   var card = {
+    id : '%asset_assetid%',
     name : '%asset_name%',
     position : '%asset_position%',
     imageTitle : '%asset_thumbnail_title%',
@@ -42,7 +43,7 @@
     // override.urls should open in a separate window
     linkClasses = linkClasses || ''
 
-    const targetAttribute = ( card.overrideUrl ? 'target:"_blank" rel:"external noopener" ' : 'target:"_self"' )
+    const targetAttribute = ( card.overrideUrl ? 'target="_blank" rel="external noopener" ' : 'target="_self"' )
     return '<a class="' + linkClasses + '" ' + targetAttribute + ' href="' + card.url + '">'
   }   // linkTagOpen
   
@@ -86,8 +87,8 @@
     print('<div class="card card-outline-secondary">')
     print(linkedImageHtml())
     print('<div class="card-block">')
-    print('<h4 class="card-title">%asset_attribute_name%</h4>')
-    print('<p class="card-text">' + JCU.phrasingHtmlFromKeyword('asset_metadata_jcu.summarycard.description') + '</p>')
+    print('<h4 class="card-title">' + card.name + '</h4>')
+    print('<p class="card-text">' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id) + '</p>')
 
     print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose())
     print('</div></div>')
@@ -106,8 +107,8 @@
 
     print('<div class="col-sm-' + columnWidth + '">')
 
-    print('<h5>' + card.name + '%nbsp;&nbsp;<small>' + JCU.phrasingHtmlFromKeyword('asset_metadata_jcu.features.byline') + '</small></h5>')
-    JCU.printPhrasingHtmlFromKeyword('asset_metadata_jcu.summarycard.description', { prepend : "<p>", append : "</p>"})
+    print('<h5>' + card.name + '&nbsp;&nbsp;<small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
+    JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id, { prepend : "<p>", append : "</p>"})
 
     print(linkTagOpen("btn-link") + layout.buttonText + linkTagClose())
     print('</div></div>');  // close text column, close row
