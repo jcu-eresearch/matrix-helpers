@@ -87,6 +87,43 @@
     </a>
 
     <!--@@ Page toolbar, only visible to authenticated users @@-->
+    <MySource_AREA id_name="toolbar_view_editor_user" design_area="show_if" print="no">
+      <!-- If user can access the Edit+ interface -->
+      <MySource_SET name="condition" value="user_type"/>
+      <MySource_SET name="condition_user_types" value="simple_edit_user,backend_user,ipb_user,system_user,root_user,ldap_simple_edit_user,ldap_backend_user" />
+      <MySource_THEN>
+        <div class="btn-group" role="group">
+          <button class="btn btn-secondary dropdown-toggle dropdown-toggle-right" id="editMenuLabel" type="button" data-toggle="dropdown" aria-haspopup="true">
+            <span class="icon-preview" aria-label="Preview icon"></span> View
+          </button>
+          <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="editMenuLabel">
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit#mode=edit&screen=content' title="View this current asset's content">
+              <span class="icon-searchdocument" aria-label="Preview icon"></span> Page content
+            </a>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit' title="View page details, including name, status and thumbnail">
+              <span class="icon-details1" aria-label="Details icon"></span> Page details
+            </a>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_edit#mode=edit&screen=metadata' title="Configure the current asset's metadata settings">
+              <span class="icon-cog" aria-label="Settings icon"></span> Page settings
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />/_edit' title="View site details, including name, status and thumbnail">
+              <span class="icon-details1" aria-label="Details icon"></span> Site details
+            </a>
+            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="site_link" full_url="true" />/_edit#mode=edit&screen=metadata' title="Configure the current site's metadata settings">
+              <span class="icon-cog" aria-label="Edit site icon"></span> Site settings
+            </a>
+          </div>
+        </div>
+      </MySource_THEN>
+    </MySource_AREA><!--@@ /toolbar_view_editor_user @@-->
+    <MySource_AREA id_name="toolbar_view" design_area="show_if" print="no">
+      <!-- Show only if user has no write access -->
+      <MySource_SET name="condition" value="write_access" />
+      <MySource_ELSE>
+        <MySource_PRINT id_name="toolbar_view_editor_user" />
+      </MySource_ELSE>
+    </MySource_AREA><!--@@ /toolbar_view @@-->
     <MySource_AREA id_name="toolbar_edit" design_area="show_if" print="no">
       <MySource_SET name="condition" value="write_access" />
       <MySource_THEN>
@@ -222,7 +259,7 @@
     </MySource_AREA><!--@@ /toolbar_help_for_editors @@-->
     <MySource_AREA id_name="toolbar_user_admin" design_area="show_if" print="no">
       <MySource_SET name="condition" value="user_type"/>
-      <MySource_SET name="condition_user_types" value="backend_user" />
+      <MySource_SET name="condition_user_types" value="backend_user,ipb_user,system_user,root_user,ldap_backend_user" />
       <MySource_THEN>
         <a class="dropdown-item" href="%globals_site_url%/_admin/?assetid=%globals_user_assetid%&am_section=edit_asset" title="Edit your account details, including releasing locks">
           <span class="icon-useralt" aria-label="User profile icon"></span> Edit my account details
@@ -238,6 +275,7 @@
           </button>
           <div class="collapse" id="pageToolsButtons">
             <div class="btn-group-vertical">
+              <MySource_PRINT id_name="toolbar_view" />
               <MySource_PRINT id_name="toolbar_edit" />
               <MySource_PRINT id_name="toolbar_admin" />
               <div class="btn-group" role="group">
