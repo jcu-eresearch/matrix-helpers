@@ -38,8 +38,8 @@ asset.  If in doubt, please ask.
 ### Process
 
 <div class="alert alert-warning">Note that we don't repeat the acquisition or
-release of locks through this setup process.  Assuming you complete this
-process quickly, you'll only need locks on the Site asset one time.</div>
+release of locks through this setup process. You will need to acquire locks
+before each action and release locks afterwards.</div>
 
 1. Login to the Matrix Admin interface by loading
    <https://www.jcu.edu.au/web-framework/_login> and then visiting
