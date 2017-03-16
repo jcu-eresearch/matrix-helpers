@@ -91,7 +91,7 @@ process quickly, you'll only need locks on the Site asset one time.</div>
    at:
 
    * `JCU Web Framework Resources` > `Designs` > `Test
-     Environment` > `Test Environment - Defaults`  
+     Environment` > `Test Environment - Defaults`
 
 1. **Grant permissions to other users:** if you know the identities of users
    or groups that should have edit access to this site, set them now via
