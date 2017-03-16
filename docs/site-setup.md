@@ -41,8 +41,9 @@ asset.  If in doubt, please ask.
 release of locks through this setup process.  Assuming you complete this
 process quickly, you'll only need locks on the Site asset one time.</div>
 
-1. Login to the Matrix Admin interface via
-   <https://www.jcu.edu.au/web-framework/_login>.
+1. Login to the Matrix Admin interface by loading
+   <https://www.jcu.edu.au/web-framework/_login> and then visiting
+   <https://www.jcu.edu.au/web-framework/_admin>.
 
 1. Right-click on `JCU Web Framework Sites` > `New Child` > `Web` > `Site` to
    create the new `Site` asset.
