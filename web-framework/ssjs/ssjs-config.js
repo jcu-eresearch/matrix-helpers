@@ -18,7 +18,13 @@ var global = this || window || root || global || GLOBAL || self
 /* Public API for JCU SSJS functions */
 var JCU = {
   // Data and information used in rendering
-  data: {},
+  data: {
+    // Relative path to current Site asset (eg empty if at index page)
+    // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/9
+    is_homepage: !'%frontend_asset_url_site_path%',
+    frontend_theme: '%frontend_asset_metadata_jcu.features.theme%',
+    homepage_theme: '%globals_site_index_id^as_asset:asset_metadata_jcu.features.theme%'
+  },
 
   // Debugging on or off
   debug: false,
@@ -131,9 +137,13 @@ var JCU = {
   }
 }
 
+JCU.data.current_theme = JCU.data.is_homepage && JCU.data.homepage_theme ||
+  !JCU.data.is_homepage && JCU.data.frontend_theme
+
 // Run global functions after SSJS initialises
 JCU.runGlobalFunctions('JCU_ssjs_')
 
 if (JCU.debug) {
   print('<!-- Server-side JavaScript (SSJS) successfully initialised -->')
+  print("<!-- JCU.data is currently " + JSON.stringify(JCU.data) + " -->")
 }

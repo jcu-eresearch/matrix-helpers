@@ -1,16 +1,9 @@
 /* jslint asi: true */
 /* globals print, JCU */
 
-// Relative path to current Site asset (eg empty if at index page)
-// Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/9
-JCU.data.url_site_path = '%frontend_asset_url_site_path%'
-JCU.data.is_homepage = !JCU.data.url_site_path
-
 JCU.data.frontend_id = '%frontend_asset_assetid%'
 JCU.data.frontend_breadcrumbs = '%frontend_asset_metadata_jcu.features.breadcrumbs%'
-JCU.data.frontend_theme = '%frontend_asset_metadata_jcu.features.theme%'
 JCU.data.homepage_breadcrumbs = '%globals_site_index_id^as_asset:asset_metadata_jcu.features.breadcrumbs%'
-JCU.data.homepage_theme = '%globals_site_index_id^as_asset:asset_metadata_jcu.features.theme%'
 JCU.data.site_breadcrumbs = '%globals_site_metadata_jcu.features.breadcrumbs%'
 
 // Only show breadcrumbs if enabled
@@ -33,13 +26,9 @@ if (JCU.data.is_homepage) {
 
 if (JCU.data.breadcrumbs_enabled) {
   var lineage = JSON.parse("%frontend_asset_linking_lineage^json_encode%")
-  var theme_css = ''
+  // If on a content page, we style accordingly
+  var theme_css = JCU.data.current_theme === 'content' ? 'jcu-content' : ''
   if (lineage) {
-    // If on a content page, we style accordingly
-    if (JCU.data.is_homepage && JCU.data.homepage_theme === 'content' ||
-        !JCU.data.is_homepage && JCU.data.frontend_theme === 'content') {
-      theme_css = 'jcu-content'
-    }
     print(
       '<div class="container ' + theme_css + '">' +
       '<nav class="breadcrumb jcu-bg--transparent">')
