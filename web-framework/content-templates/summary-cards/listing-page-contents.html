@@ -16,7 +16,15 @@
   %asset_listing%
   </div>
 
-%else_asset%
+%else_begin_nested_get_content_container^as_asset:asset_metadata_template.card.layout^eq:grid%
+<!--@@   Grid layout   @@-->
+  <div class="card-deck-wrapper image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape%">
+    <div class="card-deck">
+      %asset_listing%
+    </div>
+  </div>
+
+  %else_asset%
 <!--@@   Unknown layout   @@-->
     <div class="alert alert-warning">Card layout %nested_get_content_container^as_asset:asset_metadata_template.card.layout% not supported yet </div>
 %end_asset%
