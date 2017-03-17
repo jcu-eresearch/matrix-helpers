@@ -120,7 +120,7 @@ before each action and release locks afterwards.</div>
        `Enabled` (disabling `Use default` in the process).
 
 1. **Link the 404 page to the site:** locate the common `404 Not Found` page
-   at `JCU Web Framework Sites` > `Common` > `Content` > `404 Not Found`.
+   at `JCU Web Framework Sites` > `Common Content` > `404 Not Found`.
    Drag this into the new site and choose `Link` to re-use the 404 page or
    `Clone`, if you want a custom 404 page.  Accept any permission changes in
    `HIPO` by clicking `Next`.
