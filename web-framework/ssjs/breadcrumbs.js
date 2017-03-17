@@ -1,7 +1,6 @@
 /* jslint asi: true */
 /* globals print, JCU */
 
-JCU.data.frontend_id = '%frontend_asset_assetid%'
 JCU.data.frontend_breadcrumbs = '%frontend_asset_metadata_jcu.features.breadcrumbs%'
 JCU.data.homepage_breadcrumbs = '%globals_site_index_id^as_asset:asset_metadata_jcu.features.breadcrumbs%'
 JCU.data.site_breadcrumbs = '%globals_site_metadata_jcu.features.breadcrumbs%'

@@ -22,6 +22,7 @@ var JCU = {
     // Relative path to current Site asset (eg empty if at index page)
     // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/9
     is_homepage: !'%frontend_asset_url_site_path%',
+    frontend_id: '%frontend_asset_assetid%',
     frontend_theme: '%frontend_asset_metadata_jcu.features.theme%',
     homepage_theme: '%globals_site_index_id^as_asset:asset_metadata_jcu.features.theme%'
   },
