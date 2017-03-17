@@ -7,10 +7,10 @@
   }
   var btn_class_prefix = (this.args.btn_class_prefix || '') + ' '
   var btn1_text = '%asset_metadata_template.buttons.btn1.text^escapequotes%'
-  var btn1_link = '%asset_metadata_template.buttons.btn1.asset^as_asset:asset_url%' || '%asset_metadata_template.buttons.btn1.url^escapequotes%'
+  var btn1_link = '%asset_metadata_template.buttons.btn1.asset^as_asset:asset_url%' || '%asset_metadata_template.buttons.btn1.url^escapequotes%' || '#'
   var btn1_class = btn_class_prefix + '%asset_metadata_template.buttons.btn1.class^escapequotes%'
   var btn2_text = '%asset_metadata_template.buttons.btn2.text^escapequotes%'
-  var btn2_link = '%asset_metadata_template.buttons.btn2.asset^as_asset:asset_url%' || '%asset_metadata_template.buttons.btn2.url^escapequotes%'
+  var btn2_link = '%asset_metadata_template.buttons.btn2.asset^as_asset:asset_url%' || '%asset_metadata_template.buttons.btn2.url^escapequotes%' || '#'
   var btn2_class = btn_class_prefix + '%asset_metadata_template.buttons.btn2.class^escapequotes%'
   var alignment = '%asset_metadata_template.buttons.alignment%' || 'text-sm-center'
   if (btn1_text || btn2_text) {
