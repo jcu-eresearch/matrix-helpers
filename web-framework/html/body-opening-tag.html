@@ -1,8 +1,26 @@
+<script runat="server">
+  JCU.data.homepage_animations = '%globals_site_index_id^as_asset:asset_metadata_jcu.features.animations%'
+  JCU.data.frontend_animations = '%frontend_asset_metadata_jcu.features.animations%'
+  JCU.data.site_animations = '%globals_site_metadata_jcu.features.animations%'
+
+  JCU.data.current_animations = JCU.resolveBooleanInheritance({
+    homepage_data: JCU.data.homepage_animations,
+    frontend_data: JCU.data.frontend_animations,
+    site_data: JCU.data.site_animations,
+    default: false
+  })
+</script>
+<!--@@ To replace lines below when 404 pages run SSJS @@-->
+<!--@@ Waiting for install of https://github.com/jcu-eresearch/matrix-helpers/issues/74 @@-->
+<!--@@
+print('theme-' + JCU.data.current_theme)
+print(JCU.data.current_animations ? 'animations-on' : 'animations-off')
+@@-->
 <body class="
   %globals_asset_design_id^as_asset:asset_short_name^lowercase^css_safe^prepend:design-%
   %globals_asset_paint_layout_id^as_asset:asset_short_name^lowercase^css_safe^prepend:layout-%
-  %globals_asset_metadata_jcu.features.theme^lowercase^css_safe^prepend:theme-%
   %globals_asset_type_code^lowercase^css_safe^prepend:type-%
+  %globals_asset_metadata_jcu.features.theme^lowercase^css_safe^prepend:theme-%
   %globals_site_href^lowercase^css_safe^prepend:site-%
   %globals_asset_linking_lineage^json_decode^index:1^as_asset:asset_href^lowercase^css_safe^prepend:section-%
   %globals_site_metadata_jcu.features.body_class%

@@ -2,6 +2,7 @@
 /* globals _, print, root, GLOBAL, self */
 
 // If in a browser (via ?SQ_DISABLE_SERVER_JS), re-work the print() function
+/*jshint ignore:start*/
 if (typeof window !== "undefined") {
   window.print = function() {
     _.forEach(arguments, function(val) { document.write('' + val) } )
@@ -10,6 +11,7 @@ if (typeof window !== "undefined") {
     _.forEach(arguments, function(val) { document.write(JSON.stringify(val)) } )
   }
 }
+/*jshint ignore:end*/
 
 // Store a reference to the global object ("this" in V8js, or
 // "window" in a browser)
@@ -24,7 +26,8 @@ var JCU = {
     is_homepage: !'%frontend_asset_url_site_path%',
     frontend_id: '%frontend_asset_assetid%',
     frontend_theme: '%frontend_asset_metadata_jcu.features.theme%',
-    homepage_theme: '%globals_site_index_id^as_asset:asset_metadata_jcu.features.theme%'
+    homepage_theme: '%globals_site_index_id^as_asset:asset_metadata_jcu.features.theme%',
+    site_theme: '%globals_site_metadata_jcu.features.theme%'
   },
 
   // Debugging on or off
@@ -135,11 +138,76 @@ var JCU = {
         global[value]()
       }
     })
+  },
+
+  /**
+   * Resolve inheritance of homepage, frontend and site settings
+   *
+   * This resolution method also works around https://github.com/jcu-eresearch/matrix-helpers/issues/9
+   * where keywords aren't consistent in the case of the homepage.
+   *
+   * @param {Object} inputs - triple consisting of homepage, frontend and site settings to test
+   * @returns {Object} The resolved value (winner of the 3 inputs)
+   */
+  resolveInheritance: function (inputs) {
+    var result
+    if (JCU.data.is_homepage) {
+      if (inputs.homepage_data === 'inherit') {
+        result = inputs.site_data
+      } else {
+        result = inputs.homepage_data
+      }
+    } else {
+      if (inputs.frontend_data === 'inherit') {
+        result = inputs.site_data
+      } else {
+        result = inputs.frontend_data
+      }
+    }
+
+    // If we're still 'inherit', get the default
+    result = result === 'inherit' ? inputs.default : result
+
+    if (JCU.debug) {
+      print('<!-- Resolved inheritance with value: ' + result + '-->')
+    }
+
+    return result
+  },
+
+  /**
+   * Resolve inheritance of true/false/inherit options, which are Strings
+   * (thanks Squiz Matrix for stringifying everything).
+   *
+   * We just return false if the Site said inherit, and still no inputs.default
+   * was provided.
+   *
+   * @param {Object} inputs - triple consisting of homepage, frontend and site settings to test
+   * @returns {Boolean} The resolved value - either true or false
+   */
+  resolveBooleanInheritance: function (inputs) {
+    var result = JCU.resolveInheritance(inputs)
+
+    // Parse the result: 'true' -> true, 'inherit' -> false, 'false' -> false
+    if (result === 'true' || result === true) {
+      result = true
+    } else {
+      result = false
+    }
+
+    if (JCU.debug) {
+      print('<!-- Resolved Boolean inheritance with value: ' + result + '-->')
+    }
+    return result
   }
 }
 
-JCU.data.current_theme = JCU.data.is_homepage && JCU.data.homepage_theme ||
-  !JCU.data.is_homepage && JCU.data.frontend_theme
+JCU.data.current_theme = JCU.resolveInheritance({
+  homepage_data: JCU.data.homepage_theme,
+  frontend_data: JCU.data.frontend_theme,
+  site_data: JCU.data.site_theme,
+  default: 'content'
+})
 
 // Run global functions after SSJS initialises
 JCU.runGlobalFunctions('JCU_ssjs_')

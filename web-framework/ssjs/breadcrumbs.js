@@ -5,28 +5,22 @@ JCU.data.frontend_breadcrumbs = '%frontend_asset_metadata_jcu.features.breadcrum
 JCU.data.homepage_breadcrumbs = '%globals_site_index_id^as_asset:asset_metadata_jcu.features.breadcrumbs%'
 JCU.data.site_breadcrumbs = '%globals_site_metadata_jcu.features.breadcrumbs%'
 
-// Only show breadcrumbs if enabled
-if (JCU.data.is_homepage) {
-  // Special handling for Matrix's odd "frontend" asset keyword representing
-  // the Site and not the homepage (index)
-  if (JCU.data.homepage_breadcrumbs === 'true' || JCU.data.homepage_breadcrumbs === 'inherit' && JCU.data.site_breadcrumbs !== 'false' ) {
-    JCU.data.breadcrumbs_enabled = true
-    if (JCU.debug) {
-      print('<!-- Breadcrumbs enabled via homepage or inheritance -->')
-    }
-  }
-} else if (JCU.data.frontend_breadcrumbs === 'true' || JCU.data.frontend_breadcrumbs === 'inherit' && JCU.data.site_breadcrumbs !== 'false') {
-  // If it's just a standard asset
-  JCU.data.breadcrumbs_enabled = true
-  if (JCU.debug) {
-    print('<!-- Breadcrumbs enabled via frontend asset or inheritance -->')
-  }
-}
+// Only show breadcrumbs if enabled (or if inherit all the way up)
+JCU.data.breadcrumbs_enabled = JCU.resolveBooleanInheritance({
+  homepage_data: JCU.data.homepage_breadcrumbs,
+  frontend_data: JCU.data.frontend_breadcrumbs,
+  site_data: JCU.data.site_breadcrumbs,
+  default: true
+})
 
 if (JCU.data.breadcrumbs_enabled) {
   var lineage = JSON.parse("%frontend_asset_linking_lineage^json_encode%")
   // If on a content page, we style accordingly
   var theme_css = JCU.data.current_theme === 'content' ? 'jcu-content' : ''
+
+  if (JCU.debug) {
+    print('<!-- Breadcrumbs enabled via current settings -->')
+  }
   if (lineage) {
     print(
       '<div class="container ' + theme_css + '">' +
