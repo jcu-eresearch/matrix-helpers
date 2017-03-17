@@ -9,9 +9,11 @@
                 <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
                 <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
               </h2>
-              %begin_frontend_asset_metadata_jcu.features.theme^eq:landing%
-              <hr>
-              %end_frontend%
+              <script runat="server">
+                if (JCU.data.current_theme === 'landing') {
+                  print('<hr>') //Hack for #72: %asset_assetid%
+                }
+              </script>
             </div>
           </div>
           %end_asset%

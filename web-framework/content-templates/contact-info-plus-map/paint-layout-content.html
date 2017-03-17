@@ -1,4 +1,4 @@
-    class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+    class="container content-block <script runat="server">print(JCU.data.current_theme === 'content' ? 'jcu-content' : '')</script>" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
     %begin_asset_metadata_template.title.display^eq:show%
     <div class="row">
       <div class="col-md-8 col-md-offset-2 %asset_metadata_template.title.alignment^empty:text-xs-center%">

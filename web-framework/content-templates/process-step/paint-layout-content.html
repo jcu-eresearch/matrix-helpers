@@ -1,4 +1,4 @@
-    class="container content-block process-step %asset_metadata_template.vizfx.border.south% %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml%">
+    class="container content-block process-step %asset_metadata_template.vizfx.border.south% <script runat="server">print(JCU.data.current_theme === 'content' ? 'jcu-content' : '')</script>" aria-label="%asset_metadata_template.title.title^striphtml%">
 
     <div class="row">
         <div class="col-xs-2 col-md-1 col-md-offset-1 process-step-number">

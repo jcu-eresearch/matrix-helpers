@@ -1,4 +1,4 @@
-    class="container content-section featured-number-cards %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+    class="container content-section featured-number-cards <script runat="server">print(JCU.data.current_theme === 'content' ? 'jcu-content' : '')</script>" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
     %begin_asset_metadata_template.title.display^eq:show%
     <div class="row m-b-1">
       <div class="col-md-6 col-md-offset-3 %asset_metadata_template.title.alignment%">

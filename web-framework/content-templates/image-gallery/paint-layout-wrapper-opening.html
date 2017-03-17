@@ -1,4 +1,4 @@
-     class="container content-block %globals_asset_metadata_jcu.features.theme^eq:content:jcu-content%" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+     class="container content-block <script runat="server">print(JCU.data.current_theme === 'content' ? 'jcu-content' : '')</script>" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
   <div class="row">
     <div class="col-xs-12 col-md-10 col-md-offset-1">
       %begin_asset_metadata_template.title.display^eq:show%
@@ -7,9 +7,11 @@
           <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
         </h1>
         <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<p class="lead">', append: '</p>'})</script>
-        %begin_frontend_asset_metadata_jcu.features.theme^eq:landing%
-        <hr>
-        %end_frontend%
+        <script runat="server">
+          if (JCU.data.current_theme === 'landing') {
+            print('<hr>') //Hack for #72: %asset_assetid%
+          }
+        </script>
       </div>
       %end_asset%
 
