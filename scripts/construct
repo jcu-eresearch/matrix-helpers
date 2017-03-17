@@ -21,6 +21,7 @@ BASE_URL=$MATRIX_ADMIN_URL
 [ -z "$BASE_URL" ] && BASE_URL="https://www.jcu.edu.au/_admin"
 debug=false
 show_help=false
+config_path="$HOME/.construct"
 subcommand_args=()
 
 _METADATA_ASSET_ID_ATTRIBUTE='asset_id'     # The key in the .yml for the asset ID
@@ -194,7 +195,9 @@ function upload {
     echo
     echo '    https://www.jcu.edu.au/_admin/?SQ_ACTION=getToken'
     echo
+    # shellcheck disable=SC2016
     echo 'For Page or any other assets with `Page Contents`, you must target the Bodycopy Div asset ID specifically.'
+    # shellcheck disable=SC2016
     echo 'This reason for this is that we can only operate on one chunk at a time and `Page Contents` views operate'
     echo 'on multiple chunks simultaneously.'
     echo
@@ -431,6 +434,15 @@ function upload {
     seconds_diff=$(( copy_paste_duration - script_duration ))
     percent_diff=$(( (copy_paste_duration / script_duration - 1) * 100 ))
     echo "💖  You just saved $seconds_diff""s ($percent_diff""% faster) versus copy & paste! 💖"
+
+    # Save the lifetime count
+    lifetime_counter=$(shyaml get-value "lifetime_seconds_saved" < "$config_path" 2> /dev/null)
+    if [ -z "$lifetime_counter" ]; then
+      lifetime_counter=0
+    fi
+    lifetime_counter=$(( lifetime_counter + seconds_diff ))
+    sed -i '' -E "s/^(lifetime_seconds_saved: ).*/\1$lifetime_counter/" "$config_path"
+
   fi
 }
 
@@ -483,9 +495,17 @@ function install-deps {
       fi
     fi
   else
+    # shellcheck disable=SC2016
     echo 'You need to install `shyaml`, `entr` and `coreutils` (realpath) using your package manager.'
   fi
 }
+
+# Create config/storage file
+if ! [ -f "$config_path" ]; then
+  echo "# vim: ft=yaml
+time_saved: 0
+" > "$config_path"
+fi
 
 if [ $# -eq 0 ] || [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
   # Show help first
