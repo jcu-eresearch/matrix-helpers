@@ -3,36 +3,47 @@
   <div class="intro-body">
     <div class="container">
       <div class="row">
-        %begin_globals_asset_metadata_jcu.features.theme^eq:landing%
-        <div class="col-md-10 col-lg-6">
-          <h1 class="page-title animated transparent" id="page-title" data-animation="fadeInLeft" data-delay="250"><span class="sr-only">%globals_site_name%: </span>%globals_asset_name%</h1>
-          <div class="lead animated transparent" data-animation="fadeInUp" data-delay="500">%globals_asset_metadata_jcu.features.byline%</div>
-        </div>
-        %else_begin_globals_asset_metadata_jcu.features.theme^eq:content%
-        <div class="col-xs-12">
-          <h1 class="page-title" id="page-title"><span class="sr-only">%globals_site_name%: </span>%globals_asset_name%</h1>
-          <div class="row">
-            <div class="col-sm-10 col-md-8">
-              <div class="lead">%globals_asset_metadata_jcu.features.byline%</div>
-            </div>
-          </div>
-        </div>
-        %end_globals%
+        <script runat="server">
+          if (JCU.data.current_theme === 'landing') {
+            print(' \
+            <div class="col-md-10 col-lg-6"> \
+              <h1 class="page-title animated transparent" id="page-title" data-animation="fadeInLeft" data-delay="250"><span class="sr-only">%globals_site_name%: </span>%globals_asset_name%</h1> \
+              <div class="lead animated transparent" data-animation="fadeInUp" data-delay="500">%globals_asset_metadata_jcu.features.byline%</div> \
+            </div> \
+            ')
+          } else if (JCU.data.current_theme === 'content') {
+            print(' \
+            <div class="col-xs-12"> \
+              <h1 class="page-title" id="page-title"><span class="sr-only">%globals_site_name%: </span>%globals_asset_name%</h1> \
+              <div class="row"> \
+                <div class="col-sm-10 col-md-8"> \
+                  <div class="lead">%globals_asset_metadata_jcu.features.byline%</div> \
+                </div> \
+              </div> \
+            </div> \
+            ')
+          }
+        </script>
       </div>
-      %begin_globals_asset_metadata_jcu.features.theme^eq:landing%
-      <div class="row">
-        <div class="col-xs-12 text-xs-center animated transparent" data-animation="fadeIn" data-delay="1000">
-          <a href="#explore" class="btn btn-circle page-scroll" role="button">
-            <span class="icon-chevrondown" aria-hidden="true"></span><span class="sr-only">Click to scroll down</span>
-          </a>
-        </div>
-      </div>
-      %else_begin_globals_asset_metadata_jcu.features.theme^eq:content%
-        <!--@@ Subnavigation folder listing @@-->
-        %begin_globals_asset_linking_lineage^count^gte:2%
-          %globals_asset_contents:372370^with_get:root={globals_asset_linking_lineage^json_decode^index:1}%
-        %end_globals%
-      %end_globals%
+      <script runat="server">
+        if (JCU.data.current_theme === 'landing') {
+          print('\
+          <div class="row"> \
+            <div class="col-xs-12 text-xs-center animated transparent" data-animation="fadeIn" data-delay="1000"> \
+              <a href="#explore" class="btn btn-circle page-scroll" role="button"> \
+                <span class="icon-chevrondown" aria-hidden="true"></span><span class="sr-only">Click to scroll down</span> \
+              </a> \
+            </div> \
+          </div> \
+          ')
+        } else if (JCU.data.current_theme === 'content') {
+          // Subnavigation folder listing
+          var linking_lineage = JSON.parse('%globals_asset_linking_lineage%' || '[]')
+          if (linking_lineage.length >= 2) {
+            print('%globals_asset_contents:' + JCU.ids.subnavigation_folder_listing + '^with_get:root={globals_asset_linking_lineage^json_decode^index:1}%')
+          }
+        }
+      </script>
     </div>
   </div>
 </header>

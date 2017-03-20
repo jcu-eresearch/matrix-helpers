@@ -19,6 +19,9 @@ var global = this || window || root || global || GLOBAL || self
 
 /* Public API for JCU SSJS functions */
 var JCU = {
+  // Debugging on or off
+  debug: false,
+
   // Data and information used in rendering
   data: {
     // Relative path to current Site asset (eg empty if at index page)
@@ -33,8 +36,10 @@ var JCU = {
     site_theme: '%globals_site_metadata_jcu.features.theme%'
   },
 
-  // Debugging on or off
-  debug: false,
+  // Hard-coded asset IDs, but just in one place
+  ids: {
+    subnavigation_folder_listing: 372370
+  },
 
   // Libraries to be included later
   _includes: {
