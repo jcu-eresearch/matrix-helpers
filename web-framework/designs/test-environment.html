@@ -2242,9 +2242,10 @@
                 <tr id="Cookie-Values">
                   <td>&#37;globals_cookie_&lt;variable&gt;&#37;</td>
                   <td>%globals_cookie_&lt;variable&gt;%</td>
-                  <td>
-                    <p>The format of the global keyword replacement&nbsp;to display the <em>Asset Map</em> icon of an asset is:</p><pre>%globals_icon_&lt;type&gt;<type>%</type></pre> <p>where &lt;type&gt; is the asset type of the icon you want to display.</p>
-                    <p>where &lt;variable&gt; is the name of the cookie you want to display the value of. This global keyword replacement can be used in conjunction with <em>Triggers</em>. For example, in the <em>Set Cookie Trigger </em>action you can set the cookie name and value and then access it via this global keyword replacement.&nbsp;For more information about <em>Triggers</em>, refer to the <a href="https://matrix-manuals.squiz.net/triggers">Triggers</a> manual.</p>
+                  <td>Examples include:<br>
+                    &#37;globals_cookie_jcuredirect&#37;: <code>%globals_cookie_jcuredirect%</code><br>
+                    &#37;globals_cookie_SimpleSAMLSessionID%&#37;: <code>%globals_cookie_SimpleSAMLSessionID%</code>
+                    &#37;globals_cookie_SimpleSAMLAuthToken%&#37;: <code>%globals_cookie_SimpleSAMLAuthToken%</code>
                   </td>
                 </tr>
                 <tr id="Asset-Map-Icons">
@@ -2334,23 +2335,169 @@
             </tbody>
           </table>
 
-
           <h2 id="Server-Variable">Server Variable</h2>
-          <p>The format of the global keyword replacement for the web server is:</p><pre>%globals_server_&lt;variable&gt;%</pre>
-          <p>where &lt;variable&gt; is the PHP session variable that you want to return server information from (ref: <a target="_blank" href="http://php.net/manual/en/reserved.variables.server.php">PHP $_SERVER Manual</a>). For example, the global keyword replacement <em>&#37;globals_server_http_user_agent&#37;</em> will return the header of the current request (e.g. &#37;globals_server_http_user_agent&#37; yields <pre>%globals_server_http_user_agent%</pre>).</p>
-          <p>Please note that the server information available will vary depending on the setup of your web server.</p>
+          <div class="table-responsive m-b-2">
+            <table class="table table-responsive">
+              <tbody>
+                <tr>
+                  <th id="table79246r1c1">Replacement</th><th id="table79246r1c2"> Information Shown</th></tr><tr><td headers="table79246r1c1">
+         <code class="token matrix-keyword  language-markup">%globals_server_<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>variable</span><span class="token punctuation">&gt;</span>%</span>
+        <variable></code></td><td headers="table79246r1c2">
+         A PHP server variable where &lt;variable&gt; is the PHP session variable that you want to return server information from (ref: <a target="_blank" href="http://php.net/manual/en/reserved.variables.server.php">PHP $_SERVER Manual</a>). <br> <br>For example, the global keyword replacement  &#37;globals_server_http_user_agent&#37; yields <code>%globals_server_http_user_agent%</code> and will return the header of the current request (e.g. Mozilla/4.5 [en] (X11; U;Linux 2.2.9 i586 ) ).&nbsp;Please
+        note that the server information available will vary depending on the setup of your web server.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_QUERY_STRING&#37;</code></td>
+                  <td>%globals_server_QUERY_STRING%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_REQUEST_METHOD&#37;</code></td>
+                  <td>%globals_server_REQUEST_METHOD%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_CONTENT_TYPE&#37;</code></td>
+                  <td>%globals_server_CONTENT_TYPE%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_CONTENT_LENGTH&#37;</code></td>
+                  <td>%globals_server_CONTENT_LENGTH%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_SCRIPT_NAME&#37;</code></td>
+                  <td>%globals_server_SCRIPT_NAME%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_REQUEST_URI&#37;</code></td>
+                  <td>%globals_server_REQUEST_URI%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_REMOTE_ADDR&#37;</code></td>
+                  <td>%globals_server_REMOTE_ADDR%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_SERVER_NAME&#37;</code></td>
+                  <td>%globals_server_SERVER_NAME%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_ORIG_SCRIPT_FILENAME&#37;</code></td>
+                  <td>%globals_server_ORIG_SCRIPT_FILENAME%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_REDIRECT_STATUS&#37;</code></td>
+                  <td>%globals_server_REDIRECT_STATUS%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_HTTP_HOST&#37;</code></td>
+                  <td>%globals_server_HTTP_HOST%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_HTTPS&#37;</code></td>
+                  <td>%globals_server_HTTPS%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_HTTP_X_FORWARDED_PROTO&#37;</code></td>
+                  <td>%globals_server_HTTP_X_FORWARDED_PROTO%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_HTTP_CACHE_CONTROl&#37;</code></td>
+                  <td>%globals_server_HTTP_CACHE_CONTROl%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_HTTP_X_REAL_IP&#37;</code></td>
+                  <td>%globals_server_HTTP_X_REAL_IP%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_HTTP_X_FORWARDED_FOR&#37;</code></td>
+                  <td>%globals_server_HTTP_X_FORWARDED_FOR%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_HTTP_USER_AGENT&#37;</code></td>
+                  <td>%globals_server_HTTP_USER_AGENT%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_ORIG_SCRIPT_FILENAME&#37;</code></td>
+                  <td>%globals_server_ORIG_SCRIPT_FILENAME%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_PATH_TRANSLATED&#37;</code></td>
+                  <td>%globals_server_PATH_TRANSLATED%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_PHP_SELF&#37;</code></td>
+                  <td>%globals_server_PHP_SELF%</td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_server_REQUEST_TIME&#37;</code></td>
+                  <td>%globals_server_REQUEST_TIME%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <h2 id="Session-Variable">Session Variable</h2>
-          <p>The format of the global keyword replacement for a session is:</p><pre>%globals_session_&lt;variable&gt;%</pre>
-          <p>where &lt;variable&gt; is the name of the item you want to access in the Squiz Matrix session sandbox. This global keyword replacement can be used in conjunction with <em>Triggers</em>. For example, in a <em>Trigger</em>, you can set a session variable and then access it via this global keyword replacement. For more information about <em>Triggers</em>, refer to the <a href="https://matrix-manuals.squiz.net/triggers">Triggers</a> manual.</p>
+          <div class="table-responsive m-b-2">
+            <table class="table table-responsive">
+              <tbody><tr><th>Replacement</th><th> Information Shown</th></tr><tr><td headers="table08969r1c1">
+                    <code class="token matrix-keyword  language-markup">%globals_session_<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>variable</span><span class="token punctuation">&gt;</span></span>
+                      <variable>%</variable></code></td><td headers="table08969r1c2">
+                    A Matrix session variable where &lt;variable&gt; is the name of the item you want to access in the Matrix session sandbox. This global keyword replacement can be used in conjunction with <em>Triggers</em>. For example, in a <em>Trigger</em>, you can set a session variable and then access it via this global keyword replacement. For more information about <em>Triggers</em>, refer to the <a href="https://matrix.squiz.net/manuals/triggers">Triggers</a> manual
+              </td></tr></tbody>
+            </table>
+          </div>
 
-          <h2 id="HTTP-Get-Variable">HTTP GET Variable</h2>
-          <p>The format of the global keyword replacement&nbsp;for a HTTP GET variable is:</p><pre>%globals_get_&lt;variable&gt;%</pre>
-          <p>where &lt;variable&gt; is the name of the variable that you want to access. Only scalar variables can be used as global keyword replacements. Arrays are not supported.</p>
-
-          <h2 id="HTTP-Post-Variable">HTTP POST Variable</h2>
-          <p>The format of the global keyword replacement for a HTTP POST variable is:</p><pre>%globals_post_&lt;variable&gt;%</pre>
-          <p>where &lt;variable&gt; is the name of the variable that you want to access. Arrays are not supported.</p>
+          <h2 id="HTTP-Get-Variable" class="">HTTP GET &amp; POST Variables</h2>
+          <div class="table-responsive m-b-2">
+            <table class="table table-responsive">
+              <tbody>
+                <tr>
+                  <th id="table86286r1c1">Replacement</th>
+                  <th id="table86286r1c2"> Information Shown</th></tr>
+                <tr>
+                  <td headers="table86286r1c1">
+                    <code class="token matrix-keyword  language-markup">%globals_get_<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>variable</span><span class="token punctuation">&gt;</span></span>
+                      <variable>%</code>
+                  </td>
+                  <td headers="table86286r1c2">
+                    An HTTP GET variable of the current page request where &lt;variable&gt; is the name of the GET variable that you want to access. Only scalar variables can be used as global keyword replacements, arrays are not supported. <br> <br>For example, if the current Matrix page is requested with "?foo=bar" in the URL, &#37;globals_get_foo&#37; would print "bar". &nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td headers="table86286r1c1">
+                    <code class="token matrix-keyword  language-markup">&#37;globals_get&#37;</code>
+                  </td>
+                  <td headers="table86286r1c2">
+                    An array object of all the GET variables of the current page request. You can use keyword modifiers such as <em>^as_url_string</em> to convert the returned array data into a URL string value.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_get&#37;</code> (live)</td>
+                  <td><textarea class="fill">%globals_get%</textarea></td>
+                </tr>
+                <tr>
+                  <td headers="table86286r1c1">
+                    <code class="token matrix-keyword  language-markup">%globals_post_<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>variable</span><span class="token punctuation">&gt;</span></span>
+                      <variable>%</code>
+                  </td>
+                  <td headers="table86286r1c2">
+                    An HTTP POST variable of the current page request where &lt;variable&gt; is the name of the POST variable that you want to access. Arrays are not supported. <br> <br>For example, if the current page is submitted via a form post and it includes a form field of format
+                    <code class=" language-markup"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>foo<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>bar<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span> </code>
+                    , <em><code class="token matrix-keyword  language-markup">%globals_post_foo%</code></em> would print "bar".
+                  </td>
+                </tr>
+                <tr>
+                  <td headers="table86286r1c1">
+                    <code class="token matrix-keyword  language-markup">&#37;globals_post&#37;</code></td><td headers="table86286r1c2">
+                      An array object of all the POST variables of the current page request. You can use keyword modifiers such as <em>^as_url_string</em> to convert the returned array data into a URL string value.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>&#37;globals_post&#37;</code> (live)</td>
+                  <td><textarea class="fill">%globals_post%</textarea></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           </div>
         </div>
