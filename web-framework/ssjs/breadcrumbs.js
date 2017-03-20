@@ -24,7 +24,7 @@ if (JCU.data.breadcrumbs_enabled) {
   if (lineage) {
     print(
       '<div class="container ' + theme_css + '">' +
-      '<nav class="breadcrumb jcu-bg--transparent">')
+      '  <nav class="breadcrumb jcu-bg--transparent">')
     lineage.forEach(function(id) {
       if (id !== JCU.data.frontend_id) {
         print('<a class="breadcrumb-item" href="%globals_asset_url:' + id + '%">%globals_asset_short_name:' + id + '%</a>')
@@ -33,7 +33,7 @@ if (JCU.data.breadcrumbs_enabled) {
       }
     })
     print(
-      '</nav>' +
+      '  </nav>' +
       '</div>')
   }
 }
