@@ -23,9 +23,12 @@ var JCU = {
   data: {
     // Relative path to current Site asset (eg empty if at index page)
     // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/9
-    is_homepage: !'%frontend_asset_url_site_path%',
-    frontend_id: '%frontend_asset_assetid%',
-    frontend_theme: '%frontend_asset_metadata_jcu.features.theme%',
+    // Also, any lines with || workaround https://github.com/jcu-eresearch/matrix-helpers/issues/78
+    // by falling back to globals keywords
+    is_homepage: !('%frontend_asset_url_site_path%' || '%globals_asset_url_site_path%'),
+    is_404: !!'%globals_asset_assetid^eq:{globals_site_not_found_id}:true:%',
+    frontend_id: '%frontend_asset_assetid%' || '%globals_asset_assetid%',
+    frontend_theme: '%frontend_asset_metadata_jcu.features.theme%' || '%globals_asset_metadata_jcu.features.theme%',
     homepage_theme: '%globals_site_index_id^as_asset:asset_metadata_jcu.features.theme%',
     site_theme: '%globals_site_metadata_jcu.features.theme%'
   },

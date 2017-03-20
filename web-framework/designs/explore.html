@@ -32,7 +32,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <script runat="server" id="lodash.min.js" src="./?a=389796"></script>
+    %begin_globals_asset_assetid^eq:{globals_site_not_found_id}%
+    <script id="ssjs-config.js">
+      // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/74
+      // by running all JS on the client; this needs to be inlined because
+      // keywords aren't replaced in external files with SSJS is disabled (or borked
+      // is it is here).
+      %globals_asset_file_contents:391595%
+    </script>
+    %else_begin_globals_get^json_decode^array_key_exists:SQ_DISABLE_SERVER_JS%
+    <!-- SSJS is disabled; including inline so keyword replacement works -->
+    <script id="ssjs-config.js">
+      %globals_asset_file_contents:391595%
+    </script>
+    %else_globals%
     <script runat="server" id="ssjs-config.js" src="./?a=391595"></script>
+    %end_globals%
 
     <!--@@ Reload the page "logged in"; done early via JS so we can fast-forward the reload @@-->
     <!--@@ Workaround for Squiz Edge serving only public content: https://github.com/jcu-eresearch/matrix-helpers/issues/20 @@-->
