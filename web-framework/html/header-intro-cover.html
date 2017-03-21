@@ -7,17 +7,17 @@
           if (JCU.data.current_theme === 'landing') {
             print(' \
             <div class="col-md-10 col-lg-6"> \
-              <h1 class="page-title animated transparent" id="page-title" data-animation="fadeInLeft" data-delay="250"><span class="sr-only">%globals_site_name%: </span>%globals_asset_name%</h1> \
-              <div class="lead animated transparent" data-animation="fadeInUp" data-delay="500">%globals_asset_metadata_jcu.features.byline%</div> \
+              <h1 class="page-title animated transparent" id="page-title" data-animation="fadeInLeft" data-delay="250"><span class="sr-only">%globals_site_name^escapequotes%: </span>%globals_asset_name^escapequotes%</h1> \
+              <div class="lead animated transparent" data-animation="fadeInUp" data-delay="500">%globals_asset_metadata_jcu.features.byline^escapequotes%</div> \
             </div> \
             ')
           } else if (JCU.data.current_theme === 'content') {
             print(' \
             <div class="col-xs-12"> \
-              <h1 class="page-title" id="page-title"><span class="sr-only">%globals_site_name%: </span>%globals_asset_name%</h1> \
+              <h1 class="page-title" id="page-title"><span class="sr-only">%globals_site_name^escapequotes%: </span>%globals_asset_name^escapequotes%</h1> \
               <div class="row"> \
                 <div class="col-sm-10 col-md-8"> \
-                  <div class="lead">%globals_asset_metadata_jcu.features.byline%</div> \
+                  <div class="lead">%globals_asset_metadata_jcu.features.byline^escapequotes%</div> \
                 </div> \
               </div> \
             </div> \
