@@ -99,6 +99,15 @@ before each action and release locks afterwards.</div>
    * `JCU Web Framework Resources` > `Designs` > `Test
      Environment` > `Test Environment - Defaults`
 
+1. **Remove the default workflow:** because we're not using JCU's workflow, we
+   need to remove it or it'll cause problems later when users try and publish
+   content.  This step may or may not be required, depending on where you are
+   creating your new site as matrix causes workflow to inherit.  right-click
+   on your site and choose `workflow`. check the box next to `delete?` for
+   `australia workflow` and click `commit`.  this will change the site.  if
+   you need to do this later, ensure you cascade this change to all children
+   (this is the default).
+
 1. **Grant permissions to other users:** if you know the identities of users
    or groups that should have edit access to this site, set them now via
    right-clicking on your site and choosing `Permissions`.  You
