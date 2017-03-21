@@ -34,6 +34,9 @@ animations on home pages and cohesive branding across a site.
   configuration via metadata configuration
 * **Analytics:** ability for users to connect their own alternate Analytics
   profile and/or use JCU's standard profile
+* **Edit+ Site Settings:** editors can configure certain aspects of Edit+ from
+  their site settings, such as adding common folders or areas into the Asset
+  Finder just for their site.
 * **Edit+ plugins**: true CSS styling, preview windows, intuitive naming of
   controls, easy access to all Matrix assets, collapsible metadata sections,
   custom metadata fields (colour selector and icons), site editing access, URL
