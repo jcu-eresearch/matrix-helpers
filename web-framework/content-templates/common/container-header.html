@@ -35,5 +35,8 @@
 <!--@@ Opening wrapper element for all Content Container Templates @@-->
 <script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
 <script runat="server">
+  if (JCU.debug) {
+    print('<!-- Opening tag for %asset_assetid% -->')
+  }
   print(parts.opening) //Hack for #72: %asset_assetid%
 </script>

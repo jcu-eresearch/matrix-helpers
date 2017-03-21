@@ -1,6 +1,9 @@
 <!--@@ Close wrapper element for all Content Container Templates @@-->
 <script runat="server">
   print(parts.closing) // Hack for #72: %asset_assetid%
+  if (JCU.debug) {
+    print('<!-- Closing tag for %asset_assetid% -->')
+  }
 </script>
 
 %begin_globals_get_embed^eq:true%
