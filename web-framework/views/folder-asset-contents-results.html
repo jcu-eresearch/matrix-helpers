@@ -1,0 +1,10 @@
+<!--@@ Include the SSJS here - again - because this scope is in a different proccess
+when this asset is included via %globals_asset_contents:XXX%.  Works around
+https://github.com/jcu-eresearch/matrix-helpers/issues/82, but note that
+not everythig can possibly work (such as JS/CSS includes, like for Google Maps).
+
+This whole asset listing could be replaced with SSJS over in default-folder.html Paint Layout
+when this is resolved.  @@-->
+<script runat="server" id="lodash.min.js" src="./?a=389796"></script>
+<script runat="server" id="ssjs-config.js" src="./?a=391595"></script>
+%asset_listing%
