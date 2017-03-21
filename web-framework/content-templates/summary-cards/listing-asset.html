@@ -120,7 +120,12 @@
 
     print('<div class="col-sm-' + columnWidth + textPosition + '">')
 
-    print('<h5>' + card.name + '&nbsp;&nbsp;<small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
+    // if the text column width is smaller then drop the byline to the line below the name
+    var spacer = '&nbsp;&nbsp;'
+    if (columnLayout.textColumns < 9)
+      spacer = '<br/>'
+
+    print('<h5>' + card.name + spacer + '<small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
     JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id, { prepend : "<p>", append : "</p>"})
 
     print(linkTagOpen("btn-link") + layout.buttonText + linkTagClose())
