@@ -1,13 +1,7 @@
 asset_id: 376876
 type: asset_listing
 listing:
-  asset_types:
-    File: inherit
-    File Bridge: inherit
-    Folder: inherit
-    Form: inherit
-    Page: inherit
-    Image Variety: inherit
+  asset_types: all
   root_nodes: [1]
   link_types:
     - type_1
