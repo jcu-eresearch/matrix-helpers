@@ -13,6 +13,10 @@
   var btn2_link = '%asset_metadata_template.buttons.btn2.asset^as_asset:asset_url%' || '%asset_metadata_template.buttons.btn2.url^escapequotes%' || '#'
   var btn2_class = btn_class_prefix + '%asset_metadata_template.buttons.btn2.class^escapequotes%'
   var alignment = '%asset_metadata_template.buttons.alignment%' || 'text-sm-center'
+
+  if (JCU.debug) {
+    print('<!-- Rendering "Buttons" paint layout for %asset_assetid% -->')
+  }
   if (btn1_text || btn2_text) {
     if (this.args.btn_wrapper) {
       print(this.args.btn_wrapper.opening)

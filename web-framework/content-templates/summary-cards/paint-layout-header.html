@@ -1,15 +1,13 @@
-    class="container content-block %asset_metadata_template.vizfx.border.south% <script runat="server">print(JCU.data.current_theme === 'content' ? 'jcu-content' : '')</script>" aria-label="%asset_metadata_template.title.title^striphtml%">
-    <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1 container">
+<!--@@ Container Block Opening Tag paint layout @@-->
+<script runat="server">
+  this.args = {content_block_class: '%asset_metadata_template.vizfx.border.south%'}
+</script>
+%asset_contents_paint_420277%
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 container">
 
-            %begin_asset_metadata_template.title.display^eq:show%
-            <h3 class="%asset_metadata_template.title.alignment^empty:text-xs-left%">
-              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%');</script>
-              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead m-t-2">', append: '</span>'});</script>
-            </h3>
-            %end_asset%
+      <!--@@ Title paint layout @@-->
+      %asset_contents_paint_420212%
 
-            <!-- content container asset contents -->
-            <script runat="server">
-              print(parts.innerHTML) //Hack for #72: %asset_assetid%
-            </script>
+      <!--@@ Contents paint layout @@-->
+      %asset_contents_paint_420234%

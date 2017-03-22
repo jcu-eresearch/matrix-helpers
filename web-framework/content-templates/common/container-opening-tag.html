@@ -1,0 +1,17 @@
+<script runat="server">
+  this.args = this.args || {}
+
+  var content_block_class = this.args.content_block_class || ''
+  if (JCU.data.current_theme === 'landing') {
+    content_block_class += ' content-section'
+  } else if (JCU.data.current_theme === 'content') {
+    // This could cause a double-up
+    content_block_class += ' container content-block jcu-content'
+  }
+  print('class="' + content_block_class + '" aria-label="%asset_metadata_template.title.title^striphtml^escapequotes% %asset_metadata_template.title.subtitle^striphtml^escapequotes%">')
+  if (JCU.debug) {
+    print('<!-- Rendered "Content Block Opening Tag" paint layout for %asset_assetid% (above) -->')
+  }
+
+  delete this.args
+</script>

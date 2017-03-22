@@ -1,0 +1,22 @@
+<script runat="server">
+  this.args = this.args || {}
+
+  // Hack for #72: %asset_assetid%
+  if (JCU.debug) {
+    print('<!-- Rendering "Contents" paint layout for %asset_assetid% -->')
+  }
+
+  if (JCU.isViperStringPopulated(parts.innerHTML)) {
+    if (this.args.wrapper) {
+      print(this.args.wrapper.opening)
+    }
+
+    print(parts.innerHTML)
+
+    if (this.args.wrapper) {
+      print(this.args.wrapper.closing)
+    }
+  }
+
+  delete this.args
+</script>

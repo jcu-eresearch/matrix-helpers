@@ -44,8 +44,8 @@ animations on home pages and cohesive branding across a site.
   toolbar buttons, URL-access shortcuts to new assets & asset finder, helpful
   warnings and more.
 * **Extensible:**  if you're a developer, creating a new Content Block
-  Template is easy with the tools already built and direct integration with
-  Bootstrap's CSS and JS via the JCU Web Framework.
+  Template is easy with the repeatable sections and tools already built and
+  direct integration with Bootstrap's CSS and JS via the JCU Web Framework.
 * **Debugging tools:** Matrix is a big black box -- you don't get errors if
   things break and it's hard to work with.  However, we don't settle. Want to
   build even more powerful add-ons for the system? Jump in to the SSJS

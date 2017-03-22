@@ -444,7 +444,7 @@ body {
   background: #fff;
 }
 
-/* content blocks on secondary Research Infrastructure pages */
+/* Content Blocks on secondary pages */
 .content-block {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -457,9 +457,8 @@ body {
     padding-bottom: 1rem;
     border-bottom: none;
 }
-.content-block h3 {
-  padding-top: 0;
-  padding-bottom: 2rem;
+.content-block .content-title {
+  margin-bottom: 2rem;
 }
 
 /* Asset Listings */

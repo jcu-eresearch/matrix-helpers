@@ -1,4 +1,8 @@
-    class="container content-block process-step %asset_metadata_template.vizfx.border.south% <script runat="server">print(JCU.data.current_theme === 'content' ? 'jcu-content' : '')</script>" aria-label="%asset_metadata_template.title.title^striphtml%">
+<!--@@ Container Block Opening Tag paint layout @@-->
+<script runat="server">
+  this.args = {content_block_class: 'process-step %asset_metadata_template.vizfx.border.south%'}
+</script>
+%asset_contents_paint_420277%
 
     <div class="row">
         <div class="col-xs-2 col-md-1 col-md-offset-1 process-step-number">
@@ -15,11 +19,16 @@
     <div class="row">
 
         <div class="col-xs-2 col-md-1 col-md-offset-1"></div><!--@@ empty div reserving space for the step number above @@-->
-        <div class="col-xs-10 col-sm-7">
-          <script runat="server">
-            print(parts.innerHTML) //Hack for #72: %asset_assetid%
-          </script>
-        </div>
+        <!--@@ Contents paint layout @@-->
+        <script runat="server">
+          this.args = {
+            wrapper: {
+              opening: '<div class="col-xs-10 col-sm-7">',
+              closing: '</div>'
+            }
+          }
+        </script>
+        %asset_contents_paint_420234%
 
         <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0 col-md-2">
 

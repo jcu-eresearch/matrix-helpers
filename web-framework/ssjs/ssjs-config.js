@@ -66,6 +66,15 @@ var JCU = {
   },
 
   /**
+   * Test if a given string from Viper (WYSIWYG) editor is "empty" or not
+   * @param {string} str - Input string
+   * @returns {Boolean} True if populated, and false if empty (or <p> tag only)
+   */
+  isViperStringPopulated: function(str) {
+    return str && str !== "<p></p>"
+  },
+
+  /**
    * Create a Matrix keyword and modifiers to strip all but phrasing HTML from the input.
    * @param {string} keyword - The base Matrix keyword that generates input.
    * @param {Object} options - Options to configure the output keyword

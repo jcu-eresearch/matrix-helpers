@@ -1,25 +1,20 @@
-     class="container content-block <script runat="server">print(JCU.data.current_theme === 'content' ? 'jcu-content' : '')</script>" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
+<!--@@ Container Block Opening Tag paint layout @@-->
+%asset_contents_paint_420277%
   <div class="row">
     <div class="col-xs-12 col-md-10 col-md-offset-1">
-      %begin_asset_metadata_template.title.display^eq:show%
-      <div class="%asset_metadata_template.title.alignment^empty:text-xs-left%">
-        <h1>
-          <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
-        </h1>
-        <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<p class="lead">', append: '</p>'})</script>
-        <script runat="server">
-          if (JCU.data.current_theme === 'landing') {
-            print('<hr>') //Hack for #72: %asset_assetid%
-          }
-        </script>
-      </div>
-      %end_asset%
+      <!--@@ Title paint layout @@-->
+      %asset_contents_paint_420212%
 
-      <div class="m-b-2">
-        <script runat="server">
-          print(parts.innerHTML) //Hack for #72: %asset_assetid%
-        </script>
-      </div>
+      <!--@@ Contents paint layout @@-->
+      <script runat="server">
+        this.args = {
+          wrapper: {
+            opening: '<div class="m-b-2">',
+            closing: '</div>'
+          }
+        }
+      </script>
+      %asset_contents_paint_420234%
 
       <div class="m-b-3">
         <!--@@ Listing content from nested content @@-->

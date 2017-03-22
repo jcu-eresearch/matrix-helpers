@@ -1,8 +1,12 @@
-  class="container content-block <script runat="server">print(JCU.data.current_theme === 'content' ? 'jcu-content' : '')</script>">
-  <div class="row">
-    <div class="col-xs-12 col-md-10 col-md-offset-1 lead">
-      <script runat="server">
-        print(parts.innerHTML) // Hack for #72: %asset_assetid%
-      </script>
-    </div>
-  </div>
+<!--@@ Container Block Opening Tag paint layout @@-->
+%asset_contents_paint_420277%
+  <!--@@ Contents paint layout @@-->
+  <script runat="server">
+    this.args = {
+      wrapper: {
+        opening: '<div class="row"><div class="col-xs-12 col-md-10 col-md-offset-1 lead">',
+        closing: '</div></div>'
+      }
+    }
+  </script>
+  %asset_contents_paint_420234%

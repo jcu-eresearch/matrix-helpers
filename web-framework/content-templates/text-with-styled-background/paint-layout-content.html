@@ -1,29 +1,30 @@
      class="content-section text-inverse" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
-     <div class="jcu-bg--cover" style="%asset_metadata_template.styled-bg.color^prepend_if:background-color\: ^append_if:;%%asset_metadata_template.styled-bg.image^as_asset:asset_url^prepend_if:background-image\: url(^append_if:?v={asset_metadata_template.styled-bg.image^as_asset:asset_version});%%asset_metadata_template.styled-bg.attachment^prepend_if:background-attachment\: ^append_if:;%">
+     <!--@@ Line above is intentionally avoiding the use of the Opening Tag paint layout so we're consistent across layouts  @@-->
+    <div class="jcu-bg--cover" style="%asset_metadata_template.styled-bg.color^prepend_if:background-color\: ^append_if:;%%asset_metadata_template.styled-bg.image^as_asset:asset_url^prepend_if:background-image\: url(^append_if:?v={asset_metadata_template.styled-bg.image^as_asset:asset_version});%%asset_metadata_template.styled-bg.attachment^prepend_if:background-attachment\: ^append_if:;%">
       <div class="container-fluid jcu-bg--black-25pc" style="padding-top: %asset_metadata_template.styled-bg.padding%; padding-bottom: %asset_metadata_template.styled-bg.padding%;">
         <div class="container">
-          %begin_asset_metadata_template.title.display^eq:show%
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2 %asset_metadata_template.title.alignment^empty:text-xs-center%">
-              <h2 class="h1">
-                <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
-                <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
-              </h2>
-              <script runat="server">
-                if (JCU.data.current_theme === 'landing') {
-                  print('<hr>') //Hack for #72: %asset_assetid%
-                }
-              </script>
-            </div>
-          </div>
-          %end_asset%
-          <div class="row m-b-2">
-            <div class="col-md-8 col-md-offset-2 animated" data-animation="fadeInUp">
-              <script runat="server">
-                print(parts.innerHTML) //Hack for #72: %asset_assetid%
-              </script>
-            </div>
-          </div>
+          <!--@@ Title paint layout @@-->
+          <script runat="server">
+            this.args = {
+              wrapper: {
+                opening: '<div class="row"><div class="col-md-8 col-md-offset-2">',
+                closing: '</div></div>'
+              }
+            }
+          </script>
+          %asset_contents_paint_420212%
+
+          <!--@@ Contents paint layout @@-->
+          <script runat="server">
+            this.args = {
+              wrapper: {
+                opening: '<div class="row m-b-2"><div class="col-md-8 col-md-offset-2 animated" data-animation="fadeInUp">',
+                closing: '</div></div>'
+              }
+            }
+          </script>
+          %asset_contents_paint_420234%
+
           <!--@@ Buttons paint layout @@-->
           <script runat="server">
             this.args = {

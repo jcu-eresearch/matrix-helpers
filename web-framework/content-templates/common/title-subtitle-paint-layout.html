@@ -1,0 +1,42 @@
+<script runat="server">
+  this.args = this.args || {}
+  this.args.subtitle_class = this.args.subtitle_class || ''
+
+  var display_title = !!"%asset_metadata_template.title.display^eq:show:true:%"
+  var title_class = 'content-title ' + (JCU.data.current_theme === 'landing' ? 'h1' : '')
+  var title_alignment = "%asset_metadata_template.title.alignment^json_encode%" || (JCU.data.current_theme === 'landing' ? 'text-xs-center' : '')
+  var has_title_content = JCU.isViperStringPopulated("%asset_metadata_template.title.title^json_encode%")
+  var has_subtitle_content = JCU.isViperStringPopulated("%asset_metadata_template.title.subtitle^json_encode%")
+
+  if (JCU.debug) {
+    print('<!-- Rendering "Title/Subtitle" paint layout for %asset_assetid% -->')
+  }
+
+  if (display_title && (has_title_content || has_subtitle_content)) {
+    if (this.args.wrapper) {
+      print(this.args.wrapper.opening)
+    }
+
+    print('<h2 class="' + title_class + ' ' + title_alignment + ' ">')
+
+    if (has_title_content) {
+      print(JCU.phrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%'))
+    }
+
+    if (has_subtitle_content) {
+      print(JCU.phrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead ' + this.args.subtitle_class + '">', append: '</span>'}))
+    }
+
+    print('</h2>')
+
+    if (JCU.data.current_theme === 'landing') {
+      print('<hr>')
+    }
+
+    if (this.args.wrapper) {
+      print(this.args.wrapper.closing)
+    }
+  }
+
+  delete this.args
+</script>
