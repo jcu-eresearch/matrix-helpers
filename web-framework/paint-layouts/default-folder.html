@@ -1,10 +1,10 @@
-%begin_asset_metadata_jcu.asset.default_page%
-%globals_asset_contents:419483^with_get:assets={asset_metadata_jcu.asset.default_page}%
+%begin_asset_metadata_jcu.folder.default_page%
+%globals_asset_contents:419483^with_get:assets={asset_metadata_jcu.folder.default_page}%
 <script runat="server">
   // Go hunting for global state changes and eval them to get the same effect
   // as running the HTML/SSJS above.
   // Work around https://github.com/jcu-eresearch/matrix-helpers/issues/82
-  var content = "%globals_asset_contents:419483^with_get:assets={asset_metadata_jcu.asset.default_page}^json_encode%"
+  var content = "%globals_asset_contents:419483^with_get:assets={asset_metadata_jcu.folder.default_page}^json_encode%"
   var regex = /<script runat=\"server\">(JCU.[js|css].*?)<\/script>/g
   var result
   while ((result = regex.exec(content)) !== null) {
