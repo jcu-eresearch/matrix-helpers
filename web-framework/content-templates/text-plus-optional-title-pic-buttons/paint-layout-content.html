@@ -1,61 +1,61 @@
     class="container content-block <script runat="server">print(JCU.data.current_theme === 'content' ? 'jcu-content' : '')</script>" aria-label="%asset_metadata_template.title.title^striphtml% %asset_metadata_template.title.subtitle^striphtml%">
     <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1 container">
+      <div class="col-xs-12 col-md-10 col-md-offset-1 container">
 
-            %begin_asset_metadata_template.title.display^eq:show%
-            <h3 class="%asset_metadata_template.title.alignment%">
-              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
-              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
-            </h3>
-            %end_asset%
+        %begin_asset_metadata_template.title.display^eq:show%
+        <h3 class="%asset_metadata_template.title.alignment%">
+          <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
+          <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead">', append: '</span>'})</script>
+        </h3>
+        %end_asset%
 
-            <div class="row m-b-2">
-                %begin_asset_metadata_template.picture.picture%
-                <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
-                <div class="
-                  col-sm-%asset_metadata_template.picture.size^json_decode^index:textcols%
-                  %begin_asset_metadata_template.picture.position^eq:left%col-sm-push-%asset_metadata_template.picture.size^json_decode^index:piccols%%end_asset%
-                ">
-                  <script runat="server">
-                    print(parts.innerHTML) //Hack for #72: %asset_assetid%
-                  </script>
-                </div>
-                <div class="
-                  col-sm-%asset_metadata_template.picture.size^json_decode^index:piccols%
-                  %begin_asset_metadata_template.picture.position^eq:left%col-sm-pull-%asset_metadata_template.picture.size^json_decode^index:textcols%%end_asset%
-                ">
-                <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
-                  <script runat="server">
-                    var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%") //JSON array of numbers or strings
-                    pictures.forEach(function(id) {
-                      if (typeof id === 'number') {
-                        // Standard asset (number)
-                        print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
-                      } else {
-                        // Shadow asset, like '12345:v2' (string)
-                        print('<img class="img-fluid" src="./?a=' + id + '">')
-                      }
-                    })
-                  </script>
-                </div>
-                %else_asset%
-                <div class="col-xs-12">
-                  <script runat="server">
-                    print(parts.innerHTML) //Hack for #72: %asset_assetid%
-                  </script>
-                </div>
-                %end_asset%
-            </div>
-
-            <!--@@ Buttons paint layout @@-->
+        <div class="row m-b-2">
+          %begin_asset_metadata_template.picture.picture%
+          <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
+          <div class="
+            col-sm-%asset_metadata_template.picture.size^json_decode^index:textcols%
+            %begin_asset_metadata_template.picture.position^eq:left%col-sm-push-%asset_metadata_template.picture.size^json_decode^index:piccols%%end_asset%
+            ">
             <script runat="server">
-              this.args = {
-                btn_wrapper: {
-                  opening: '<div class="row"><div class="col-sm-12">',
-                  closing: '</div></div>'
-                }
-              }
+              print(parts.innerHTML) //Hack for #72: %asset_assetid%
             </script>
-            %asset_contents_paint_394551%
+          </div>
+          <div class="
+            col-sm-%asset_metadata_template.picture.size^json_decode^index:piccols%
+            %begin_asset_metadata_template.picture.position^eq:left%col-sm-pull-%asset_metadata_template.picture.size^json_decode^index:textcols%%end_asset%
+            ">
+            <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
+            <script runat="server">
+              var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%") //JSON array of numbers or strings
+pictures.forEach(function(id) {
+  if (typeof id === 'number') {
+    // Standard asset (number)
+    print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
+  } else {
+    // Shadow asset, like '12345:v2' (string)
+    print('<img class="img-fluid" src="./?a=' + id + '">')
+  }
+})
+            </script>
+          </div>
+          %else_asset%
+          <div class="col-xs-12">
+            <script runat="server">
+              print(parts.innerHTML) //Hack for #72: %asset_assetid%
+            </script>
+          </div>
+          %end_asset%
         </div>
+
+        <!--@@ Buttons paint layout @@-->
+        <script runat="server">
+          this.args = {
+            btn_wrapper: {
+              opening: '<div class="row"><div class="col-sm-12">',
+              closing: '</div></div>'
+            }
+          }
+        </script>
+        %asset_contents_paint_394551%
+      </div>
     </div>
