@@ -50,12 +50,13 @@ animations on home pages and cohesive branding across a site.
   things break and it's hard to work with.  However, we don't settle. Want to
   build even more powerful add-ons for the system? Jump in to the SSJS
   Introspector and Test Environment for examining everything you need to know
-  about the Matrix working environment.
+  about the Matrix working environment.  Also turn on or off Server-side
+  JavaScript from the Page Tools menu at any time.
 
 #### Technical info
 
 Many of the aspects of the layout rely on the JCU Web Framework, and thus in
-turn, Boostrap.
+turn, Bootstrap.
 
 Content Container Templates (CCTs) have been built to work on both landing
 pages and content pages and will automatically adjust themselves.  For
