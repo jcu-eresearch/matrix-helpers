@@ -43,8 +43,8 @@ var JCU = {
 
   // Libraries to be included later
   _includes: {
-    css: [],
-    js: []
+    css: {},
+    js: {}
   },
 
   js: {
