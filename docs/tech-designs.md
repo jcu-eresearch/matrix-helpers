@@ -373,6 +373,9 @@ class.  Here's what you'll need to select instead; these are the core
 * Form
 * Page
 * Image Variety
+* Link
+* Abstract Calendar Event
+* Data Record
 
 and ensure that you select the `Inherit` checkbox for all of these.
 
