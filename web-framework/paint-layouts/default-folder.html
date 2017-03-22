@@ -1,5 +1,19 @@
 %begin_asset_metadata_jcu.asset.default_page%
 %globals_asset_contents:419483^with_get:assets={asset_metadata_jcu.asset.default_page}%
+<script runat="server">
+  // Go hunting for global state changes and eval them to get the same effect
+  // as running the HTML/SSJS above.
+  // Work around https://github.com/jcu-eresearch/matrix-helpers/issues/82
+  var content = "%globals_asset_contents:419483^with_get:assets={asset_metadata_jcu.asset.default_page}^json_encode%"
+  var regex = /<script runat=\"server\">(JCU.[js|css].*?)<\/script>/g
+  var result
+  while ((result = regex.exec(content)) !== null) {
+    if (JCU.debug) {
+      print('<!-- Running this SSJS from sub-process: ' + result[1] + '-->')
+    }
+    eval(result[1])
+  }
+</script>
 %else_asset%
 <div class="container jcu-content">
   <!--@@ Get the relevant Asset Listing and pass it the GET keyword of this folder's asset ID @@-->
