@@ -16,13 +16,15 @@
         this.args.content_block_class)
   }
 
-  // Add standard classes used across themes
-  if (JCU.data.current_theme === 'landing') {
-    contentBlockClasses.push('content-section')
-  } else if (JCU.data.current_theme === 'content') {
-    contentBlockClasses.push('container')
-    contentBlockClasses.push('content-block')
-    contentBlockClasses.push('jcu-content')
+  // Add standard classes used across themes unless we explictly ignore them
+  if (!this.args.ignore_theme) {
+    if (JCU.data.current_theme === 'landing') {
+      contentBlockClasses.push('content-section')
+    } else if (JCU.data.current_theme === 'content') {
+      contentBlockClasses.push('container')
+      contentBlockClasses.push('content-block')
+      contentBlockClasses.push('jcu-content')
+    }
   }
 
   // Filter and uniquely identify classes
