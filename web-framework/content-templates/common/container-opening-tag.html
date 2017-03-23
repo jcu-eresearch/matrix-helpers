@@ -31,7 +31,7 @@
   contentBlockClasses = _.filter(_.uniq(contentBlockClasses), function(val) { return val !== "" })
 
   // Print the result
-  print('class="' + contentBlockClasses.join(' ') + '" aria-label="%asset_metadata_template.title.title^striphtml^escapequotes% %asset_metadata_template.title.subtitle^striphtml^escapequotes%">')
+  print('class="' + contentBlockClasses.join(' ') + "\" aria-label=\"%asset_metadata_template.title.title^striphtml^escapequotes% %asset_metadata_template.title.subtitle^striphtml^escapequotes%\">")
   if (JCU.debug) {
     print('<!-- Rendered "Content Block Opening Tag" paint layout for %asset_assetid% (above) -->')
   }
