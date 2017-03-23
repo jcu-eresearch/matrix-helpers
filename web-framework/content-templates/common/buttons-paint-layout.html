@@ -18,8 +18,8 @@
     print('<!-- Rendering "Buttons" paint layout for %asset_assetid% -->')
   }
   if (btn1_text || btn2_text) {
-    if (this.args.btn_wrapper) {
-      print(this.args.btn_wrapper.opening)
+    if (this.args.wrapper) {
+      print(this.args.wrapper.opening)
     }
     if (!this.omit_alignment) {
       print('<div class="' + alignment + '">')
@@ -30,8 +30,8 @@
     if (!this.omit_alignment) {
       print('</div>')
     }
-    if (this.args.btn_wrapper) {
-      print(this.args.btn_wrapper.closing)
+    if (this.args.wrapper) {
+      print(this.args.wrapper.closing)
     }
   }
 
