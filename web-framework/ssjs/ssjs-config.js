@@ -32,7 +32,9 @@ var JCU = {
     is_404: !!'%globals_asset_assetid^eq:{globals_site_not_found_id}:true:%',
     frontend_id: '%frontend_asset_assetid%' || '%globals_asset_assetid%',
     frontend_theme: '%frontend_asset_metadata_jcu.features.theme%' || '%globals_asset_metadata_jcu.features.theme%',
+    homepage_id: '%globals_site_index_id%',
     homepage_theme: '%globals_site_index_id^as_asset:asset_metadata_jcu.features.theme%',
+    site_id: '%globals_site_assetid%',
     site_theme: '%globals_site_metadata_jcu.features.theme%'
   },
 
@@ -227,9 +229,32 @@ var JCU = {
       print('<!-- Resolved Boolean inheritance with value: ' + result + '-->')
     }
     return result
+  },
+
+  /**
+   * Resolve a correct 'current' value given whether the current page is the
+   * homepage or not.
+   *
+   * Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/9
+   * which states that % globals % aren't consistent and also that
+   * % frontend % keywords don't give us the homepage (they give us the site).
+   *
+   * @param {Object} inputs - object consisting of homepage & frontend choices
+   * @returns {Boolean} The resolved value
+   */
+  resolveCurrentAssetData: function (inputs) {
+    var result = JCU.data.is_homepage ? inputs.homepage_data : inputs.frontend_data
+    if (JCU.debug) {
+      print('<!-- Resolved current asset data with value: ' + result + '-->')
+    }
+    return result
   }
 }
 
+JCU.data.current_id = JCU.resolveCurrentAssetData({
+  homepage_data: JCU.data.homepage_id,
+  frontend_data: JCU.data.frontend_id
+})
 JCU.data.current_theme = JCU.resolveInheritance({
   homepage_data: JCU.data.homepage_theme,
   frontend_data: JCU.data.frontend_theme,
