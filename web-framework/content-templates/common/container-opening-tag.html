@@ -1,14 +1,35 @@
 <script runat="server">
   this.args = this.args || {}
+  var contentBlockClasses = []
 
-  var content_block_class = this.args.content_block_class || ''
-  if (JCU.data.current_theme === 'landing') {
-    content_block_class += ' content-section'
-  } else if (JCU.data.current_theme === 'content') {
-    // This could cause a double-up
-    content_block_class += ' container content-block jcu-content'
+  // Grab extracted classes from parsing a Content Block's HTML
+  if (this.parts.classAttr) {
+    contentBlockClasses.push(this.parts.classAttr)
   }
-  print('class="' + content_block_class + '" aria-label="%asset_metadata_template.title.title^striphtml^escapequotes% %asset_metadata_template.title.subtitle^striphtml^escapequotes%">')
+
+  // Grab any explicit classes passed in as arguments, parsing strings/objects
+  if (this.args.content_block_class) {
+    contentBlockClasses = _.concat(
+      contentBlockClasses,
+      typeof this.args.content_block_class === "string" ?
+        this.args.content_block_class.split(' ') :
+        this.args.content_block_class)
+  }
+
+  // Add standard classes used across themes
+  if (JCU.data.current_theme === 'landing') {
+    contentBlockClasses.push('content-section')
+  } else if (JCU.data.current_theme === 'content') {
+    contentBlockClasses.push('container')
+    contentBlockClasses.push('content-block')
+    contentBlockClasses.push('jcu-content')
+  }
+
+  // Filter and uniquely identify classes
+  contentBlockClasses = _.filter(_.uniq(contentBlockClasses), function(val) { return val !== "" })
+
+  // Print the result
+  print('class="' + contentBlockClasses.join(' ') + '" aria-label="%asset_metadata_template.title.title^striphtml^escapequotes% %asset_metadata_template.title.subtitle^striphtml^escapequotes%">')
   if (JCU.debug) {
     print('<!-- Rendered "Content Block Opening Tag" paint layout for %asset_assetid% (above) -->')
   }

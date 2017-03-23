@@ -67,6 +67,8 @@ var JCU = {
 
   /**
    * Test if a given string from Viper (WYSIWYG) editor is "empty" or not
+   * Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/12
+   * by testing the literal "empty" value of a an empty paragraph.
    * @param {string} str - Input string
    * @returns {Boolean} True if populated, and false if empty (or <p> tag only)
    */
@@ -116,24 +118,33 @@ var JCU = {
    * Break a Content Container's HTML into parts for use in CCT Paint Layouts.
    * This solves the problems with not being able to access the Content
    * Container properties presented in:
-   * https://github.com/jcu-eresearch/matrix-helpers/issues/41
    * https://github.com/jcu-eresearch/matrix-helpers/issues/59
+   *
+   * However, as can be seen below, this method of determining whether
+   * something is wrapped or not is extremely brittle and relies on precisely
+   * the right linebreaks being outputted by Matrix's core.
+   *
+   * Whenever https://github.com/jcu-eresearch/matrix-helpers/issues/41 is
+   * resolved, this can be carried out in keywords rather than string matching.
+   *
    * @param {string} content - Content Container's rendering from asset_contents keyword
    * @returns {Object} The container's parts
    */
   extractContentContainerParts: function(content) {
+    var classAttrRegex = / class="(.*?)"/i
     var result
     if (JCU.isContentWrapped(content)) {
       var lines = content.split('\r\n')
-      result = {opening: lines[1].replace('>', ''), innerHTML: _.slice(lines, 2, -2).join('\r\n'), closing: _.nth(lines, -2)}
+      var classAttrResult = classAttrRegex.exec(lines[1])
+      result = {
+        opening: lines[1].replace('>', '').replace(classAttrRegex, ''),
+        classAttr: classAttrResult && classAttrResult[1],
+        innerHTML: _.slice(lines, 2, -2).join('\r\n'),
+        closing: _.nth(lines, -2)
+      }
     } else {
       result = {opening: '<div', innerHTML: content, closing: '</div>'}
     }
-    // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/12
-    if (result.innerHTML === "<p></p>") {
-      result.innerHTML = ''
-    }
-
     return result
   },
 
