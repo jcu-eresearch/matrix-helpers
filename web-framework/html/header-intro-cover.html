@@ -40,7 +40,11 @@
           // Subnavigation folder listing
           var linking_lineage = JSON.parse('%globals_asset_linking_lineage%' || '[]')
           if (linking_lineage.length >= 2) {
-            print('%globals_asset_contents:' + JCU.ids.subnavigation_folder_listing + '^with_get:root={globals_asset_linking_lineage^json_decode^index:1}%')
+            // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/74
+            // because SSJS that's actually running on the client on 404 pages
+            // can't evalate SSJS-generated keywords, so we let Matrix replace this first
+            //print('%globals_asset_contents:' + JCU.ids.subnavigation_folder_listing + '^with_get:root={globals_asset_linking_lineage^json_decode^index:1}%')
+            print("%globals_asset_contents:372370^with_get:root={globals_asset_linking_lineage^json_decode^index:1}^json_encode%")
           }
         }
       </script>
