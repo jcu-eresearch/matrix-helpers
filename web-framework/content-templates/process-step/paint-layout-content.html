@@ -9,12 +9,18 @@
           <!--@@ empty div where CSS will place the step number @@-->
         </div>
 
-        <div class="col-xs-10 col-sm-9">
-            <h2 class="h3">
-              <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%')</script>
-            </h2>
-        </div>
-
+        <!--@@ Title paint layout @@-->
+        <script runat="server">
+          this.args = {
+            always_show: true,
+            title_class: 'h3 m-b-1',
+            wrapper: {
+              opening: '<div class="col-xs-10 col-sm-9">',
+              closing: '</div>'
+            }
+          }
+        </script>
+        %asset_contents_paint_420212%
     </div>
     <div class="row">
 

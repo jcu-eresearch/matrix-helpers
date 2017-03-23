@@ -1,10 +1,11 @@
 <script runat="server">
   this.args = this.args || {}
+  this.args.title_class = this.args.title_class || ''
   this.args.subtitle_class = this.args.subtitle_class || ''
 
-  var display_title = !!"%asset_metadata_template.title.display^eq:show:true:%"
-  var title_class = 'content-title ' + (JCU.data.current_theme === 'landing' ? 'h1' : '')
-  var title_alignment = "%asset_metadata_template.title.alignment^json_encode%" || (JCU.data.current_theme === 'landing' ? 'text-xs-center' : '')
+  var display_title = !!"%asset_metadata_template.title.display^eq:show:true:%" || this.args.always_show
+  var title_base_class = 'content-title ' + (JCU.data.current_theme === 'landing' ? 'h1' : '')
+  var title_alignment = "%asset_metadata_template.title.alignment^escapequotes%" || (JCU.data.current_theme === 'landing' ? 'text-xs-center' : '')
   var has_title_content = JCU.isViperStringPopulated("%asset_metadata_template.title.title^json_encode%")
   var has_subtitle_content = JCU.isViperStringPopulated("%asset_metadata_template.title.subtitle^json_encode%")
 
@@ -17,7 +18,7 @@
       print(this.args.wrapper.opening)
     }
 
-    print('<h2 class="' + title_class + ' ' + title_alignment + ' ">')
+    print('<h2 class="' + [title_base_class, this.args.title_class, title_alignment].join(' ') + '">')
 
     if (has_title_content) {
       print(JCU.phrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%'))
