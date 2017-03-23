@@ -52,7 +52,7 @@
     <!--@@ Reload the page "logged in"; done early via JS so we can fast-forward the reload @@-->
     <!--@@ Workaround for Squiz Edge serving only public content: https://github.com/jcu-eresearch/matrix-helpers/issues/20 @@-->
     <script>
-      var current_user = '<MySource_PRINT id_name="__global__" var="current_user" default="" attr="name" />'
+      var current_user = "<MySource_PRINT id_name="__global__" var="current_user" default="" attr="name" escape="yes" />"
       if (!window.location.pathname.match(/_(admin|edit|noproxycache|nocache|recache)/) &&
          (current_user || document.cookie.search('jcuredirecturl=') >= 0)) {
         var url = document.createElement('a')
@@ -365,7 +365,7 @@
             <ul class="nav navbar-nav pull-md-right">
               <MySource_ASSET>
               <li class="nav-item <MySource_PRINT var="settings.class" />">
-                <a class="nav-link <MySource_PRINT var="asset_metadata_jcu.navigation.css_classes" />" href="<MySource_PRINT var="asset_link" />"><MySource_PRINT var="asset_short_name" /></a>
+                <a class="nav-link <MySource_PRINT var="asset_metadata_jcu.navigation.css_classes" escape="yes" />" href="<MySource_PRINT var="asset_link" />"><MySource_PRINT var="asset_short_name" /></a>
               </li>
               </MySource_ASSET>
             </ul>
