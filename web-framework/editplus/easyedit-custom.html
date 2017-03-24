@@ -12,6 +12,11 @@
 <!--@@ Edit+ configuration and plugins @@-->
 <script src="./?a=318177?v=%globals_asset_version:318177%"></script>
 <script>
+  var siteAssetId = parseInt('%globals_site_assetid%')
+  if (siteAssetId) {
+    EasyEditConfig.assetFinderLocations.splice(0, 0, siteAssetId)
+  }
+
   var siteFinderAssets = JSON.parse('%globals_site_metadata_jcu.edit.finder_assets%' || '[]')
   siteFinderAssets.forEach(function(id) {
     EasyEditConfig.assetFinderLocations.push(id)
