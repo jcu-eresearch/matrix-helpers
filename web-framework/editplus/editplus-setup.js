@@ -22,29 +22,46 @@ EasyEditConfig.enableSiteEditing = true
 EasyEditLocalise.language = 'en'
 EasyEditLocalise.translations.en = {
   strings: {
-    "News Item": "Media Release",
-    "A News Item allows you to add articles to your site. These articles could be anything from a media release to a general article on your site.": "A Media Release allows you to add an article to your site; usually only for use by Media and Communication.",
-    "Cascade Status Change": "Cascade status change to children",
+    // General UI
     "Context Switcher": "Language Switcher",
     "Change Context": "Change Language",
     "Changing context to %1": "Changing language to %1",
+    "Metadata": "Settings",
+
+    // Creation Wizard
+    "Standard Page": "Page",
+    "Standard Pages": "Pages",
+    "News Item": "Media Release",
+    "News Items": "Media Releases",
+    "A News Item allows you to add articles to your site. These articles could be anything from a media release to a general article on your site.": "A Media Release allows you to add an article to your site; usually only for use by Media and Communication.",
+    "Show in menu?": "Show in Navigation",
+    "This option will affect all link locations": "Choose whether this asset should be shown in navigation in all linked locations.",
+    "Select the locations to create this asset under": "Select a location for this new asset. It will be created beneath your selection.",
     "Alt Text": "Alternate Text",
     "The text to be used in the Alt attribute of the IMG tag": "Provide a textual description of this image.  This is used for accessibility purposes, such as screen readers.",
     "The text to be used in the Alt attribute of the IMG tag. If decorative, leave this field empty.": "Provide a textual description of this image.  This is used for accessibility purposes, such as screen readers.",
     "Some text to be associated with the image and can be accessed and printed out separately if required.": "Some text to be associated with the image. This and can be accessed and printed out separately if required.",
-    "Metadata": "Settings",
+
+    // Details pane
+    "Cascade Status Change": "Cascade status change to children",
     "Page Name": "Page Name (used as title/header)",
     "Page Short Name": "Page Short Name (used in navigation)",
     "Related Image": "Related Image (Thumbnail)",
+
+    // Contents pane
     "Insert New Container": "Add New Content Block",
     "Edit Container Properties": "Edit Content Block",
     "Re-order Content Containers": "Re-order Content Blocks",
     "Styling": "Wrapper HTML",
     "Presentation": "Element",
     "CSS class": "CSS Classes (space separated)",
+
+    // Linking pane
     "Show in Menu": "Show in Navigation",
     "Add Remaps?": "Automatically add redirections on path change?",
     'When set to "%1", this option will add remaps for Web Paths that have been changed above.': 'When set to "%1", this option will create redirections for users accessing the old Web Paths to the new path. Leave this set to "%1" to ensure old URLs will continue to work.',
+
+    // Analytics pane
     "1": "1 month",
     "3": "3 months",
     "6": "6 months"
