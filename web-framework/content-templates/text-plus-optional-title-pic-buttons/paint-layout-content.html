@@ -1,8 +1,30 @@
 <!--@@ Container Block Opening Tag paint layout @@-->
 %asset_contents_paint_420277%
-  <div class="row">
-    <div class="col-xs-12 col-md-10 col-md-offset-1 container">
+  <script runat="server">
+    if (JCU.data.current_theme === 'landing') {
+      // Wrapped container so we don't cut animations off, otherwise we could
+      // be consistent between Landing/Content themes
+      print(' \
+      <div class="container"> \
+      ')
+    } else if (JCU.data.current_theme === 'content') {
+      print(' \
+      <div class="row"> \
+        <div class="col-xs-12 col-md-10 col-md-offset-1"> \
+      ')
+    }
+  </script>
       <!--@@ Title paint layout @@-->
+      <script runat="server">
+        if (JCU.data.current_theme === 'landing') {
+          this.args = {
+            wrapper: {
+              opening: '<div class="row"><div class="col-md-6 col-md-offset-3">',
+              closing: '</div></div>'
+            }
+          }
+        }
+      </script>
       %asset_contents_paint_420212%
 
       <div class="row m-b-2">
@@ -11,15 +33,14 @@
         <div class="
           col-sm-%asset_metadata_template.picture.size^json_decode^index:textcols%
           %begin_asset_metadata_template.picture.position^eq:left%col-sm-push-%asset_metadata_template.picture.size^json_decode^index:piccols%%end_asset%
-          ">
+          animated" data-animation="fadeInUp" data-delay="0">
           <!--@@ Contents paint layout @@-->
           %asset_contents_paint_420234%
         </div>
         <div class="
           col-sm-%asset_metadata_template.picture.size^json_decode^index:piccols%
           %begin_asset_metadata_template.picture.position^eq:left%col-sm-pull-%asset_metadata_template.picture.size^json_decode^index:textcols%%end_asset%
-          ">
-          <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
+          animated" data-animation="%asset_metadata_template.picture.position^eq:left:fadeInLeft:fadeInRight%" data-delay="250">
           <script runat="server">
             var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%") //JSON array of numbers or strings
             pictures.forEach(function(id) {
@@ -57,5 +78,13 @@
         }
       </script>
       %asset_contents_paint_394551%
-    </div><!--@@ /.col-xs-12 @@-->
-  </div><!--@@ /.row @@-->
+  <script runat="server">
+    if (JCU.data.current_theme === 'landing') {
+      print('</div><!--@@ /.container @@-->')
+    } else if (JCU.data.current_theme === 'content') {
+      print(' \
+        </div><!--@@ /.col-xs-12 @@--> \
+      </div><!--@@ /.row @@--> \
+      ')
+    }
+  </script>
