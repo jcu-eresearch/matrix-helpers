@@ -3,28 +3,28 @@
   this.args = {content_block_class: 'map-section'}
 </script>
 %asset_contents_paint_420277%
-    <script runat="server">JCU.js.require('google_maps')</script>
-    <div class="canvas-map" id="canvas-map-%asset_assetid%"
-         data-marker-lat="%asset_metadata_template.map.marker_lat%"
-         data-marker-lng="%asset_metadata_template.map.marker_lng%"
-         data-initial-zoom="%asset_metadata_template.map.initial_zoom%"
-         data-marker-url="%asset_metadata_template.map.marker^as_asset:asset_url%?v=%asset_metadata_template.map.marker^as_asset:asset_version%"
-         data-map-type-id="%asset_metadata_template.map.map_type_id%"
-         data-disable-default-ui="%asset_metadata_template.map.disable_default_ui%"
-         data-scrollwheel="%asset_metadata_template.map.scrollwheel%"
-         data-draggable="%asset_metadata_template.map.draggable%"
-         data-full-zoom="%asset_metadata_template.map.full_zoom%"></div>
-    <div class="container-fluid">
-      <div class="col-md-6 col-lg-4 col-md-offset-1 location-callout animated" data-animation="fadeInLeft" data-delay="500">
-        <div class="location-callout-wrapper">
-          <h2>Location &amp; Contact</h2>
-          <!--@@ Contact card paint layout @@-->
-          %asset_contents_paint_394355%
-        </div>
-        <!--@@ Buttons paint layout @@-->
-        <script runat="server">
-          this.args = {wrapper: {opening: '<div class="bg-inverse p-a-2">', closing: '</div>'}}
-        </script>
-        %asset_contents_paint_394551%
+  <script runat="server">JCU.js.require('google_maps')</script>
+  <div class="canvas-map" id="canvas-map-%asset_assetid%"
+    data-marker-lat="%asset_metadata_template.map.marker_lat%"
+    data-marker-lng="%asset_metadata_template.map.marker_lng%"
+    data-initial-zoom="%asset_metadata_template.map.initial_zoom%"
+    data-marker-url="%asset_metadata_template.map.marker^as_asset:asset_url%?v=%asset_metadata_template.map.marker^as_asset:asset_version%"
+    data-map-type-id="%asset_metadata_template.map.map_type_id%"
+    data-disable-default-ui="%asset_metadata_template.map.disable_default_ui%"
+    data-scrollwheel="%asset_metadata_template.map.scrollwheel%"
+    data-draggable="%asset_metadata_template.map.draggable%"
+    data-full-zoom="%asset_metadata_template.map.full_zoom%"></div>
+  <div class="container-fluid">
+    <div class="col-md-6 col-lg-4 col-md-offset-1 location-callout animated" data-animation="fadeInLeft" data-delay="500">
+      <div class="location-callout-wrapper">
+        <h2>Location &amp; Contact</h2>
+        <!--@@ Contact card paint layout @@-->
+        %asset_contents_paint_394355%
       </div>
+      <!--@@ Buttons paint layout @@-->
+      <script runat="server">
+        this.args = {wrapper: {opening: '<div class="bg-inverse p-a-2">', closing: '</div>'}}
+      </script>
+      %asset_contents_paint_394551%
     </div>
+  </div>

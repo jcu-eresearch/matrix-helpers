@@ -3,41 +3,47 @@
   this.args = {ignore_theme: true, content_block_class: "content-section text-inverse"}
 </script>
 %asset_contents_paint_420277%
-    <div class="jcu-bg--cover" style="%asset_metadata_template.styled-bg.color^prepend_if:background-color\: ^append_if:;%%asset_metadata_template.styled-bg.image^as_asset:asset_url^prepend_if:background-image\: url(^append_if:?v={asset_metadata_template.styled-bg.image^as_asset:asset_version});%%asset_metadata_template.styled-bg.attachment^prepend_if:background-attachment\: ^append_if:;%">
-      <div class="container-fluid jcu-bg--black-25pc" style="padding-top: %asset_metadata_template.styled-bg.padding%; padding-bottom: %asset_metadata_template.styled-bg.padding%;">
-        <div class="container">
-          <!--@@ Title paint layout @@-->
-          <script runat="server">
-            this.args = {
-              wrapper: {
-                opening: '<div class="row"><div class="col-md-8 col-md-offset-2">',
-                closing: '</div></div>'
-              }
+  <div class="jcu-bg--cover" style="
+    %asset_metadata_template.styled-bg.color^prepend_if:background-color\: ^append_if:;%
+    %asset_metadata_template.styled-bg.image^as_asset:asset_url^prepend_if:background-image\: url(^append_if:?v={asset_metadata_template.styled-bg.image^as_asset:asset_version});%
+    %asset_metadata_template.styled-bg.attachment^prepend_if:background-attachment\: ^append_if:;%
+    ">
+    <div class="container-fluid jcu-bg--black-25pc" style="
+      padding-top: %asset_metadata_template.styled-bg.padding%;
+      padding-bottom: %asset_metadata_template.styled-bg.padding%;">
+      <div class="container">
+        <!--@@ Title paint layout @@-->
+        <script runat="server">
+          this.args = {
+            wrapper: {
+              opening: '<div class="row"><div class="col-md-8 col-md-offset-2">',
+              closing: '</div></div>'
             }
-          </script>
-          %asset_contents_paint_420212%
+          }
+        </script>
+        %asset_contents_paint_420212%
 
-          <!--@@ Contents paint layout @@-->
-          <script runat="server">
-            this.args = {
-              wrapper: {
-                opening: '<div class="row m-b-2"><div class="col-md-8 col-md-offset-2 animated" data-animation="fadeInUp">',
-                closing: '</div></div>'
-              }
+        <!--@@ Contents paint layout @@-->
+        <script runat="server">
+          this.args = {
+            wrapper: {
+              opening: '<div class="row m-b-2"><div class="col-md-8 col-md-offset-2 animated" data-animation="fadeInUp">',
+              closing: '</div></div>'
             }
-          </script>
-          %asset_contents_paint_420234%
+          }
+        </script>
+        %asset_contents_paint_420234%
 
-          <!--@@ Buttons paint layout @@-->
-          <script runat="server">
-            this.args = {
-              wrapper: {
-                opening: '<div class="row m-t-3"><div class="col-sm-12">',
-                closing: '</div></div>'
-              }
+        <!--@@ Buttons paint layout @@-->
+        <script runat="server">
+          this.args = {
+            wrapper: {
+              opening: '<div class="row m-t-3"><div class="col-sm-12">',
+              closing: '</div></div>'
             }
-          </script>
-          %asset_contents_paint_394551%
-        </div>
-      </div>
-    </div>
+          }
+        </script>
+        %asset_contents_paint_394551%
+      </div><!--@@ /.container @@-->
+    </div><!--@@ /.container-fluid @@-->
+  </div><!--@@ /.jcu-bg-cover @@-->

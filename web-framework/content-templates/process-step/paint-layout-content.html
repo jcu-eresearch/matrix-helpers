@@ -3,56 +3,52 @@
   this.args = {content_block_class: 'process-step %asset_metadata_template.vizfx.border.south%'}
 </script>
 %asset_contents_paint_420277%
-
-    <div class="row">
-        <div class="col-xs-2 col-md-1 col-md-offset-1 process-step-number">
-          <!--@@ empty div where CSS will place the step number @@-->
-        </div>
-
-        <!--@@ Title paint layout @@-->
-        <script runat="server">
-          this.args = {
-            always_show: true,
-            title_class: 'h3 m-b-1',
-            wrapper: {
-              opening: '<div class="col-xs-10 col-sm-9">',
-              closing: '</div>'
-            }
-          }
-        </script>
-        %asset_contents_paint_420212%
+  <div class="row">
+    <div class="col-xs-2 col-md-1 col-md-offset-1 process-step-number">
+      <!--@@ empty div where CSS will place the step number @@-->
     </div>
-    <div class="row">
 
-        <div class="col-xs-2 col-md-1 col-md-offset-1"></div><!--@@ empty div reserving space for the step number above @@-->
-        <!--@@ Contents paint layout @@-->
-        <script runat="server">
-          this.args = {
-            wrapper: {
-              opening: '<div class="col-xs-10 col-sm-7">',
-              closing: '</div>'
-            }
-          }
-        </script>
-        %asset_contents_paint_420234%
+    <!--@@ Title paint layout @@-->
+    <script runat="server">
+      this.args = {
+        always_show: true,
+        title_class: 'h3 m-b-1',
+        wrapper: {
+          opening: '<div class="col-xs-10 col-sm-9">',
+          closing: '</div>'
+        }
+      }
+    </script>
+    %asset_contents_paint_420212%
+  </div>
+  <div class="row">
+    <div class="col-xs-2 col-md-1 col-md-offset-1"></div><!--@@ empty div reserving space for the step number above @@-->
+    <!--@@ Contents paint layout @@-->
+    <script runat="server">
+      this.args = {
+        wrapper: {
+          opening: '<div class="col-xs-10 col-sm-7">',
+          closing: '</div>'
+        }
+      }
+    </script>
+    %asset_contents_paint_420234%
 
-        <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0 col-md-2">
+    <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0 col-md-2">
+      <!--@@ Buttons paint layout @@-->
+      <script runat="server">
+        this.args = {omit_alignment: true, btn_class_prefix: 'btn-block text-wrap'}
+      </script>
+      %asset_contents_paint_394551%
 
-          <!--@@ Buttons paint layout @@-->
-          <script runat="server">
-            this.args = {omit_alignment: true, btn_class_prefix: 'btn-block text-wrap'}
-          </script>
-          %asset_contents_paint_394551%
-
-          %begin_asset_metadata_template.picture.picture%
-          <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
-          <script runat="server">
-            var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%")
-            pictures.forEach(function(id) {
-              print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
-            })
-          </script>
-          %end_asset%
-
-        </div>
+      %begin_asset_metadata_template.picture.picture%
+      <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
+      <script runat="server">
+        var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%")
+        pictures.forEach(function(id) {
+          print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
+        })
+      </script>
+      %end_asset%
     </div>
+  </div>

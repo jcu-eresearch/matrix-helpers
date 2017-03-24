@@ -1,31 +1,30 @@
 <!--@@ Container Block Opening Tag paint layout @@-->
 %asset_contents_paint_420277%
-    <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1 container">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 container">
+      <!--@@ Title paint layout @@-->
+      %asset_contents_paint_420212%
 
-          <!--@@ Title paint layout @@-->
-          %asset_contents_paint_420212%
-
-            <div class="row">
-                <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
-                <div class="col-sm-3 text-xs-center m-b-2
-                  %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-push-9%end_asset%">
-                  <span class="h1">
-                    %asset_metadata_template.numfeature.num1%
-                  </span><br />
-                  %asset_metadata_template.numfeature.units1%
-                </div>
-                <div class="col-sm-9
-                  %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-pull-3%end_asset%">
-                  <!--@@ Contents paint layout @@-->
-                  %asset_contents_paint_420234%
-                </div>
-            </div>
-
-            <!--@@ Buttons paint layout @@-->
-            <script runat="server">
-              this.args = {wrapper: {opening: '<div class="row"><div class="col-sm-12">', closing: '</div></div>'}}
-            </script>
-            %asset_contents_paint_394551%
+      <div class="row">
+        <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
+        <div class="col-sm-3 text-xs-center m-b-2
+          %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-push-9%end_asset%">
+          <span class="h1">
+            %asset_metadata_template.numfeature.num1%
+          </span><br />
+          %asset_metadata_template.numfeature.units1%
         </div>
+        <div class="col-sm-9
+          %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-pull-3%end_asset%">
+          <!--@@ Contents paint layout @@-->
+          %asset_contents_paint_420234%
+        </div>
+      </div>
+
+      <!--@@ Buttons paint layout @@-->
+      <script runat="server">
+        this.args = {wrapper: {opening: '<div class="row"><div class="col-sm-12">', closing: '</div></div>'}}
+      </script>
+      %asset_contents_paint_394551%
     </div>
+  </div>
