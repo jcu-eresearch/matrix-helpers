@@ -389,6 +389,7 @@ EasyEdit.plugins.iconPickerFields = {
               .replaceWith(function() {
                 return $('<select></select>', {
                   class: "form-control form-control-lg icon-picker",
+                  style: "width: 100%;",
                   name: this.name,
                   disabled: this.disabled
                 }).append('<option value="' + this.value + '" selected>' + this.value + '</option></select>')
