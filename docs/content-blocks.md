@@ -75,6 +75,17 @@
             <rect x="2" y="1" width="5" height="5" />
             <rect x="1" y="7" width="7" height="1" />
         </symbol>
+        <symbol id="three-nums">
+            <use xlink:href="#num" x="10" y="1"></use>
+            <use xlink:href="#num" x="25" y="1"></use>
+            <use xlink:href="#num" x="40" y="1"></use>
+        </symbol>
+        <symbol id="three-numcards">
+            <use xlink:href="#three-nums" x="0" y="1"></use>
+            <circle cx="14.5" cy="2.5" r="1.3" />
+            <circle cx="29.5" cy="2.5" r="1.3" />
+            <circle cx="44.5" cy="2.5" r="1.3" />
+        </symbol>
         <symbol id="btn">
             <rect x="1" y="1" width="7" height="2" />
         </symbol>
@@ -198,9 +209,7 @@ no good photographic or pictorial way to demonstrate the fact.
 <svg class="diag" viewBox="0 0 60 43">
     <use xlink:href="#bg" x="0" y="0"></use>
     <use xlink:href="#heading"></use>
-    <use xlink:href="#num" x="10" y="13"></use>
-    <use xlink:href="#num" x="25" y="13"></use>
-    <use xlink:href="#num" x="40" y="13"></use>
+    <use xlink:href="#three-nums" x="0" y="12"></use>
     <use xlink:href="#text-wide" x="0" y="22"></use>
     <use xlink:href="#btn" x="25" y="35"></use>
     <use xlink:href="#border" x="0" y="41"></use>
@@ -208,9 +217,7 @@ no good photographic or pictorial way to demonstrate the fact.
 
 <svg class="diag" viewBox="0 0 60 30">
     <use xlink:href="#bg" x="0" y="0"></use>
-    <use xlink:href="#num" x="10" y="6"></use>
-    <use xlink:href="#num" x="25" y="6"></use>
-    <use xlink:href="#num" x="40" y="6"></use>
+    <use xlink:href="#three-nums" x="0" y="5"></use>
     <use xlink:href="#text-wide" x="0" y="15"></use>
     <use xlink:href="#border" x="0" y="28"></use>
 </svg>
@@ -222,8 +229,38 @@ buttons.
 Use this to highlight three remarkable numeric facts.
 
 
+### Featured number cards
+
+<svg class="diag" viewBox="0 0 60 43">
+    <use xlink:href="#bg" x="0" y="0"></use>
+    <use xlink:href="#heading"></use>
+    <use xlink:href="#three-numcards" x="0" y="12"></use>
+    <use xlink:href="#text-wide" x="0" y="22"></use>
+    <use xlink:href="#btn" x="25" y="35"></use>
+    <use xlink:href="#border" x="0" y="41"></use>
+</svg>
+
+
+
+### Process step
+
+
+### Summary cards
+
+
+### Contact info plus map
+
+
+### Contact info over map
+
+
+### Embedded content
+
+
+### Image gallery
+
+
 
 
 <!-- <svg class="diag"><use class="highlight" xlink:href="#block"></use></svg> -->
-
 
