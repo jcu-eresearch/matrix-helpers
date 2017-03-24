@@ -21,9 +21,11 @@ Firstly, the information you'll need to know are:
   > will automatically be mentioned.
 
 * **Access details:** the individual names or organisation units of people who
-  should have access to edit your site.  You will need to know the Matrix
-  asset IDs of each user/group who should have permission; this might require
-  asking your System Administrator before proceeding.
+  should have access to edit your site.
+
+  > You will need to know the Matrix asset IDs of each user/group who should
+  > have permission; this might require asking your System Administrator
+  > before proceeding.
 
 Sites **must** be created as a child of the `Australia` > `JCU Web Framework
 Sites` parent asset for the purposes of Content Container Template (CCT)
