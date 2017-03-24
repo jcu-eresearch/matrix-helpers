@@ -1,5 +1,5 @@
 /* jslint browser: true, jquery: true, asi: true */
-/* globals EasyEdit, EasyEditConfig, EasyEditEventManager, EasyEditAssetManager, EasyEditComponentsToolbar, EasyEditOverlay, EasyEditBodycopyManager, EasyEditImageEditor, EasyEditLocalise */
+/* globals EasyEdit, EasyEditConfig, EasyEditEventManager, EasyEditAssetManager, EasyEditComponentsToolbar, EasyEditOverlay, EasyEditBodycopyManager, EasyEditImageEditor, EasyEditLocalise, EasyEditComponents */
 
 // Easy Edit Suite configuration options.
 EasyEditConfig.debug = false
@@ -28,6 +28,10 @@ EasyEditLocalise.translations.en = {
     "Context Switcher": "Language Switcher",
     "Change Context": "Change Language",
     "Changing context to %1": "Changing language to %1",
+    "Alt Text": "Alternate Text",
+    "The text to be used in the Alt attribute of the IMG tag": "Provide a textual description of this image.  This is used for accessibility purposes, such as screen readers.",
+    "The text to be used in the Alt attribute of the IMG tag. If decorative, leave this field empty.": "Provide a textual description of this image.  This is used for accessibility purposes, such as screen readers.",
+    "Some text to be associated with the image and can be accessed and printed out separately if required.": "Some text to be associated with the image. This and can be accessed and printed out separately if required.",
     "Metadata": "Settings",
     "Page Name": "Page Name (used as title/header)",
     "Page Short Name": "Page Short Name (used in navigation)",
