@@ -10,6 +10,8 @@
   * Show the Asset Finder window as a demo
   * Add Screenshot explaining where things come from. Or, edit overlay with links (annotate each area in html?)
 
+* How our setup differs from the current JCU environment (for existing
+  editors; eg accordions, styles etc)
 
 ## Adding new content
 
