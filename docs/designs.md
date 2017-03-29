@@ -30,6 +30,8 @@ animations on home pages and cohesive branding across a site.
 * **Site settings:** background images, colours, Favicon, CSS, JS, co-branding
   footers, social media controls and more via centralised metadata
   configuration
+* **Single or multiple page designs:** we support both scrolling,
+  single-page layouts (via Link asset menu items) or standard multi-page sites.
 * **Google Maps** automatic JS API inclusion when in use and central
   configuration via metadata configuration
 * **Analytics:** ability for users to connect their own alternate Analytics

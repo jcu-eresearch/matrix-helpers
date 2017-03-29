@@ -364,9 +364,24 @@
             <MySource_SET name="settings.class.current" value="active" />
             <ul class="nav navbar-nav pull-md-right">
               <MySource_ASSET>
-              <li class="nav-item <MySource_PRINT var="settings.class" />">
-                <a class="nav-link <MySource_PRINT var="asset_metadata_jcu.navigation.css_classes" escape="yes" />" href="<MySource_PRINT var="asset_link" />"><MySource_PRINT var="asset_short_name" /></a>
-              </li>
+                <script runat="server">
+                  var type = '<MySource_PRINT var="asset_type_code" />'
+                  var rel = ''
+                  if (type === 'link') {
+                    href = '<MySource_PRINT var="asset_attribute_link_url" />'
+                    rel = '<MySource_PRINT var="asset_attribute_link_relation" />'
+                    if (rel) {
+                      rel = 'rel="' + rel + '"'
+                    }
+                  } else {
+                    href = '<MySource_PRINT var="asset_link" />'
+                  }
+                  print(' \
+                <li class="nav-item <MySource_PRINT var="settings.class" />"> \
+                  <a class="nav-link <MySource_PRINT var="asset_metadata_jcu.navigation.css_classes" escape="yes" />" href="' + href + '"' + rel + '><MySource_PRINT var="asset_short_name" /></a> \
+                </li> \
+                  ')
+                </script>
               </MySource_ASSET>
             </ul>
           </MySource_AREA>
