@@ -1,0 +1,11 @@
+<script runat="server" id="domino-shim.js" src="./?a=422236"></script>
+<script runat="server" id="domino.js" src="./?a=422224"></script>
+<script runat="server">
+  // You could use a keyword like globals_asset_contents^json_encode here
+  this.window = domino.createWindow('<h1>Hello world</h1>', 'http://example.com');
+</script>
+<script runat="server" id="jquery-slim.min.js" src="./?a=422243"></script>
+<script runat="server">
+  // Prints "Hello world from Jquery inside SSJS"
+  console.log(window.$('h1').first()[0].innerHTML + ' from jQuery inside SSJS')
+</script>
