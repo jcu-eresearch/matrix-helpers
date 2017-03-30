@@ -1009,7 +1009,7 @@ body.embedMode {
 }
 
 .cropper-bg {
-    background-image: url(/__data/ees/'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC');
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC');
 }
 
 .cropper-hide {
@@ -3919,7 +3919,7 @@ body.previewMode #HTMLCS-wrapper .HTMLCS-header {
 }
 
 #ees_createSuccessAssetsList .errorIcon {
-    background: url(/__data/ees/"Images/error_white.png") no-repeat;
+    background: url(/__data/ees/Images/error_white.png) no-repeat;
     width: 16px;
     height: 16px;
     overflow: hidden;
@@ -7953,7 +7953,7 @@ body.editingFrame {
     height: 16px;
     line-height: 16px;
     overflow: hidden;
-    background: url(/__data/ees/"Images/error_white.png") no-repeat;
+    background: url(/__data/ees/Images/error_white.png) no-repeat;
     float: right;
     text-indent: -9999px;
     font-size: 80%;
@@ -7962,7 +7962,7 @@ body.editingFrame {
 }
 
 .wizardQueue .delete {
-    background: url(/__data/ees/"Images/delete_recover_dark.png") no-repeat scroll 0 0 transparent;
+    background: url(/__data/ees/Images/delete_recover_dark.png) no-repeat scroll 0 0 transparent;
     width: 16px;
     height: 16px;
     overflow: hidden;
@@ -7979,11 +7979,11 @@ body.editingFrame {
 }
 
 .wizardQueue .complete {
-    background: url(/__data/ees/"Images/tick-green.png") no-repeat 160px 6px transparent;
+    background: url(/__data/ees/Images/tick-green.png) no-repeat 160px 6px transparent;
 }
 
 .wizardQueue .fail {
-    background: url(/__data/ees/"Images/error_white.png") no-repeat 160px 6px transparent;
+    background: url(/__data/ees/Images/error_white.png) no-repeat 160px 6px transparent;
 }
 
 .wizardQueueProgressIndicator h2 {
