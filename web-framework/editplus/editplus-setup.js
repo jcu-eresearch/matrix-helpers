@@ -1,5 +1,5 @@
 /* jslint browser: true, jquery: true, asi: true */
-/* globals EasyEdit, EasyEditConfig, EasyEditEventManager, EasyEditAssetManager, EasyEditComponentsToolbar, EasyEditOverlay, EasyEditBodycopyManager, EasyEditImageEditor, EasyEditLocalise, EasyEditComponents */
+/* globals EasyEdit, EasyEditConfig, EasyEditEventManager, EasyEditAssetManager, EasyEditComponentsToolbar, EasyEditOverlay, EasyEditBodycopyManager, EasyEditImageEditor, EasyEditLocalise, EasyEditComponents, EasyEditScreens */
 
 // Easy Edit Suite configuration options.
 EasyEditConfig.debug = false
@@ -60,6 +60,7 @@ EasyEditLocalise.translations.en = {
     "Show in Menu": "Show in Navigation",
     "Add Remaps?": "Automatically add redirections on path change?",
     'When set to "%1", this option will add remaps for Web Paths that have been changed above.': 'When set to "%1", this option will create redirections for users accessing the old Web Paths to the new path. Leave this set to "%1" to ensure old URLs will continue to work.',
+    "Content items marked for deletion will be moved to the trash when you click the save button.": "This content asset is marked for deletion and will be moved to the Trash when you click the <strong>Save</strong> button above. This cannot be undone without Administrator assistance.",
 
     // Analytics pane
     "1": "1 month",
@@ -143,6 +144,19 @@ EasyEdit.plugins.openAssetFinderViaUrl = {
     EasyEditEventManager.bind('EasyEditAfterLoad', function() {
       if (window.location.hash.startsWith('#openFinder')) {
         EasyEditComponents.openAssetFinder()
+      }
+    })
+  }
+}
+
+/**
+  * Delete Asset plugin - Automatically mark all links for deletion
+  */
+EasyEdit.plugins.deleteAssetViaUrl = {
+  init: function() {
+    EasyEditEventManager.bind('EasyEditAfterLoad', function() {
+      if (window.location.hash.startsWith('#deleteAsset')) {
+        EasyEditScreens.getCurrentScreen().markAll()
       }
     })
   }
