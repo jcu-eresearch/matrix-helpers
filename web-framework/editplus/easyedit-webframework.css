@@ -242,6 +242,11 @@ body.previewMode {
   padding: 0;
 }*/
 
+/* Form editing widget spacing */
+.ees-option-widget__list {
+  padding-left: 0;
+}
+
 /* Alert users to permanency of edits made with the image editor */
 #ees_imageDetailsOverlay #ees_editDetails::before {
   content: "Note: any edits you make here to this image are permanent and affect the original image itself. This means that changes will affect all pages that use this image too.";
