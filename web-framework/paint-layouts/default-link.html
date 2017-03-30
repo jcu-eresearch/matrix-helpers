@@ -1,3 +1,9 @@
+<!--@@ Trigger a true 302 Redirect via a generic Redirect Page asset @@-->
+<!--@@ The last call for redirection wins, so Asset selection goes last @@-->
+%globals_asset_contents_raw:423379^with_get:url={link_url}%
+%globals_asset_contents_raw:423379^with_get:url={link_target_asset_url}%
+
+<!--@@ Backwards compatibility in case Matrix breaks the above @@-->
 <script>
   window.location = "%link_target_asset_url^empty:{link_url}^escapequotes%"
 </script>
