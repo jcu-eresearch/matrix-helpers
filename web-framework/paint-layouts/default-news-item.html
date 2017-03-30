@@ -1,7 +1,9 @@
 <div class="container jcu-content p-b-3">
   <div class="row">
     <div class="col-xs-12 col-md-10 col-md-offset-1">
-      <div class="h3">%asset_metadata_news.date^date_format:l, j F Y%</div>
+      %begin_asset_metadata_jcu.news.date%
+      <div class="h3">%asset_metadata_jcu.news.date^date_format:l, j F Y%</div>
+      %end_asset%
 
       %begin_asset_thumbnail%
       <div class="news-related-image m-b-2">
