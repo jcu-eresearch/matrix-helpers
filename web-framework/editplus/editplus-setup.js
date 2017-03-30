@@ -383,7 +383,7 @@ EasyEdit.plugins.colorPickerFields = {
   *   See https://github.com/select2/select2/issues/813
   */
 
-var iconJsonAssetId = '413526'
+var iconJsonAssetId = '413526' // Asset ID of a the JSON file that holds the icon data
 var iconData = []
 
 EasyEdit.plugins.iconPickerFields = {
