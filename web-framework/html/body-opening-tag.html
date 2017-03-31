@@ -23,8 +23,8 @@ print('<body class="' +
   ' %globals_asset_linking_lineage^json_decode^index:1^as_asset:asset_href^lowercase^css_safe^prepend:section-^escapequotes%' +
   ' %globals_site_metadata_jcu.features.body_class^escapequotes%' +
   ' %globals_asset_metadata_jcu.features.body_class^escapequotes%' +
-  ' %globals_user_type^eq:Public Access User:user-anonymous:user-authenticated^escapequotes%' +
-  ' %globals_user_type^lowercase^css_safe^prepend:usertype-^escapequotes%' +
+  ' %globals_user_type_code^eq:public_user:user-anonymous:user-authenticated^escapequotes%' +
+  ' %globals_user_type_code^lowercase^css_safe^prepend:usertype-^escapequotes%' +
   ' ' + (JCU.data.current_animations ? 'animations-on' : 'animations-off') +
   '" id="page-top" role="document">')
 </script>
