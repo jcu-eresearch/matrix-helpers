@@ -1,3 +1,5 @@
+<!--@@ The user has no read access if the current asset is a Design/Design
+Customisation so test for that and only redirect if they have access @@-->
 <MySource_AREA id_name="redirect_to_asset_if_read_access" design_area="show_if" print="no">
   <MySource_SET name="condition" value="keyword_regexp" />
   <MySource_SET name="condition_keyword" value="globals_asset_type_code" />
@@ -6,6 +8,9 @@
     %globals_asset_contents_raw:423379^with_get:url={globals_asset_url}/_noproxycache%
   </MySource_ELSE>
 </MySource_AREA>
+<!--@@ Only attempt a redirection if on the /_login page. If we are on
+the asset's URL, then the user has no permission (or hasn't logged in
+yet) @@-->
 <MySource_AREA id_name="redirect_to_asset_if_login_page" design_area="show_if" print="no">
   <MySource_SET name="condition" value="keyword_regexp" />
   <MySource_SET name="condition_keyword" value="globals_server_SCRIPT_NAME" />
@@ -14,7 +19,7 @@
     <MySource_PRINT id_name="redirect_to_asset_if_read_access" />
   </MySource_THEN>
 </MySource_AREA>
-<!--@@ If the user is here and logged in, try to redirect them @@-->
+<!--@@ If the user is here and logged in, attempt to redirect them @@-->
 <MySource_AREA id_name="redirection" design_area="show_if">
   <MySource_SET name="condition" value="logged_in" />
   <MySource_THEN>
@@ -29,6 +34,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="format-detection" content="telephone=no">
 
+    <!--@@ Change the title based on the page purpose @@-->
     <MySource_AREA id_name="show_title_or_error" design_area="show_if">
       <MySource_SET name="condition" value="logged_in" />
       <MySource_THEN>
@@ -93,16 +99,16 @@
 
     <header class="container jcu-header jcu-header--banner jcu-bg--multicolor-fibre-optic">
       <div class="row">
-        <div class="col-xs-12 col-md-8 col-md-offset-2 p-y-1 jcu-bg--black-75pc">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 p-y-1 jcu-bg--black-75pc">
           <div class="container">
             <div class="row">
               <div class="col-xs-6">
-                <a href="https://www.jcu.edu.au">
-                  <img class="img-fluid" src="./?a=281218:dist/images/jcua-logo-mono-reversed.svg" alt="JCU Australia logo">
+                <a href="%globals_site_url%">
+                  <img class="img-fluid" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name%" alt="James Cook University - %globals_site_name% logo">
                 </a>
               </div>
               <div class="col-xs-6 text-xs-right">
-                <h1 class="jcu-header__page-title" id="page-title"><span class="sr-only">James Cook University </span>Web Content</h1>
+                <h1 class="jcu-header__page-title" id="page-title"><span class="sr-only">James Cook University - %globals_site_name% </span>Web Content</h1>
               </div>
             </div>
           </div>
@@ -123,7 +129,7 @@
                   <div class="center-vertically">
                     <div class="col-md-6 p-x-3 text-xs-center">
                       <h2 class="sr-only">Sign In with James Cook University credentials</h2>
-                      <!--@@ Link to load the SAML authentication with redirect @@-->
+                      <!--@@ URL which loads SAML authentication with redirect @@-->
                       <a class="btn btn-block" href="%globals_asset_url:153066%?redirect=%globals_server_REQUEST_URI%">
                         <img class="img-fluid center-block" src="./?a=281218:dist/images/jcua-logo-colour.svg" alt="JCU Australia logo" style="width: 75%"><br>
                         <span class="btn btn-lg btn-block btn-primary text-wrap">Sign in with JCU</span>
@@ -131,6 +137,7 @@
                     </div>
 
                     <div class="discover-login col-md-6 p-x-3 text-xs-center">
+                      <!--@@ Local Matrix logins @@-->
                       <h2>‘Discover’ Login</h2>
                       <div class="discover-login-errors alert alert-danger" role="alert"><MySource_PRINT var="system_messages" /></div>
                       <div class="form-group">
@@ -146,7 +153,7 @@
 
                       <MySource_PRINT var="submit_button" class="btn btn-block btn-lg btn-warning text-wrap m-y-1" value="Sign in with Discover" />
 
-                      <div class="form-group">
+                      <div class="form-group" hidden>
                         Forgot your password? <a href="#">Request another.</a><br>
                       </div>
                     </div><!--@@ /.discover-login @@-->
