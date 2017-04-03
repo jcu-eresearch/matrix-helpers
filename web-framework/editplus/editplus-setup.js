@@ -69,6 +69,15 @@ EasyEditLocalise.translations.en = {
   }
 }
 
+// TODO Could implement a full suite of Boostrap styles here.  Normally this
+// setting comes from the Design asset's configuration but we don't have an
+// easy way of uploading styles yet.  We could craft a JSON object and populate
+// Viper's settings like so:
+//
+// asset = EasyEditAssetManager._currentAsset
+// callback = function that expects an object that looks like the return value of
+//     EasyEditAssetManager.designStyleClasses(EasyEditAssetManager._currentAsset, function(a) { console.log(a)} )
+//EasyEditAssetManager.designStyleClasses = function(asset, callback) { console.log(asset); console.log(b); }
 
 // Edit+ Plugins
 // See https://matrix.squiz.net/manuals/edit-plus/chapters/javascript-plugins for details
