@@ -202,6 +202,12 @@ yet) @@-->
       </div>
     </footer>
 
+    <!--@@ Remove jcuredirecturl cookie if set; this causes incorrect
+    redirection when someone logs in and out again quickly whilst the cookie is
+    still valid.  @@-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"></script>
+    <script>Cookies.remove('jcuredirecturl', {path: '/', domain: '.jcu.edu.au'})</script>
+
     <!--@@ JavaScript resources @@-->
     <!--@@ jQuery @@-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
