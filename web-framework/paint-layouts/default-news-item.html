@@ -1,0 +1,68 @@
+<div class="container jcu-content p-b-3">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      %begin_asset_metadata_jcu.news.date%
+      <div class="h3">%asset_metadata_jcu.news.date^date_format:l, j F Y%</div>
+      %end_asset%
+
+      %begin_asset_thumbnail%
+      <div class="news-related-image m-b-2">
+        <img class="img-fluid center-block" src="%asset_thumbnail_v_carousel_url%" alt="%asset_thumbnail_alt%">
+        %begin_asset_thumbnail_caption%
+          <small class="text-muted">%asset_thumbnail_caption%</small>
+        %end_asset_thumbnail_caption%
+      </div>
+      %end_asset_thumbnail%
+
+      %begin_asset_attribute_show_summary%
+        %begin_asset_attribute_summary%
+          <div class="news-summary lead text-primary">%asset_attribute_summary%</div>
+        %end_asset%
+      %end_asset%
+
+      %begin_asset_attribute_show_body%
+        %begin_asset_attribute_body%
+        <div class="news-body">
+          %asset_attribute_body%
+        </div>
+        %end_asset%
+      %end_asset%
+
+      <script runat="server">
+        var read_more_url = "%link_url^empty:{asset_attribute_link_url}^escapequotes%"
+        if (read_more_url) {
+          print(' \
+          <div class="m-b-2 text-xs-center"> \
+            <a class="btn btn-primary" href="' + read_more_url + '">Read more</a> \
+          </div> \
+          ')
+        }
+      </script>
+
+      <script runat="server">
+        var show_contact_name = "%asset_attribute_show_contact_name%" == 1
+        var contact_name = "%asset_attribute_contact_name^escapequotes%"
+        var show_contact_phone = "%asset_attribute_show_contact_phone%" == 1
+        var contact_phone = "%asset_attribute_contact_phone^escapequotes%"
+
+        if (show_contact_name && contact_name || show_contact_phone && contact_phone) {
+          print(' \
+          <div class="news-contact m-b-2"> \
+            <div class="h4">Contact Information</div> \
+          ')
+
+          if (show_contact_name && contact_name) {
+            print(contact_name + '<br>')
+          }
+          if (show_contact_phone && contact_phone) {
+            print(contact_phone)
+          }
+
+          print(' \
+          </div> \
+          ')
+        }
+      </script>
+    </div>
+  </div>
+</div>

@@ -101,6 +101,7 @@ a {
   font-weight: 700;
   color: #fff;
   border-radius: .25em;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.7);
   -webkit-transition: background .3s ease-in-out;
        -o-transition: background .3s ease-in-out;
           transition: background .3s ease-in-out;
@@ -171,7 +172,7 @@ a {
 }
 
 .theme-content .intro-body {
-  background-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.8));
+  background-image: linear-gradient(to bottom,rgba(0,0,0,.2) 25%,rgba(0,0,0,.85) 100%);
   background-color: transparent;
 }
 
@@ -183,6 +184,11 @@ a {
 
 .page-title {
   font-weight: 400;
+}
+
+.page-title,
+.page-byline {
+  text-shadow: 1px 1px 3px #000;
 }
 
 @media(min-width:768px) {
@@ -209,11 +215,13 @@ a {
   padding: .7rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  box-shadow: 0 0 3px rgba(0,0,0,.7);
   font-size: 2.5rem;
   color: #fff;
   background: 0 0;
   border: 2px solid #fff;
   border-radius: 100% !important;
+  text-shadow: 0 0 3px rgba(0,0,0,.7);
   -webkit-transition: background .3s ease-in-out;
        -o-transition: background .3s ease-in-out;
           transition: background .3s ease-in-out;
@@ -240,13 +248,13 @@ a {
   }
 }
 
-.featured-number-cards .card-deck .card {
+.cct-featured-number-cards .card-deck .card {
   padding-top: 4rem;
   padding-bottom: 2rem;
   margin-top: 4rem;
 }
 
-.featured-number-cards .card-title {
+.cct-featured-number-cards .card-title {
   font-size: 1.4rem;
   font-weight: 600;
   line-height: 1.25;
@@ -254,7 +262,7 @@ a {
 }
 
 @media(min-width:767px) {
-  .featured-number-cards .card-title {
+  .cct-featured-number-cards .card-title {
     font-size: 1.7rem;
   }
 }
@@ -290,45 +298,13 @@ a {
   padding-bottom: 6rem;
 }
 
-/* key-steps were used by the old manually-constructed "Plan a trip" pages
-   on research infrastructure sites.  This styling should be replaced with
-   process-step styles that apply to the "Process Step" content container
-   template block.
-*/
-.key-steps {
-  counter-reset: step-counter;
-  margin-left: 3.5rem;
-  position: relative;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-.key-step {
-  position: relative;
-  margin-bottom: 3rem;
-}
-
-.key-steps .key-step::before {
-  content: counter(step-counter, decimal);
-  counter-increment: step-counter;
-  position: absolute;
-  left: -1.2em;
-  font-size: 5em;
-  font-weight: 500;
-  line-height: 0.4;
-  width: 1em;
-  text-align: right;
-  top: 0.5rem;
-}
-/* above: old key-step styles */
-/* below: new process-step styles */
 body {
   counter-reset: process-step-counter;
 }
-.process-step .process-step-number {
-   position: relative;
+.cct-process-step .process-step-number {
+  position: relative;
 }
-.process-step .process-step-number::before {
+.cct-process-step .process-step-number::before {
   content: counter(process-step-counter, decimal);
   counter-increment: process-step-counter;
   position: absolute;

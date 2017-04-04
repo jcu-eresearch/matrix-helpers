@@ -1,0 +1,17 @@
+# Server-side DOM implementation: https://github.com/fgnass/domino
+#
+# This file was created by doing the following:
+#
+#    mkdir domino
+#    cd domino
+#    npm install domino
+#    browserify -r domino -s domino -o domino.js
+#
+# The associated `domino-v8js-shim.js` provides a very basic shim for Domino to
+# work within v8js.  As v8 has no `console` object, we provide a basic
+# workaround and as v8 has no timers, we bail on any such calls.
+#
+# After you configure a `window` object, it's also possible to include jQuery
+# or any other library, should you need it.
+asset_id: 422224
+type: file

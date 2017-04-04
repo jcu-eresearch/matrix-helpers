@@ -1,6 +1,6 @@
 <div class="col-sm-3">
   <div class="card card-inverse bg-inverse">
-    %begin_globals_user_type^neq:Public Access User%
+    %begin_globals_user_type_code^neq:public_user%
     <div class="small text-xs-center" style="color: #2d2d2d; background-color: %asset_status_colour%;">
       %asset_status_description%
     </div>
@@ -10,7 +10,7 @@
     <div class="card-block">
       <div class="h4">
         <a class="card-title" href="%asset_url%">
-          %begin_globals_user_type^neq:Public Access User%
+          %begin_globals_user_type_code^neq:public_user%
           <img src="%asset_type_icon_url%" alt="%asset_type% icon" title="%asset_type%">
           %end_globals%
           %asset_short_name%
@@ -23,7 +23,7 @@
       <div class="card-text">%globals_asset_metadata_jcu.features.byline%</div>
       %end_globals%
     </div>
-    %begin_globals_user_type^neq:Public Access User%
+    %begin_globals_user_type_code^neq:public_user%
     <a class="btn btn-primary btn-block btn-sm p-a-0" href="%globals_site_url%/_edit?limbo_assetid=%asset_assetid%"><span class="icon-edit" aria-label="Edit icon"></span> Edit</a>
     %end_globals%
   </div>

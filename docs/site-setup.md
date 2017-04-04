@@ -88,15 +88,24 @@ before each action and release locks afterwards.</div>
 
    1. Click `Commit`.
 
-1. **Set the Design:** right-click the site and go to `Settings`.  In
-   `System Defined Frontend Design` > `New?`, choose the overarching design
-   you wish to apply to your site.  The options are:
+1. **Set the Designs:** right-click the site and go to `Settings` and set
+   each of the following:
 
-   * `JCU Web Framework Resources` > `Designs` > `JCU Explore` > `JCU
-      Explore - Defaults`.
+   1. In `System Defined Frontend Design` > `New?`, choose the overarching design
+      you wish to apply to your site.  The options are:
 
-   Take care here; the asset you are selecting must be complete design (which
-   is *typically* a filled Design Customisation).
+      * `JCU Web Framework Resources` > `Designs` > `JCU Explore` > `JCU
+        Explore - Defaults`.
+
+      Take care here; the asset you are selecting must be the complete design
+      (which is *typically* a filled Design Customisation).
+
+   1. In `System Defined Login Design` > `New?`, choose the standard login
+      page for Web Framework sites, located under `JCU Web Framework
+      Resources` > `Designs` > `JCU Login` > `JCU Login - Defaults`.
+
+      Take care here; the asset you are selecting must be the complete design
+      (which is *typically* a filled Design Customisation).
 
    **Optional:** if testing the system or wanting an easier way to test
    keywords, enable the Test Environment.  Under `Create New User Defined

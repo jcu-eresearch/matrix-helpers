@@ -1,0 +1,218 @@
+<!--@@ The user has no read access if the current asset is a Design/Design
+Customisation so test for that and only redirect if they have access @@-->
+<MySource_AREA id_name="redirect_to_asset_if_read_access" design_area="show_if" print="no">
+  <MySource_SET name="condition" value="keyword_regexp" />
+  <MySource_SET name="condition_keyword" value="globals_asset_type_code" />
+  <MySource_SET name="condition_keyword_match" value="^design_" />
+  <MySource_ELSE>
+    %globals_asset_contents_raw:423379^with_get:url={globals_asset_url}/_noproxycache%
+  </MySource_ELSE>
+</MySource_AREA>
+<!--@@ Only attempt a redirection if on the /_login page. If we are on
+the asset's URL, then the user has no permission (or hasn't logged in
+yet) @@-->
+<MySource_AREA id_name="redirect_to_asset_if_login_page" design_area="show_if" print="no">
+  <MySource_SET name="condition" value="keyword_regexp" />
+  <MySource_SET name="condition_keyword" value="globals_server_SCRIPT_NAME" />
+  <MySource_SET name="condition_keyword_match" value="/_login$" />
+  <MySource_THEN>
+    <MySource_PRINT id_name="redirect_to_asset_if_read_access" />
+  </MySource_THEN>
+</MySource_AREA>
+<!--@@ If the user is here and logged in, attempt to redirect them @@-->
+<MySource_AREA id_name="redirection" design_area="show_if">
+  <MySource_SET name="condition" value="logged_in" />
+  <MySource_THEN>
+    <MySource_PRINT id_name="redirect_to_asset_if_login_page" />
+  </MySource_THEN>
+</MySource_AREA>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no">
+
+    <!--@@ Change the title based on the page purpose @@-->
+    <MySource_AREA id_name="show_title_or_error" design_area="show_if">
+      <MySource_SET name="condition" value="logged_in" />
+      <MySource_THEN>
+        <!--@@ If the user had read access, we would have redirected them already @@-->
+        <title>Permission Denied - %globals_site_name% - James Cook University</title>
+      </MySource_THEN>
+      <MySource_ELSE>
+        <title>Login - %globals_site_name% - James Cook University</title>
+      </MySource_ELSE>
+    </MySource_AREA>
+
+    <!--@@ Web Framework Core CSS @@-->
+    <link rel="stylesheet" href="./?a=281218:dist/css/jcu.min.css" integrity="sha384-yvalFRKl+0g0tWrYJQwXPaf4oRFo9hOu7BssvfScVX9wdvvA+NjYtnAFm3sqP7LF" crossorigin="anonymous">
+
+    <!--@@ Site icons @@-->
+    <MySource_AREA id_name="site_icons" design_area="nest_content" />
+
+    <!--@@ Custom CSS, specified by the asset metadata;
+      nested content due to "inconsisent asset" keyword bug @@-->
+    <MySource_AREA id_name="site_landing_css" design_area="nest_content" />
+
+    <style>
+      .btn {
+        transition-property: background-color;
+      }
+      .discover-login {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 2px solid #ccc;
+      }
+      .discover-login::before {
+        content: "or";
+        position: absolute;
+        top: 0;
+        color: #555;
+        background-color: white;
+        font-size: 1.5rem;
+        left: 50%;
+        padding-right: .5em;
+        padding-left: .5em;
+        transform: translateY(-50%) translateX(-50%);
+      }
+      @media (min-width: 768px) {
+        .center-vertically {
+          display: flex;
+          align-items: center;
+        }
+        .discover-login {
+          margin-top: 0;
+          padding-top: 0;
+          border-top: 0 none;
+          border-left: 2px solid #ccc;
+        }
+        .discover-login::before {
+          top: 50%;
+          left: 0;
+        }
+      }
+      .discover-login-errors:empty {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body role="application">
+
+    <header class="container intro jcu-header jcu-header--banner">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 p-y-1 jcu-bg--black-75pc">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-6">
+                <a href="%globals_site_url%">
+                  <img class="img-fluid" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name%" alt="James Cook University - %globals_site_name% logo">
+                </a>
+              </div>
+              <div class="col-xs-6 text-xs-right">
+                <h1 class="jcu-header__page-title" id="page-title"><span class="sr-only">James Cook University - %globals_site_name% </span>Web Content</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container jcu-content jcu-content--short-content" id="main" role="main" aria-labelledby="page-title">
+      <div class="row m-y-1">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+          <div class="row">
+            <MySource_AREA id_name="login_form" design_area="login_form" print="no">
+              <MySource_LOGIN_SECTION>
+                <MySource_SET name="give_username_focus" value="false" />
+                <MySource_SET name="forward_www_vars" value="true" />
+                <MySource_PRINT var="form_open" /><!--@@ <form> @@-->
+
+                  <div class="center-vertically">
+                    <div class="col-md-6 p-x-3 text-xs-center">
+                      <h2 class="sr-only">Sign In with James Cook University credentials</h2>
+                      <!--@@ URL which loads SAML authentication with redirect @@-->
+                      <a class="btn btn-block" href="%globals_asset_url:153066%?redirect=%globals_server_REQUEST_URI%">
+                        <img class="img-fluid center-block" src="./?a=281218:dist/images/jcua-logo-colour.svg" alt="JCU Australia logo" style="width: 75%"><br>
+                        <span class="btn btn-lg btn-block btn-primary text-wrap">Sign in with JCU</span>
+                      </a>
+                    </div>
+
+                    <div class="discover-login col-md-6 p-x-3 text-xs-center">
+                      <!--@@ Local Matrix logins @@-->
+                      <h2>‘Discover’ Login</h2>
+                      <div class="discover-login-errors alert alert-danger" role="alert"><MySource_PRINT var="system_messages" /></div>
+                      <div class="form-group">
+                        <div class="form-group">
+                          <label class="sr-only" for="SQ_LOGIN_USERNAME">Enter your username</label>
+                          <MySource_PRINT var="username_box" class="form-control form-control-lg" placeholder="Username" required="required" />
+                        </div>
+                        <div class="form-group">
+                          <label class="sr-only" for="SQ_LOGIN_PASSWORD">Enter your password</label>
+                          <MySource_PRINT var="password_box" class="form-control form-control-lg" placeholder="Password" required="required" />
+                        </div>
+                      </div>
+
+                      <MySource_PRINT var="submit_button" class="btn btn-block btn-lg btn-warning text-wrap m-y-1" value="Sign in with Discover" />
+
+                      <div class="form-group" hidden>
+                        Forgot your password? <a href="#">Request another.</a><br>
+                      </div>
+                    </div><!--@@ /.discover-login @@-->
+                  </div><!--@@ /.center-vertically @@-->
+                </form><!--@@ Don't use MySource_PRINT var="form_close" here to avoid JS cruft @@-->
+              </MySource_LOGIN_SECTION>
+            </MySource_AREA><!--@@ /#login_form @@-->
+
+            <!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/90 @@-->
+            <!--@@ Manually test for being logged in because MySource_LOGOUT_SECTION doesn't work here @@-->
+            <MySource_AREA id_name="show_login_or_error" design_area="show_if">
+              <MySource_SET name="condition" value="logged_in" />
+              <MySource_THEN>
+                <!--@@ If the user had read access, we would have redirected them already @@-->
+                <div class="alert alert-warning m-b-3" role="alert">
+                  <strong>Sorry!</strong> You're logged in as <MySource_PRINT id_name="__global__" var="current_user" attr="name" />
+                  (<MySource_PRINT id_name="__global__" var="current_user" attr="email" />) but you don't
+                  have permission to access this content.
+                </div>
+                <div class="text-xs-center">
+                  <a class="btn btn-primary" href="%globals_site_url%">Back to %globals_site_short_name% home</a>
+                  <a class="btn btn-danger" href="%globals_site_url%?SQ_ACTION=logout">Logout</a>
+                </div>
+              </MySource_THEN>
+              <MySource_ELSE>
+                <MySource_PRINT id_name="login_form" />
+              </MySource_ELSE>
+            </MySource_AREA>
+
+          </div><!--@@ /.row @@-->
+        </div><!--@@ /.col-xs-12 @@-->
+      </div><!--@@ /.row @@-->
+    </main><!--@@ /.container @@-->
+    <footer class="container jcu-footer">
+      <div class="row jcu-colophon">
+        <div class="col-xs-12">
+          <ul class="list-inline">
+            <li class="list-inline-item">Copyright © 1995 to %globals_date_Y% James Cook University.  All rights reserved.</li>
+            <li class="list-inline-item">ABN 46253211955</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!--@@ Remove jcuredirecturl cookie if set; this causes incorrect
+    redirection when someone logs in and out again quickly whilst the cookie is
+    still valid.  @@-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"></script>
+    <script>Cookies.remove('jcuredirecturl', {path: '/', domain: '.jcu.edu.au'})</script>
+
+    <!--@@ JavaScript resources @@-->
+    <!--@@ jQuery @@-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+    <!--@@ Workaround for Squiz Edge serving only public content: https://github.com/jcu-eresearch/matrix-helpers/issues/20 @@-->
+    <!--@@ Adjust all page links to avoid broken Edge proxy in prep for logging in @@-->
+    %globals_asset_contents:424476%
+  </body>
+</html>

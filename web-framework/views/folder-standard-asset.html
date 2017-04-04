@@ -2,14 +2,14 @@
   <div class="media-body">
     <h4 class="media-heading">
       <a href="%asset_url%" title="%asset_short_name%">%asset_type_icon% %asset_name%</a>
-    %begin_globals_user_type^neq:Public Access User%
+    %begin_globals_user_type_code^neq:public_user%
       <span class="label small" style="color: #2d2d2d; background-color: %asset_status_colour%;">%asset_status_description%</span>
     %end_globals%
     </h4>
     %begin_globals_asset_metadata_jcu.features.byline%
     <div class="text-muted">%globals_asset_metadata_jcu.features.byline%</div>
     %end_globals%
-    %begin_globals_user_type^neq:Public Access User%
+    %begin_globals_user_type_code^neq:public_user%
     <p>By <abbr title="%asset_created_by_email%">%asset_created_by_name%</abbr>, last modified %asset_updated_readable%</p>
     %end_globals%
     <p>%asset_metadata_description%</p>

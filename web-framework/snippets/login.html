@@ -1,0 +1,10 @@
+JavaScript redirection on Login page:
+
+%globals_asset_contents:<MySource_PRINT id_name="__global__" var="current_user" default="" attr="id" />^notempty:<script>document.write("{globals_asset_url^escapequotes}")</script>%
+
+<h2>Debug</h2>
+Login Heading: <MySource_PRINT var="login_heading" /><br>
+Login Message: <MySource_PRINT var="login_message" /><br>
+System Messages: <MySource_PRINT var="system_messages" /><br />
+Referrer: <MySource_PRINT var="referer" /><br>
+Currently logged in as: <MySource_PRINT id_name="__global__" var="current_user" default="[Not logged in]" attr="name" /><br>
