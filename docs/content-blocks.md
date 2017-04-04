@@ -77,6 +77,16 @@
             <line x1="3" y1="3" x2="14" y2="9" />
             <line x1="14" y1="3" x2="3" y2="9" />
         </symbol>
+        <symbol id="pic-tiny">
+            <rect x="1" y="1" width="6" height="6" />
+            <line x1="2" y1="2" x2="6" y2="6" />
+            <line x1="6" y1="2" x2="2" y2="6" />
+        </symbol>
+        <symbol id="pic-tiny-round">
+            <circle cx="4" cy="4" r="3" />
+            <line x1="2.5" y1="2.5" x2="5.5" y2="5.5" />
+            <line x1="5.5" y1="2.5" x2="2.5" y2="5.5" />
+        </symbol>
         <symbol id="num">
             <rect x="2" y="1" width="5" height="5" />
             <rect x="1" y="7" width="7" height="1" />
@@ -440,6 +450,13 @@ grid.
 
 
 #### Summary cards: Thumbnail grid layout
+
+<svg class="diag" viewBox="0 0 60 79">
+    <use xlink:href="#bg"></use>
+    <use xlink:href="#pic-tiny"></use>
+    <use xlink:href="#text-sml" y="10"></use>
+    <use xlink:href="#border" y="77"></use>
+</svg>
 
 
 ### Contact info plus map
