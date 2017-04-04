@@ -87,6 +87,16 @@
             <line x1="2.5" y1="2.5" x2="5.5" y2="5.5" />
             <line x1="5.5" y1="2.5" x2="2.5" y2="5.5" />
         </symbol>
+        <symbol id="card-thumbnail">
+            <use xlink:href="#pic-tiny"></use>
+            <line x1="1.5" y1="8.5" x2="6.5" y2="8.5" />
+            <line x1="1.5" y1="9.3" x2="5.5" y2="9.3" />
+        </symbol>
+        <symbol id="card-thumbnail-round">
+            <use xlink:href="#pic-tiny-round"></use>
+            <line x1="1.5" y1="8.5" x2="6.5" y2="8.5" />
+            <line x1="1.5" y1="9.3" x2="5.5" y2="9.3" />
+        </symbol>
         <symbol id="num">
             <rect x="2" y="1" width="5" height="5" />
             <rect x="1" y="7" width="7" height="1" />
@@ -451,12 +461,42 @@ grid.
 
 #### Summary cards: Thumbnail grid layout
 
-<svg class="diag" viewBox="0 0 60 79">
+<svg class="diag" viewBox="0 0 60 44">
     <use xlink:href="#bg"></use>
-    <use xlink:href="#pic-tiny"></use>
-    <use xlink:href="#text-sml" y="10"></use>
-    <use xlink:href="#border" y="77"></use>
+    <use xlink:href="#heading-and-sub"></use>
+    <use xlink:href="#card-thumbnail" x="5" y="16"></use>
+    <rect x="5" y="16" width="8" height="11" />
+    <use xlink:href="#card-thumbnail" x="13" y="16"></use>
+    <use xlink:href="#card-thumbnail" x="21" y="16"></use>
+    <use xlink:href="#card-thumbnail" x="29" y="16"></use>
+    <use xlink:href="#card-thumbnail" x="37" y="16"></use>
+    <use xlink:href="#card-thumbnail" x="45" y="16"></use>
+    <use xlink:href="#card-thumbnail" x="5" y="27"></use>
+    <use xlink:href="#card-thumbnail" x="13" y="27"></use>
+    <use xlink:href="#card-thumbnail" x="21" y="27"></use>
+    <use xlink:href="#card-thumbnail" x="29" y="27"></use>
+    <use xlink:href="#border" y="42"></use>
 </svg>
+
+<svg class="diag" viewBox="0 0 60 42">
+    <use xlink:href="#bg"></use>
+    <use xlink:href="#heading"></use>
+    <use xlink:href="#card-thumbnail-round" x="5" y="14"></use>
+    <use xlink:href="#card-thumbnail-round" x="13" y="14"></use>
+    <use xlink:href="#card-thumbnail-round" x="21" y="14"></use>
+    <use xlink:href="#card-thumbnail-round" x="29" y="14"></use>
+    <use xlink:href="#card-thumbnail-round" x="37" y="14"></use>
+    <use xlink:href="#card-thumbnail-round" x="45" y="14"></use>
+    <use xlink:href="#card-thumbnail-round" x="5" y="25"></use>
+    <use xlink:href="#card-thumbnail-round" x="13" y="25"></use>
+    <use xlink:href="#border" y="40"></use>
+</svg>
+
+The thumbnail grid layout turns card images into thumbnails,
+arranged six across. This is an excellent layout for showing
+staff associated with your department or project. The
+ability to highlight the first item is also particularly 
+useful in this layout.
 
 
 ### Contact info plus map
