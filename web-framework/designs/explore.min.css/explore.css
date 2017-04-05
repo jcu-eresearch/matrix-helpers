@@ -54,6 +54,11 @@ a {
   color: #fff;
 }
 
+.brand-img.img-svg,
+.brand-img[src$=".svg"] {
+  filter: drop-shadow(1px 1px 0px rgba(0,0,0,.5));
+}
+
 .navbar-brand .brand-img {
   display: inline-block;
   height: 4rem;
@@ -65,7 +70,7 @@ a {
           transition: .3s ease-in-out;
 }
 
-@media(min-width:768px) {
+@media(min-width:992px) {
   .navbar-brand .brand-img {
     position: relative;
     top: -.6rem;
@@ -84,13 +89,22 @@ a {
   line-height: 1rem;
 }
 
-.navbar-toggleable.in,
-.navbar-toggleable.collapsing {
-  clear: both;
-}
-
-.navbar-toggleable.in {
-  background: rgba(0,0,0,.9);
+/* All of this can be fixed with Flexbox in Boostrap v4.alpha6 */
+@media(max-width:991px) {
+  .navbar-toggleable-md .navbar-nav .nav-item {
+    float: none;
+    margin-top: .1rem;
+    margin-bottom: .1rem;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+  }
+  .navbar-toggleable-md .navbar-nav .nav-item + .nav-item {
+    margin-left: 0;
+  }
+  .navbar-toggleable {
+    padding: .5rem 1rem;
+    clear: both;
+  }
 }
 
 .nav-link.btn {
@@ -135,7 +149,7 @@ a {
   border-bottom: 1px solid rgba(255,255,255,.3);
 }
 
-@media(min-width:768px) {
+@media(min-width:992px) {
   .navbar-custom {
     padding: 1.5rem 0;
     background-color: transparent;
@@ -166,7 +180,7 @@ a {
 
 .intro-body {
   display: table-cell;
-  padding-top: 20vh;
+  padding-top: 30vh;
   vertical-align: middle;
   background-color: rgba(0,0,0,.2);
 }
@@ -178,7 +192,7 @@ a {
 
 @media(max-height:512px) {
   .intro-body {
-    padding-top: 7rem;
+    padding-top: 12rem;
   }
 }
 
@@ -191,7 +205,7 @@ a {
   text-shadow: 1px 1px 3px #000;
 }
 
-@media(min-width:768px) {
+@media(min-width:992px) {
   .intro {
     padding: 0;
   }
@@ -280,22 +294,14 @@ a {
   border-radius: 50%;
 }
 
-.discover-section {
-  background-color: #000;
-  background-position: bottom;
-}
-
 /* Workaround issue with background-attachment: fixed / background-size: cover
- * issue on iOS so only used `fixed` on large screens */
-@media(min-width:768px) {
-  .discover-section {
-    background-attachment: fixed;
-  }
-}
-
-.discover-section > .container-fluid {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+ * issue on iOS so only use `fixed` on non-mobiles
+ * Can't directly match on "background-attachment: fixed" because of the
+ * minifier stripping out the whitespace in the attribute; see
+ * https://github.com/jcu-eresearch/matrix-helpers/issues/92
+ */
+html.touch .jcu-bg--cover[style*="fixed;"] {
+  background-attachment: scroll !important;
 }
 
 body {
