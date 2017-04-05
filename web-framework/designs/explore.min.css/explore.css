@@ -56,7 +56,8 @@ a {
 
 .brand-img.img-svg,
 .brand-img[src$=".svg"] {
-  filter: drop-shadow(1px 1px 0px rgba(0,0,0,.5));
+  -webkit-filter: drop-shadow(1px 1px 0px rgba(0,0,0,.5));
+          filter: drop-shadow(1px 1px 0px rgba(0,0,0,.5));
 }
 
 .navbar-brand .brand-img {
@@ -495,7 +496,8 @@ body {
 
 /* Summary Cards content container template */
 .thumbnail-flair .thumbnail-wrapper {
-  filter: drop-shadow(4px 4px lightgrey);
+  -webkit-filter: drop-shadow(4px 4px lightgrey);
+          filter: drop-shadow(4px 4px lightgrey);
 }
 .thumbnail-text {
   padding : 0 4px;
