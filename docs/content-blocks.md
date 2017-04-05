@@ -36,7 +36,7 @@
 <svg id="diags" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none">
     <defs>
         <symbol id="bg">
-            <rect x="0" y="0" width="60" height="50" stroke="none" />
+            <rect x="0" y="0" width="60" height="100" stroke="none" />
         </symbol>
         <symbol id="img-bg">
             <rect x="0" y="0" width="60" height="50" stroke="none" />
@@ -77,6 +77,26 @@
             <line x1="3" y1="3" x2="14" y2="9" />
             <line x1="14" y1="3" x2="3" y2="9" />
         </symbol>
+        <symbol id="pic-tiny">
+            <rect x="1" y="1" width="6" height="6" />
+            <line x1="2" y1="2" x2="6" y2="6" />
+            <line x1="6" y1="2" x2="2" y2="6" />
+        </symbol>
+        <symbol id="pic-tiny-round">
+            <circle cx="4" cy="4" r="3" />
+            <line x1="2.5" y1="2.5" x2="5.5" y2="5.5" />
+            <line x1="5.5" y1="2.5" x2="2.5" y2="5.5" />
+        </symbol>
+        <symbol id="card-thumbnail">
+            <use xlink:href="#pic-tiny"></use>
+            <line x1="1.5" y1="8.5" x2="6.5" y2="8.5" />
+            <line x1="1.5" y1="9.3" x2="5.5" y2="9.3" />
+        </symbol>
+        <symbol id="card-thumbnail-round">
+            <use xlink:href="#pic-tiny-round"></use>
+            <line x1="1.5" y1="8.5" x2="6.5" y2="8.5" />
+            <line x1="1.5" y1="9.3" x2="5.5" y2="9.3" />
+        </symbol>
         <symbol id="num">
             <rect x="2" y="1" width="5" height="5" />
             <rect x="1" y="7" width="7" height="1" />
@@ -99,6 +119,41 @@
         </symbol>
         <symbol id="processnum">
             <rect x="4" y="1" width="5" height="5" />
+        </symbol>
+        <symbol id="column-card">
+            <use xlink:href="#pic-sml" x="6" y="6"></use>
+            <use xlink:href="#heading" x="19"></use>
+            <use xlink:href="#text-med" x="25" y="11"></use>
+            <use xlink:href="#text-med" x="33" y="11"></use>
+        </symbol>
+        <symbol id="mosaic-card-short-content">
+            <use xlink:href="#pic-sml" x="0" y="0"></use>
+            <use xlink:href="#text-sml" x="3" y="13"></use>
+            <use xlink:href="#text-sml" x="5" y="13"></use>
+        </symbol>
+        <symbol id="mosaic-card-short">
+            <rect x="1" y="1" width="15" height="19" />
+            <use xlink:href="#mosaic-card-short-content"></use>
+        </symbol>
+        <symbol id="mosaic-card-long-content">
+            <use xlink:href="#pic-sml" x="0" y="0"></use>
+            <use xlink:href="#text-sml" x="3" y="13"></use>
+            <use xlink:href="#text-sml" x="5" y="13"></use>
+            <use xlink:href="#text-sml" x="3" y="15.2"></use>
+            <use xlink:href="#text-sml" x="5" y="15.2"></use>
+            <use xlink:href="#text-sml" x="3" y="21"></use>
+            <use xlink:href="#text-sml" x="5" y="21"></use>
+        </symbol>
+        <symbol id="mosaic-card-long-border">
+            <rect x="1" y="1" width="15" height="27" />
+        </symbol>
+        <symbol id="mosaic-card-long">
+            <use xlink:href="#mosaic-card-long-border"></use>
+            <use xlink:href="#mosaic-card-long-content"></use>
+        </symbol>
+        <symbol id="mosaic-card-shortlong">
+            <use xlink:href="#mosaic-card-long-border"></use>
+            <use xlink:href="#mosaic-card-short-content"></use>
         </symbol>
         <symbol id="btn">
             <rect x="1" y="1" width="7" height="2" />
@@ -324,6 +379,124 @@ that normally shows at the bottom of every content block.
 
 
 ### Summary cards
+
+Summary cards are used to show lists of "cards". You use this
+for making a list of the staff in your department, or a list
+of projects in your centre. Each "card" is represented by 
+a page in Squiz Matrix.
+
+That means you can create a Matrix page for each staff member
+in your group with a bio and photo, and easily show a staff 
+list for each project or sub-group.
+
+There are several formats for **Summary cards**.  Every format
+allows an optional heading, can optionally reshape images into
+circles, and permits the first card in the list to be marked 
+with some additonal text and a highlight, which might be 
+useful for tagging the first item as the "Theme Leader" or
+"Featured Project".
+
+
+
+#### Summary cards: Column layout
+
+<svg class="diag" viewBox="0 0 60 78">
+    <use xlink:href="#bg"></use>
+    <use xlink:href="#heading-and-sub"></use>
+    <use xlink:href="#column-card" y="12"></use>
+    <use xlink:href="#column-card" y ="32"></use>
+    <use xlink:href="#column-card" y ="52"></use>
+    <use xlink:href="#border" y="76"></use>
+</svg>
+
+The column layout stacks the "cards" into a single column.
+Related images (for example, the project's title image) 
+can be displayed on the left or right.
+
+This format is best suited for shorter lists of projects
+or other items when the text description of each item is 
+important.
+
+
+#### Summary cards: Mosaic layout
+
+<svg class="diag" viewBox="0 0 60 79">
+    <use xlink:href="#bg"></use>
+    <use xlink:href="#heading"></use>
+    <use xlink:href="#mosaic-card-short" x="5" y="12"></use>
+    <use xlink:href="#mosaic-card-long" x="5" y="33"></use>
+    <use xlink:href="#mosaic-card-long" x="22" y="12"></use>
+    <use xlink:href="#mosaic-card-long" x="22" y="41"></use>
+    <use xlink:href="#mosaic-card-short" x="39" y="12"></use>
+    <use xlink:href="#mosaic-card-short" x="39" y="33"></use>
+    <use xlink:href="#mosaic-card-short" x="39" y="54"></use>
+    <use xlink:href="#border" y="77"></use>
+</svg>
+
+The mosaic layout arranges cards into three columns, fitting
+each card closely to the end of the card above. This results
+in a more organic, less regular looking layout, and is best
+suited to situations where ordering is less important, and
+the viewer can be expected to *browse* through the set of
+cards.
+
+
+#### Summary cards: Grid layout
+
+<svg class="diag" viewBox="0 0 60 79">
+    <use xlink:href="#bg"></use>
+    <use xlink:href="#heading"></use>
+    <use xlink:href="#mosaic-card-shortlong" x="5" y="12"></use>
+    <use xlink:href="#mosaic-card-long" x="5" y="41"></use>
+    <use xlink:href="#mosaic-card-long" x="22" y="12"></use>
+    <use xlink:href="#mosaic-card-shortlong" x="22" y="41"></use>
+    <use xlink:href="#mosaic-card-shortlong" x="39" y="12"></use>
+    <use xlink:href="#border" y="77"></use>
+</svg>
+
+The grid layout arranges cards into three columns and makes 
+each card's height match its neighbours, resulting in a clean
+grid.
+
+
+#### Summary cards: Thumbnail grid layout
+
+<svg class="diag" viewBox="0 0 60 44">
+    <use xlink:href="#bg"></use>
+    <use xlink:href="#heading-and-sub"></use>
+    <use xlink:href="#card-thumbnail" x="5" y="16"></use>
+    <rect x="5" y="16" width="8" height="11" />
+    <use xlink:href="#card-thumbnail" x="13" y="16"></use>
+    <use xlink:href="#card-thumbnail" x="21" y="16"></use>
+    <use xlink:href="#card-thumbnail" x="29" y="16"></use>
+    <use xlink:href="#card-thumbnail" x="37" y="16"></use>
+    <use xlink:href="#card-thumbnail" x="45" y="16"></use>
+    <use xlink:href="#card-thumbnail" x="5" y="27"></use>
+    <use xlink:href="#card-thumbnail" x="13" y="27"></use>
+    <use xlink:href="#card-thumbnail" x="21" y="27"></use>
+    <use xlink:href="#card-thumbnail" x="29" y="27"></use>
+    <use xlink:href="#border" y="42"></use>
+</svg>
+
+<svg class="diag" viewBox="0 0 60 42">
+    <use xlink:href="#bg"></use>
+    <use xlink:href="#heading"></use>
+    <use xlink:href="#card-thumbnail-round" x="5" y="14"></use>
+    <use xlink:href="#card-thumbnail-round" x="13" y="14"></use>
+    <use xlink:href="#card-thumbnail-round" x="21" y="14"></use>
+    <use xlink:href="#card-thumbnail-round" x="29" y="14"></use>
+    <use xlink:href="#card-thumbnail-round" x="37" y="14"></use>
+    <use xlink:href="#card-thumbnail-round" x="45" y="14"></use>
+    <use xlink:href="#card-thumbnail-round" x="5" y="25"></use>
+    <use xlink:href="#card-thumbnail-round" x="13" y="25"></use>
+    <use xlink:href="#border" y="40"></use>
+</svg>
+
+The thumbnail grid layout turns card images into thumbnails,
+arranged six across. This is an excellent layout for showing
+staff associated with your department or project. The
+ability to highlight the first item is also particularly 
+useful in this layout.
 
 
 ### Contact info plus map
