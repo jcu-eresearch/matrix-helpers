@@ -295,11 +295,13 @@ a {
 }
 
 /* Workaround issue with background-attachment: fixed / background-size: cover
- * issue on iOS so only used `fixed` on large screens */
-@media(max-width:991px) {
-  .jcu-bg--cover[style*="background-attachment: fixed"] {
-    background-attachment: scroll !important;
-  }
+ * issue on iOS so only use `fixed` on non-mobiles
+ * Can't directly match on "background-attachment: fixed" because of the
+ * minifier stripping out the whitespace in the attribute; see
+ * https://github.com/jcu-eresearch/matrix-helpers/issues/92
+ */
+html.touch .jcu-bg--cover[style*="fixed;"] {
+  background-attachment: scroll !important;
 }
 
 body {
