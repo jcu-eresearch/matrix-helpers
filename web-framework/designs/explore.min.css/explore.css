@@ -54,6 +54,11 @@ a {
   color: #fff;
 }
 
+.brand-img.img-svg,
+.brand-img[src$=".svg"] {
+  filter: drop-shadow(1px 1px 0px rgba(0,0,0,.5));
+}
+
 .navbar-brand .brand-img {
   display: inline-block;
   height: 4rem;
