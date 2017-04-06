@@ -112,7 +112,7 @@ yet) @@-->
                 </a>
               </div>
               <div class="col-xs-6 text-xs-right">
-                <h1 class="jcu-header__page-title" id="page-title"><span class="sr-only">James Cook University - %globals_site_name% </span>Web Content</h1>
+                <h1 class="jcu-header__page-title" id="page-title"><span class="sr-only">James Cook University - %globals_site_name% </span>Web Content Login</h1>
               </div>
             </div>
           </div>
@@ -155,10 +155,16 @@ yet) @@-->
                         </div>
                       </div>
 
-                      <MySource_PRINT var="submit_button" class="btn btn-block btn-lg btn-warning text-wrap m-y-1" value="Sign in with Điscover" />
+                      <div class="form-group">
+                        <MySource_PRINT var="submit_button" class="btn btn-block btn-lg btn-warning text-wrap" value="Sign in with Điscover" />
+                        <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="A Điscover login is specially for those who need access to web content and don't have a JCU email address.">
+                          What's this?
+                        </button>
+                      </div>
 
-                      <div class="form-group" hidden>
-                        Forgot your password? <a href="#">Request another.</a><br>
+                      <div class="form-group">
+                        <!--@@ Central Password Reset page @@-->
+                        Forgot your password? <a href="%globals_asset_url:427722%">Reset it now.</a><br>
                       </div>
                     </div><!--@@ /.discover-login @@-->
                   </div><!--@@ /.center-vertically @@-->
@@ -168,7 +174,7 @@ yet) @@-->
 
             <!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/90 @@-->
             <!--@@ Manually test for being logged in because MySource_LOGOUT_SECTION doesn't work here @@-->
-            <MySource_AREA id_name="show_login_or_error" design_area="show_if">
+            <MySource_AREA id_name="show_login_or_content" design_area="show_if" print="no">
               <MySource_SET name="condition" value="logged_in" />
               <MySource_THEN>
                 <!--@@ If the user had read access, we would have redirected them already @@-->
@@ -184,6 +190,21 @@ yet) @@-->
               </MySource_THEN>
               <MySource_ELSE>
                 <MySource_PRINT id_name="login_form" />
+              </MySource_ELSE>
+            </MySource_AREA>
+
+            <!--@@ Iff the page is a password reset, show the content @@-->
+            <MySource_AREA id_name="content" design_area="body" print="no" />
+            <MySource_AREA id_name="show_reset_or_else" design_area="show_if">
+              <MySource_SET name="condition" value="keyword_regexp" />
+              <MySource_SET name="condition_keyword" value="globals_asset_type_code" />
+              <MySource_SET name="condition_keyword_match" value="^page_password_reset$" />
+              <MySource_THEN>
+                <!--@@ Display the content from the Password Reset Page @@-->
+                <MySource_PRINT id_name="content" />
+              </MySource_THEN>
+              <MySource_ELSE>
+                <MySource_PRINT id_name="show_login_or_content" />
               </MySource_ELSE>
             </MySource_AREA>
 
@@ -211,6 +232,18 @@ yet) @@-->
     <!--@@ JavaScript resources @@-->
     <!--@@ jQuery @@-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+    <!--@@ Bootstrap Core JavaScript @@-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js" integrity="sha384-MWq1Lnqj72tmjGdOKuNBn3E0gj3vWfy/1EmR5TVL8d8nGvwgy32YkCpKpTUhwBVv" crossorigin="anonymous"></script>
+    <script src="./?a=281218:dist/js/jcu.min.js" integrity="sha384-GXpe6UW5FXR+By2fTo2YeI+yVoY1QGkZdZpppWl3qboYFMqHL7zFEq+X6hRoB1gH" crossorigin="anonymous"></script>
+
+    <!--@@ Enable tooltips @@-->
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
+
     <!--@@ Workaround for Squiz Edge serving only public content: https://github.com/jcu-eresearch/matrix-helpers/issues/20 @@-->
     <!--@@ Adjust all page links to avoid broken Edge proxy in prep for logging in @@-->
     %globals_asset_contents:424476%
