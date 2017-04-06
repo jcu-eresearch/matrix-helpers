@@ -187,7 +187,7 @@ a {
 
 .intro-body {
   display: table-cell;
-  padding-top: 30vh;
+  padding-top: 20vh;
   vertical-align: middle;
   background-color: rgba(0,0,0,.2);
 }
@@ -199,7 +199,7 @@ a {
 
 @media(max-height:512px) {
   .intro-body {
-    padding-top: 12rem;
+    padding-top: 10rem;
   }
 }
 
