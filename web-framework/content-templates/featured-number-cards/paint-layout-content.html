@@ -23,11 +23,22 @@
               if (!(number || units)) {
                 return
               }
+
+              // Default to not trusting the user entered a number
+              var prefix = ''
+              var value = number
+              var suffix = ''
+              var valid_number = false
+
               // Split up the 'number' into prefix, value and suffix
               var number_parts = number.match(/(.*?)([0-9]*\.?[0-9]+)(.*)/)
-              var prefix = number_parts[1]
-              var value = number_parts[2]
-              var suffix = number_parts[3]
+              if (number_parts) {
+                // Is a matching number
+                prefix = number_parts[1]
+                value = number_parts[2]
+                suffix = number_parts[3]
+                valid_number = true
+              }
 
               // Count the number of decimals so we format correctly with jQuery.countTo
               var decimals = value.indexOf('.') !== -1 ? value.split('.')[1].length : 0
@@ -43,7 +54,7 @@
           <div class="card-icon ' + icon_class + ' bg-inverse text-inverse"></div> \
           <p class="card-title animated counter" data-animation="fadeIn" data-delay="' + delay + '"> \
             <span class="display-4"> \
-              <span class="counter-prefix">' + prefix + '</span><span class="timer" data-decimals="' + decimals + '" data-from="0" data-to="' + value + '">' + value + '</span><span class="counter-suffix">' + suffix + '</span> \
+              <span class="counter-prefix">' + prefix + '</span><span class="' + (valid_number ? 'timer' : '') + '" data-decimals="' + decimals + '" data-from="0" data-to="' + value + '">' + value + '</span><span class="counter-suffix">' + suffix + '</span> \
             </span><br>' + units +' \
           </p> \
           ' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_template.numfeature.desc' + card_id + ':%asset_assetid%', {prepend: '<p class="card-text">', append: '</p>'}) + ' \
