@@ -38,7 +38,7 @@ yet) @@-->
     <meta name="format-detection" content="telephone=no">
 
     <!--@@ Change the title based on the page purpose @@-->
-    <MySource_AREA id_name="show_title_or_error" design_area="show_if">
+    <MySource_AREA id_name="show_title_or_error" design_area="show_if" print="no">
       <MySource_SET name="condition" value="logged_in" />
       <MySource_THEN>
         <!--@@ If the user had read access, we would have redirected them already @@-->
@@ -46,6 +46,19 @@ yet) @@-->
       </MySource_THEN>
       <MySource_ELSE>
         <title>Login - %globals_site_name% - James Cook University</title>
+      </MySource_ELSE>
+    </MySource_AREA>
+
+    <MySource_AREA id_name="show_title_or_else" design_area="show_if">
+      <MySource_SET name="condition" value="keyword_regexp" />
+      <MySource_SET name="condition_keyword" value="globals_asset_type_code" />
+      <MySource_SET name="condition_keyword_match" value="^page_password_reset$" />
+      <MySource_THEN>
+        <!--@@ Display the name from the Password Reset Page @@-->
+        <title>%globals_asset_name% - %globals_site_name% - James Cook University</title>
+      </MySource_THEN>
+      <MySource_ELSE>
+        <MySource_PRINT id_name="show_title_or_error" />
       </MySource_ELSE>
     </MySource_AREA>
 
@@ -115,7 +128,7 @@ yet) @@-->
                 </a>
               </div>
               <div class="col-xs-6 text-xs-right">
-                <h1 class="jcu-header__page-title" id="page-title"><span class="sr-only">James Cook University - %globals_site_name% </span>Web Content Login</h1>
+                <h1 class="jcu-header__page-title" id="page-title"><span class="sr-only">James Cook University - %globals_site_name% </span>Web Content</h1>
               </div>
             </div>
           </div>
