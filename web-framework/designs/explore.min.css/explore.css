@@ -263,9 +263,15 @@ a {
   overflow: hidden;
 }
 
-@media(min-width:767px) {
+@media(min-width:768px) {
   .content-section {
     margin-bottom: 5rem;
+  }
+}
+
+@media(min-width:544px) {
+  .cct-featured-number-cards .card-deck-wrapper {
+    padding-top: 3rem;
   }
 }
 
@@ -282,7 +288,7 @@ a {
   margin-bottom: 1.75rem;
 }
 
-@media(min-width:767px) {
+@media(min-width:768px) {
   .cct-featured-number-cards .card-title {
     font-size: 1.7rem;
   }
@@ -343,7 +349,7 @@ body {
           box-shadow: 0 0 .5rem rgba(255,255,255,.2);
 }
 
-@media(min-width:767px) {
+@media(min-width:768px) {
   .map-section {
     position: relative;
     padding: 5rem;
@@ -384,7 +390,7 @@ body {
   margin-bottom: 1rem;
 }
 
-@media(min-width:767px) {
+@media(min-width:768px) {
   .research-classrooms .col-sm-4 {
     padding-right: 3rem;
     padding-left: 3rem;

@@ -106,6 +106,15 @@
       </div>
     </a>
 
+     <!-- Print navigation -->
+     <header class="container-fluid bg-inverse p-a-1 visible-print-block" id="printHeader">
+       <div class="row">
+         <div class="col-xs-5">
+           <img class="img-fluid" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name%" alt="%globals_site_name% logo">
+         </div>
+       </div>
+     </header>
+
     <!--@@ Page toolbar, only visible to authenticated users @@-->
     <MySource_AREA id_name="toolbar_view_editor_user" design_area="show_if" print="no">
       <!-- If user can access the Edit+ interface -->
@@ -311,7 +320,7 @@
     <MySource_AREA id_name="page_tools" design_area="show_if">
       <MySource_SET name="condition" value="logged_in" />
       <MySource_THEN>
-        <div class="edit-toolbar bg-primary">
+        <div class="edit-toolbar bg-primary hidden-print">
           <button class="btn btn-primary btn-block btn-sm text-xs-left" type="button" data-toggle="collapse" data-target="#pageToolsButtons" aria-expanded="false" aria-controls="pageToolsButtons">
             <span class="icon-websitebuilder" aria-label="Tools icon"></span> Page tools
           </button>
@@ -363,7 +372,7 @@
           &#9776;
         </button>
         <a class="navbar-brand page-scroll" href="%globals_site_url%">
-          <img class="brand-img img-fluid %globals_site_metadata_jcu.site.logo^as_asset:asset_file_type^prepend_if:img-%" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name%" alt="James Cook University - %globals_site_name% logo">
+          <img class="brand-img img-fluid %globals_site_metadata_jcu.site.logo^as_asset:asset_file_type^prepend_if:img-%" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name%" alt="%globals_site_name% logo">
         </a>
         <div class="collapse navbar-toggleable navbar-toggleable-md" id="mainNav">
           <MySource_AREA id_name="main_navigation" design_area="menu_normal">
@@ -409,8 +418,21 @@
       <MySource_AREA id_name="portlets_right" design_area="nest_content" />
     </main>
 
+    <!--@@ SSJS will not run inside of the nested asset  because of
+           https://github.com/jcu-eresearch/matrix-helpers/issues/82 @@-->
     %begin_globals_site_metadata_jcu.site.cobranding%
+      <script runat="server">
+        var cls = JCU.data.current_theme === 'landing' ? 'content-section' : 'content-block'
+        if (JCU.debug) {
+          print('<!-- Start cobranding-->')
+        }
+        print('<div class="' + cls + '">')
+      </script>
       %globals_site_metadata_jcu.site.cobranding^as_asset:asset_contents%
+      <script runat="server">
+        print('</div>')
+        print('<!-- End cobranding -->')
+      </script>
     %end_globals%
 
     <MySource_AREA id_name="footer" design_area="nest_content" />

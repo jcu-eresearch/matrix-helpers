@@ -11,21 +11,22 @@
       <!--@@ Contents paint layout @@-->
       %asset_contents_paint_420234%
 
-      <div class="m-b-3">
-        %begin_asset_metadata_template.embed.asset%
-          %asset_metadata_template.embed.asset^as_asset:asset_contents%
-        %else_begin_asset_metadata_template.embed.url%
-          <div class="embed-responsive %asset_metadata_template.embed.aspect_ratio%">
-            %begin_asset_metadata_template.embed.url^lastchars:4^eq:.mp4%
-              <video class="embed-responsive-item" controls="controls">
-                <source src="%asset_metadata_template.embed.url%" type="video/mp4"><a href="%asset_metadata_template.embed.url%">Access this video directly</a>
-              </video>
-            %else_asset%
-              <iframe class="embed-responsive-item" src="%asset_metadata_template.embed.url%" allowfullscreen="true"></iframe>
-            %end_asset%
-          </div>
-        %end_asset%
-      </div>
+      %begin_asset_metadata_template.embed.asset%
+        %asset_metadata_template.embed.asset^as_asset:asset_contents%
+      %else_begin_asset_metadata_template.embed.url%
+        <div class="embed-responsive %asset_metadata_template.embed.aspect_ratio% hidden-print">
+          %begin_asset_metadata_template.embed.url^lastchars:4^eq:.mp4%
+            <video class="embed-responsive-item" controls="controls">
+              <source src="%asset_metadata_template.embed.url%" type="video/mp4"><a href="%asset_metadata_template.embed.url%">Access this video directly</a>
+            </video>
+          %else_asset%
+            <iframe class="embed-responsive-item" src="%asset_metadata_template.embed.url%" allowfullscreen="true"></iframe>
+          %end_asset%
+        </div>
+        <div class="visible-print-block">
+          <a href="%asset_metadata_template.embed.url%">Embedded content</a>
+        </div>
+      %end_asset%
 
       <!--@@ Buttons paint layout @@-->
       <script runat="server">

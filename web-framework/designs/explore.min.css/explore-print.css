@@ -1,0 +1,85 @@
+@page {
+  margin: 2cm;
+}
+@media print and (color) {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+@media print {
+  .col-print-1 {width:8%;  float:left;}
+  .col-print-2 {width:16%; float:left;}
+  .col-print-3 {width:25%; float:left;}
+  .col-print-4 {width:33%; float:left;}
+  .col-print-5 {width:42%; float:left;}
+  .col-print-6 {width:50%; float:left;}
+  .col-print-7 {width:58%; float:left;}
+  .col-print-8 {width:66%; float:left;}
+  .col-print-9 {width:75%; float:left;}
+  .col-print-10{width:83%; float:left;}
+  .col-print-11{width:92%; float:left;}
+  .col-print-12{width:100%; float:left;}
+
+  h2,
+  h3,
+  h4 {
+    page-break-after: avoid;
+  }
+
+  /*section,*/
+  /*article,*/
+  ul,
+  img {
+    page-break-inside: avoid;
+  }
+
+  .theme-landing .intro,
+  .theme-content .intro {
+    background-attachment: scroll;
+    height: auto;
+    margin-bottom: .5cm;
+  }
+
+  .theme-landing .intro-body,
+  .theme-content .intro-body {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .content-block,
+  .content-section {
+    margin-bottom: .5cm;
+  }
+
+  .content-block {
+    padding-top: .5cm;
+    padding-bottom: .5cm;
+  }
+
+
+  .card-deck .card {
+    display: table-cell;
+    vertical-align: top;
+  }
+
+  .cct-text-with-styled-bg-inner[style] {
+    padding-top: .5cm !important;
+    padding-bottom: .5cm !important;
+  }
+
+  .embed-responsive,
+  .canvas-map {
+    page-break-before: always;
+  }
+
+  .lead {
+    margin-bottom: .5cm;
+  }
+
+  /* Workaround for Chrome print bug showing 0 width images with
+   * max-width: 100% and width: 64px */
+  .research-enablers img {
+    max-width: none !important;
+  }
+}
