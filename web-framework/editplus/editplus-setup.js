@@ -4,7 +4,8 @@
 // Easy Edit Suite configuration options.
 EasyEditConfig.debug = false
 EasyEditConfig.titleBar = "@asset_name@ : James Cook University Edit+"
-EasyEditConfig.overlayTimeout = 61
+EasyEditConfig.cascadeThreshold = 10
+EasyEditConfig.overlayTimeout = 180
 EasyEditConfig.defaultScreen = 'content'
 // Web Framework Sites, Web Framework Resources, Australia, Singapore
 EasyEditConfig.assetFinderLocations = [364590,283019,2311,70]
