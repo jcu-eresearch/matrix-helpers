@@ -15,7 +15,7 @@
     data-draggable="%asset_metadata_template.map.draggable%"
     data-full-zoom="%asset_metadata_template.map.full_zoom%"></div>
   <div class="container-fluid">
-    <div class="col-md-6 col-lg-4 col-md-offset-1 location-callout animated" data-animation="fadeInLeft" data-delay="500">
+    <div class="col-md-6 col-lg-4 col-md-offset-1 col-print-12 location-callout animated" data-animation="fadeInLeft" data-delay="500">
       <div class="location-callout-wrapper">
         <h2>Location &amp; Contact</h2>
         <!--@@ Contact card paint layout @@-->
@@ -23,7 +23,7 @@
       </div>
       <!--@@ Buttons paint layout @@-->
       <script runat="server">
-        this.args = {wrapper: {opening: '<div class="bg-inverse p-a-2">', closing: '</div>'}}
+        this.args = {wrapper: {opening: '<div class="bg-inverse p-a-2 hidden-print">', closing: '</div>'}}
       </script>
       %asset_contents_paint_394551%
     </div>

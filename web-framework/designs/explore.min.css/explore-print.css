@@ -1,5 +1,5 @@
 @page {
-  margin: 2cm;
+  margin: 1.5cm;
 }
 @media print and (color) {
   * {
@@ -34,17 +34,30 @@
     page-break-inside: avoid;
   }
 
+  .animated,
+  .animated.transparent {
+    opacity: 1;
+  }
+
+  .text-inverse hr {
+    border-top-color: rgba(0,0,0,.1);
+  }
+
   .theme-landing .intro,
   .theme-content .intro {
-    background-attachment: scroll;
     height: auto;
     margin-bottom: .5cm;
+    background-image: none;
+    background-color: transparent;
+    color: #000;
   }
 
   .theme-landing .intro-body,
   .theme-content .intro-body {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-image: none;
+    background-color: transparent;
   }
 
   .content-block,
@@ -57,15 +70,27 @@
     padding-bottom: .5cm;
   }
 
+  .cct-featured-number-cards .card-deck .card {
+    padding-top: 1.25cm;
+    padding-bottom: .5cm;
+    margin-top: 1.5cm;
+  }
 
-  .card-deck .card {
-    display: table-cell;
-    vertical-align: top;
+  .cct-featured-number-cards .card-title {
+    margin-bottom: .5cm;
+  }
+
+  /* Remove background images from Text with Styled Background blocks */
+  .cct-text-with-styled-bg .jcu-bg--cover[style] {
+    background-color: transparent !important;
+    background-image: none !important;
   }
 
   .cct-text-with-styled-bg-inner[style] {
     padding-top: .5cm !important;
     padding-bottom: .5cm !important;
+    background-color: transparent;
+    color: black;
   }
 
   .embed-responsive,

@@ -10,6 +10,10 @@ a {
           transition: all .2s ease-in-out;
 }
 
+.img-invert {
+  filter: grayscale(100%) invert(100%);
+}
+
 .edit-toolbar {
   z-index: 1050;
   position: fixed;
