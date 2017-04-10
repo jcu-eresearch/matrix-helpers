@@ -116,7 +116,6 @@ yet) @@-->
   </head>
 
   <body role="application">
-
     <header class="container intro jcu-header jcu-header--banner">
       <div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1 p-y-1 jcu-bg--black-75pc">
@@ -248,6 +247,13 @@ yet) @@-->
     <!--@@ JavaScript resources @@-->
     <!--@@ jQuery @@-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+    <script>
+      // Edit+ rudely injects itself when we're showing the Login page
+      // This breaks our styles, so we just dump anything they're trying
+      // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/95
+      $('head [src*="/__data/ees"], head [src*="/__data/matrix"], head [src*="/__data/system"], head [href*="/__data/ees"], head [src*="/__lib"], head [href*="/__lib"], style[id^=ace], script:contains("SQ_DOCUMENT_LOADED"), style:contains("ace_error")').remove()
+    </script>
 
     <!--@@ Bootstrap Core JavaScript @@-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js" integrity="sha384-MWq1Lnqj72tmjGdOKuNBn3E0gj3vWfy/1EmR5TVL8d8nGvwgy32YkCpKpTUhwBVv" crossorigin="anonymous"></script>

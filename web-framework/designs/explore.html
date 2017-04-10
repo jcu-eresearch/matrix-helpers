@@ -3,15 +3,8 @@
 <MySource_AREA id_name="site_custom_js" design_area="nest_content" print="no" />
 
 <!--@@ Edit+ boilerplate configuration @@-->
-<MySource_AREA id_name="editplus_login_redirection" design_area="show_if" print="no">
-  <MySource_SET name="condition" value="logged_in" />
-  <MySource_ELSE>
-    <script>window.location = window.location.href.replace('/_edit','/_edit/_login');</script>
-  </MySource_ELSE>
-</MySource_AREA>
 <MySource_AREA id_name="editplus_custom" design_area="nest_content" print="no" />
 <MySource_AREA id_name="editplus" design_area="editplus">
-  <MySource_PRINT id_name="editplus_login_redirection" />
   <!--@@ Web Framework Core CSS @@-->
   <!--@@ Must be a full URL because of https://github.com/jcu-eresearch/matrix-helpers/issues/54 @@-->
   <link rel="stylesheet" href="https://www.jcu.edu.au/__data/assets/git_bridge/0004/281218/dist/css/jcu.min.css" integrity="sha384-yvalFRKl+0g0tWrYJQwXPaf4oRFo9hOu7BssvfScVX9wdvvA+NjYtnAFm3sqP7LF" crossorigin="anonymous">
