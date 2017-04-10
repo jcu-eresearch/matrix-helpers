@@ -86,7 +86,6 @@ EasyEditLocalise.translations.en = {
 /**
   * JCU Web Framework JS: Edit+, meet Bootstrap's JavaScript.  Play nice.
   */
-
 function initWebFrameworkComponents() {
   // Collapsing metadata sections
   $('.content_template_custom_layout .metadata [class^=schemaHeading_], #ees_editMetadata [class^=schemaHeading_]').each(function(schema_index) {
@@ -104,17 +103,32 @@ function initWebFrameworkComponents() {
     $(this).append('<span class="pull-xs-right"><a class="collapse-toggle-expand" href="#">+ Expand all</a> <a class="collapse-toggle-collapse m-l-1" href="#">– Collapse all</a></span>')
   })
 
+  // Expand all metadata section headings
   $('.collapse-toggle-expand').click(function() {
     $(this).parent().parent().nextUntil('[class^=schemaHeading]').filter('.editSection').collapse('show')
     return false
   })
+
+  // Collapse all metadata section headings
   $('.collapse-toggle-collapse').click(function() {
     $(this).parent().parent().nextUntil('[class^=schemaHeading]').filter('.editSection').collapse('hide')
     return false
   })
+
+  // Preview window lazy loading
+  $('.collapse-toggle-preview').click(function() {
+    var targetFrame = $($(this).attr('href')).find('iframe').first()
+    // Test if target frame exists and isn't already configured
+    if (targetFrame && !targetFrame.attr('src')) {
+      targetFrame.attr('src', targetFrame.attr('data-src'))
+    }
+  })
 }
 
-
+/**
+  * JCU Web Framwork plugin - Integrates various Bootstrap and other custom
+  * components with Edit+
+  */
 EasyEdit.plugins.jcuWebFrameworkJS = {
   init: function () {
 
