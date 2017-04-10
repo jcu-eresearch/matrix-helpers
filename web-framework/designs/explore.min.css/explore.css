@@ -267,6 +267,10 @@ a {
   overflow: hidden;
 }
 
+.theme-content .content-section {
+  margin-bottom: 0;
+}
+
 @media(min-width:768px) {
   .content-section {
     margin-bottom: 5rem;
@@ -386,6 +390,15 @@ body {
   }
 }
 
+.cct-text-with-styled-bg-inner {
+  background-color: rgba(0,0,0,.4);
+  color: #fff;
+}
+
+.cct-text-with-styled-bg .content-block-title,
+.cct-text-with-styled-bg .content-block-content {
+  text-shadow: 1px 1px 1px #000;
+}
 
 /* Research Infrastructure linking */
 .research-classrooms img {
@@ -455,7 +468,7 @@ body {
     padding-bottom: 1rem;
     border-bottom: none;
 }
-.content-block .content-title {
+.content-block .content-block-title {
   margin-bottom: 2rem;
 }
 

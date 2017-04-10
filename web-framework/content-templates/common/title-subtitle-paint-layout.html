@@ -4,7 +4,7 @@
   this.args.subtitle_class = this.args.subtitle_class || ''
 
   var display_title = !!"%asset_metadata_template.title.display^eq:show:true:%" || this.args.always_show
-  var title_base_class = 'content-title ' + (JCU.data.current_theme === 'landing' ? 'h1' : '')
+  var title_base_class = 'content-block-title ' + (JCU.data.current_theme === 'landing' ? 'h1' : '')
   var title_alignment = "%asset_metadata_template.title.alignment^escapequotes%" || (JCU.data.current_theme === 'landing' ? 'text-xs-center' : '')
   var has_title_content = JCU.isViperStringPopulated("%asset_metadata_template.title.title^json_encode%")
   var has_subtitle_content = JCU.isViperStringPopulated("%asset_metadata_template.title.subtitle^json_encode%")
