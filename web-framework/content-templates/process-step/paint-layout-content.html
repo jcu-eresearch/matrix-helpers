@@ -35,20 +35,31 @@
     %asset_contents_paint_420234%
 
     <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0 col-md-2">
+      <!--@@ Margins collapse between pictures and buttons if both are on @@-->
+      %begin_asset_metadata_template.picture.picture%
+      <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
+      <div class="m-b-1">
+        <script runat="server">
+          var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%")
+          pictures.forEach(function(id) {
+            print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
+          })
+        </script>
+      </div>
+      %end_asset%
+
       <!--@@ Buttons paint layout @@-->
       <script runat="server">
-        this.args = {omit_alignment: true, btn_class_prefix: 'btn-block text-wrap'}
+        this.args = {
+          wrapper: {
+            opening: '<div class="m-t-1">',
+            closing: '</div>'
+          },
+          omit_alignment: true,
+          btn_class_prefix: 'btn-block text-wrap'
+        }
       </script>
       %asset_contents_paint_394551%
 
-      %begin_asset_metadata_template.picture.picture%
-      <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
-      <script runat="server">
-        var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%")
-        pictures.forEach(function(id) {
-          print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
-        })
-      </script>
-      %end_asset%
     </div>
   </div>
