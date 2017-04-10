@@ -63,7 +63,7 @@ a {
 
 .navbar-brand .brand-img {
   display: inline-block;
-  max-height: 4rem;
+  height: 4rem;
   margin-top: .5rem;
   margin-bottom: .75rem;
   vertical-align: middle;
@@ -76,14 +76,14 @@ a {
   .navbar-brand .brand-img {
     position: relative;
     top: -.6rem;
-    max-height: 5rem;
+    height: 5rem;
   }
 }
 
 .navbar-custom.navbar-collapsed .brand-img {
   position: static;
   top: auto;
-  max-height: 3.5rem;
+  height: 3.5rem;
 }
 
 .navbar-collapsed .navbar-nav .nav-link {
