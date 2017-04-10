@@ -300,8 +300,7 @@ a {
   left: 50%;
   width: 5rem;
   height: 5rem;
-  padding-left: .1rem;
-  margin-left: -2.5rem;
+  margin-left: -2.5rem; /* Half of width */
   font-size: 3.5rem;
   font-weight: 700;
   border-radius: 50%;
