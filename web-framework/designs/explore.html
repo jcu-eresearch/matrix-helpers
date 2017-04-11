@@ -421,21 +421,11 @@
       <MySource_AREA id_name="portlets_right" design_area="nest_content" />
     </main>
 
-    <!--@@ SSJS will not run inside of the nested asset  because of
-           https://github.com/jcu-eresearch/matrix-helpers/issues/82 @@-->
+    <!--@@ Optional Site co-branding @@-->
     %begin_globals_site_metadata_jcu.site.cobranding%
-      <script runat="server">
-        var cls = JCU.data.current_theme === 'landing' ? 'content-section' : 'content-block'
-        if (JCU.debug) {
-          print('<!-- Start cobranding-->')
-        }
-        print('<div class="' + cls + '">')
-      </script>
+    <div class="content-block">
       %globals_site_metadata_jcu.site.cobranding^as_asset:asset_contents%
-      <script runat="server">
-        print('</div>')
-        print('<!-- End cobranding -->')
-      </script>
+    </div>
     %end_globals%
 
     <MySource_AREA id_name="footer" design_area="nest_content" />

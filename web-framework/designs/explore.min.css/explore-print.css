@@ -60,12 +60,8 @@
     background-color: transparent;
   }
 
-  .content-block,
-  .content-section {
-    margin-bottom: .5cm;
-  }
-
   .content-block {
+    margin-bottom: .5cm;
     padding-top: .5cm;
     padding-bottom: .5cm;
   }

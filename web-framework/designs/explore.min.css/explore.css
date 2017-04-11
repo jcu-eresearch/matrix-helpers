@@ -186,7 +186,6 @@ a {
 
 .theme-landing .intro {
   height: 100%;
-  margin-bottom: 3rem;
 }
 
 .intro-body {
@@ -262,19 +261,33 @@ a {
   border-top-color: rgba(255,255,255,.4);
 }
 
-.content-section {
-  margin-bottom: 3rem;
-  overflow: hidden;
+
+/* Content Blocks fit Content pages by default */
+.content-block {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(0,0,0, 0.1);
 }
 
-.theme-content .content-section {
+.content-block:last-of-type {
+  border-bottom: none;
+}
+
+.content-block.border-s-none {
+  padding-bottom: 1rem;
+  border-bottom: none;
+}
+
+.theme-landing .content-block {
+  border-bottom: none;
+}
+
+.content-block-title {
+  margin-bottom: 2rem;
+}
+
+.theme-landing .content-block-title {
   margin-bottom: 0;
-}
-
-@media(min-width:768px) {
-  .content-section {
-    margin-bottom: 5rem;
-  }
 }
 
 @media(min-width:544px) {
@@ -453,23 +466,6 @@ body {
 .jcu-footer__social--dark a:focus {
   color: #000;
   background: #fff;
-}
-
-/* Content Blocks on secondary pages */
-.content-block {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid rgba(0,0,0, 0.1);
-}
-.content-block:last-of-type {
-    border-bottom: none;
-}
-.content-block.border-s-none {
-    padding-bottom: 1rem;
-    border-bottom: none;
-}
-.content-block .content-block-title {
-  margin-bottom: 2rem;
 }
 
 /* Asset Listings */

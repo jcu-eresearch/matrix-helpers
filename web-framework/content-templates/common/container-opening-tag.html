@@ -18,11 +18,10 @@
 
   // Add standard classes used across themes unless we explictly ignore them
   if (!this.args.ignore_theme) {
-    if (JCU.data.current_theme === 'landing') {
-      contentBlockClasses.push('content-section')
-    } else if (JCU.data.current_theme === 'content') {
+    contentBlockClasses.push('content-block')
+
+    if (JCU.data.current_theme === 'content') {
       contentBlockClasses.push('container')
-      contentBlockClasses.push('content-block')
       contentBlockClasses.push('jcu-content')
     }
   }
