@@ -27,9 +27,6 @@
     page-break-after: avoid;
   }
 
-  /*section,*/
-  /*article,*/
-  ul,
   img {
     page-break-inside: avoid;
   }
