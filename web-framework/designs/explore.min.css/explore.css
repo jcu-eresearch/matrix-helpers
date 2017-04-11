@@ -370,7 +370,7 @@ body {
 }
 
 @media(min-width:768px) {
-  .map-section {
+  .cct-contact-info-over-map {
     position: relative;
     padding: 5rem;
     overflow: hidden;
