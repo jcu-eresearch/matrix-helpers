@@ -1,0 +1,21 @@
+<div class="table-responsive">
+  <table class="table table-striped table-sortable" summary="Content listing">
+    <thead>
+      <tr>
+%begin_globals_user_type_code^neq:public_user%
+        <th>Asset ID</th>
+%end_globals%
+        <th>Short Name</th>
+        <th>Type</th>
+        <th>Where</th>
+%begin_globals_user_type_code^neq:public_user%
+        <th>Creator</th>
+        <th>Last Modified</th>
+        <th>Status</th>
+%end_globals%
+    </thead>
+    <tbody>
+      %asset_listing%
+    </tbody>
+  </table>
+</div>
