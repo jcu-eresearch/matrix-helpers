@@ -374,13 +374,18 @@ block's settings. (more about animations?)
 
 This block is used to make a list of steps which can be used
 to describe multi-step processes such as applying for a grant
-or planning a trip.  A single process step block displays a 
+or planning a trip.  A single process step block displays a
 large "step" number on the left, a heading and text block in
 the centre, and optionally images or supporting links on the
 right (which you could use to link to a PDF form).
 
 This block also supports switching off the horizontal line
 that normally shows at the bottom of every content block.
+
+**Heads up!** The editing previews for this block will always
+show the number `1` as their process step number.  This is
+due to the way that the styling works and automatically
+numbers steps based upon how many are shown on the final page.
 
 
 ### Summary cards
