@@ -79,6 +79,8 @@ before each action and release locks afterwards.</div>
 
    1. Change `JCU Web Framework Site Settings` > `Cascade` to being unchecked.
 
+   1. Leave `Asset Settings` > `Cascade` as being checked.
+
    1. Click `Commit`.
 
 1. **Set the Paint Layout:** right-click the site and go to `Paint Layouts`.
