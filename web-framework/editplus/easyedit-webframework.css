@@ -327,6 +327,16 @@ body.previewMode {
   background-color: #fff;
 }
 
+/* Hide repeating default message on locked fields */
+.locked .sq-metadata-settings-wrapper {
+  display: none;
+}
+
+/* Try and show slightly more helpful value than just nothing */
+.locked .sq-metadata-contents:empty::before {
+  content: "Empty setting (or 'Use default value' selected)";
+}
+
 /* Reduce spacing for metadata fields */
 .cellData label {
   margin-bottom: 0;
