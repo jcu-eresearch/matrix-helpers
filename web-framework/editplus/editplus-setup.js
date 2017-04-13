@@ -72,18 +72,94 @@ EasyEditLocalise.translations.en = {
   }
 }
 
-// TODO Could implement a full suite of Boostrap styles here.  Normally this
-// setting comes from the Design asset's configuration but we don't have an
-// easy way of uploading styles yet.  We could craft a JSON object and populate
-// Viper's settings like so:
-//
-// asset = EasyEditAssetManager._currentAsset
-// callback = function that expects an object that looks like the return value of
-//     EasyEditAssetManager.designStyleClasses(EasyEditAssetManager._currentAsset, function(a) { console.log(a)} )
-//EasyEditAssetManager.designStyleClasses = function(asset, callback) { console.log(asset); console.log(b); }
 
 // Edit+ Plugins
 // See https://matrix.squiz.net/manuals/edit-plus/chapters/javascript-plugins for details
+
+/**
+  * Custom WYSIWYG Styles: override how Viper loads styles so we can easily
+  * implement our own.
+  *
+  * Normally this setting comes from the Design asset's configuration but we
+  * don't have an easy way of uploading styles (yet).  We craft a JSON
+  * object and populate Viper's settings here.
+  *
+  * Viper treats `text-selection` as the tag of "selected" text, which doesn't
+  * yet have a specific HTML tag present in the editor. This special string can
+  * be used for either showFor or hideFor and will be treated just like any
+  * other HTML tag. To figure out if this changes, grep for `this._custStyles`
+  * in the Viper source code.
+  */
+EasyEditAssetManager.designStyleClasses = function(asset, callback) {
+  var textOnlyExcludes = 'img,table,tbody,tr,td'
+  var textOnlyIncludes = 'text-selection,span,a,p'
+  var buttonOnlyIncludes = 'text-selection,span,a,p,div'
+  var data = {
+    divClasses: [
+      //{text: "JCU Content", value: "container jcu-content"}
+    ],
+    wysiwygClasses: {
+      'Hidden on print': {classNames: 'hidden-print'},
+      'Display 1 (XXXL)': {classNames: 'display-1', hideFor: textOnlyExcludes},
+      'Display 2 (XXL)': {classNames: 'display-2', hideFor: textOnlyExcludes},
+      'Display 3 (XL)': {classNames: 'display-3', hideFor: textOnlyExcludes},
+      'Display 4 (L)': {classNames: 'display-4', hideFor: textOnlyExcludes},
+      'H1 style': {classNames: 'h1', hideFor: textOnlyExcludes},
+      'H2 style': {classNames: 'h2', hideFor: textOnlyExcludes},
+      'H3 style': {classNames: 'h3', hideFor: textOnlyExcludes},
+      'H4 style': {classNames: 'h4', hideFor: textOnlyExcludes},
+      'H5 style': {classNames: 'h5', hideFor: textOnlyExcludes},
+      'H6 style': {classNames: 'h6', hideFor: textOnlyExcludes},
+      'Lead text': {classNames: 'lead'},
+      'Small text': {classNames: 'small', hideFor: textOnlyExcludes},
+      'Blockquote': {classNames: 'blockquote', showFor: 'blockquote'},
+      'List (unstyled)': {classNames: 'list-unstyled', showFor: 'ul,ol'},
+      'Image (responsive)': {classNames: 'img-fluid', showFor: 'img'},
+      'Image (circle)': {classNames: 'img-circle', showFor: 'img'},
+      'Image (thumbnail)': {classNames: 'img-thumbnail', showFor: 'img'},
+      'Table': {classNames: 'table', showFor: 'table'},
+      'Table (inverse)': {classNames: 'table-inverse', showFor: 'table'},
+      'Table Head (inverse)': {classNames: 'thead-inverse', showFor: 'thead'},
+      'Table (Striped)': {classNames: 'table-striped', showFor: 'table'},
+      'Table (Bordered)': {classNames: 'table-bordered', showFor: 'table'},
+      'Table (Hover)': {classNames: 'table-hover', showFor: 'table'},
+      'Table (Small)': {classNames: 'table-sm', showFor: 'table'},
+      'Table Wrapper (Responsive)': {classNames: 'table-responsive', showFor: 'div'},
+      'Button': {classNames: 'btn', showFor: buttonOnlyIncludes},
+      'Button (small)': {classNames: 'btn-sm', showFor: buttonOnlyIncludes},
+      'Button (large)': {classNames: 'btn-lg', showFor: buttonOnlyIncludes},
+      'Button (link)': {classNames: 'btn-link', showFor: 'button'},
+      'Button (block)': {classNames: 'btn-block', showFor: buttonOnlyIncludes},
+    }
+  }
+
+  // Buttons
+  var buttonColors = ['primary', 'secondary', 'success', 'info', 'warning', 'danger']
+  buttonColors.forEach(function(color) {
+    data.wysiwygClasses['Button (' + color +  ')'] = {classNames: 'btn-' + color, showFor: buttonOnlyIncludes}
+    data.wysiwygClasses['Button (' + color +  ' outline)'] = {classNames: 'btn-outline-' + color, showFor: buttonOnlyIncludes}
+  })
+
+  // Labels
+  var labelColors = ['default', 'primary', 'success', 'info', 'warning', 'danger']
+  data.wysiwygClasses['Label'] = {classNames: 'label', showFor: textOnlyIncludes}
+  labelColors.forEach(function(color) {
+    data.wysiwygClasses['Label (' + color +  ')'] = {classNames: 'label-' + color, showFor: textOnlyIncludes}
+  })
+
+  // Alerts
+  var alertColors = ['success', 'info', 'warning', 'danger']
+  data.wysiwygClasses['Alert Link'] = {classNames: 'alert-link', showFor: 'a'}
+  alertColors.forEach(function(color) {
+    data.wysiwygClasses['Alert (' + color +  ')'] = {classNames: 'alert alert-' + color, showFor: 'p,div'}
+  })
+
+  // TODO
+  // Utilities
+  // JCU-specific components + utilities
+
+  callback.call(this, data)
+}
 
 /**
   * JCU Web Framework JS: Edit+, meet Bootstrap's JavaScript.  Play nice.

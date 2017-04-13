@@ -225,22 +225,36 @@ body.previewMode {
  * Content panel
  */
 
-/* There's no reason to show this, there's only ever 1 metadata schema on a
- * Content Container Template */
-/*.content_template_custom_layout .schemaHeading_0 {
-  display: none;
-}*/
+/* Prevent style list from overflowing the viewport */
+.Viper-popoutPanel .Viper-selectionList {
+  overflow: scroll;
+  max-height: 35vh;
+}
 
-/* Fix spacing for Content Container Templates */
-/*.content_template_custom_layout #ees_editMetadata {
-  padding: 1rem;
-  border-top: 0 none;
-}*/
+/* Shrink heights of styles in selection list */
+.Viper-selectionList li {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+}
 
-/*.content_template_custom_layout .metadata h4,
-.content_template_custom_layout #ees_editMetadata h4 {
-  padding: 0;
-}*/
+/* Fix position for style selection checkbox */
+.Viper-selectionList li.selected::after {
+  -webkit-transform: scale(1) translateY(100%) translateX(-55%);
+          transform: scale(1) translateY(100%) translateX(-55%);
+  width: 11px;
+  height: 11px;
+  top: 0;
+  right: 0;
+}
+
+/* Integrate buttons into Viper */
+.plus .btn {
+  -webkit-user-select: all;
+     -moz-user-select: all;
+      -ms-user-select: all;
+          user-select: all;
+  cursor: auto;
+}
 
 /* Form editing widget spacing */
 .ees-option-widget__list {
