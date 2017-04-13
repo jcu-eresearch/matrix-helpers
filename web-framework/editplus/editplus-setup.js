@@ -48,6 +48,8 @@ EasyEditLocalise.translations.en = {
     "Page Name": "Page Name (used as title/header)",
     "Page Short Name": "Page Short Name (used in navigation)",
     "Related Image": "Related Image (Thumbnail)",
+    "URL to link to, including URI scheme (for example, http://www.squizsuite.net/).": "URL to link to, including the protocol (for example, https://www.jcu.edu.au/). This takes precedence over linking to an asset.",
+    "Select an asset to link the user to.": "Select an asset to link to.",
 
     // Contents pane
     "Insert New Container": "Add New Content Block",

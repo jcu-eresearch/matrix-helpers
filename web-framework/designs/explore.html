@@ -388,20 +388,15 @@
                   // class attr above  ^^^^^ is a workaround for 404 pages not rendering SSJS
                   // to prevent sibling CSS selector failure
                   // Remove on fixing https://github.com/jcu-eresearch/matrix-helpers/issues/74
-                  var type = '<MySource_PRINT var="asset_type_code" />'
-                  var rel = ''
-                  if (type === 'link') {
-                    href = '<MySource_PRINT var="asset_attribute_link_url" />'
-                    rel = '<MySource_PRINT var="asset_attribute_link_relation" />'
-                    if (rel) {
-                      rel = 'rel="' + rel + '"'
-                    }
-                  } else {
-                    href = '<MySource_PRINT var="asset_link" />'
-                  }
+                  var data = JCU.resolveLinkAssetData({
+                    asset_type_code: '<MySource_PRINT var="asset_type_code" />',
+                    asset_url: '<MySource_PRINT var="asset_link" />',
+                    link_url: '<MySource_PRINT var="asset_attribute_link_url" />',
+                    link_relation: '<MySource_PRINT var="asset_attribute_link_relation" />'
+                  })
                   print(' \
                 <li class="nav-item <MySource_PRINT var="settings.class" />"> \
-                  <a class="nav-link <MySource_PRINT var="asset_metadata_jcu.navigation.css_classes" escape="yes" />" href="' + href + '"' + rel + '><MySource_PRINT var="asset_short_name" /></a> \
+                  <a class="nav-link <MySource_PRINT var="asset_metadata_jcu.navigation.css_classes" escape="yes" />" ' + data.href + ' ' + data.rel + '><MySource_PRINT var="asset_short_name" /></a> \
                 </li> \
                   ')
                 </script>

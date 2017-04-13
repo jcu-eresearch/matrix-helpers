@@ -248,7 +248,43 @@ var JCU = {
       print('<!-- Resolved current asset data with value: ' + result + '-->')
     }
     return result
+  },
+
+  /**
+   * Resolve an asset into components for use in an <a> tag output.
+   *
+   * This resolves the href to be the current assset's URL, unless the asset is a Link,
+   * in which case we use the Link asset's URL attribute (the URL to which it points at).
+   *
+   * This allows us to do things like point at a #anchor tag inside a page.
+   *
+   * @param {Object} data - Input object consisting of required values
+   * @returns {Object} The resolved structure with href/rel attributes
+   */
+  resolveLinkAssetData: function (data) {
+    var result = {href: '', rel: ''}
+
+    if (data.asset_type_code === 'link') {
+      result.href = data.link_url
+      result.rel = data.link_relation
+    } else {
+      result.href = data.asset_url
+    }
+
+    // Only wrap if a value is present
+    if (result.href) {
+      result.href = 'href="' + result.href + '"'
+    }
+    if (result.rel) {
+      result.rel = 'rel="' + result.rel + '"'
+    }
+
+    if (JCU.debug) {
+      print('<!-- Resolved linked asset data with value: ' + JSON.stringify(result) + '-->')
+    }
+    return result
   }
+
 }
 
 JCU.data.current_id = JCU.resolveCurrentAssetData({

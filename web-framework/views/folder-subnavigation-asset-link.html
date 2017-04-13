@@ -1,0 +1,13 @@
+<!--@@ Would use the common SSJS JCU.resolveLinkAssetData function except for
+  https://github.com/jcu-eresearch/matrix-helpers/issues/96
+  When that is fixed, roll this code into the standard asset file:
+
+  var data = JCU.resolveLinkAssetData({
+    asset_type_code: '%asset_type_code%',
+    asset_url: "%asset_url^escapequotes%",
+    link_url: "%asset_attribute_link_url^escapequotes%",
+    link_relation: "%asset_attribute_link_relation^escapequotes%"
+  })
+  ...
+@@-->
+<li class="nav-item %asset_assetid^eq:{frontend_asset_assetid}:active%"><a class="nav-link" href="%asset_attribute_link_url^escapequotes%" %asset_attribute_link_relation^escapequotes^prepend_if:rel="^append_if:"%>%asset_short_name%</a></li>
