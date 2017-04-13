@@ -2,14 +2,17 @@
   //Rewrite links in a given page to avoid Edge caching when a user is logged in
   if (window.parent.document.body.className.search('previewMode') === -1) {
     function rewriteUrlNoProxyCache(i, val) {
-      var url = document.createElement('a')
-      url.href = val
-      url.pathname += url.pathname.endsWith('/') ? "_noproxycache" : "/_noproxycache"
-      return url
+      if (val.match(/\/_(admin|edit|performance|noproxycache|nocache|recache)/) || val.match(/SQ_ACTION/)) {
+        // noop
+        return val
+      } else {
+        var url = document.createElement('a')
+        url.href = val
+        url.pathname += url.pathname.endsWith('/') ? "_noproxycache" : "/_noproxycache"
+        return url
+      }
     }
-    $('a[href*="www.jcu.edu.au"]:not([href^="mailto:"]):not(.no-workaround)').filter(function() {
-      return !this.href.match(/\/_(admin|edit|performance|noproxycache|nocache|recache)/) && !this.href.match(/SQ_ACTION/)
-    }).attr('href', rewriteUrlNoProxyCache)
+    $('a[href*="www.jcu.edu.au"]:not([href^="mailto:"]):not(.no-workaround)').attr('href', rewriteUrlNoProxyCache)
     $('form[action*="www.jcu.edu.au"]').attr('action', rewriteUrlNoProxyCache)
   }
 </script>
