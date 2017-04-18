@@ -100,6 +100,10 @@ EasyEditAssetManager.designStyleClasses = function(asset, callback) {
     ],
     wysiwygClasses: {
       'Hidden on print': {classNames: 'hidden-print'},
+      'Add Padding Spacing': {classNames: 'p-a-1'},
+      'Add Margin Spacing': {classNames: 'm-a-1'},
+      'Float (left)': {classNames: 'pull-sm-left'},
+      'Float (right)': {classNames: 'pull-sm-right'},
       'Display 1 (XXXL)': {classNames: 'display-1', hideFor: textOnlyExcludes},
       'Display 2 (XXL)': {classNames: 'display-2', hideFor: textOnlyExcludes},
       'Display 3 (XL)': {classNames: 'display-3', hideFor: textOnlyExcludes},
@@ -110,10 +114,11 @@ EasyEditAssetManager.designStyleClasses = function(asset, callback) {
       'H4 style': {classNames: 'h4', hideFor: textOnlyExcludes},
       'H5 style': {classNames: 'h5', hideFor: textOnlyExcludes},
       'H6 style': {classNames: 'h6', hideFor: textOnlyExcludes},
-      'Lead text': {classNames: 'lead'},
+      'Lead text': {classNames: 'lead', hideFor: textOnlyExcludes},
       'Small text': {classNames: 'small', hideFor: textOnlyExcludes},
       'Blockquote': {classNames: 'blockquote', showFor: 'blockquote'},
       'List (unstyled)': {classNames: 'list-unstyled', showFor: 'ul,ol'},
+      'List (inside bordered)': {classNames: 'list-bordered', showFor: 'ul,ol'},
       'Image (responsive)': {classNames: 'img-fluid', showFor: 'img'},
       'Image (circle)': {classNames: 'img-circle', showFor: 'img'},
       'Image (thumbnail)': {classNames: 'img-thumbnail', showFor: 'img'},
@@ -154,10 +159,17 @@ EasyEditAssetManager.designStyleClasses = function(asset, callback) {
     data.wysiwygClasses['Alert (' + color +  ')'] = {classNames: 'alert alert-' + color, showFor: 'p,div'}
   })
 
-  // TODO
   // Utilities
-  // JCU-specific components + utilities
+  var contextualColors = ['muted', 'primary', 'success', 'info', 'warning', 'danger']
+  contextualColors.forEach(function(color) {
+    data.wysiwygClasses['Text (' + color +  ')'] = {classNames: 'text-' + color, showFor: textOnlyIncludes}
+  })
+  var bgColors = ['primary', 'success', 'info', 'warning', 'danger', 'inverse']
+  bgColors.forEach(function(color) {
+    data.wysiwygClasses['Background (' + color +  ')'] = {classNames: 'bg-' + color, showFor: "p,div"}
+  })
 
+  // Call the blackbox-callback so editor classes are populated
   callback.call(this, data)
 }
 

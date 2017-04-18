@@ -24,6 +24,8 @@ animations on home pages and cohesive branding across a site.
   to use raw HTML for anything as a non-technical editor.  Admins can still
   jump in where need be, but as an editor, you can build beautiful-looking
   pages within minutes without any technical help.
+* **JCU-specific styles:** as you edit your page, you can choose from a
+  variety of University themed styles for your content.
 * **No secret IDs**: forget what an asset ID is; editors can use the whole
   setup without entering in manual asset ID.  No need to remember secret
   codes.
