@@ -14,7 +14,10 @@
 start=$SECONDS
 counter=0
 
-[[ $OSTYPE == "darwin"*  ]] && _IS_MAC=yes
+GNUSED=sed
+[[ $OSTYPE == "darwin"*  ]] && _IS_MAC=yes && GNUSED=gsed
+[ -f /etc/debian_version ] && _IS_DEBIAN=yes
+
 SCRIPT_NAME='construct'
 SCRIPT_PATH="$0"
 BASE_URL=$MATRIX_ADMIN_URL
@@ -441,7 +444,7 @@ function upload {
       lifetime_counter=0
     fi
     lifetime_counter=$(( lifetime_counter + seconds_diff ))
-    sed -i '' -E "s/^(lifetime_seconds_saved: ).*/\1$lifetime_counter/" "$config_path"
+    $GNUSED -i -E "s/^(lifetime_seconds_saved: ).*/\1$lifetime_counter/" "$config_path"
 
   fi
 }
@@ -486,24 +489,32 @@ function install-deps {
       echo 'This script requires Homebrew. Install via https://brew.sh and come back.'
       exit 1
     else
-      cmd='brew install shyaml entr coreutils'
+      cmd='brew install shyaml entr coreutils gnu-sed'
       echo "We are about to run this: "
       echo "    $cmd"
       read -p "Are you sure? [Y/n] " -r
       if [ -z "$REPLY" ] || [[ $REPLY =~ ^[Yy]$ ]]; then
-        $cmd
+        eval "$cmd"
       fi
     fi
+  elif [ $_IS_DEBIAN ]; then
+      cmd='sudo apt-get install entr coreutils python-pip && sudo pip install shyaml'
+      echo "We are about to run this: "
+      echo "    $cmd"
+      read -p "Are you sure? [Y/n] " -r
+      if [ -z "$REPLY" ] || [[ $REPLY =~ ^[Yy]$ ]]; then
+        eval "$cmd"
+      fi
   else
     # shellcheck disable=SC2016
-    echo 'You need to install `shyaml`, `entr` and `coreutils` (realpath) using your package manager.'
+    echo 'You need to install `shyaml`, `entr` and `coreutils` (realpath) using your package manager or other tools.'
   fi
 }
 
 # Create config/storage file
 if ! [ -f "$config_path" ]; then
   echo "# vim: ft=yaml
-time_saved: 0
+lifetime_seconds_saved: 0
 " > "$config_path"
 fi
 
