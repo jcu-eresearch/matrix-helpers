@@ -20,16 +20,17 @@
   print('<!-- picturePosition(' + columnLayout.picturePosition + ')  pictureColumns(' + columnLayout.pictureColumns + ') textColumns(' + columnLayout.textColumns + ') -->')
   print('<!-- nested... (%nested_get_content_container^as_asset:asset_metadata_template.picture.position%) -->')
   print('<!-- nested... ( %nested_get_content_container^as_asset:asset_metadata_template.picture.size%) -->')
+  
   //  get details about the current card / asset
   var card = {
-    id : '%asset_assetid%',
-    name : '%asset_name%',
-    position : '%asset_position%',
-    imageTitle : '%asset_thumbnail_title%',
-    imageAlt : '%asset_thumbnail_alt%',
-    imageUrl : '%asset_thumbnail_v_newsdetails_url^empty:{asset_thumbnail_url}%',
-    overrideUrl : '%asset_metadata_jcu.summarycard.override.url%',
-    url : '%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}%'
+    id : "%asset_assetid%",
+    name : "%asset_name^escapequotes%",
+    position : "%asset_position%",
+    imageTitle : "%asset_thumbnail_title^escapequotes%",
+    imageAlt : "%asset_thumbnail_alt^escapequotes%",
+    imageUrl : "%asset_thumbnail_v_newsdetails_url^empty:{asset_thumbnail_url}^escapequotes%",
+    overrideUrl : "%asset_metadata_jcu.summarycard.override.url^escapequotes%",
+    url : "%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^escapequotes%"
   }
   
   function linkedImageHtml(linkWrapper) {
