@@ -20,16 +20,17 @@
   print('<!-- picturePosition(' + columnLayout.picturePosition + ')  pictureColumns(' + columnLayout.pictureColumns + ') textColumns(' + columnLayout.textColumns + ') -->')
   print('<!-- nested... (%nested_get_content_container^as_asset:asset_metadata_template.picture.position%) -->')
   print('<!-- nested... ( %nested_get_content_container^as_asset:asset_metadata_template.picture.size%) -->')
+  
   //  get details about the current card / asset
   var card = {
-    id : '%asset_assetid%',
-    name : '%asset_name%',
-    position : '%asset_position%',
-    imageTitle : '%asset_thumbnail_title%',
-    imageAlt : '%asset_thumbnail_alt%',
-    imageUrl : '%asset_thumbnail_v_newsdetails_url^empty:{asset_thumbnail_url}%',
-    overrideUrl : '%asset_metadata_jcu.summarycard.override.url%',
-    url : '%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}%'
+    id : "%asset_assetid%",
+    name : "%asset_name^escapequotes%",
+    position : "%asset_position%",
+    imageTitle : "%asset_thumbnail_title^escapequotes%",
+    imageAlt : "%asset_thumbnail_alt^escapequotes%",
+    imageUrl : "%asset_thumbnail_v_newsdetails_url^empty:{asset_thumbnail_url}^escapequotes%",
+    overrideUrl : "%asset_metadata_jcu.summarycard.override.url^escapequotes%",
+    url : "%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^escapequotes%"
   }
   
   function linkedImageHtml(linkWrapper) {
@@ -96,6 +97,7 @@
     print(linkedImageHtml())
     print('<div class="card-block">')
     print('<h4 class="card-title">' + card.name + '</h4>')
+    print('<h5 class="card-title text-muted"><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
     print('<p class="card-text">' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id) + '</p>')
 
     print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose())
@@ -123,15 +125,20 @@
     // if the text column width is smaller then drop the byline to the line below the name
     var spacer = '&nbsp;&nbsp;'
     if (columnLayout.textColumns < 9)
-      spacer = '<br/>'
+      spacer = '</h4><h4>'
 
-    print('<h5>' + card.name + spacer + '<small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
+    print('<h4>' + card.name + '</h4><h5>' + '<small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
     JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id, { prepend : "<p>", append : "</p>"})
 
     print(linkTagOpen("btn-link") + layout.buttonText + linkTagClose())
     print('</div></div>');  // close text column, close row
   }   // drawColumnCard
   
+  if (JCU.debug) {
+	print('<!-- About to render ' + layout.cardLayout + ' for Summary Cards -->')
+	print('<!-- card.id(' + card.id + ') card.name(' + card.name + ') card.position(' + card.position + ') -->')
+  }
+	
   if (layout.cardLayout == "mosaicGrid") {
     drawGridCard(false)
   } else if (layout.cardLayout == "column") {

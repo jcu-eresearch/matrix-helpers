@@ -1,4 +1,8 @@
-<!--@@ <div class="alert alert-warning">Card layout '%nested_get_content_container^as_asset:asset_metadata_template.card.layout%'</div> @@-->
+<script runat="server">
+	if (JCU.debug) {
+		print('<!-- About to call asset listing for Summary Card layout %nested_get_content_container^as_asset:asset_metadata_template.card.layout% -->')
+	}
+</script>
 %begin_nested_get_content_container^as_asset:asset_metadata_template.card.layout^eq:mosaicGrid%
 <!--@@   Mosaic Grid layout   @@-->
   <div class="card-columns image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape% p-t-1">
