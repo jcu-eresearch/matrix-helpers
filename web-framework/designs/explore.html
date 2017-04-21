@@ -410,6 +410,8 @@
     <MySource_AREA id_name="header" design_area="nest_content" />
 
     <main id="main" role="main" aria-labelledby="page-title">
+      <!--@@ Inlined SSJS to ensure global keywords are replaced in this context.
+      If we were to use src="./?a=12345", then the keywords would not be replaced. @@-->
       <script runat="server" id="breadcrumbs">%globals_asset_file_contents:389917%</script>
       <MySource_AREA id_name="portlets_left" design_area="nest_content" />
       <MySource_AREA id_name="content" design_area="body" />
