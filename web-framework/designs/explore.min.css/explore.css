@@ -524,23 +524,39 @@ body {
 
 /* Summary Cards content container template */
 .thumbnail-flair .thumbnail-wrapper {
-  -webkit-filter: drop-shadow(4px 4px lightgrey);
-          filter: drop-shadow(4px 4px lightgrey);
+	border: 1px solid white; /* set off the coloured drop shadow */
+	box-shadow: 0 0 0 5px rgba(0,102,204, 0.6); /* dropshadow with no blur, that's 5px bigger than the thing itself */
+	overflow : hidden;
 }
+
 .thumbnail-text {
   padding : 0 4px;
   margin-bottom: 1em;
+  text-align : center;
   line-height: 5em;
   min-height: 5em;
   background-image : linear-gradient(to top, rgba(200,200,200, 0.2), rgba(200,200,200, 0) 2em);
   border-bottom : 1px solid rgb(200,200,200);
 }
 
-.thumbnail-text p {
-  line-height: 1.3;
+.thumbnail-text-wrapper {
+  line-height: 1.2;
   display: inline-block;
   margin: 0;
   vertical-align: middle;
+}
+
+.thumbnail-text .thumbnail-flair-text {
+	color: rgba(0,102,204, 0.6); /* same colour as the dropshadow outline */
+	text-transform : uppercase;
+	font-size : 90%;
+	font-weight : 900;
+	line-height : 1.0;
+	margin : 6px 0 0.5em; /* top margin so as to not touch the flair border */
+}
+
+.thumbnail-text p {
+  margin-bottom : 0;
 }
 
 .image-shape-natural .thumbnail-wrapper {
@@ -553,5 +569,7 @@ body {
 .image-shape-circle .thumbnail-wrapper {
   height : 0;
   padding-bottom: 100%;
+  border-radius: 50%;
   background-image : radial-gradient(closest-side, transparent, transparent 40%, rgba(200,200,200, 0.4) 40%, rgba(200,200,200, 0.1) 70%, rgba(200,200,200, 0) 70%);
+  overflow : hidden;
 }

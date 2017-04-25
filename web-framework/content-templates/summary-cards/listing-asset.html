@@ -3,8 +3,8 @@
 
   // get the summary card list settings
   var layout = {
-  	 imageShape : "%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape^replace:circle:img-circle^replace:natural: %",
-  	 imageShapeClass : "image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape%",
+//  	 imageShape : "%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape^replace:circle:img-circle^replace:natural: %",
+//  	 imageShapeClass : "image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape%",
   	 flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair%",
   	 cardLayout : "%nested_get_content_container^as_asset:asset_metadata_template.card.layout%",
   	 buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text%",
@@ -40,7 +40,7 @@
 
     if (card.imageUrl) {
       imageHtml = linkWrapper.prepend + linkTagOpen() +
-        '<img class="img-fluid ' + layout.imageShape + '" src="' + card.imageUrl + '" alt="' + card.imageAlt + '" title="' + card.imageTitle + '"/>' +
+        '<img class="img-fluid ' + '" src="' + card.imageUrl + '" alt="' + card.imageAlt + '" title="' + card.imageTitle + '"/>' +
         linkTagClose() + linkWrapper.append
     }
 
@@ -70,10 +70,11 @@
 
     const imageWrapper = { prepend : '<div class="thumbnail-wrapper">', append : '</div>'}
     const addFlair = card.position == 1 && layout.flairText
+	//const addFlair = true // debug - please remove me
     
     print('<div class="col-xs-4 col-sm-3 col-lg-2 ' + (addFlair ? ' thumbnail-flair ' : '') + '">')
     print(linkedImageHtml(imageWrapper))
-    print('<div class="small thumbnail-text"><p>' + (addFlair ? '<strong>' + layout.flairText + '</strong>' : '') + '<br/>' + card.name + '</p></div>')
+    print('<div class="small thumbnail-text"><div class="thumbnail-text-wrapper">' + (addFlair ? '<p class="thumbnail-flair-text">' + layout.flairText + '</p>' : '') + '<p>' + card.name + '</p></div></div>')
     print('</div>')
 
     if (card.position % 3 == 0) {
