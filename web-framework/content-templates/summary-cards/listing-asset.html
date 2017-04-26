@@ -110,25 +110,30 @@
 
   function drawColumnCard() {
     //  Summary cards are displayed as a single column. Images are optional.
-    print('<div class="row m-b-3">');
+    const addFlair = card.position == 1 && layout.flairText 
+	print('<div class="row m-b-3' + (addFlair ? ' summarycard-flair' : '') + '">');
 
     // image section
     var imagePosition = (columnLayout.picturePosition == 'left' ? '' : ' col-sm-push-' + columnLayout.textColumns)
-    var imageOptions = { prepend : '<div class="col-sm-' + columnLayout.pictureColumns + imagePosition + '">', append : '</div>'}
+    var imageOptions = { prepend : '<div class="col-sm-' + columnLayout.pictureColumns + imagePosition + '"><div class="thumbnail-wrapper">', append : '</div></div>'}
     print(linkedImageHtml(imageOptions))
 
     // text section
     var columnWidth = (card.imageUrl ? columnLayout.textColumns : '12')
     var textPosition = (card.imageUrl && columnLayout.picturePosition == 'right' ? ' col-sm-pull-' + columnLayout.pictureColumns : '')
 
-    print('<div class="col-sm-' + columnWidth + textPosition + '">')
+    print('<div class="summarycard-text col-sm-' + columnWidth + textPosition + '">')
 
     // if the text column width is smaller then drop the byline to the line below the name
     var spacer = '&nbsp;&nbsp;'
     if (columnLayout.textColumns < 9)
       spacer = '</h4><h4>'
 
-    print('<h4>' + card.name + '</h4><h5>' + '<small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
+    print('<h4>' + card.name + '</h4>')
+	if (addFlair) {
+		print('<h5 class="summarycard-flair-text">' + layout.flairText + '</h5>') 
+	}
+	print('<h5><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
     JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id, { prepend : "<p>", append : "</p>"})
 
     print(linkTagOpen("btn-link") + layout.buttonText + linkTagClose())

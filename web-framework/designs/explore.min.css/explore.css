@@ -560,16 +560,38 @@ body {
 }
 
 .image-shape-natural .thumbnail-wrapper {
-  height : 0;
-  padding-bottom: 100%;
-  border-bottom : 1px solid rgb(200,200,200);
   background-image : linear-gradient(to bottom, rgba(200,200,200, 0.2), rgba(200,200,200, 0) 2em);
 }
 
 .image-shape-circle .thumbnail-wrapper {
-  height : 0;
-  padding-bottom: 100%;
   border-radius: 50%;
   background-image : radial-gradient(closest-side, transparent, transparent 40%, rgba(200,200,200, 0.4) 40%, rgba(200,200,200, 0.1) 70%, rgba(200,200,200, 0) 70%);
   overflow : hidden;
 }
+
+.image-shape-circle .summarycard-text {
+	padding-top : 0.1em;
+}
+
+.summarycard-flair-text {
+	background-color : rgba(0,102,204, 0.6); /* same colour as the dropshadow outline */
+	color : white;
+	text-transform : uppercase;
+	font-size : 90%;
+	font-weight : 900;
+	line-height : 1.0;
+	padding : 0.1em 0.5em;
+	margin : 0;
+}
+
+.summarycard-text h5 {
+	margin-bottom : 1rem;
+	margin-top : -0.5rem;
+}
+
+.summarycard-flair {
+	background-color : rgba(0,102,204, 0.04);
+	padding-top : 0.65rem;
+	padding-bottom : 0.65rem;
+}
+
