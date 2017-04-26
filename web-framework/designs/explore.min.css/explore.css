@@ -522,8 +522,10 @@ body {
   opacity: 1;
 }
 
-/* Summary Cards content container template */
-.thumbnail-flair .thumbnail-wrapper {
+/*
+ * Summary Cards content container template 
+ */
+.thumbnail-flair .summarycard-image-wrapper {
 	border: 1px solid white; /* set off the coloured drop shadow */
 	box-shadow: 0 0 0 5px rgba(0,102,204, 0.6); /* dropshadow with no blur, that's 5px bigger than the thing itself */
 	overflow : hidden;
@@ -539,7 +541,7 @@ body {
   border-bottom : 1px solid rgb(200,200,200);
 }
 
-.thumbnail-text-wrapper {
+.summarycard-thumbnail-text-wrapper {
   line-height: 1.2;
   display: inline-block;
   margin: 0;
@@ -559,11 +561,11 @@ body {
   margin-bottom : 0;
 }
 
-.image-shape-natural .thumbnail-wrapper {
+.image-shape-natural .summarycard-image-wrapper {
   background-image : linear-gradient(to bottom, rgba(200,200,200, 0.2), rgba(200,200,200, 0) 2em);
 }
 
-.image-shape-circle .thumbnail-wrapper {
+.image-shape-circle .summarycard-image-wrapper {
   border-radius: 50%;
   background-image : radial-gradient(closest-side, transparent, transparent 40%, rgba(200,200,200, 0.4) 40%, rgba(200,200,200, 0.1) 70%, rgba(200,200,200, 0) 70%);
   overflow : hidden;
@@ -584,13 +586,16 @@ body {
 	margin : 0;
 }
 
-.summarycard-text h5 {
+.summarycard-layout-column .summarycard-text h5 {
 	margin-bottom : 1rem;
 	margin-top : -0.5rem;
 }
 
 .summarycard-flair {
 	background-color : rgba(0,102,204, 0.04);
+}
+
+.summarycard-layout-column .summarycard-flair {
 	padding-top : 0.65rem;
 	padding-bottom : 0.65rem;
 }

@@ -5,24 +5,24 @@
 </script>
 %begin_nested_get_content_container^as_asset:asset_metadata_template.card.layout^eq:mosaicGrid%
 <!--@@   Mosaic Grid layout   @@-->
-  <div class="card-columns image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape% p-t-1">
+  <div class="card-columns summarycard-layout-%nested_get_content_container^as_asset:asset_metadata_template.card.layout% image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape% p-t-1">
   %asset_listing%
   </div>
 %else_begin_nested_get_content_container^as_asset:asset_metadata_template.card.layout^eq:column%
 <!--@@   Column layout   @@-->
-  <div class="image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape% p-t-1">
+  <div class="summarycard-layout-%nested_get_content_container^as_asset:asset_metadata_template.card.layout% image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape% p-t-1">
   %asset_listing%
   </div>
 
 %else_begin_nested_get_content_container^as_asset:asset_metadata_template.card.layout^eq:thumbnails%
 <!--@@   Thumbnail Grid layout  @@-->
-  <div class="row image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape% p-t-1">
+  <div class="row summarycard-layout-%nested_get_content_container^as_asset:asset_metadata_template.card.layout% image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape% p-t-1">
   %asset_listing%
   </div>
 
 %else_begin_nested_get_content_container^as_asset:asset_metadata_template.card.layout^eq:grid%
 <!--@@   Grid layout   @@-->
-  <div class="card-deck-wrapper image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape% p-t-1">
+  <div class="card-deck-wrapper summarycard-layout-%nested_get_content_container^as_asset:asset_metadata_template.card.layout% image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape% p-t-1">
     <div class="card-deck">
       %asset_listing%
     </div>

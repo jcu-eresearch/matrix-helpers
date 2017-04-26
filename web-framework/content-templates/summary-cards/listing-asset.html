@@ -68,13 +68,12 @@
 
     //  The thumbnail grid assumes that there should always be an image.
 
-    const imageWrapper = { prepend : '<div class="thumbnail-wrapper">', append : '</div>'}
+    const imageWrapper = { prepend : '<div class="summarycard-image-wrapper">', append : '</div>'}
     const addFlair = card.position == 1 && layout.flairText
-	//const addFlair = true // debug - please remove me
     
     print('<div class="col-xs-4 col-sm-3 col-lg-2 ' + (addFlair ? ' thumbnail-flair ' : '') + '">')
     print(linkedImageHtml(imageWrapper))
-    print('<div class="small thumbnail-text"><div class="thumbnail-text-wrapper">' + (addFlair ? '<p class="thumbnail-flair-text">' + layout.flairText + '</p>' : '') + '<p>' + card.name + '</p></div></div>')
+    print('<div class="small thumbnail-text"><div class="summarycard-thumbnail-text-wrapper">' + (addFlair ? '<p class="thumbnail-flair-text">' + layout.flairText + '</p>' : '') + '<p>' + card.name + '</p></div></div>')
     print('</div>')
 
     if (card.position % 3 == 0) {
@@ -94,10 +93,22 @@
     //  Uses the bootstrap Card tags to layout the assets summary cards
     //  These cards look good with or without an image
 
-    print('<div class="card card-outline-secondary">')
+    const addFlair = card.position == 1 && layout.flairText 
+
+	if (addFlair)
+		print('<div class="card card-outline-info summarycard-flair">')
+	else
+		print('<div class="card card-outline-secondary">')
+		
     print(linkedImageHtml())
+
+	if (addFlair)
+		print('<div class="card-header card-info">' + layout.flairText + '</div>')
+		
+
     print('<div class="card-block">')
     print('<h4 class="card-title">' + card.name + '</h4>')
+
     print('<h5 class="card-title text-muted"><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
     print('<p class="card-text">' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id) + '</p>')
 
@@ -114,8 +125,9 @@
 	print('<div class="row m-b-3' + (addFlair ? ' summarycard-flair' : '') + '">');
 
     // image section
+    // image section
     var imagePosition = (columnLayout.picturePosition == 'left' ? '' : ' col-sm-push-' + columnLayout.textColumns)
-    var imageOptions = { prepend : '<div class="col-sm-' + columnLayout.pictureColumns + imagePosition + '"><div class="thumbnail-wrapper">', append : '</div></div>'}
+    var imageOptions = { prepend : '<div class="col-sm-' + columnLayout.pictureColumns + imagePosition + '"><div class="summarycard-image-wrapper">', append : '</div></div>'}
     print(linkedImageHtml(imageOptions))
 
     // text section
