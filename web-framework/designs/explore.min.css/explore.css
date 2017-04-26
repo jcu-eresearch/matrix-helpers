@@ -600,3 +600,11 @@ body {
 	padding-bottom : 0.65rem;
 }
 
+.summarycard-flair .card-header {
+	background-color : rgba(0,102,204, 0.6);
+	text-transform : uppercase;
+	font-size : 90%;
+	font-weight : 700;
+	line-height : 1.0;
+}
+
