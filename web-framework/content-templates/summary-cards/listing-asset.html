@@ -3,8 +3,6 @@
 
   // get the summary card list settings
   var layout = {
-//  	 imageShape : "%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape^replace:circle:img-circle^replace:natural: %",
-//  	 imageShapeClass : "image-shape-%nested_get_content_container^as_asset:asset_metadata_template.card.image.shape%",
   	 flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair%",
   	 cardLayout : "%nested_get_content_container^as_asset:asset_metadata_template.card.layout%",
   	 buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text%",
@@ -30,22 +28,23 @@
     imageAlt : "%asset_thumbnail_alt^escapequotes%",
     imageUrl : "%asset_thumbnail_v_newsdetails_url^empty:{asset_thumbnail_url}^escapequotes%",
     overrideUrl : "%asset_metadata_jcu.summarycard.override.url^escapequotes%",
-    url : "%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^escapequotes%"
+    url : "%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^escapequotes%",
+	disableLink : ("%asset_metadata_jcu.summarycard.disable.link%" == "yes" ? true : false)
   }
   
-  function linkedImageHtml(linkWrapper) {
+  function imageHtml(linkWrapper) {
     linkWrapper = linkWrapper || { prepend : '', append : '' }
 
     var imageHtml = ''
 
     if (card.imageUrl) {
-      imageHtml = linkWrapper.prepend + linkTagOpen() +
+      imageHtml = linkWrapper.prepend + (card.disableLink ? '' : linkTagOpen()) +
         '<img class="img-fluid ' + '" src="' + card.imageUrl + '" alt="' + card.imageAlt + '" title="' + card.imageTitle + '"/>' +
-        linkTagClose() + linkWrapper.append
+        (card.disableLink ? '' : linkTagClose()) + linkWrapper.append
     }
 
     return imageHtml
-  }   // linkedImageHtml
+  }   // imageHtml
 
   function linkTagOpen(linkClasses) {
     // if there is an override.url set then use that, otherwise get the url for the original asset
@@ -72,7 +71,7 @@
     const addFlair = card.position == 1 && layout.flairText
     
     print('<div class="col-xs-4 col-sm-3 col-lg-2 ' + (addFlair ? ' thumbnail-flair ' : '') + '">')
-    print(linkedImageHtml(imageWrapper))
+    print(imageHtml(imageWrapper))
     print('<div class="small thumbnail-text"><div class="summarycard-thumbnail-text-wrapper">' + (addFlair ? '<p class="thumbnail-flair-text">' + layout.flairText + '</p>' : '') + '<p>' + card.name + '</p></div></div>')
     print('</div>')
 
@@ -100,7 +99,7 @@
 	else
 		print('<div class="card card-outline-secondary">')
 		
-    print(linkedImageHtml())
+    print(imageHtml())
 
 	if (addFlair)
 		print('<div class="card-header card-info">' + layout.flairText + '</div>')
@@ -112,7 +111,9 @@
     print('<h5 class="card-title text-muted"><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
     print('<p class="card-text">' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id) + '</p>')
 
-    print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose())
+	if (!card.disableLink)
+		print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose())
+		
     print('</div></div>')
     
     if (isFixedGrid && (card.position % layout.gridCardsPerRow == 0))
@@ -128,7 +129,7 @@
     // image section
     var imagePosition = (columnLayout.picturePosition == 'left' ? '' : ' col-sm-push-' + columnLayout.textColumns)
     var imageOptions = { prepend : '<div class="col-sm-' + columnLayout.pictureColumns + imagePosition + '"><div class="summarycard-image-wrapper">', append : '</div></div>'}
-    print(linkedImageHtml(imageOptions))
+    print(imageHtml(imageOptions))
 
     // text section
     var columnWidth = (card.imageUrl ? columnLayout.textColumns : '12')
@@ -148,8 +149,10 @@
 	print('<h5><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
     JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id, { prepend : "<p>", append : "</p>"})
 
-    print(linkTagOpen("btn-link") + layout.buttonText + linkTagClose())
-    print('</div></div>');  // close text column, close row
+	if (!card.disableLink)
+		print(linkTagOpen("btn-link") + layout.buttonText + linkTagClose())
+	
+	print('</div></div>');  // close text column, close row
   }   // drawColumnCard
   
   if (JCU.debug) {
