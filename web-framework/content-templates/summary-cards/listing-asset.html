@@ -22,7 +22,7 @@
   //  get details about the current card / asset
   var card = {
     id : "%asset_assetid%",
-    name : "%asset_name^escapequotes%",
+    name : "%asset_attribute_title^empty:{asset_name}^escapequotes%",
     position : "%asset_position%",
     imageTitle : "%asset_thumbnail_title^escapequotes%",
     imageAlt : "%asset_thumbnail_alt^escapequotes%",
