@@ -421,7 +421,9 @@
     <!--@@ Optional Site co-branding @@-->
     <script runat="server">
       var cobrandingFooterAssets = JSON.parse('%globals_site_metadata_jcu.site.cobranding%' || '[]')
-      if (cobrandingFooterAssets) {
+      // 404 Pages don't run SSJS so remove first half of test on fixing
+      // https://github.com/jcu-eresearch/matrix-helpers/issues/74
+      if (!JCU.data.is_404 && cobrandingFooterAssets) {
         cobrandingFooterAssets.forEach(function(assetId) {
           print('\
           <div class="content-block">\
