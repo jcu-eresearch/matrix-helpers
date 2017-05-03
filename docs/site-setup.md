@@ -76,10 +76,14 @@ before each action and release locks afterwards.</div>
       so we try and detect if these aren't available and alert the user on the
       frontend.  If these aren't present on the `Site`, you must add them;
       refer to an existing site to check best-practice setup.
+      
+   1. Confirm `Asset Settings` > `Cascade` is **checked**. This is **critically**
+      important to ensure content is configured correctly.
 
-   1. Change `JCU Web Framework Site Settings` > `Cascade` to being unchecked.
-
-   1. Leave `Asset Settings` > `Cascade` as being checked.
+   1. Change `JCU Web Framework Site Settings` > `Cascade` to being **unchecked**. This
+      is **critically** important to ensure the correct metadata schemas are applied
+      to all future content in this site.  If you miss this point, you'll have to
+      manually fix this later.
 
    1. Click `Commit`.
 
