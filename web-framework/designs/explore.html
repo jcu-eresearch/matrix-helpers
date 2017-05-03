@@ -419,11 +419,18 @@
     </main>
 
     <!--@@ Optional Site co-branding @@-->
-    %begin_globals_site_metadata_jcu.site.cobranding%
-    <div class="content-block">
-      %globals_site_metadata_jcu.site.cobranding^as_asset:asset_contents%
-    </div>
-    %end_globals%
+    <script runat="server">
+      var cobrandingFooterAssets = JSON.parse('%globals_site_metadata_jcu.site.cobranding%' || '[]')
+      if (cobrandingFooterAssets) {
+        cobrandingFooterAssets.forEach(function(assetId) {
+          print('\
+          <div class="content-block">\
+          %globals_asset_contents:' + assetId + '%\
+          </div>\
+          ')
+        })
+      }
+    </script>
 
     <MySource_AREA id_name="footer" design_area="nest_content" />
 
