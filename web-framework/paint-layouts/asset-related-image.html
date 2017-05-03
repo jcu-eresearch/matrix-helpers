@@ -6,7 +6,7 @@ E.g:
 ..adds the `link-gallery` class to the `a` tag, and `img-fluid` to the `img` tag.
 @@-->
 <script runat="server">
-  var name = '%asset_name^escapequotes%'
+  var name = '%asset_attribute_title^escapequotes%' || '%asset_name^escapequotes%'
   var url = '%asset_url^escapequotes%'
   var asset_type = '%asset_type_code%'
   var file_type = '%asset_file_type%'
