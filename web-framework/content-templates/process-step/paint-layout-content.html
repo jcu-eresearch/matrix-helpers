@@ -41,7 +41,7 @@
         <script runat="server">
           var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%")
           pictures.forEach(function(id) {
-            print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
+            print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid center-block% ')
           })
         </script>
       </div>

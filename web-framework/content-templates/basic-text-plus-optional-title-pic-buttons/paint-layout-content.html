@@ -51,7 +51,7 @@
             pictures.forEach(function(id) {
               if (typeof id === 'number') {
                 // Standard asset (number)
-                print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid% ')
+                print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid center-block% ')
               } else {
                 // Shadow asset, like '12345:v2' (string)
                 print('<img class="img-fluid" src="./?a=' + id + '">')
