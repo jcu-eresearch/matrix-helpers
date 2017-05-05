@@ -18,19 +18,26 @@ GNUSED=sed
 [[ $OSTYPE == "darwin"*  ]] && _IS_MAC=yes && GNUSED=gsed
 [ -f /etc/debian_version ] && _IS_DEBIAN=yes
 
-SCRIPT_NAME='construct'
 SCRIPT_PATH="$0"
-BASE_URL=$MATRIX_ADMIN_URL
-[ -z "$BASE_URL" ] && BASE_URL="https://www.jcu.edu.au/_admin"
+BASE_URL=$MATRIX_BASE_URL
+[ -z "$BASE_URL" ] && BASE_URL="https://www.jcu.edu.au"
+LOGIN_URL=$MATRIX_LOGIN_URL
+[ -z "$LOGIN_URL" ] && LOGIN_URL="$BASE_URL/_web/_login"
+BACKEND_SUFFIX=$MATRIX_BACKEND_SUFFIX
+[ -z "$BACKEND_SUFFIX" ] && BACKEND_SUFFIX="_admin"
+authsession_url="$BASE_URL/__lib/edge/authsession.php"
+
 debug=false
 show_help=false
 config_path="$HOME/.construct"
-subcommand_args=()
-
+cookie_jar_path="$HOME/.construct-cookie-jar"
+csrf_path="$HOME/.construct-csrf"
+SCRIPT_NAME='construct'
 _METADATA_ASSET_ID_ATTRIBUTE='asset_id'     # The key in the .yml for the asset ID
 _METADATA_TYPE_ATTRIBUTE='type'             # The key in the .yml for the upload type
 _METADATA_TYPE_DEFAULT='content'            # What we default to if the .yml file doesn't have a `type`
 
+subcommand_args=()
 
 # Global functions
 function echo_error {
@@ -132,7 +139,7 @@ function handle_hipo {
         --silent \
         --output "$tmpfile" \
         --write-out "%{http_code}" \
-        --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION")
+        --cookie "$cookie_jar_path")
 
       if [ "$response_code" -eq 200 ]; then
         # Display progress percentage from HIPO
@@ -157,8 +164,43 @@ function handle_hipo {
       --silent \
       --output "$tmpfile" \
       --write-out "%{http_code}" \
-      --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION")
+      --cookie "$cookie_jar_path")
   fi
+}
+
+function _logout {
+  echo_warning "Logging out of current session..."
+
+  # Create temporary file for HTTP request data storage
+  tmpfile=$(mktemp --tmpdir XXXXXXXXXXX.html)
+
+  # Make a request to the logout URL, this /always/ responds with 302
+  # It also doesn't even delete the cookie...
+  curl "$BASE_URL/?SQ_ACTION=logout" \
+    --silent \
+    --cookie "$cookie_jar_path"
+
+  # Test whether the user is logged out
+  response_code=$(curl "$authsession_url" \
+    --silent \
+    --output "$tmpfile" \
+    --write-out "%{http_code}" \
+    --cookie "$cookie_jar_path")
+  is_public_user=$(grep -c '"user_is_public":"1"' "$tmpfile")
+
+  if ! [ "$response_code" -eq 200 ] || [ "$is_public_user" -eq 0 ]; then
+    echo_error "Logout failed during authsession validation ($response_code)."
+    if [ "$debug" = true ]; then
+      echo_error_reason "  Refer to request cookies in $cookie_jar_path."
+    fi
+    exit 1
+  fi
+
+  rm -f "$cookie_jar_path"
+  rm -f "$csrf_path"
+  cleanup "$tmpfile"
+
+  echo_success "Logout successful. Cookies cleared and session removed."
 }
 
 function help {
@@ -168,11 +210,161 @@ function help {
   echo "  $SCRIPT_NAME upload [FILE_PATH...]"
   echo "  $SCRIPT_NAME watch [FILE_PATH...]"
   echo "  $SCRIPT_NAME install-deps"
+  echo "  $SCRIPT_NAME login"
+  echo "  $SCRIPT_NAME logout"
   echo "  $SCRIPT_NAME help"
   echo
   echo "This is the Construct. It is our loading program. We can load"
   echo "anything from CSS, to HTML, JavaScript, immages, anything we"
   echo "need.   ~ Morpheus (v2)"
+  echo
+  echo "This script can be used with any Matrix instance. By default, we are "
+  echo "set to JCU.  To customise URL endpoints, set the following "
+  echo "environment variables:"
+  echo
+  echo "    export MATRIX_BASE_URL=https://example.org"
+  echo "    export MATRIX_LOGIN_URL=https://example.org/_login"
+  echo "    export MATRIX_BACKEND_SUFFIX=_custom_backend"
+  echo
+  echo "MATRIX_BACKEND_SUFFIX only needs to be set if you use something other"
+  # shellcheck disable=SC2016
+  echo 'than `_admin`.'
+  echo
+  echo "For convenience, you could create (and source) a .env file and use "
+  echo "autoenv or similar to automatically load on cd'ing into a directory."
+}
+
+function login {
+  parse_subcommand_args "$@"
+
+  if [ "$show_help" = true ]; then
+    echo_bold "$SCRIPT_NAME login [--debug]"
+    echo "    Login to Matrix for use with this script."
+    echo
+    echo "    This login process will only work with local Matrix users, not"
+    echo "    any form of SSO or CAS authentication.  If working with system"
+    echo "    with SSO, you will need to set a 'local' password for your user"
+    echo "    in Matrix in the Admin interface."
+    echo
+    echo "    If you wish, you can set environment variables SQ_USER and"
+    echo "    SQ_PASSWORD and these will be loaded automatically rather than"
+    echo "    being prompted each time."
+    exit 0
+  fi
+
+  # Load username and password either from env variables or input
+  user=$SQ_USER
+  if [ -z "$user" ]; then
+    echo -n "Enter your username: "
+    read -r user
+  fi
+
+  password=$SQ_PASSWORD
+  if [ -z "$password" ]; then
+    echo -n "Enter your password (won't be stored): "
+    read -r -s password
+    echo
+  fi
+
+  # Log out of any current session
+  if [ -f "$cookie_jar_path" ]; then
+    _logout "$@"
+  fi
+
+  # Create temporary file for HTTP request data storage
+  tmpfile=$(mktemp --tmpdir XXXXXXXXXXX.html)
+
+  response_code=$(curl "$LOGIN_URL" \
+    --silent \
+    --output "$tmpfile" \
+    --write-out "%{http_code}" \
+    --cookie-jar "$cookie_jar_path")
+
+  if ! [ "$response_code" -eq 403 ]; then
+    echo "Received an incorrect $response_code HTTP response when accessing $LOGIN_URL. Check the URL and try again."
+    exit 1
+  fi
+
+  login_key=$(grep SQ_LOGIN_KEY "$tmpfile" | grep -E -o 'value=".+"' | cut -d \" -f 2)
+
+  # Perform login and save SQ_SYSTEM_SESSION cookie
+  echo_warning "Logging into Matrix as $user..."
+  matrix_url="$LOGIN_URL?SQ_ACTION=login"
+  response_code=$(curl "$matrix_url" \
+    --silent \
+    --output "$tmpfile" \
+    --write-out "%{http_code}" \
+    --cookie "$cookie_jar_path" \
+    --cookie-jar "$cookie_jar_path" \
+    --form "SQ_LOGIN_KEY=$login_key" \
+    --form "SQ_LOGIN_USERNAME=$user" \
+    --form "SQ_LOGIN_PASSWORD=$password")
+
+  if ! [ "$response_code" -eq 302 ]; then
+    echo_error "Login failed ($response_code); check your username and password."
+    if [ "$debug" = true ]; then
+       echo_error_reason " Response cookies can be inspected at $cookie_jar_path."
+    fi
+    cleanup "$tmpfile"
+    exit 1
+  fi
+
+  response_code=$(curl "$authsession_url" \
+    --silent \
+    --output "$tmpfile" \
+    --write-out "%{http_code}" \
+    --cookie "$cookie_jar_path")
+  is_public_user=$(grep -c '"user_is_public":"1"' "$tmpfile")
+
+  if ! [ "$response_code" -eq 200 ] || [ "$is_public_user" -eq 1 ]; then
+    echo_error "Login failed during authsession validation ($response_code)."
+    if [ "$debug" = true ]; then
+       echo_error_reason " Response cookies can be inspected at $cookie_jar_path."
+    fi
+    cleanup "$tmpfile"
+    exit 1
+  fi
+
+  # Save CSRF token for later use
+  response_code=$(curl "$BASE_URL/?SQ_ACTION=getToken" \
+    --silent \
+    --output "$csrf_path" \
+    --write-out "%{http_code}" \
+    --cookie "$cookie_jar_path")
+  csrf_token=$(cat "$csrf_path")
+
+  if ! [ "$response_code" -eq 200 ] || [ -z "$csrf_token" ]; then
+    echo_error "Retrieval of CSRF token failed ($response_code)."
+    if [ "$debug" = true ]; then
+       echo_error_reason " Response can be inspected at $csrf_path."
+    fi
+    cleanup "$tmpfile"
+    exit 1
+  fi
+
+  cleanup "$tmpfile"
+
+  echo_success "Saved login cookies to $cookie_jar_path and CSRF token to $csrf_path."
+  echo
+  echo "🙌  You can now proceed with uploading or watching files."
+}
+
+function logout {
+  parse_subcommand_args "$@"
+
+  if [ "$show_help" = true ]; then
+    echo_bold "$SCRIPT_NAME logout [--debug]"
+    echo "    Logout of Matrix and remove user credentials."
+    exit 0
+  fi
+
+  if [ -f "$cookie_jar_path" ]; then
+    _logout "$@"
+    echo
+    echo "👋  See ya next time."
+  else
+    echo_error "No cookie jar found at $cookie_jar_path. Logout not performed."
+  fi
 }
 
 function upload {
@@ -187,31 +379,23 @@ function upload {
     echo "    'content.html.yml' corresponds to a file named 'content.html'."
     echo
     echo "This script requires Backend User access.  It will not work for Simple Edit users."
-    echo "Create a .env file in your matrix-helpers/ folder with the contents like:"
-    echo
-    echo "    export SQ_SYSTEM_SESSION="
-    echo "    export SQ_CSRF_TOKEN="
-    echo "    export MATRIX_ADMIN_URL=https://example.org/_admin"
-    echo
-    echo "You need to login to Squiz and retrieve your SQ_SYSTEM_SESSION cookie via your browser"
-    echo "(we can't get it any other way) and get your SQ_CSRF_TOKEN via the URL:"
-    echo
-    echo '    https://www.jcu.edu.au/_admin/?SQ_ACTION=getToken'
     echo
     # shellcheck disable=SC2016
     echo 'For Page or any other assets with `Page Contents`, you must target the Bodycopy Div asset ID specifically.'
     # shellcheck disable=SC2016
     echo 'This reason for this is that we can only operate on one chunk at a time and `Page Contents` views operate'
     echo 'on multiple chunks simultaneously.'
-    echo
-    echo 'MATRIX_ADMIN_URL can be set to any Matrix instance. By default, we are set to JCU.'
     exit 0
   fi
 
-  if [ -z "$SQ_CSRF_TOKEN" ] || [ -z "$SQ_SYSTEM_SESSION" ]; then
-    echo "No security data found. Set \$SQ_CSRF_TOKEN and \$SQ_SYSTEM_SESSION. Exiting."
+  if ! [ -f "$cookie_jar_path" ] || ! [ -f "$csrf_path"  ]; then
+    # shellcheck disable=SC2016
+    echo 'No login credentials found. Run `construct login` first.'
     exit 1
   fi
+
+  # Load the CSRF token from the file
+  csrf_token=$(cat "$csrf_path")
 
   for file in "${subcommand_args[@]}"; do
 
@@ -267,7 +451,7 @@ function upload {
     fi
 
     # Backend administrator URL
-    matrix_url="$BASE_URL/?SQ_BACKEND_PAGE=main&backend_section=am&am_section=edit_asset&assetid=$asset_id&asset_ei_screen=$screen_type"
+    matrix_url="$BASE_URL/$BACKEND_SUFFIX/?SQ_BACKEND_PAGE=main&backend_section=am&am_section=edit_asset&assetid=$asset_id&asset_ei_screen=$screen_type"
 
     # Create temporary file for HTTP request data storage
     tmpfile=$(mktemp --tmpdir XXXXXXXXXXX.html)
@@ -277,8 +461,8 @@ function upload {
       --silent \
       --output "$tmpfile" \
       --write-out "%{http_code}" \
-      --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
-      --form "token=$SQ_CSRF_TOKEN" \
+      --cookie "$cookie_jar_path" \
+      --form "token=$csrf_token" \
       --form "process_form=1" \
       --form "am_form_submitted=1" \
       --form "backend_assetid=$asset_id" \
@@ -328,7 +512,7 @@ function upload {
         continue
       fi
     elif [ "$response_code" -eq 403 ]; then
-      echo_error_reason "Invalid login credentials. Check your environment variables or server URL. ($response_code)"
+      echo_error_reason "Invalid login credentials. Check your server URL or login again. ($response_code)"
     else
       echo_error "Lock acquisition failed for asset $asset_id. ($response_code)"
       cleanup "$tmpfile"
@@ -361,8 +545,8 @@ function upload {
       response_code=$(curl "$matrix_url" \
         --silent \
         --output "$tmpfile" \
-        --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
-        --form "token=$SQ_CSRF_TOKEN" \
+        --cookie "$cookie_jar_path" \
+        --form "token=$csrf_token" \
         --form "process_form=1" \
         --form "am_form_submitted=1" \
         --form "backend_assetid=$asset_id" \
@@ -376,8 +560,8 @@ function upload {
         --silent \
         --output "$tmpfile" \
         --write-out "%{http_code}" \
-        --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
-        --form "token=$SQ_CSRF_TOKEN" \
+        --cookie "$cookie_jar" \
+        --form "token=$csrf_token" \
         --form "process_form=1" \
         --form "am_form_submitted=1" \
         --form "backend_assetid=$asset_id" \
@@ -404,8 +588,8 @@ function upload {
     # Release locks
     curl "$matrix_url" \
       --silent \
-      --cookie "SQ_SYSTEM_SESSION=$SQ_SYSTEM_SESSION" \
-      --form "token=$SQ_CSRF_TOKEN" \
+      --cookie "$cookie_jar" \
+      --form "token=$csrf_token" \
       --form "process_form=1" \
       --form "am_form_submitted=1" \
       --form "backend_assetid=$asset_id" \
@@ -522,7 +706,7 @@ if [ $# -eq 0 ] || [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
   # Show help first
   help
   exit 0
-elif [[ $1 =~ ^(help|upload|watch|install-deps)$ ]]; then
+elif [[ $1 =~ ^(help|login|logout|upload|watch|install-deps)$ ]]; then
   # Run the corresponding sub-command (^^ function above)
   "$@"
 elif [ -f "$1" ]; then
