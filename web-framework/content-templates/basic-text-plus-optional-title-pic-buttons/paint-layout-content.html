@@ -30,7 +30,7 @@
       </script>
       %asset_contents_paint_420212%
 
-      <div class="row m-b-2">
+      <div class="row">
         %begin_asset_metadata_template.picture.picture%
         <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
         <div class="
@@ -54,7 +54,7 @@
                 print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid center-block% ')
               } else {
                 // Shadow asset, like '12345:v2' (string)
-                print('<img class="img-fluid" src="./?a=' + id + '">')
+                print('<img class="img-fluid center-block" src="./?a=' + id + '">')
               }
             })
           </script>
@@ -77,7 +77,7 @@
       <script runat="server">
         this.args = {
           wrapper: {
-            opening: '<div class="row hidden-print"><div class="col-xs-12">',
+            opening: '<div class="row m-t-2 hidden-print"><div class="col-xs-12">',
             closing: '</div></div>'
           }
         }
