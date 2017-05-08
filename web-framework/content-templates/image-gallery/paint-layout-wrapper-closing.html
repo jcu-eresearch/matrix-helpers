@@ -1,5 +1,23 @@
         <!--@@ Continues after listing content from nested content @@-->
       </div>
+
+      <!--@@ Contents paint layout @@-->
+      <script runat="server">
+        this.args = {
+          wrapper: {
+            opening: '<div class="m-b-2">',
+            closing: '</div>'
+          }
+        }
+      </script>
+      %begin_asset_metadata_template.gallery.content_position^eq:below%
+        %asset_contents_paint_420234%
+      %end_asset%
+      <script runat="server">
+        // Manually unset args in case of no call above
+        this.args = null
+      </script>
+
       <!--@@ Buttons paint layout @@-->
       <script runat="server">
         this.args = {wrapper: {opening: '<div class="row"><div class="col-xs-12">', closing: '</div></div>'}}
