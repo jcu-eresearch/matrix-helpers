@@ -560,7 +560,7 @@ function upload {
         --silent \
         --output "$tmpfile" \
         --write-out "%{http_code}" \
-        --cookie "$cookie_jar" \
+        --cookie "$cookie_jar_path" \
         --form "token=$csrf_token" \
         --form "process_form=1" \
         --form "am_form_submitted=1" \
@@ -588,7 +588,7 @@ function upload {
     # Release locks
     curl "$matrix_url" \
       --silent \
-      --cookie "$cookie_jar" \
+      --cookie "$cookie_jar_path" \
       --form "token=$csrf_token" \
       --form "process_form=1" \
       --form "am_form_submitted=1" \
