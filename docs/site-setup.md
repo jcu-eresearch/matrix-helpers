@@ -213,3 +213,9 @@ relink and reconfigure the following settings:
 Also remember that if you want to clone a `Site` **and** its contents, you'll
 have to clone in two stages: clone the `Site`, then clone its contents under
 the copy of the `Site`.
+
+Finally, there's also a bug with cloning content in Matrix.  What happens is
+if you clone **any** content underneath a JCU Web Framework site (or really
+anywhere in Matrix) with a non-cascading schema, that schema will get copied
+onto cloned assets.  See more info at
+<https://github.com/jcu-eresearch/matrix-helpers/issues/102>.
