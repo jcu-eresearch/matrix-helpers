@@ -30,7 +30,7 @@ Firstly, the information you'll need to know are:
 Sites **must** be created as a child of the `Australia` > `JCU Web Framework
 Sites` parent asset for the purposes of Content Container Template (CCT)
 segregation and metadata schema application.  This process may be adjusted in
-future if the rest of JCU's sites adopts our CCTs.
+future if the rest of JCU and its sites adopt our CCTs.
 
 You'll need permission to login to the Matrix Admin interface as a `Backend
 Editor` with suitable permission to create a Site asset.  The following steps
