@@ -237,6 +237,17 @@ a {
   }
 }
 
+@media (prefers-reduced-motion) {
+  .theme-landing .intro {
+    background-attachment: scroll;
+  }
+
+  .jcu-bg--cover[style] {
+    background-attachment: scroll !important;
+  }
+}
+
+
 .btn-circle {
   width: 5rem;
   height: 5rem;
