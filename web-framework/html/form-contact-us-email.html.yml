@@ -1,0 +1,5 @@
+to:
+  - "%globals_site_metadata_jcu.site.email%"
+from: "%response_367113_q2^underscore%"
+site_name: "[%globals_site_name%] Website Contact Received"
+file_attachments: True
