@@ -71,7 +71,7 @@ before each action and release locks afterwards.</div>
 1. **Configure Metadata Schemas**: right-click on your site and go to
    `Metadata Schemas` and do the following:
 
-   1. Confirm that `Asset Settings` and `JCU Web Framework Site Settings` are
+   1. Confirm that `Asset Settings`, `JCU Web Framework Site Settings` and `Summary Card` are
       present. These **must** be applied to every asset, the `Site` included,
       so we try and detect if these aren't available and alert the user on the
       frontend.  If these aren't present on the `Site`, you must add them;
@@ -84,6 +84,8 @@ before each action and release locks afterwards.</div>
       is **critically** important to ensure the correct metadata schemas are applied
       to all future content in this site.  If you miss this point, you'll have to
       manually fix this later.
+      
+   1. Confirm `Summary Card` > `Cascade` is **checked**. This is important to ensure content is configured correctly and the Summary Cards content container can be used within the site.
 
    1. Click `Commit`.
 
