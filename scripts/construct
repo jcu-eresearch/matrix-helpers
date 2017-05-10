@@ -15,7 +15,9 @@ start=$SECONDS
 counter=0
 
 GNUSED=sed
-[[ $OSTYPE == "darwin"*  ]] && _IS_MAC=yes && GNUSED=gsed
+GNUMKTEMP=mktemp
+
+[[ $OSTYPE == "darwin"*  ]] && _IS_MAC=yes && GNUSED=gsed && GNUMKTEMP=gmktemp
 [ -f /etc/debian_version ] && _IS_DEBIAN=yes
 
 SCRIPT_PATH="$0"
@@ -172,7 +174,7 @@ function _logout {
   echo_warning "Logging out of current session..."
 
   # Create temporary file for HTTP request data storage
-  tmpfile=$(mktemp --tmpdir XXXXXXXXXXX.html)
+  tmpfile=$($GNUMKTEMP --tmpdir XXXXXXXXXXX.html)
 
   # Make a request to the logout URL, this /always/ responds with 302
   # It also doesn't even delete the cookie...
@@ -273,7 +275,7 @@ function login {
   fi
 
   # Create temporary file for HTTP request data storage
-  tmpfile=$(mktemp --tmpdir XXXXXXXXXXX.html)
+  tmpfile=$($GNUMKTEMP --tmpdir XXXXXXXXXXX.html)
 
   response_code=$(curl "$LOGIN_URL" \
     --silent \
@@ -471,7 +473,7 @@ function upload {
     matrix_url="$BASE_URL/$BACKEND_SUFFIX/?SQ_BACKEND_PAGE=main&backend_section=am&am_section=edit_asset&assetid=$asset_id&asset_ei_screen=$screen_type"
 
     # Create temporary file for HTTP request data storage
-    tmpfile=$(mktemp --tmpdir XXXXXXXXXXX.html)
+    tmpfile=$($GNUMKTEMP --tmpdir XXXXXXXXXXX.html)
 
     # Acquire locks
     response_code=$(curl "$matrix_url" \
