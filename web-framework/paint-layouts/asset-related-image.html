@@ -6,11 +6,6 @@ E.g:
 ..adds the `link-gallery` class to the `a` tag, and `img-fluid` to the `img` tag.
 @@-->
 <script runat="server">
-  this.args = this.args || {}
-  this.args.link_target_attribute = this.args.link_target_attribute || ''
-  this.args.disable_link = this.args.disable_link || false
-  this.args.override_url = this.args.override_url || ''
-
   var name = '%asset_attribute_title^escapequotes%' || '%asset_name^escapequotes%'
   var url = '%asset_url^escapequotes%'
   var asset_type = '%asset_type_code%'
@@ -20,27 +15,14 @@ E.g:
   var thumbnail_url = '%asset_thumbnail_url^escapequotes%'
   var thumbnail_title = '%asset_thumbnail_title^escapequotes%'
   var thumbnail_alt = '%asset_thumbnail_alt^escapequotes%'
-  
-  if (this.args.override_url != '' )
-    url = this.args.override_url
-    
+
   if (asset_type === 'image' || asset_type === 'thumbnail' || file_type === 'svg') {
-    if (!this.args.disable_link)
-      print('<a class="#link_class#" href="' + url + '" data-mfp-caption="&lt;p class=\'h3\'&gt;' + name + '&lt;/p&gt; ' + caption + '">')
-      
+    print('<a class="#link_class#" href="' + url + '" data-mfp-caption="&lt;p class=\'h3\'&gt;' + name + '&lt;/p&gt; ' + caption + '">')
     print('  <img class="img-related #image_class#" src="' + url + '" alt="' + name + '">')
-    
-    if (!this.args.disable_link)
-      print('</a>')
+    print('</a>')
   } else if (thumbnail) {
-    if (!this.args.disable_link)
-      print('<a class="#link_class#" href="' + url + '" data-mfp-src="' + thumbnail_url + '" data-mfp-caption="' + name + '">')
-      
+    print('<a class="#link_class#" href="' + url + '" data-mfp-src="' + thumbnail_url + '" data-mfp-caption="' + name + '">')
     print('  <img class="img-related #image_class#" src="' + thumbnail_url + '" title="' + thumbnail_title + '" alt="' + thumbnail_alt + '">')
-    
-    if (!this.args.disable_link)
-      print('</a>')
+    print('</a>')
   }
-  
-  delete this.args
 </script>
