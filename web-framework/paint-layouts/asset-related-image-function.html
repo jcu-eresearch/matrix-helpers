@@ -6,10 +6,13 @@ E.g:
 ..adds the `link-gallery` class to the `a` tag, and `img-fluid` to the `img` tag.
 @@-->
 <script runat="server">
+function outputImageHTML(image_classes)
   this.args = this.args || {}
   this.args.link_target_attribute = this.args.link_target_attribute || ''
   this.args.disable_link = this.args.disable_link || false
   this.args.override_url = this.args.override_url || ''
+  
+  image_classes = image_classes || ''
 
   var name = '%asset_attribute_title^escapequotes%' || '%asset_name^escapequotes%'
   var url = '%asset_url^escapequotes%'
@@ -26,9 +29,9 @@ E.g:
     
   if (asset_type === 'image' || asset_type === 'thumbnail' || file_type === 'svg') {
     if (!this.args.disable_link)
-      print('<a class="#link_class#" href="' + url + '" data-mfp-caption="&lt;p class=\'h3\'&gt;' + name + '&lt;/p&gt; ' + caption + '">')
+      print('<a class="' + image_classes + '" href="' + url + '" data-mfp-caption="&lt;p class=\'h3\'&gt;' + name + '&lt;/p&gt; ' + caption + '">')
       
-    print('  <img class="img-related #image_class#" src="' + url + '" alt="' + name + '">')
+    print('  <img class="img-related ' + image_classes + '" src="' + url + '" alt="' + name + '">')
     
     if (!this.args.disable_link)
       print('</a>')
@@ -36,11 +39,12 @@ E.g:
     if (!this.args.disable_link)
       print('<a class="#link_class#" href="' + url + '" data-mfp-src="' + thumbnail_url + '" data-mfp-caption="' + name + '">')
       
-    print('  <img class="img-related #image_class#" src="' + thumbnail_url + '" title="' + thumbnail_title + '" alt="' + thumbnail_alt + '">')
+    print('  <img class="img-related ' + image_classes + '" src="' + thumbnail_url + '" title="' + thumbnail_title + '" alt="' + thumbnail_alt + '">')
     
     if (!this.args.disable_link)
       print('</a>')
   }
   
   delete this.args
+}
 </script>
