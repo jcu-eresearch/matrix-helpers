@@ -534,7 +534,21 @@ body {
 }
 
 /*
- * Summary Cards content container template 
+ * Twitter Stream content container template
+ */
+.twtr .twtr-feed {
+  /* the twitter feed gets a gradient border */
+  border: 0 solid transparent;
+  border-image-width: 1px;
+  border-image: linear-gradient(to bottom, rgba(0,0,0, 0.1) 75px, rgba(0,0,0, 0) 50%) 1 100%;
+}
+/* adjust the border width so it only shows on the side of the text column */
+.twtr.twtr-pos-left .twtr-feed  { border-width: 0 1px 0 0; }
+.twtr.twtr-pos-right .twtr-feed { border-width: 0 0 0 1px; }
+
+
+/*
+ * Summary Cards content container template
  */
 .thumbnail-flair .summarycard-image-wrapper {
 	border: 1px solid white; /* set off the coloured drop shadow */
