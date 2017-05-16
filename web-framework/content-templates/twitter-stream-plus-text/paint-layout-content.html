@@ -82,13 +82,10 @@
 
       <!--@@ maybe they want show the follow button @@-->
       %begin_asset_metadata_template.twitter.followbutton.show^eq:show%
-        <p class="hidden-xl-up hidden-sm-down"><!--@@ narrow button when screen is medium size @@-->
-          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%" class="twitter-follow-button" data-show-count="false">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <p class="hidden-sm-down"><!--@@ narrower button when columns are side-by-side @@-->
+          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </p>
-        <p class="hidden-lg-down"><!--@@ wide button when screen is wide @@-->
-          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%" class="twitter-follow-button" data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </p>
-        <p class="hidden-md-up"><!--@@ wide button when screen is narrow (coz this goes full-width) @@-->
+        <p class="hidden-md-up"><!--@@ wide button when screen is narrow (coz columns are full-width) @@-->
           <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%" class="twitter-follow-button" data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </p>
       %end_asset%
