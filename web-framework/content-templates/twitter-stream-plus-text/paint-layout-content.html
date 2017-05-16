@@ -18,6 +18,8 @@
   }
 </script>
 
+  <script runat="server">JCU.js.require('twitter_widgets')</script>
+
   <!--@@ Title paint layout @@-->
   <script runat="server">
     if (JCU.data.current_theme === 'landing') {
@@ -83,10 +85,10 @@
       <!--@@ maybe they want show the follow button @@-->
       %begin_asset_metadata_template.twitter.followbutton.show^eq:show%
         <p class="hidden-sm-down"><!--@@ narrower button when columns are side-by-side @@-->
-          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>
         </p>
         <p class="hidden-md-up"><!--@@ wide button when screen is narrow (coz columns are full-width) @@-->
-          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%" class="twitter-follow-button" data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%" class="twitter-follow-button" data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>
         </p>
       %end_asset%
 
@@ -105,7 +107,6 @@
         data-chrome="noheader noborders noscrollbar transparent"
         href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%"
       >Tweets by %asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>
-      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
     </div>
   </div>
