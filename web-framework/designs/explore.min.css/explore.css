@@ -501,6 +501,14 @@ body {
   display: inline-block;
 }
 
+nav.breadcrumb {
+  margin-bottom : 0;
+}
+
+nav.breadcrumb + .content-block {
+  padding-top : 0;
+}
+
 /* Table sort */
 .table-sortable th[role=columnheader]:not(.no-sort) {
   cursor: pointer;

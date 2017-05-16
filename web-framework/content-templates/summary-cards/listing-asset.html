@@ -21,24 +21,50 @@
   
   //  get details about the current card / asset
   var card = {
-    id : "%asset_assetid%",
-    name : "%asset_attribute_title^empty:{asset_name}^escapequotes%",
-    position : "%asset_position%",
-    imageTitle : "%asset_thumbnail_title^escapequotes%",
-    imageAlt : "%asset_thumbnail_alt^escapequotes%",
-//    imageUrl : "%asset_thumbnail_v_newsdetails_url^empty:{asset_thumbnail_url}^escapequotes%",
-    imageUrl : "%asset_thumbnail_url^escapequotes%",
-    overrideUrl : "%asset_metadata_jcu.summarycard.override.url^escapequotes%",
-    url : "%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^escapequotes%",
-	disableLink : ("%asset_metadata_jcu.summarycard.disable.link%" == "yes" ? true : false)
+    id : '%asset_assetid%',
+    name : '%asset_attribute_title^empty:{asset_name}^escapequotes%',
+    position : '%asset_position%',
+    assetType : '%asset_type_code%',
+    fileType : '%asset_file_type%',
+    hasImage : false,
+    imageURL : '',
+    imageTitle : '',
+    imageAlt : '',
+    thumbnail : '%asset_thumbnail%',
+    thumbnailTitle : '%asset_thumbnail_title^escapequotes%',
+    thumbnailAlt : '%asset_thumbnail_alt^escapequotes%',
+    thumbnailUrl : '%asset_thumbnail_url^escapequotes%',
+//    imageUrl : '%asset_thumbnail_v_newsdetails_url^empty:{asset_thumbnail_url}^escapequotes%',
+    assetUrl : '%asset_url^escapequotes%',
+    overrideUrl : '%asset_metadata_jcu.summarycard.override.url^escapequotes%',
+    linkUrl : '%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^escapequotes%',
+    disableLink : ('%asset_metadata_jcu.summarycard.disable.link%' == 'yes' ? true : false)
   }
+  
+  function setImageInfo() {
+    // set the image related properties of the card global var
+    // where the image comes from depends on the type of the asset
+    // e.g. if it is an image asset, don't make the user have to set the thumbnail to itself
+    
+    if (card.assetType === 'image' || card.assetType === 'thumbnail' || card.fileType === 'svg') {
+      card.hasImage = true
+      card.imageUrl = card.assetUrl
+      card.imageAlt = card.name
+    } else if (card.thumbnail) {
+      card.hasImage = true
+      card.imageUrl = card.thumbnailUrl
+      card.imageTitle = card.thumbnailTitle
+      card.imageAlt = card.thumbnailAlt
+    }
+
+  } // setImageInfo
   
   function imageHtml(linkWrapper) {
     linkWrapper = linkWrapper || { prepend : '', append : '' }
 
     var imageHtml = ''
 
-    if (card.imageUrl) {
+    if (card.hasImage) {
       imageHtml = linkWrapper.prepend + (card.disableLink ? '' : linkTagOpen()) +
         '<img class="img-fluid ' + '" src="' + card.imageUrl + '" alt="' + card.imageAlt + '" title="' + card.imageTitle + '"/>' +
         (card.disableLink ? '' : linkTagClose()) + linkWrapper.append
@@ -53,7 +79,7 @@
     linkClasses = linkClasses || ''
 
     const targetAttribute = ( card.overrideUrl ? 'target="_blank" rel="external noopener" ' : 'target="_self"' )
-    return '<a class="' + linkClasses + '" ' + targetAttribute + ' href="' + card.url + '">'
+    return '<a class="' + linkClasses + '" ' + targetAttribute + ' href="' + card.linkUrl + '">'
   }   // linkTagOpen
   
   function linkTagClose() {
@@ -133,8 +159,8 @@
     print(imageHtml(imageOptions))
 
     // text section
-    var columnWidth = (card.imageUrl ? columnLayout.textColumns : '12')
-    var textPosition = (card.imageUrl && columnLayout.picturePosition == 'right' ? ' col-sm-pull-' + columnLayout.pictureColumns : '')
+    var columnWidth = (card.hasImage ? columnLayout.textColumns : '12')
+    var textPosition = (card.hasImage && columnLayout.picturePosition == 'right' ? ' col-sm-pull-' + columnLayout.pictureColumns : '')
 
     print('<div class="summarycard-text col-sm-' + columnWidth + textPosition + '">')
 
@@ -156,11 +182,20 @@
 	print('</div></div>');  // close text column, close row
   }   // drawColumnCard
   
-  if (JCU.debug) {
-	print('<!-- About to render ' + layout.cardLayout + ' for Summary Cards -->')
-	print('<!-- card.id(' + card.id + ') card.name(' + card.name + ') card.position(' + card.position + ') -->')
+  /*
+   *  Draw the card!
+   */
+
+   if (JCU.debug) {
+    print('<!-- About to render ' + layout.cardLayout + ' for Summary Cards -->')
+    print('<!-- card.id(' + card.id + ') card.name(' + card.name + ') card.position(' + card.position + ') -->')
   }
-	
+  
+	setImageInfo()
+  
+  if (JCU.debug) 
+    print('<!-- after setImageInfo -->')
+    
   if (layout.cardLayout == "mosaicGrid") {
     drawGridCard(false)
   } else if (layout.cardLayout == "column") {
