@@ -30,7 +30,7 @@
     imageURL : '',
     imageTitle : '',
     imageAlt : '',
-    thumbnail : '%asset_thumbnail%',
+    hasThumbnail : %asset_thumbnail^notempty:true^empty:false%,
     thumbnailTitle : '%asset_thumbnail_title^escapequotes%',
     thumbnailAlt : '%asset_thumbnail_alt^escapequotes%',
     thumbnailUrl : '%asset_thumbnail_url^escapequotes%',
@@ -50,7 +50,7 @@
       card.hasImage = true
       card.imageUrl = card.assetUrl
       card.imageAlt = card.name
-    } else if (card.thumbnail) {
+    } else if (card.hasThumbnail) {
       card.hasImage = true
       card.imageUrl = card.thumbnailUrl
       card.imageTitle = card.thumbnailTitle
@@ -193,9 +193,6 @@
   
 	setImageInfo()
   
-  if (JCU.debug) 
-    print('<!-- after setImageInfo -->')
-    
   if (layout.cardLayout == "mosaicGrid") {
     drawGridCard(false)
   } else if (layout.cardLayout == "column") {
