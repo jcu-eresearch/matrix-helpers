@@ -73,8 +73,12 @@
       <!--@@ maybe they want show the twitter header @@-->
       %begin_asset_metadata_template.twitter.textheader.show^eq:show%
         <p class="lead">
-          Here are the latest tweets from <a
-            href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%"
+          %begin_asset_metadata_template.twitter.tweetcount^eq:1%
+            Here is the latest tweet from
+          %else_asset%
+            Here are the latest tweets from
+          %end_asset%
+          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%"
           >@%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>.
         </p>
       %end_asset%
@@ -85,10 +89,17 @@
       <!--@@ maybe they want show the follow button @@-->
       %begin_asset_metadata_template.twitter.followbutton.show^eq:show%
         <p class="hidden-sm-down"><!--@@ narrower button when columns are side-by-side @@-->
-          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>
+          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%"
+            class="twitter-follow-button"
+            data-show-screen-name="false"
+            data-show-count="true"
+          >Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>
         </p>
         <p class="hidden-md-up"><!--@@ wide button when screen is narrow (coz columns are full-width) @@-->
-          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%" class="twitter-follow-button" data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>
+          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%"
+            class="twitter-follow-button"
+            data-show-count="true"
+          >Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>
         </p>
       %end_asset%
 
@@ -102,8 +113,7 @@
 
       <a class="twitter-timeline"
         data-theme="light"
-        xdata-width="300"
-        data-tweet-limit="3"
+        data-tweet-limit="%asset_metadata_template.twitter.tweetcount%"
         data-chrome="noheader noborders noscrollbar transparent"
         href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%"
       >Tweets by %asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>
