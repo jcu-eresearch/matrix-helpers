@@ -23,7 +23,7 @@ if (JCU.data.breadcrumbs_enabled) {
   }
   if (lineage) {
     print(
-      '<div class="container ' + theme_css + '">' +
+      '<div class="container breadcrumb-wrapper ' + theme_css + '">' +
       '  <nav class="breadcrumb jcu-bg--transparent">')
     lineage.forEach(function(id) {
       if (id !== JCU.data.frontend_id) {

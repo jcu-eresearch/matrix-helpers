@@ -505,8 +505,8 @@ nav.breadcrumb {
   margin-bottom : 0;
 }
 
-nav.breadcrumb + .content-block {
-  padding-top : 0;
+.breadcrumb-wrapper + .content-block {
+  padding-top : 1rem;
 }
 
 /* Table sort */
