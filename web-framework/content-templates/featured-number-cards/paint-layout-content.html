@@ -50,15 +50,15 @@
                 print('<!-- Rendering card ' + card_id + ' for %asset_assetid% -->')
               }
               print(' \
-        <div class="card card-block"> \
-          <div class="card-icon ' + icon_class + ' bg-inverse text-inverse"></div> \
-          <p class="card-title animated counter" data-animation="fadeIn" data-delay="' + delay + '"> \
-            <span class="display-4"> \
-              <span class="counter-prefix">' + prefix + '</span><span class="' + (valid_number ? 'timer' : '') + '" data-decimals="' + decimals + '" data-from="0" data-to="' + value + '">' + value + '</span><span class="counter-suffix">' + suffix + '</span> \
-            </span><br>' + units +' \
-          </p> \
-          ' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_template.numfeature.desc' + card_id + ':%asset_assetid%', {prepend: '<p class="card-text">', append: '</p>'}) + ' \
-        </div> \
+<div class="card card-block"> \
+<div class="card-icon ' + icon_class + ' bg-inverse text-inverse"></div> \
+<p class="card-title animated counter" data-animation="fadeIn" data-delay="' + delay + '"> \
+<span class="display-4"> \
+<span class="counter-prefix">' + prefix + '</span><span class="' + (valid_number ? 'timer' : '') + '" data-decimals="' + decimals + '" data-from="0" data-to="' + value + '">' + value + '</span><span class="counter-suffix">' + suffix + '</span>\
+</span><br>' + units +' \
+</p> \
+' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_template.numfeature.desc' + card_id + ':%asset_assetid%', {prepend: '<p class="card-text">', append: '</p>'}) + ' \
+</div> \
               ')
             }
 
