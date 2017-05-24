@@ -121,36 +121,36 @@
 
     const addFlair = card.position == 1 && layout.flairText 
 
-	if (addFlair)
-		print('<div class="card card-outline-info summarycard-flair">')
-	else
-		print('<div class="card card-outline-secondary">')
+    if (addFlair)
+      print('<div class="card card-outline-info summarycard-flair">')
+    else
+      print('<div class="card card-outline-secondary">')
 		
     print(imageHtml())
 
-	if (addFlair)
-		print('<div class="card-header card-info">' + layout.flairText + '</div>')
+    if (addFlair)
+      print('<div class="card-header card-info">' + layout.flairText + '</div>')
 		
-
     print('<div class="card-block">')
     print('<h4 class="card-title">' + card.name + '</h4>')
 
     print('<h5 class="card-title text-muted"><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
     print('<p class="card-text">' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id) + '</p>')
 
-	if (!card.disableLink)
-		print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose())
+    if (!card.disableLink)
+      print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose())
 		
     print('</div></div>')
     
-    if (isFixedGrid && (card.position % layout.gridCardsPerRow == 0))
-      print('</div><div class="card-deck m-t-2">')
+    if (isFixedGrid && (card.position % layout.gridCardsPerRow == 0)) {
+      print('</div><div class="card-deck-row">')
+    }
   }   // drawGridCard
 
   function drawColumnCard() {
     //  Summary cards are displayed as a single column. Images are optional.
     const addFlair = card.position == 1 && layout.flairText 
-	print('<div class="row m-b-3' + (addFlair ? ' summarycard-flair' : '') + '">');
+    print('<div class="row m-b-3' + (addFlair ? ' summarycard-flair' : '') + '">');
 
     // image section
     // image section
@@ -170,16 +170,17 @@
       spacer = '</h4><h4>'
 
     print('<h4>' + card.name + '</h4>')
-	if (addFlair) {
-		print('<h5 class="summarycard-flair-text">' + layout.flairText + '</h5>') 
-	}
-	print('<h5><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
-    JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id, { prepend : "<p>", append : "</p>"})
+    
+    if (addFlair) {
+      print('<h5 class="summarycard-flair-text">' + layout.flairText + '</h5>') 
+    }
+    print('<h5><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
+      JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id, { prepend : "<p>", append : "</p>"})
 
-	if (!card.disableLink)
-		print(linkTagOpen("btn-link") + layout.buttonText + linkTagClose())
-	
-	print('</div></div>');  // close text column, close row
+    if (!card.disableLink)
+      print(linkTagOpen("btn-link") + layout.buttonText + linkTagClose())
+    
+    print('</div></div>');  // close text column, close row
   }   // drawColumnCard
   
   /*
