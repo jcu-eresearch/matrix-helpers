@@ -651,3 +651,11 @@ nav.breadcrumb {
 	text-align : center;
 	text-transform : capitalize;
 }
+
+.summarycard-layout-grid .card-deck {
+  border-spacing : 1.25rem;
+}
+
+.summarycard-layout-grid .card-deck-row {
+  display : table-row;
+}
