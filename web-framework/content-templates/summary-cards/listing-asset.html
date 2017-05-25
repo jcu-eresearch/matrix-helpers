@@ -6,7 +6,7 @@
   	 flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair%",
   	 cardLayout : "%nested_get_content_container^as_asset:asset_metadata_template.card.layout%",
   	 buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text%",
-     gridCardsPerRow : 3
+     gridCardsPerRow : "%nested_get_content_container^as_asset:asset_metadata_template.card.grid.columns%"
   }
   
   var columnLayout = {
@@ -15,14 +15,18 @@
      textColumns : "%nested_get_content_container^as_asset:asset_metadata_template.picture.size^json_decode^index:textcols%"
   }
 
-  print('<!-- picturePosition(' + columnLayout.picturePosition + ')  pictureColumns(' + columnLayout.pictureColumns + ') textColumns(' + columnLayout.textColumns + ') -->')
-  print('<!-- nested... (%nested_get_content_container^as_asset:asset_metadata_template.picture.position%) -->')
-  print('<!-- nested... ( %nested_get_content_container^as_asset:asset_metadata_template.picture.size%) -->')
+  if (JCU.debug) {
+    print('<!-- picturePosition(' + columnLayout.picturePosition + ')  pictureColumns(' + columnLayout.pictureColumns + ') textColumns(' + columnLayout.textColumns + ') -->')
+    print('<!-- nested... (%nested_get_content_container^as_asset:asset_metadata_template.picture.position%) -->')
+    print('<!-- nested... ( %nested_get_content_container^as_asset:asset_metadata_template.picture.size%) -->')
+    print('<!-- gridCardsPerRow(' + layout.gridCardsPerRow + ') -->')
+  }
   
   //  get details about the current card / asset
   var card = {
     id : '%asset_assetid%',
     name : '%asset_attribute_title^empty:{asset_name}^escapequotes%',
+    description: '%asset_metadata_jcu.summarycard.description^escapequotes%',
     position : '%asset_position%',
     assetType : '%asset_type_code%',
     fileType : '%asset_file_type%',
@@ -135,7 +139,7 @@
     print('<h4 class="card-title">' + card.name + '</h4>')
 
     print('<h5 class="card-title text-muted"><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
-    print('<p class="card-text">' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id) + '</p>')
+    print(card.description)
 
     if (!card.disableLink)
       print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose())
@@ -163,19 +167,14 @@
     var textPosition = (card.hasImage && columnLayout.picturePosition == 'right' ? ' col-sm-pull-' + columnLayout.pictureColumns : '')
 
     print('<div class="summarycard-text col-sm-' + columnWidth + textPosition + '">')
-
-    // if the text column width is smaller then drop the byline to the line below the name
-    var spacer = '&nbsp;&nbsp;'
-    if (columnLayout.textColumns < 9)
-      spacer = '</h4><h4>'
-
     print('<h4>' + card.name + '</h4>')
     
     if (addFlair) {
       print('<h5 class="summarycard-flair-text">' + layout.flairText + '</h5>') 
     }
+
     print('<h5><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
-      JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_jcu.summarycard.description:' + card.id, { prepend : "<p>", append : "</p>"})
+    print(card.description)
 
     if (!card.disableLink)
       print(linkTagOpen("btn-link") + layout.buttonText + linkTagClose())
