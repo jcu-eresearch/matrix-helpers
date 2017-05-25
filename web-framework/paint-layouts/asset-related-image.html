@@ -11,17 +11,19 @@ E.g:
   var asset_type = '%asset_type_code%'
   var file_type = '%asset_file_type%'
   var caption = '%asset_attribute_caption^escapequotes%'
-  var thumbnail = '%asset_thumbnail%'
+  var thumbnail = %asset_thumbnail^notempty:true^empty:false%
   var thumbnail_url = '%asset_thumbnail_url^escapequotes%'
   var thumbnail_title = '%asset_thumbnail_title^escapequotes%'
   var thumbnail_alt = '%asset_thumbnail_alt^escapequotes%'
+  var link_target = '%link_relation^contains:external:_blank:_self%'
+  var link_rel = '%link_relation^escapequotes%'
 
   if (asset_type === 'image' || asset_type === 'thumbnail' || file_type === 'svg') {
     print('<a class="#link_class#" href="' + url + '" data-mfp-caption="&lt;p class=\'h3\'&gt;' + name + '&lt;/p&gt; ' + caption + '">')
     print('  <img class="img-related #image_class#" src="' + url + '" alt="' + name + '">')
     print('</a>')
   } else if (thumbnail) {
-    print('<a class="#link_class#" href="' + url + '" data-mfp-src="' + thumbnail_url + '" data-mfp-caption="' + name + '">')
+    print('<a class="#link_class#" href="' + url + '" data-mfp-src="' + thumbnail_url + '" data-mfp-caption="' + name + '" target="' + link_target + '" rel="' + link_rel + '">')
     print('  <img class="img-related #image_class#" src="' + thumbnail_url + '" title="' + thumbnail_title + '" alt="' + thumbnail_alt + '">')
     print('</a>')
   }
