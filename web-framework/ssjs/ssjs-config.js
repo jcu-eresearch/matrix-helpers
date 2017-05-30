@@ -85,16 +85,7 @@ var JCU = {
    * @returns {string} Matrix keyword and modifiers
    */
   phrasingHtmlFromKeyword: function(keyword, options) {
-    options = options || {}
-    var strip_modifier = 'striphtml:<abbr><audio><b><bdo><br><button><canvas><cite><code><command><datalist><dfn><em><embed><i><iframe><img><input><kbd><keygen><label><mark><math><meter><noscript><object><output><progress><q><ruby><samp><script><select><small><span><strong><sub><sup><svg><textarea><time><var><video><wbr><a><area><del><ins><link><map><meta>'
-
-    if (keyword) {
-      return '%' + keyword + '^' + strip_modifier +
-        (options.prepend ? '^prepend_if:' + options.prepend : '') +
-        (options.append ? '^append_if:' + options.append : '') + '%'
-    } else {
-      print('<div class="alert alert-danger" role="alert"><strong>Error!</strong> Phrasing HTML paint layout called without a keyword specified.</div>')
-    }
+    return JCU.stripHtmlFromKeyword(keyword, 'phrasing', options)
   },
 
   /**
@@ -105,6 +96,59 @@ var JCU = {
   printPhrasingHtmlFromKeyword: function(keyword, options) {
     print(JCU.phrasingHtmlFromKeyword(keyword, options))
   },
+
+  /**
+   * Create a Matrix keyword and modifiers to strip all HTML except for a
+   * few text format tags from the input.
+   * @param {string} keyword - The base Matrix keyword that generates input.
+   * @param {Object} options - Options to configure the output keyword
+   * @returns {string} Matrix keyword and modifiers
+   */
+  stripNonTextualHtmlFromKeyword: function(keyword, options) {
+    return JCU.stripHtmlFromKeyword(keyword, 'textual', options)
+  },
+
+  /**
+   * Prints the a Matrix keyword to strip all HTML except a few text
+   * format tags from the input.
+   * @param {string} keyword - The base Matrix keyword that generates input.
+   * @param {Object} options - Options to configure the output keyword
+   */
+
+  printTextualHtmlFromKeyword: function(keyword, options) {
+    print(JCU.stripNonTextualHtmlFromKeyword(keyword, options))
+  },
+
+  /**
+   * Implementation of HTML stripping via Matrix keyword modifier.
+   * @param {string} keyword - The base Matrix keyword supplying input.
+   * @param {string} whitelist - a list of HTML tags to allow in the
+   *     output, in the format "<tag1><tag2><tag3>".  Special value
+   *     "phrasing" will whitelist all phrasing tags, and "textual"
+   *     will whitelist a subset of phrasing tags that only modify text
+   *     rendering (excluding things like textarea, svg, audio, etc).
+   * @param {Object} options - Options to configure output.
+   * @param {string} options.prepend - string to prepend to output
+   * @param {string} options.append - string to append to output
+   */
+  stripHtmlFromKeyword: function(keyword, whitelist, options) {
+    whitelist = whitelist || 'phrasing'
+    options = options || {}
+    if (whitelist == 'phrasing') {
+      whitelist = '<abbr><audio><b><bdo><br><button><canvas><cite><code><command><datalist><dfn><em><embed><i><iframe><img><input><kbd><keygen><label><mark><math><meter><noscript><object><output><progress><q><ruby><samp><script><select><small><span><strong><sub><sup><svg><textarea><time><var><video><wbr><a><area><del><ins><link><map><meta>'
+    }
+    if (whitelist == 'textual') {
+      whitelist = '<abbr><b><bdo><cite><code><dfn><em><i><kbd><mark><noscript><output><q><ruby><samp><script><span><strong><sub><sup><time><var><wbr><a><del><ins>'
+    }
+    if (keyword) {
+      return '%' + keyword + '^striphtml:' + whitelist +
+        (options.prepend ? '^prepend_if:' + options.prepend : '') +
+        (options.append ? '^append_if:' + options.append : '') + '%'
+    } else {
+      print('<div class="alert alert-danger" role="alert"><strong>Error!</strong> HTML stripping paint layout called without a keyword specified.</div>')
+    }
+  },
+
 
   /**
    * Determine if a Content Container's HTML has a wrapper applied.
