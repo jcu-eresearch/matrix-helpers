@@ -166,6 +166,8 @@ EasyEditAssetManager.designStyleClasses = function(asset, callback) {
   contextualColors.forEach(function(color) {
     data.wysiwygClasses['Text (' + color +  ')'] = {classNames: 'text-' + color, showFor: textOnlyIncludes}
   })
+  // also text-white for use on solid bg
+  data.wysiwygClasses['Text (white)'] = {classNames: 'text-white', showFor: textOnlyIncludes}
   var bgColors = ['primary', 'success', 'info', 'warning', 'danger', 'inverse']
   bgColors.forEach(function(color) {
     data.wysiwygClasses['Background (' + color +  ')'] = {classNames: 'bg-' + color, showFor: "p,div"}
