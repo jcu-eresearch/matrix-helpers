@@ -305,6 +305,15 @@ a {
   margin-bottom: 0;
 }
 
+/* inside the pics column of a text block there's either
+   images or anchors.  Either way, any img/a following a
+   previous img/a should have a bit of top margin. */
+.cct-basic-text .pics > img + img,
+.cct-basic-text .pics > a + a {
+  margin-top: 0.66rem;
+  display: block;
+}
+
 @media(min-width:544px) {
   .cct-featured-number-cards .card-deck-wrapper {
     padding-top: 3rem;
