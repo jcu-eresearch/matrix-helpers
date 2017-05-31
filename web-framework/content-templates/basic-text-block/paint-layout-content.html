@@ -41,7 +41,7 @@
           <!--@@ Contents paint layout @@-->
           %asset_contents_paint_420234%
         </div>
-        <div class="pics
+        <div class="pics link-gallery-parent
           col-sm-%asset_metadata_template.picture.size^json_decode^index:piccols%
           col-print-%asset_metadata_template.picture.size^json_decode^index:piccols%
           %begin_asset_metadata_template.picture.position^eq:left%col-sm-pull-%asset_metadata_template.picture.size^json_decode^index:textcols%%end_asset%
@@ -51,7 +51,7 @@
             pictures.forEach(function(id) {
               if (typeof id === 'number') {
                 // Standard asset (number)
-                print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid center-block% ')
+                print('%globals_asset_contents_paint_layout_id_374698:' + id + '^replace:#image_class#:img-fluid center-block^replace:#link_class#:link-gallery% ')
               } else {
                 // Shadow asset, like '12345:v2' (string)
                 print('<img class="img-fluid center-block" src="./?a=' + id + '">')
