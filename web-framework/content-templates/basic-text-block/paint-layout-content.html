@@ -55,7 +55,11 @@
                 print('%globals_asset_contents_paint_layout_id_374698:' + id + '^replace:#image_class#:img-fluid center-block^replace:#link_class#:link-gallery% ')
               } else {
                 // Shadow asset, like '12345:v2' (string)
-                print('<img class="img-fluid center-block" src="./?a=' + id + '">')
+                // We may need other checks if Matrix adds other ID formats
+                var baseId = id.split(':')[0]
+                print('<a class="link-gallery" href="./?a=' + id + '" data-mfp-caption="&lt;p class=\'h3\'&gt;%globals_asset_attribute_title:' + baseId + '%&lt;/p&gt;">')
+                print('  <img class="img-fluid center-block" src="./?a=' + id + '">')
+                print('</a>')
               }
             })
           </script>
