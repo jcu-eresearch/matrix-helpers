@@ -51,6 +51,7 @@
             pictures.forEach(function(id) {
               if (typeof id === 'number') {
                 // Standard asset (number)
+                // Use the "Asset Related Image" Paint Layout
                 print('%globals_asset_contents_paint_layout_id_374698:' + id + '^replace:#image_class#:img-fluid center-block^replace:#link_class#:link-gallery% ')
               } else {
                 // Shadow asset, like '12345:v2' (string)
