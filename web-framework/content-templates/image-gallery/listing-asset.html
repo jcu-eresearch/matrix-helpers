@@ -1,19 +1,19 @@
 <!--@@ This uses the Asset Related Image paint layout to get the asset's image @@-->
 <div class="col-sm-%asset_assetid^notempty:12^divide:{nested_get_content_container^as_asset:asset_metadata_template.gallery.count}^floor% %nested_get_content_container^as_asset:asset_metadata_template.gallery.column_classes%">
-	<div class="imagegallery-thumbnail-wrapper">
-		%begin_nested_get_content_container^as_asset:asset_metadata_template.gallery.lightbox.enabled%
-			%asset_contents_paint_374698^replace:#image_class#:img-fluid center-block^replace:#link_class#:link-gallery%
-		%else_nested%
-			%asset_contents_paint_374698^replace:#image_class#:img-fluid center-block%
-		%end_nested%
-		
-		%begin_nested_get_content_container^as_asset:asset_metadata_template.gallery.show.titles%
-		<div class="imagegallery-thumbnail-text">
-			<p>%asset_attribute_title^empty:{asset_name}^escapequotes%</p>
-		</div>
-		%end_nested%
-	</div>
+  <div class="imagegallery-thumbnail-wrapper">
+    %begin_nested_get_content_container^as_asset:asset_metadata_template.gallery.lightbox.enabled%
+      %asset_contents_paint_374698^replace:#image_class#:img-fluid center-block^replace:#link_class#:link-gallery%
+    %else_nested%
+      %asset_contents_paint_374698^replace:#image_class#:img-fluid center-block%
+    %end_nested%
+
+    %begin_nested_get_content_container^as_asset:asset_metadata_template.gallery.show.titles%
+    <div class="imagegallery-thumbnail-text">
+      <p>%asset_attribute_title^empty:{asset_name}^escapequotes%</p>
+    </div>
+    %end_nested%
+  </div>
 </div>
 %begin_asset_position^modulo:{nested_get_content_container^as_asset:asset_metadata_template.gallery.count}^eq:0%
-	<div class="clearfix hidden-xs-down"></div>
+<div class="clearfix hidden-xs-down"></div>
 %end_asset%

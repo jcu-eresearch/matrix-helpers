@@ -568,9 +568,9 @@ nav.breadcrumb {
  * Summary Cards content container template
  */
 .thumbnail-flair .summarycard-image-wrapper {
-	border: 1px solid white; /* set off the coloured drop shadow */
-	box-shadow: 0 0 0 5px rgba(0,102,204, 0.6); /* dropshadow with no blur, that's 5px bigger than the thing itself */
-	overflow : hidden;
+  border: 1px solid white; /* set off the coloured drop shadow */
+  box-shadow: 0 0 0 5px rgba(0,102,204, 0.6); /* dropshadow with no blur, that's 5px bigger than the thing itself */
+  overflow : hidden;
 }
 
 .thumbnail-text {
@@ -591,12 +591,12 @@ nav.breadcrumb {
 }
 
 .thumbnail-text .thumbnail-flair-text {
-	color: rgba(0,102,204, 0.6); /* same colour as the dropshadow outline */
-	text-transform : uppercase;
-	font-size : 90%;
-	font-weight : 900;
-	line-height : 1.0;
-	margin : 6px 0 0.5em; /* top margin so as to not touch the flair border */
+  color: rgba(0,102,204, 0.6); /* same colour as the dropshadow outline */
+  text-transform : uppercase;
+  font-size : 90%;
+  font-weight : 900;
+  line-height : 1.0;
+  margin : 6px 0 0.5em; /* top margin so as to not touch the flair border */
 }
 
 .thumbnail-text p {
@@ -614,51 +614,51 @@ nav.breadcrumb {
 }
 
 .image-shape-circle .summarycard-text {
-	padding-top : 0.1em;
+  padding-top : 0.1em;
 }
 
 .summarycard-flair-text {
-	background-color : rgba(0,102,204, 0.6); /* same colour as the dropshadow outline */
-	color : white;
-	text-transform : uppercase;
-	font-size : 90%;
-	font-weight : 900;
-	line-height : 1.0;
-	padding : 0.1em 0.5em;
-	margin : 0;
+  background-color : rgba(0,102,204, 0.6); /* same colour as the dropshadow outline */
+  color : white;
+  text-transform : uppercase;
+  font-size : 90%;
+  font-weight : 900;
+  line-height : 1.0;
+  padding : 0.1em 0.5em;
+  margin : 0;
 }
 
 .summarycard-layout-column .summarycard-text h5 {
-	margin-bottom : 1rem;
-	margin-top : -0.5rem;
+  margin-bottom : 1rem;
+  margin-top : -0.5rem;
 }
 
 .summarycard-flair {
-	background-color : rgba(0,102,204, 0.04);
+  background-color : rgba(0,102,204, 0.04);
 }
 
 .summarycard-layout-column .summarycard-flair {
-	padding-top : 0.65rem;
-	padding-bottom : 0.65rem;
+  padding-top : 0.65rem;
+  padding-bottom : 0.65rem;
 }
 
 .summarycard-flair .card-header {
-	background-color : rgba(0,102,204, 0.6);
-	text-transform : uppercase;
-	font-size : 90%;
-	font-weight : 700;
-	line-height : 1.0;
+  background-color : rgba(0,102,204, 0.6);
+  text-transform : uppercase;
+  font-size : 90%;
+  font-weight : 700;
+  line-height : 1.0;
 }
 
 .imagegallery-thumbnail-text {
-	margin-top : 0.5rem;
-	margin-left : 0.175rem;
-	margin-right : 0.175rem;
+  margin-top : 0.5rem;
+  margin-left : 0.175rem;
+  margin-right : 0.175rem;
 }
 
 .imagegallery-thumbnail-text p {
-	text-align : center;
-	text-transform : capitalize;
+  text-align : center;
+  text-transform : capitalize;
 }
 
 .summarycard-layout-grid .card-deck {

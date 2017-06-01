@@ -3,12 +3,12 @@
 
   // get the summary card list settings
   var layout = {
-  	 flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair%",
-  	 cardLayout : "%nested_get_content_container^as_asset:asset_metadata_template.card.layout%",
-  	 buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text%",
+     flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair%",
+     cardLayout : "%nested_get_content_container^as_asset:asset_metadata_template.card.layout%",
+     buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text%",
      gridCardsPerRow : "%nested_get_content_container^as_asset:asset_metadata_template.card.grid.columns%"
   }
-  
+
   var columnLayout = {
      picturePosition : "%nested_get_content_container^as_asset:asset_metadata_template.picture.position%",
      pictureColumns : "%nested_get_content_container^as_asset:asset_metadata_template.picture.size^json_decode^index:piccols%",
@@ -21,7 +21,7 @@
     print('<!-- nested... ( %nested_get_content_container^as_asset:asset_metadata_template.picture.size%) -->')
     print('<!-- gridCardsPerRow(' + layout.gridCardsPerRow + ') -->')
   }
-  
+
   //  get details about the current card / asset
   var card = {
     id : '%asset_assetid%',
@@ -44,12 +44,12 @@
     linkUrl : '%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^escapequotes%',
     disableLink : ('%asset_metadata_jcu.summarycard.disable.link%' == 'yes' ? true : false)
   }
-  
+
   function setImageInfo() {
     // set the image related properties of the card global var
     // where the image comes from depends on the type of the asset
     // e.g. if it is an image asset, don't make the user have to set the thumbnail to itself
-    
+
     if (card.assetType === 'image' || card.assetType === 'thumbnail' || card.fileType === 'svg') {
       card.hasImage = true
       card.imageUrl = card.assetUrl
@@ -62,7 +62,7 @@
     }
 
   } // setImageInfo
-  
+
   function imageHtml(linkWrapper) {
     linkWrapper = linkWrapper || { prepend : '', append : '' }
 
@@ -85,11 +85,11 @@
     const targetAttribute = ( card.overrideUrl ? 'target="_blank" rel="external noopener" ' : 'target="_self"' )
     return '<a class="' + linkClasses + '" ' + targetAttribute + ' href="' + card.linkUrl + '">'
   }   // linkTagOpen
-  
+
   function linkTagClose() {
     return '</a>'
   }
- 
+
   function drawThumbnailGridCard() {
     //  The thumbnail grid will responsively show 3 columns for xs screens,
     //  4 columns for small and medium screens and 6 columns for large and xlarge screens.
@@ -100,7 +100,7 @@
 
     const imageWrapper = { prepend : '<div class="summarycard-image-wrapper">', append : '</div>'}
     const addFlair = card.position == 1 && layout.flairText
-    
+
     print('<div class="col-xs-4 col-sm-3 col-lg-2 ' + (addFlair ? ' thumbnail-flair ' : '') + '">')
     print(imageHtml(imageWrapper))
     print('<div class="small thumbnail-text"><div class="summarycard-thumbnail-text-wrapper">' + (addFlair ? '<p class="thumbnail-flair-text">' + layout.flairText + '</p>' : '') + '<p>' + card.name + '</p></div></div>')
@@ -123,18 +123,18 @@
     //  Uses the bootstrap Card tags to layout the assets summary cards
     //  These cards look good with or without an image
 
-    const addFlair = card.position == 1 && layout.flairText 
+    const addFlair = card.position == 1 && layout.flairText
 
     if (addFlair)
       print('<div class="card card-outline-info summarycard-flair">')
     else
       print('<div class="card card-outline-secondary">')
-		
+
     print(imageHtml())
 
     if (addFlair)
       print('<div class="card-header card-info">' + layout.flairText + '</div>')
-		
+
     print('<div class="card-block">')
     print('<h4 class="card-title">' + card.name + '</h4>')
 
@@ -143,9 +143,9 @@
 
     if (!card.disableLink)
       print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose())
-		
+
     print('</div></div>')
-    
+
     if (isFixedGrid && (card.position % layout.gridCardsPerRow == 0)) {
       print('</div><div class="card-deck-row">')
     }
@@ -153,7 +153,7 @@
 
   function drawColumnCard() {
     //  Summary cards are displayed as a single column. Images are optional.
-    const addFlair = card.position == 1 && layout.flairText 
+    const addFlair = card.position == 1 && layout.flairText
     print('<div class="row m-b-3' + (addFlair ? ' summarycard-flair' : '') + '">');
 
     // image section
@@ -168,9 +168,9 @@
 
     print('<div class="summarycard-text col-sm-' + columnWidth + textPosition + '">')
     print('<h4>' + card.name + '</h4>')
-    
+
     if (addFlair) {
-      print('<h5 class="summarycard-flair-text">' + layout.flairText + '</h5>') 
+      print('<h5 class="summarycard-flair-text">' + layout.flairText + '</h5>')
     }
 
     print('<h5><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
@@ -178,10 +178,10 @@
 
     if (!card.disableLink)
       print(linkTagOpen("btn-link") + layout.buttonText + linkTagClose())
-    
+
     print('</div></div>');  // close text column, close row
   }   // drawColumnCard
-  
+
   /*
    *  Draw the card!
    */
@@ -190,9 +190,9 @@
     print('<!-- About to render ' + layout.cardLayout + ' for Summary Cards -->')
     print('<!-- card.id(' + card.id + ') card.name(' + card.name + ') card.position(' + card.position + ') -->')
   }
-  
-	setImageInfo()
-  
+
+  setImageInfo()
+
   if (layout.cardLayout == "mosaicGrid") {
     drawGridCard(false)
   } else if (layout.cardLayout == "column") {
