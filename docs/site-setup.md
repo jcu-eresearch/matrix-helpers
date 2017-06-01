@@ -11,14 +11,18 @@ Firstly, the information you'll need to know are:
   `www.jcu.edu.au/orpheus-island`.
 
   > The path should be all lowercase and only use hyphens as separators.
+  > This should be something short but meaningful.  Acryonyms can be used
+  > but keep in mind that they can negatively affect search rankings.
+  >
   > Domains other than `www.jcu.edu.au` can be used, but they're quite
   > complicated to configure.
 
 * **Site Name:** the full name of the site, such as `Orpheus Island Research
   Station`.
 
-  > You don't need usually want to mention `JCU` in this name as it
-  > will automatically be mentioned.
+  > You don't need usually want to mention `James Cook University` or `JCU` in
+  > this name as it will automatically be included in areas like the page
+  > title.
 
 * **Access details:** the individual names or organisation units of people who
   should have access to edit your site.
