@@ -18,6 +18,11 @@ E.g:
   var link_target = '%link_relation^contains:external:_blank:_self%'
   var link_rel = '%link_relation^escapequotes%'
 
+  // Protect against abuse of the window.opener API by new tabs/windows
+  if (link_target === '_blank') {
+    link_rel = 'noopener noreferrer ' + link_rel
+  }
+
   if (asset_type === 'image' || asset_type === 'thumbnail' || file_type === 'svg') {
     print('<a class="#link_class#" href="' + url + '" data-mfp-caption="&lt;p class=\'h3\'&gt;' + name + '&lt;/p&gt; ' + caption + '">')
     print('  <img class="img-related #image_class#" src="' + url + '" alt="' + name + '">')
