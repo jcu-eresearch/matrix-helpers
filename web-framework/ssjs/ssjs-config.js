@@ -114,7 +114,6 @@ var JCU = {
    * @param {string} keyword - The base Matrix keyword that generates input.
    * @param {Object} options - Options to configure the output keyword
    */
-
   printTextualHtmlFromKeyword: function(keyword, options) {
     print(JCU.stripNonTextualHtmlFromKeyword(keyword, options))
   },
@@ -134,10 +133,9 @@ var JCU = {
   stripHtmlFromKeyword: function(keyword, whitelist, options) {
     whitelist = whitelist || 'phrasing'
     options = options || {}
-    if (whitelist == 'phrasing') {
+    if (whitelist === 'phrasing') {
       whitelist = '<abbr><audio><b><bdo><br><button><canvas><cite><code><command><datalist><dfn><em><embed><i><iframe><img><input><kbd><keygen><label><mark><math><meter><noscript><object><output><progress><q><ruby><samp><script><select><small><span><strong><sub><sup><svg><textarea><time><var><video><wbr><a><area><del><ins><link><map><meta>'
-    }
-    if (whitelist == 'textual') {
+    } else if (whitelist === 'textual') {
       whitelist = '<abbr><b><bdo><cite><code><dfn><em><i><kbd><mark><noscript><output><q><ruby><samp><script><span><strong><sub><sup><time><var><wbr><a><del><ins>'
     }
     if (keyword) {
