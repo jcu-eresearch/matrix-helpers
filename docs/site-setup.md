@@ -65,7 +65,7 @@ before each action and release locks afterwards.</div>
     1. Set the `Site Name` to the full textual name of the site; this shows up in
        the site's `<title>` and various other areas, such as contact emails.
 
-    1. Set the  `Link Type` choose `TYPE_2` (don’t show in navigation).
+    1. Set the `Link Type` choose `TYPE_2` (don’t show in navigation).
 
     1. Click `Commit`.
 
@@ -154,7 +154,7 @@ before each action and release locks afterwards.</div>
 
 1. **Create the empty homepage**: right-click the site > `New Child` > `Pages` >
    `Standard Page` and name it `Home` (by convention) and set its link type to
-   `LINK_2` (so it won't be shown in navigation).
+   `TYPE_2` (so it won't be shown in navigation).
 
     1. Set the `Home` page to be a *landing* page via right-clicking the `Home`
        asset and going to `Metadata` > `Theme` > `Landing Theme` (disabling
