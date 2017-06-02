@@ -27,6 +27,9 @@ Firstly, the information you'll need to know are:
 * **Access details:** the individual names or organisation units of people who
   should have access to edit your site.
 
+  > It's reasonably straightforward to add more people later, but it will
+  > involve asking your System Administrator to do this for you.
+  >
   > You will need to know the Matrix asset IDs of each user/group who should
   > have permission; this might require asking your System Administrator
   > before proceeding.
@@ -130,11 +133,16 @@ before each action and release locks afterwards.</div>
 1. **Remove the default workflow:** because we're not using JCU's workflow, we
    need to remove it or it'll cause problems later when users try and publish
    content.  This step may or may not be required, depending on where you are
-   creating your new site as matrix causes workflow to inherit.  right-click
-   on your site and choose `workflow`. check the box next to `delete?` for
-   `australia workflow` and click `commit`.  this will change the site.  if
-   you need to do this later, ensure you cascade this change to all children
-   (this is the default).
+   creating your new site as Matrix causes workflows to automatically inherit.
+
+   1. Right-click on your Site and choose `Workflow`.
+
+   1. Check the box next to `Delete?` for `Australia Workflow` and click
+      `Commit`.
+
+   This will change the Site asset.  If you have happened to have forgotten
+   this step and need to do this later, ensure you cascade this change to all
+   children, which is the default setting.
 
 1. **Grant permissions to other users:** if you know the identities of users
    or groups that should have edit access to this site, set them now via
