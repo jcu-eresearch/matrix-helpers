@@ -1,0 +1,6 @@
+asset_id: 400884
+type: nested_content
+nested_content:
+  nested_content: 414221
+  get_params:
+    content_container: %globals_asset_assetid%
