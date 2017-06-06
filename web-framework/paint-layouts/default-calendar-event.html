@@ -8,6 +8,7 @@
         var has_end_date = !!"%event_end_datetime^escapequotes%"
         var end_date = "%event_end_date^date_format:j M Y%"
         var end_time = "%event_short_end_time^escapequotes%"
+        // This keyword remains verbatim on calender_event_single assets
         var frequency = "%event_frequency^escapequotes%"
 
         print("<div class=\"h2\">%instance_start_date^date_format:l, j F Y%")
@@ -30,7 +31,8 @@
           }
         }
 
-        if (frequency) {
+        // `frequency` is still the literal keyword string for single events
+        if (!is_single_event && frequency) {
           print('<br><strong>Repeats:</strong> ' + frequency)
         }
 
