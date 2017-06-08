@@ -18,6 +18,14 @@ a {
   filter: grayscale(100%) invert(100%);
 }
 
+.text-white {
+  color: #fff !important;
+}
+
+.plus .content_type_wysiwyg .text-white {
+  text-shadow: 0 0 1px #000;
+}
+
 .edit-toolbar {
   z-index: 1050;
   position: fixed;
