@@ -650,17 +650,6 @@ nav.breadcrumb {
   line-height: 1.0;
 }
 
-.imagegallery-thumbnail-text {
-  margin-top: 0.5rem;
-  margin-left: 0.175rem;
-  margin-right: 0.175rem;
-}
-
-.imagegallery-thumbnail-text p {
-  text-align: center;
-  text-transform: capitalize;
-}
-
 .summarycard-layout-grid .card-deck {
   border-spacing: 1.25rem;
 }
