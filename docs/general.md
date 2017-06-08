@@ -146,6 +146,16 @@ consider ensuring automatic redirections (301) are created by ensuring that
 to use this technique to manipulate remaps without needing access to the Remap
 Manager, which non-system admins don't have.
 
+Note that if you need to, it **is** possible to direct using Regular
+Expressions within Matrix itself.  This requires use of the `Remap Manager`
+(and thus suitable access to that tool), but a `Remap Rule` like:
+
+* From: /\/foo(.*)/
+* To: /bar$1
+
+Allows a 301 redirection from `/foo/baz` to `/bar/baz`; seemingly 302, 303 or
+307 redirections aren't possible, though.
+
 ## Operation
 
 * **504 Gateway Timeouts**: Occasionally, the backend interface will timeout.
