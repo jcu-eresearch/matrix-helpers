@@ -8,6 +8,7 @@
         var has_end_date = !!"%event_end_datetime^escapequotes%"
         var end_date = "%event_end_date^date_format:j M Y%"
         var end_time = "%event_short_end_time^escapequotes%"
+        // This keyword remains verbatim on calender_event_single assets
         var frequency = "%event_frequency^escapequotes%"
 
         print("<div class=\"h2\">%instance_start_date^date_format:l, j F Y%")
@@ -30,17 +31,19 @@
           }
         }
 
-        if (frequency) {
+        // `frequency` is still the literal keyword string for single events
+        if (!is_single_event && frequency) {
           print('<br><strong>Repeats:</strong> ' + frequency)
         }
-
       </script>
 
       %begin_asset_thumbnail%
-      <img class="img-fluid" src="%asset_thumbnail_url%" alt="%asset_thumbnail_alt%">
-      %begin_asset_thumbnail_caption%
-      <p class="lead">%asset_thumbnail_caption%</p>
-      %end_asset_thumbnail_caption%
+      <figure class="figure m-t-1">
+        <img class="figure-img img-fluid" src="%asset_thumbnail_url%" alt="%asset_thumbnail_alt%">
+        %begin_asset_thumbnail_caption%
+        <figcaption class="figure-caption">%asset_thumbnail_caption%</figcaption>
+        %end_asset_thumbnail_caption%
+      </figure>
       %end_asset_thumbnail%
     </div>
     <div class="col-md-7 col-md-pull-2">

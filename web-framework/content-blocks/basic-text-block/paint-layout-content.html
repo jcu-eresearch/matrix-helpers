@@ -47,17 +47,23 @@
           %begin_asset_metadata_template.picture.position^eq:left%col-sm-pull-%asset_metadata_template.picture.size^json_decode^index:textcols%%end_asset%
           animated" data-animation="%asset_metadata_template.picture.position^eq:left:fadeInLeft:fadeInRight%" data-delay="250">
           <script runat="server">
-            var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%") //JSON array of numbers or strings
+            //JSON array of numbers or strings
+            var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%")
+            //String of "0" or "1"
+            var lightboxEnabled = !!JSON.parse("%asset_metadata_template.picture.lightbox.enabled%" || "1")
+            // Replace "#link_class#" with nothing if lightbox is disabled
+            var linkClass = lightboxEnabled ? 'link-gallery' : ''
+
             pictures.forEach(function(id) {
               if (typeof id === 'number') {
                 // Standard asset (number)
                 // Use the "Asset Related Image" Paint Layout
-                print('%globals_asset_contents_paint_layout_id_374698:' + id + '^replace:#image_class#:img-fluid center-block^replace:#link_class#:link-gallery% ')
+                print('%globals_asset_contents_paint_layout_id_374698:' + id + '^replace:#image_class#:img-fluid center-block^replace:#link_class#:' + linkClass + '%')
               } else {
                 // Shadow asset, like '12345:v2' (string)
                 // We may need other checks if Matrix adds other ID formats
                 var baseId = id.split(':')[0]
-                print('<a class="link-gallery" href="./?a=' + id + '" data-mfp-caption="&lt;p class=\'h3\'&gt;%globals_asset_attribute_title:' + baseId + '%&lt;/p&gt;">')
+                print('<a class="' + linkClass + '" href="./?a=' + id + '" data-mfp-caption="&lt;p class=\'h3\'&gt;%globals_asset_attribute_title:' + baseId + '%&lt;/p&gt;">')
                 print('  <img class="img-fluid center-block" src="./?a=' + id + '">')
                 print('</a>')
               }
