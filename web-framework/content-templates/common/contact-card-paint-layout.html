@@ -11,16 +11,84 @@
   </li>
   %end_asset%
   %begin_asset_metadata_template.contact.email%
-  <li><span title="Email" class="icon-email2"></span> <a href="mailto:%asset_metadata_template.contact.email%?subject=JCU%20Website%20Enquiry">%globals_site_metadata_jcu.site.email%</a>
+  <li><span title="Email" class="icon-email2"></span> <a href="mailto:%asset_metadata_template.contact.email%?subject=JCU%20Website%20Enquiry">%asset_metadata_template.contact.email%</a>
   </li>
   %else_begin_globals_site_metadata_jcu.site.email%
   <li><span title="Email" class="icon-email2"></span> <a href="mailto:%globals_site_metadata_jcu.site.email%?subject=JCU%20Website%20Enquiry">%globals_site_metadata_jcu.site.email%</a>
   </li>
   %end_asset%
+
+  <!--@@ Social Media contacts @@-->
+
+  %begin_asset_metadata_template.contact.showsocial^contains:facebook%
+    %begin_globals_site_metadata_jcu.social.facebook%
+    <li><span class="text-nowrap"><span title="Facebook" class="icon-facebook"></span> <span class="sr-only">Facebook link </span><a href="%globals_site_metadata_jcu.social.facebook%">find us on Facebook</a></span>
+    </li>
+    %end_asset%
+  %end_asset%
+
+  %begin_asset_metadata_template.contact.showsocial^contains:flickr%
+    %begin_globals_site_metadata_jcu.social.flickr%
+    <li><span class="text-nowrap"><span title="Flickr" class="icon-flickr"></span> <span class="sr-only">Flickr link </span><a href="%globals_site_metadata_jcu.social.flickr%">find us on Flickr</a></span>
+    </li>
+    %end_asset%
+  %end_asset%
+
+  %begin_asset_metadata_template.contact.showsocial^contains:instagram%
+    %begin_globals_site_metadata_jcu.social.instagram%
+    <li><span class="text-nowrap"><span title="Instagram" class="icon-instagram"></span> <span class="sr-only">Instagram link </span><a href="%globals_site_metadata_jcu.social.instagram%">find us on Instagram</a></span>
+    </li>
+    %end_asset%
+  %end_asset%
+
+  %begin_asset_metadata_template.contact.showsocial^contains:twitter%
+    %begin_globals_site_metadata_jcu.social.twitter%
+    <li><span class="text-nowrap"><span title="Twitter" class="icon-twitter"></span> <span class="sr-only">Twitter account </span><a href="http://www.twitter.com/%globals_site_metadata_jcu.social.twitter%">@%globals_site_metadata_jcu.social.twitter% on Twitter</a></span>
+    </li>
+    %end_asset%
+  %end_asset%
+
+  %begin_asset_metadata_template.contact.showsocial^contains:linkedin%
+    %begin_globals_site_metadata_jcu.social.linkedin%
+    <li><span class="text-nowrap"><span title="LinkedIn" class="icon-linkedin"></span> <span class="sr-only">LinkedIn profile </span><a href="%globals_site_metadata_jcu.social.linkedin%">connect on LinkedIn</a></span>
+    </li>
+    %end_asset%
+  %end_asset%
+
+  %begin_asset_metadata_template.contact.showsocial^contains:youtube%
+    %begin_globals_site_metadata_jcu.social.youtube%
+    <li><span class="text-nowrap"><span title="YouTube" class="icon-youtube"></span> <span class="sr-only">YouTube profile </span><a href="%globals_site_metadata_jcu.social.youtube%">find us on YouTube</a></span>
+    </li>
+    %end_asset%
+  %end_asset%
+
+  %begin_asset_metadata_template.contact.showsocial^contains:tumblr%
+    %begin_globals_site_metadata_jcu.social.tumblr%
+    <li><span class="text-nowrap"><span title="Tumblr" class="icon-tumblr"></span> <span class="sr-only">Tumblr page </span><a href="%globals_site_metadata_jcu.social.tumblr%">find us on Tumblr</a></span>
+    </li>
+    %end_asset%
+  %end_asset%
+
+  %begin_asset_metadata_template.contact.showsocial^contains:googleplus%
+    %begin_globals_site_metadata_jcu.social.googleplus%
+    <li><span class="text-nowrap"><span title="Google+" class="icon-googleplus"></span> <span class="sr-only">Google+ profile </span><a href="%globals_site_metadata_jcu.social.googleplus%">find us on Google+</a></span>
+    </li>
+    %end_asset%
+  %end_asset%
+
+  %begin_asset_metadata_template.contact.showsocial^contains:external_site%
+    %begin_globals_site_metadata_jcu.social.external_site%
+    <li><span class="text-nowrap"><span title="Web page" class="icon-explorerwindow"></span> <span class="sr-only">Web page </span><a href="%globals_site_metadata_jcu.social.external_site%">%globals_site_metadata_jcu.social.external_site%</a></span>
+    </li>
+    %end_asset%
+  %end_asset%
+
+  <!--@@ physical location related details @@-->
+
   %begin_asset_metadata_template.contact.radio%
   <li><span title="UHF radio" class="icon-mobile"></span> %asset_metadata_template.contact.radio%
   </li>
   %end_asset%
-  <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.contact.address:%asset_assetid%', {prepend: '<li><address class="m-b-0"><span title="Address" class="icon-home"></span>', append: '</address></li>'})</script>
+  <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.contact.address:%asset_assetid%', {prepend: '<li><address class="m-b-0"><span title="Address" class="icon-home"></span> ', append: '</address></li>'})</script>
   <script runat="server">JCU.printPhrasingHtmlFromKeyword('globals_asset_metadata_template.contact.directions:%asset_assetid%', {prepend: '<li><span title="Directions" class="icon-directions"></span>', append: '</li>'})</script>
 </ul>
