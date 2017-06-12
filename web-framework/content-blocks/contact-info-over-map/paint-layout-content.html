@@ -23,7 +23,10 @@
       </div>
       <!--@@ Buttons paint layout @@-->
       <script runat="server">
-        this.args = {wrapper: {opening: '<div class="bg-inverse p-a-2 hidden-print">', closing: '</div>'}}
+        this.args = {
+          wrapper: {opening: '<div class="bg-inverse p-a-2 hidden-print">', closing: '</div>'},
+          btn_class_prefix: 'btn-block text-wrap'
+        }
       </script>
       %asset_contents_paint_394551%
     </div>
