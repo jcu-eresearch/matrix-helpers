@@ -1,0 +1,19 @@
+
+/* formatting for Matrix-generated form layouts */
+
+.sq-form-question-title {
+  margin-top: 1.5rem;
+  margin-bottom: 0.1rem;
+}
+
+.sq-form-required-field {
+  color: red;
+  border-bottom: 0px !important;
+}
+
+.sq-form-question-note {
+  font-size: 90%;
+  color: grey;
+  display: block;
+  margin-bottom: 0.5rem;
+}
