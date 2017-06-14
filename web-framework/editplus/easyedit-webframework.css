@@ -133,6 +133,12 @@ body.previewMode {
   padding-top: 30px;
 }
 
+/* Hide the 'Decorative only?' prompt in the Wizard */
+.decorativeSliderTitle,
+.decorativeSlider {
+  display: none;
+}
+
 /* Show the Asset ID after creation in the Wizard */
 .success .assetId.screenHide {
   display: inline-block;
