@@ -232,7 +232,7 @@ EasyEdit.plugins.jcuWebFrameworkJS = {
       // Test for `collapse` from Bootstrap's JS
       if (!$.fn.collapse) {
         $.getScript('https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js', function() {
-            $.getScript('/?a=281218:dist/js/jcu.min.js', initWebFrameworkComponents)
+            $.getScript('https://cdn.web.jcu.io/1.0.0-beta.1/js/jcu.min.js', initWebFrameworkComponents)
 
             // Handle changes in screen (eg Content to Metadata)
             EasyEditEventManager.bind("EasyEditScreenLoad", initWebFrameworkComponents)
