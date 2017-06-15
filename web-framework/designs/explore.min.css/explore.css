@@ -365,6 +365,7 @@ a {
  * minifier stripping out the whitespace in the attribute; see
  * https://github.com/jcu-eresearch/matrix-helpers/issues/92
  */
+html.touch .theme-landing .intro,
 html.touch .jcu-bg--cover[style*="fixed;"] {
   background-attachment: scroll !important;
 }
