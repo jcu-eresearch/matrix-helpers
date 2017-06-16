@@ -1,3 +1,14 @@
-<div class="container custom-form">
+<!--@@ If rendering the form as the current asset, wrap it up @@-->
+%begin_frontend_asset_type_code^eq:page_custom_form%
+<div class="container jcu-content p-b-3">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      %asset_contents%
+  </div>
+</div>
+<!--@@ If emebedding the form in another asset, keep it basic @@-->
+%else_frontend%
+<div class="custom-form embedded-form">
   %asset_contents%
 </div>
+%end_frontend%
