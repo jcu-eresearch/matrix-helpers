@@ -231,6 +231,14 @@ body.previewMode {
  * Content panel
  */
 
+/* Hide h1 and h2 buttons in Viper; we don't want people using them */
+#content-screen-ViperFormatPlugin\:vitp\:heading\:h1,
+#content-screen-ViperFormatPlugin\:vitp\:heading\:h2,
+#content-screen-ViperFormatPlugin\:vtp\:heading\:h1,
+#content-screen-ViperFormatPlugin\:vtp\:heading\:h2 {
+  display: none;
+}
+
 /* Prevent style list from overflowing the viewport */
 .Viper-popoutPanel .Viper-selectionList {
   overflow: scroll;
