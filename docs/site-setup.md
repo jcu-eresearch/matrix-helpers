@@ -167,29 +167,12 @@ before each action and release locks afterwards.</div>
 1. **Link the 404 page to the site:** locate the common `404 Not Found` page
    at `JCU Web Framework Sites` > `Common Content` > `404 Not Found`.
    Drag this into the new site and choose `Link` to re-use the 404 page or
-   `Clone`, if you want a custom 404 page.  Accept any permission changes in
-   `HIPO` by clicking `Next`.
+   `Clone`, if you want a custom 404 page.  Click `Next`.
 
    The 404 page must be linked in this way due to how Matrix looks up the
    "site" associated with this type of page.  If we were to use the common
    asset directly, the 404 page would have generic branding, not specifics
    (such as the Orpheus Island logo, background and co-branding).
-
-   **Important!** If you chose to `Link` the 404 page to your site, you will
-   now need to **remove** the extra permissions that Matrix cascaded to the
-   404 page asset. This prevents accidental modification by other users when
-   they are modifying their sites.
-
-   **Warning!** As this is a potentially destructive action, ask if you have
-   **any** questions before proceeding!
-
-   1. Right-click the `404 Not Found` asset and choose `Permissions`.
-
-   1. Remove any `Read` permissions aside from `All JCU Users`. Leave the
-      `Deny Read Permission` alone.
-
-   1. Remove any `Write` or `Admin` permissions aside from `111000`,
-      `111200all` and `Admins`.
 
 1. **Configure site for index and 404 pages**: right-click on the site and
    choose `Details`.
