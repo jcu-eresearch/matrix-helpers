@@ -1,12 +1,34 @@
 <!--@@ Container Block Opening Tag paint layout @@-->
 <script runat="server">
-  this.args = {content_block_class: 'cct-contact-info-plus-map'}
+  this.args = {content_block_class: 'cct-contact-info-plus-map container'}
 </script>
 %asset_contents_paint_420277%
-  <div class="row">
-    <div class="col-xs-12 col-md-10 col-md-offset-1 container">
-      <!--@@ Title paint layout @@-->
-      %asset_contents_paint_420212%
+
+  <!--@@ Title paint layout @@-->
+  <script runat="server">
+    if (JCU.data.current_theme === 'landing') {
+      this.args = { wrapper: {
+          opening: '<div class="row"><div class="col-md-6 col-md-offset-3">',
+          closing: '</div></div>'
+      } }
+    }
+  </script>
+  %asset_contents_paint_420212%
+
+
+  <!--@@ wrapper config @@-->
+  <script runat="server">
+    if (JCU.data.current_theme === 'landing') {
+      // Wrapped container so we don't cut animations off, otherwise we could
+      // be consistent between Landing/Content themes
+      print('<div class="row"><div class="col-xs-12 container">')
+
+    } else if (JCU.data.current_theme === 'content') {
+      print('<div class="row"><div class="col-xs-12 col-md-10 col-md-offset-1 container">')
+
+    }
+  </script>
+
       <div class="row">
         <div class="col-md-4">
           %begin_asset_metadata_template.contact.enquire_link%
