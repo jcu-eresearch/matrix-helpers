@@ -1,14 +1,21 @@
 <!--@@ Container Block Opening Tag paint layout @@-->
 <script runat="server">
-  this.args = {content_block_class: 'cct-intro-text'}
+  this.args = {content_block_class: 'cct-intro-text container'}
 </script>
 %asset_contents_paint_420277%
   <!--@@ Contents paint layout @@-->
   <script runat="server">
-    this.args = {
-      wrapper: {
-        opening: '<div class="row"><div class="col-xs-12 col-md-10 col-md-offset-1 lead m-b-0">',
-        closing: '</div></div>'
+    if (JCU.data.current_theme === 'landing') {
+      this.args = { wrapper: {
+          opening: '<div class="row"><div class="col-xs-12 lead m-b-0">',
+          closing: '</div></div>'
+      } }
+    } else {
+      this.args = {
+        wrapper: {
+          opening: '<div class="row"><div class="col-xs-12 col-md-10 col-md-offset-1 lead m-b-0">',
+          closing: '</div></div>'
+        }
       }
     }
   </script>
