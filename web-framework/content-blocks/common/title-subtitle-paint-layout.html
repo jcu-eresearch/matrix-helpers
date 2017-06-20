@@ -18,22 +18,22 @@
       print(this.args.wrapper.opening)
     }
 
-    print('<h2 class="' + [title_base_class, this.args.title_class, title_alignment].join(' ') + '">')
-
+    print('<header class="content-block-header">')
     if (has_title_content) {
+      print('<h2 class="' + [title_base_class, this.args.title_class, title_alignment].join(' ') + '">')
       print(JCU.phrasingHtmlFromKeyword('globals_asset_metadata_template.title.title:%asset_assetid%'))
+      print('</h2>')
     }
-
     if (has_subtitle_content) {
-      print(JCU.phrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%', {prepend: '<br><span class="lead ' + this.args.subtitle_class + '">', append: '</span>'}))
+      print('<p class="lead ' + title_alignment + '">')
+      print(JCU.phrasingHtmlFromKeyword('globals_asset_metadata_template.title.subtitle:%asset_assetid%'))
+      print('</p>')
     }
-
-    print('</h2>')
+    print('</header>')
 
     if (JCU.data.current_theme === 'landing') {
       print('<hr>')
     }
-
     if (this.args.wrapper) {
       print(this.args.wrapper.closing)
     }

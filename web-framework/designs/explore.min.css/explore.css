@@ -305,12 +305,12 @@ a {
   border-bottom: none;
 }
 
-.content-block-title {
-  margin-bottom: 2rem;
+.content-block-header { /* wrapper of content block head/subhead (usually a header tag) */
+  margin-bottom: 1.5rem;
 }
 
-.theme-landing .content-block-title {
-  margin-bottom: 0;
+.content-block-header .lead { /* content block subhead (usually a p tag) */
+  margin-bottom: 0.5em;
 }
 
 /* inside the pics column of a text block there's either
