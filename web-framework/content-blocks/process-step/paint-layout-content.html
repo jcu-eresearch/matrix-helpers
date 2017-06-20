@@ -1,10 +1,64 @@
 <!--@@ Container Block Opening Tag paint layout @@-->
 <script runat="server">
-  this.args = {content_block_class: 'cct-process-step %asset_metadata_template.vizfx.border.south%'}
+  this.args = {content_block_class: 'cct-process-step container %asset_metadata_template.vizfx.border.south%'}
 </script>
 %asset_contents_paint_420277%
+
+
+<script runat="server">
+  if (JCU.data.current_theme === 'landing') {
+    print('<div class="row"><div class="col-xs-12 container">')
+  } else {
+    print('<div class="row"><div class="col-xs-12 col-md-10 col-md-offset-1 container">')
+  }
+</script><!--@@ that was the padding wrapper @@-->
+
+  <!--@@
+  There's a main "padding" wrapper that is 12-of-12 columns wide on the landing
+  page, and on normal pages in XS and SM sizes.  On normal pages wider than SM, it's
+  10-of-12 columns wide, with a one column pad on the left and right.
+
+  Inside that central space is a new fresh 12-column layout, which is a bit hard to
+  keep track of. Here's an ascii diagram:
+
+
+     1      2      3      4      5      6      7      8      9     10     11     12
+  [____] [____] [____] [____] [____] [____] [____] [____] [____] [____] [____] [____]
+
+#####################################################################################
+
+  Bootstrap media size XS - eXtra Small
+
+  [_Step_#____] [_Heading_(10_cols)_________________________________________________]
+
+  [_(2_cols)__] [_Content_(10_cols)_________________________________________________]
+
+                [_Pic_/_Button_(8_cols,_offset_by_2)__________________]
+
+#####################################################################################
+
+  Bootstrap media size SM - SMall
+
+  [_Step_#____] [_Heading_(10_cols)_________________________________________________]
+
+  [_(2_cols)__] [_Content_(10_cols)_________________________________________________]
+
+                [_Pic_/_Button_(6_cols,_offset_2)_______]
+
+#####################################################################################
+
+  Bootstrap media size MD - MeDium
+
+  [_S#_] [_Heading_(11_cols)________________________________________________________]
+
+  [(1c)] [_Content_(8_cols)____________________________________] [_Pic/Btn_(3cols)__]
+
+#####################################################################################
+
+  @@-->
+
   <div class="row">
-    <div class="col-xs-2 col-md-1 col-md-offset-1 process-step-number">
+    <div class="col-xs-2 col-md-1 process-step-number">
       <!--@@ empty div where CSS will place the step number @@-->
     </div>
 
@@ -13,28 +67,31 @@
       this.args = {
         always_show: true,
         title_class: 'h3 m-b-1',
+        default_title_alignment: 'text-xs-left',
+        display_hr: false,
         wrapper: {
-          opening: '<div class="col-xs-10 col-sm-9">',
+          opening: '<div class="col-xs-10 col-md-11">',
           closing: '</div>'
         }
       }
     </script>
     %asset_contents_paint_420212%
   </div>
+
   <div class="row">
-    <div class="col-xs-2 col-md-1 col-md-offset-1"></div><!--@@ empty div reserving space for the step number above @@-->
+    <div class="col-xs-2 col-md-1"></div><!--@@ empty div reserving space for the step number above @@-->
     <!--@@ Contents paint layout @@-->
     <script runat="server">
       this.args = {
         wrapper: {
-          opening: '<div class="col-xs-10 col-sm-7">',
+          opening: '<div class="col-xs-10 col-md-8">',
           closing: '</div>'
         }
       }
     </script>
     %asset_contents_paint_420234%
 
-    <div class="col-xs-8 col-xs-offset-2 col-sm-3 col-sm-offset-0 col-md-2">
+    <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-2 col-md-3 col-md-offset-0">
       %begin_asset_metadata_template.picture.picture%
       <!--@@ Not visible in preview mode: https://github.com/jcu-eresearch/matrix-helpers/issues/53 @@-->
       <div class="m-b-1">
@@ -55,3 +112,5 @@
 
     </div>
   </div>
+
+</div></div><!--@@ end of padding wrapper @@-->

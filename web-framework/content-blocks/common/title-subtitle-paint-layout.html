@@ -5,7 +5,13 @@
 
   var display_title = !!"%asset_metadata_template.title.display^eq:show:true:%" || this.args.always_show
   var title_base_class = 'content-block-title ' + (JCU.data.current_theme === 'landing' ? 'h1' : '')
-  var title_alignment = "%asset_metadata_template.title.alignment^escapequotes%" || (JCU.data.current_theme === 'landing' ? 'text-xs-center' : '')
+
+  var default_title_alignment = this.args.default_title_alignment || (JCU.data.current_theme === 'landing' ? 'text-xs-center' : '')
+  var title_alignment = "%asset_metadata_template.title.alignment^escapequotes%" || default_title_alignment
+
+  var display_hr = JCU.data.current_theme === 'landing'
+  if (typeof this.args.display_hr !== 'undefined') display_hr = this.args.display_hr
+
   var has_title_content = JCU.isViperStringPopulated("%asset_metadata_template.title.title^json_encode%")
   var has_subtitle_content = JCU.isViperStringPopulated("%asset_metadata_template.title.subtitle^json_encode%")
 
@@ -31,9 +37,10 @@
     }
     print('</header>')
 
-    if (JCU.data.current_theme === 'landing') {
+    if (display_hr) {
       print('<hr>')
     }
+
     if (this.args.wrapper) {
       print(this.args.wrapper.closing)
     }
