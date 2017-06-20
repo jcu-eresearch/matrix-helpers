@@ -1,25 +1,5 @@
 /* Formatting for Matrix-generated form layouts */
 
-/* Required note */
-.sq-form-required-field-note {
-  padding: 15px;
-  margin-bottom: 1rem;
-  border: 1px solid #bcdff1;
-  color: #31708f;
-  background-color: #d9edf7;
-}
-
-/* Submission error elements */
-.sq-form-question-error {
-  padding: 15px;
-  border: 1px solid #ebcccc;
-  background-color: #f2dede;
-}
-.sq-form-error {
-  margin-bottom: 0;
-  color: #d9534f;
-}
-
 /* Section titles */
 .sq-form-section-title {
   margin-bottom: 1rem;
@@ -43,6 +23,7 @@
   display: block;
   margin-bottom: 0.5rem;
   font-size: 90%;
+  font-style: normal;
   color: grey;
 }
 
@@ -50,11 +31,6 @@
 .sq-form-required-field {
   border-bottom: 0 !important;
   color: red;
-}
-
-/* Responsiveness for input fields */
-.sq-form-field {
-  max-width: 100%;
 }
 
 /* Unstyle checkboxes and radio button lists */
@@ -65,52 +41,7 @@
   list-style: none;
 }
 
-/* Submit/Reset Buttons -- though Reset seems to never be outputted in the HTML */
-.sq-form-control {
-  margin-bottom: 1rem;
-}
-
-.sq-form-submit {
-  display: inline-block;
-  padding: .375rem 1rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border: 1px solid transparent;
-  -webkit-transition: all .2s ease-in-out;
-  -o-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
-  color: #fff;
-  background-color: #06c;
-  border-color: #06c;
-}
-.sq-form-submit:hover {
-  color: #fff;
-  background-color: #004d99;
-  border-color: #00478f;
-}
-.sq-form-submit:active {
-  color: #fff;
-  background-color: #004d99;
-  background-image: none;
-  border-color: #00478f;
-}
-.sq-form-submit:focus {
-  color: #fff;
-  background-color: #004d99;
-  border-color: #00478f;
-}
-.sq-form-submit:active:focus,
-.sq-form-submit:active:hover {
-  color: #fff;
-  background-color: #003b75;
-  border-color: #00264d;
+/* Fix radio button styling on iOS, see https://github.com/twbs/bootstrap/issues/20214 */
+.sq-form-field[type="radio"] {
+  border-radius: 8px;
 }
