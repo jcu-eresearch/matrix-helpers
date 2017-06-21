@@ -85,6 +85,9 @@
     background-color: transparent;
     color: black;
   }
+  .cct-text-with-styled-bg-inner[style] a {
+    color: black;
+  }
 
   .embed-responsive,
   .canvas-map {

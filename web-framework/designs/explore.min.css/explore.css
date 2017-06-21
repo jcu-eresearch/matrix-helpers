@@ -441,6 +441,16 @@ body {
   color: #fff;
 }
 
+/* cct-text-with-styled-bg switches text colour to
+   white, assuming a dark image.  The normal link
+   colour (set by both reset and bootstrap) is #06c
+   which is too dark. #6bf is the ~same hue, but
+   lighter enough to work on a dark bakground.
+*/
+.cct-text-with-styled-bg-inner a {
+  color: #6bf;
+}
+
 .cct-text-with-styled-bg .content-block-title,
 .cct-text-with-styled-bg .content-block-content {
   text-shadow: 1px 1px 1px #000;
