@@ -4,17 +4,6 @@
 </script>
 %asset_contents_paint_420277%
 
-<!--@@ Title paint layout @@-->
-<script runat="server">
-  if (JCU.data.current_theme === 'landing') {
-    this.args = { wrapper: {
-        opening: '<div class="row"><div class="col-md-6 col-md-offset-3">',
-        closing: '</div></div>'
-    } }
-  }
-</script>
-%asset_contents_paint_420212%
-
 <!--@@ wrapper config @@-->
 <script runat="server">
   if (JCU.data.current_theme === 'landing') {
@@ -27,6 +16,20 @@
 
   }
 </script>
+
+<!--@@ Title paint layout @@-->
+<script runat="server">
+  if (JCU.data.current_theme === 'landing') {
+    this.args = { wrapper: {
+        opening: '<div class="row"><div class="col-md-6 col-md-offset-3">',
+        closing: '</div></div>'
+    } }
+  } else {
+    this.args = {}
+  }
+</script>
+%asset_contents_paint_420212%
+
 
       <!--@@ Contents paint layout @@-->
       <script runat="server">
