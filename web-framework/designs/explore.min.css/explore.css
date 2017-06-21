@@ -446,6 +446,12 @@ body {
   text-shadow: 1px 1px 1px #000;
 }
 
+.cct-text-plus-featured-number .feature-number,
+.cct-text-plus-three-featured-numbers .feature-number {
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
 /* Research Infrastructure linking */
 .research-classrooms img {
   max-height: 160px;
