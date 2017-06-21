@@ -137,6 +137,11 @@ var JCU = {
       whitelist = '<abbr><audio><b><bdo><br><button><canvas><cite><code><command><datalist><dfn><em><embed><i><iframe><img><input><kbd><keygen><label><mark><math><meter><noscript><object><output><progress><q><ruby><samp><script><select><small><span><strong><sub><sup><svg><textarea><time><var><video><wbr><a><area><del><ins><link><map><meta>'
     } else if (whitelist === 'textual') {
       whitelist = '<abbr><b><bdo><cite><code><dfn><em><i><kbd><mark><noscript><output><q><ruby><samp><script><span><strong><sub><sup><time><var><wbr><a><del><ins>'
+    } else if (whitelist === 'flow') {
+      whitelist = '<a><abbr><address><article><aside><audio><b>,<bdo><bdi><blockquote><br><button><canvas><cite><code>,<data><datalist><del><details><dfn><div><dl><em><embed><fieldset><figure><footer><form><h1><h2><h3><h4><h5><h6><header><hgroup><hr><i><iframe><img><input><ins><kbd><keygen><label><main><map><mark><math><menu><meter><nav><noscript><object><ol><output><p><pre><progress><q><ruby><s><samp><script><section><select><small><span><strong><sub><sup><svg><table><template><textarea><time><ul><var><video><wbr>'
+    } else if (whitelist === 'address') {
+      // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address
+      whitelist = '<a><abbr><audio><b>,<bdo><bdi><blockquote><br><button><canvas><cite><code>,<data><datalist><del><details><dfn><div><dl><em><embed><fieldset><figure><form><hr><i><iframe><img><input><ins><kbd><keygen><label><main><map><mark><math><menu><meter><noscript><object><ol><output><p><pre><progress><q><ruby><s><samp><script><select><small><span><strong><sub><sup><svg><table><template><textarea><time><ul><var><video><wbr>'
     }
     if (keyword) {
       return '%' + keyword + '^striphtml:' + whitelist +

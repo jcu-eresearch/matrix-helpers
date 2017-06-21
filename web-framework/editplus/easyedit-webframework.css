@@ -206,6 +206,33 @@ body.previewMode {
   color: inherit;
 }
 
+/* Asset Finder status improvements */
+#ees_assetFinderBody .status {
+  position: absolute;
+  z-index: 10;
+  height: auto;
+  width: auto;
+  line-height: 1;
+  transform: translate(-3px, -2px);
+  border-radius: 0;
+  font-size: 8px;
+  padding: 1px;
+}
+#ees_assetFinderBody .status.live::after {
+  content: "Live";
+}
+#ees_assetFinderBody .status.underconstruction::after {
+  content: "Draft";
+}
+#ees_assetFinderBody .status.safeediting::after,
+#ees_assetFinderBody .status.safeeditingpendingapproval::after {
+  content: "Edit";
+  color: #000;
+}
+#ees_assetFinderBody .status.archived::after {
+  content: "Archive"
+}
+
 /*
  * Details panel
  */
