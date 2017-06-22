@@ -447,7 +447,7 @@ body {
    which is too dark. #6bf is the ~same hue, but
    lighter enough to work on a dark bakground.
 */
-.cct-text-with-styled-bg-inner a {
+.cct-text-with-styled-bg-inner .content-block-content a {
   color: #6bf;
 }
 
