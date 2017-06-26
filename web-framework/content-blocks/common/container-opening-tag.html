@@ -1,6 +1,7 @@
 <script runat="server">
   this.args = this.args || {}
   var contentBlockClasses = []
+  var contentBlockStyleAttr = ''
 
   // Grab extracted classes from parsing a Content Block's HTML
   if (this.parts.classAttr) {
@@ -29,8 +30,14 @@
   // Filter and uniquely identify classes
   contentBlockClasses = _.filter(_.uniq(contentBlockClasses), function(val) { return val !== "" })
 
+
+  // Grab any explicit style passed in as argument
+  if (this.args.content_block_style) {
+    contentBlockStyleAttr = ' style="' + this.args.content_block_style + '"'
+  }
+
   // Print the result
-  print('class="' + contentBlockClasses.join(' ') + "\" aria-label=\"%asset_metadata_template.title.title^striphtml^escapequotes% %asset_metadata_template.title.subtitle^striphtml^escapequotes%\">")
+  print('class="' + contentBlockClasses.join(' ') + '"' + contentBlockStyleAttr + " aria-label=\"%asset_metadata_template.title.title^striphtml^escapequotes% %asset_metadata_template.title.subtitle^striphtml^escapequotes%\">")
   if (JCU.debug) {
     print('<!-- Rendered "Content Block Opening Tag" paint layout for %asset_assetid% (above) -->')
   }

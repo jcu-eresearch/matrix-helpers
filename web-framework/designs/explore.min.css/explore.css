@@ -371,7 +371,7 @@ html.touch .jcu-bg--cover[style*="fixed;"] {
 }
 
 body {
-  counter-reset: process-step-counter;
+  counter-reset: process-step-counter 0;
 }
 .cct-process-step .process-step-number {
   position: relative;
@@ -380,13 +380,19 @@ body {
   content: counter(process-step-counter, decimal);
   counter-increment: process-step-counter;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: auto;
+  right: 0.1em;
   top: 0.9rem;
-  font-size: 5em;
-  font-weight: 500;
   line-height: 0.4;
   text-align: center;
+  font-size: 4em; /* fallback font size */
+  font-size: calc(3em + 2vw); /* scale font size to page width */
+  letter-spacing: -0.05em;
+}
+@media(min-width: 1000px) {
+  .cct-process-step .process-step-number::before {
+    font-size: calc(3em + 20px); /* stop scaling font size at 1000px wide */
+  }
 }
 
 .canvas-map {
