@@ -12,7 +12,7 @@
   var display_hr = JCU.data.current_theme === 'landing'
   if (typeof this.args.display_hr !== 'undefined') display_hr = this.args.display_hr
 
-  var has_title_content = JCU.isViperStringPopulated("%asset_metadata_template.title.title^json_encode%")
+  var has_title_content = JCU.isViperStringPopulated("%asset_metadata_template.title.title^empty:^json_encode%")
   var has_subtitle_content = JCU.isViperStringPopulated("%asset_metadata_template.title.subtitle^empty:^json_encode%")
 
   if (JCU.debug) {
