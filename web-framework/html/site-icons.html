@@ -1,0 +1,14 @@
+%begin_globals_site_metadata_jcu.site.favicon%
+<link rel="icon" href="%globals_site_metadata_jcu.site.favicon^as_asset:asset_url%">
+%end_globals%
+
+%begin_globals_site_metadata_jcu.site.webappicon%
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" href="%globals_site_metadata_jcu.site.webappicon^as_asset:asset_url%">
+<link rel="apple-touch-icon" href="%globals_site_metadata_jcu.site.webappicon^as_asset:asset_url%">
+<script runat="server">
+  if (JCU.data.is_homepage) {
+    print('<meta name="apple-mobile-web-app-title" content="' + JCU.data.site_name + '">')
+  }
+</script>
+%end_globals%
