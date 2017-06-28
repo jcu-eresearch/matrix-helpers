@@ -353,6 +353,18 @@ body.previewMode {
   width: auto;
 }
 
+/* Add slight border styling to tables so editors can see it */
+.bodycopy_content .table:not(.table-bordered),
+.bodycopy_content .table:not(.table-bordered) td {
+  border: 1px dashed #dedede;
+}
+
+.bodycopy_content .table:not(.table-bordered) thead th {
+  border-top: 1px dashed #dedede;
+  border-right: 1px dashed #dedede;
+  border-left: 1px dashed #dedede;
+}
+
 /*
  * Metadata panel
  */

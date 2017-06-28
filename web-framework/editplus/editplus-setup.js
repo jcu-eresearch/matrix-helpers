@@ -1,5 +1,5 @@
 /* jslint browser: true, jquery: true, asi: true */
-/* globals EasyEdit, EasyEditConfig, EasyEditEventManager, EasyEditAssetManager, EasyEditComponentsToolbar, EasyEditOverlay, EasyEditBodycopyManager, EasyEditImageEditor, EasyEditLocalise, EasyEditComponents, EasyEditScreens */
+/* globals EasyEdit, EasyEditConfig, EasyEditEventManager, EasyEditAssetManager, EasyEditComponentsToolbar, EasyEditOverlay, EasyEditBodycopyManager, EasyEditImageEditor, EasyEditLocalise, EasyEditComponents, EasyEditScreens, Viper */
 
 // Easy Edit Suite configuration options.
 EasyEditConfig.debug = false
@@ -237,6 +237,22 @@ EasyEdit.plugins.jcuWebFrameworkJS = {
             // Handle changes in screen (eg Content to Metadata)
             EasyEditEventManager.bind("EasyEditScreenLoad", initWebFrameworkComponents)
         })
+      }
+
+      // Monkey patch the Viper WYSIWYG table editor so that it doesn't add
+      // borders and conflicting attributes
+      var oldFn = Viper.Selection._viper.PluginManager._plugins['ViperTableEditorPlugin'].insertTable
+      Viper.Selection._viper.PluginManager._plugins['ViperTableEditorPlugin'].insertTable = function() {
+        var table = oldFn.apply(this, arguments)
+        // By this point, the table has already been inserted into the DOM via
+        // this.viper.getViperElement().appendChild(f) in `insertTable`
+        // so we can manipulate it freely -- and wrap it.
+        table.removeAttribute('style')
+        table.removeAttribute('id')
+        table.removeAttribute('border')
+        table.setAttribute('class', 'table')
+        $(table).wrap('<div class="table-responsive"></div>')
+        return table
       }
     })
   }
