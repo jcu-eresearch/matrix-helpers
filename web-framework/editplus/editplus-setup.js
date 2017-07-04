@@ -238,21 +238,33 @@ EasyEdit.plugins.jcuWebFrameworkJS = {
             EasyEditEventManager.bind("EasyEditScreenLoad", initWebFrameworkComponents)
         })
       }
+    })
 
+    EasyEditEventManager.bind("EasyEditScreenLoad", function () {
       // Monkey patch the Viper WYSIWYG table editor so that it doesn't add
       // borders and conflicting attributes
-      var oldFn = Viper.Selection._viper.PluginManager._plugins['ViperTableEditorPlugin'].insertTable
-      Viper.Selection._viper.PluginManager._plugins['ViperTableEditorPlugin'].insertTable = function() {
-        var table = oldFn.apply(this, arguments)
-        // By this point, the table has already been inserted into the DOM via
-        // this.viper.getViperElement().appendChild(f) in `insertTable`
-        // so we can manipulate it freely -- and wrap it.
-        table.removeAttribute('style')
-        table.removeAttribute('id')
-        table.removeAttribute('border')
-        table.setAttribute('class', 'table')
-        $(table).wrap('<div class="table-responsive"></div>')
-        return table
+      if (typeof Viper !== "undefined" &&
+          typeof Viper.Selection !== "undefined" &&
+          typeof Viper.Selection._viper !== "undefined" &&
+          typeof Viper.Selection._viper.PluginManager !== "undefined" &&
+          typeof Viper.Selection._viper.PluginManager._plugins !== "undefined" &&
+          typeof Viper.Selection._viper.PluginManager._plugins.ViperTableEditorPlugin !== "undefined" &&
+          typeof Viper.Selection._viper.PluginManager._plugins.ViperTableEditorPlugin.insertTable === "function" &&
+          !Viper.Selection._viper.PluginManager._plugins.ViperTableEditorPlugin.insertTable.patched) {
+        var oldFn = Viper.Selection._viper.PluginManager._plugins.ViperTableEditorPlugin.insertTable
+        Viper.Selection._viper.PluginManager._plugins.ViperTableEditorPlugin.insertTable = function() {
+          var table = oldFn.apply(this, arguments)
+          // By this point, the table has already been inserted into the DOM via
+          // this.viper.getViperElement().appendChild(f) in `insertTable`
+          // so we can manipulate it freely -- and wrap it.
+          table.removeAttribute('style')
+          table.removeAttribute('id')
+          table.removeAttribute('border')
+          table.setAttribute('class', 'table')
+          $(table).wrap('<div class="table-responsive"></div>')
+          return table
+        }
+        Viper.Selection._viper.PluginManager._plugins.ViperTableEditorPlugin.insertTable.patched = true
       }
     })
   }
