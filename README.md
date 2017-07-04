@@ -10,10 +10,12 @@ First up, let's clone this stuff:
 
     git clone https://github.com/jcu-eresearch/matrix-helpers.git
 
-If you want to run the scripts, install `shyaml` for metadata parsing, via:
+If you want to run the scripts, run the following:
 
-    brew install shyaml  # Mac
-    pip install shyaml   # Everything else
+    scripts/construct install-deps
+    
+We currently support macOS and Debian-based environments.  Contributions for
+dependency installation elsewhere are welcomed.
 
 To get started, ensure you don't think about Matrix as a traditional CMS where
 you're able to edit content and create sites out of the box.  It's
