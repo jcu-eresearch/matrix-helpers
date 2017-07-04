@@ -10,20 +10,24 @@ First up, let's clone this stuff:
 
     git clone https://github.com/jcu-eresearch/matrix-helpers.git
 
-If you want to run the scripts, install `shyaml` for metadata parsing, via:
+If you want to run the scripts, run the following:
 
-    brew install shyaml  # Mac
-    pip install shyaml   # Everything else
+    scripts/construct install-deps
+    
+We currently support macOS and Debian-based environments.  Contributions for
+dependency installation elsewhere are welcomed.
 
 To get started, ensure you don't think about Matrix as a traditional CMS where
 you're able to edit content and create sites out of the box.  It's
 much more akin to a framework, like Django or Rails, except it is very limiting
 and you don't have raw programming (eg PHP, Python or Ruby) at your disposal.
 Matrix is very unopinionated about every aspect of either content management,
-creation or configuration.  Expect you need to do effectively everything
+creation or configuration -- except for the Edit+ interface, which is 100%
+opinionated, inflexible and if it doesn't do what you want, you're pretty much
+stuck.  With Matrix, expect that you'll need to do effectively everything
 yourself in terms of wiring: such as creating page templates, writing your own
 listing display and logic (such as Folder listings), setting up fields of
-metadata for users to input and connecting it all together.
+metadata for users to input and connecting it all together.  In short, good luck.
 
 So if you're coming from a technical background, it's better you think of
 Matrix as a framework, with its own custom languages producing HTML output.
