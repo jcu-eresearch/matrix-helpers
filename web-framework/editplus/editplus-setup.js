@@ -246,6 +246,7 @@ EasyEdit.plugins.jcuWebFrameworkJS = {
       if (typeof Viper !== "undefined" &&
           typeof Viper.Selection !== "undefined" &&
           typeof Viper.Selection._viper !== "undefined" &&
+          Viper.Selection._viper !== null &&
           typeof Viper.Selection._viper.PluginManager !== "undefined" &&
           typeof Viper.Selection._viper.PluginManager._plugins !== "undefined" &&
           typeof Viper.Selection._viper.PluginManager._plugins.ViperTableEditorPlugin !== "undefined" &&
