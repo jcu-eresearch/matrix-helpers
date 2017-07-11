@@ -1,16 +1,27 @@
 <script runat="server">
   this.args = this.args || {}
-  function printButton(text, href, klass) {
+  function printButton(text, href, klass, target) {
     if (text) {
-      print('<a class="' + klass + '" href="' + href + '">' + text + '</a>')
+      print('<a class="' + klass + '" href="' + href + '"' + target + '>' + text + '</a>')
     }
   }
+  
+  function getTargetAttribute(btn_target) {
+    if (btn_target == "empty") {
+      return ""
+    } 
+    
+    return ' target="' + btn_target + '" rel="noopener noreferrer"'
+  }
+  
   var btn_class_prefix = (this.args.btn_class_prefix || '') + ' '
   var btn1_text = "%asset_metadata_template.buttons.btn1.text^escapequotes%"
   var btn1_link = "%asset_metadata_template.buttons.btn1.asset^as_asset:asset_url^escapequotes%" || "%asset_metadata_template.buttons.btn1.url^escapequotes%" || "#"
+  var btn1_target = "%asset_metadata_template.buttons.btn1.target^escapequotes%"
   var btn1_class = btn_class_prefix + "%asset_metadata_template.buttons.btn1.class^escapequotes%"
   var btn2_text = "%asset_metadata_template.buttons.btn2.text^escapequotes%"
   var btn2_link = "%asset_metadata_template.buttons.btn2.asset^as_asset:asset_url^escapequotes%" || "%asset_metadata_template.buttons.btn2.url^escapequotes%" || "#"
+  var btn2_target = "%asset_metadata_template.buttons.btn2.target^escapequotes%"
   var btn2_class = btn_class_prefix + "%asset_metadata_template.buttons.btn2.class^escapequotes%"
   var alignment = "%asset_metadata_template.buttons.alignment^escapequotes%" || "text-xs-center"
 
@@ -24,9 +35,11 @@
     if (!this.omit_alignment) {
       print('<div class="' + alignment + '">')
     }
-    printButton(btn1_text, btn1_link, btn1_class)
+    
+    printButton(btn1_text, btn1_link, btn1_class, getTargetAttribute(btn1_target))
     print(' ')
-    printButton(btn2_text, btn2_link, btn2_class)
+    printButton(btn2_text, btn2_link, btn2_class, getTargetAttribute(btn2_target))
+    
     if (!this.omit_alignment) {
       print('</div>')
     }
