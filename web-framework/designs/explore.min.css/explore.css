@@ -386,12 +386,16 @@ body {
   line-height: 0.4;
   text-align: center;
   font-size: 4em; /* fallback font size */
-  font-size: calc(3em + 2vw); /* scale font size to page width */
+  font-size: 4rem; /* less worse fallback font size */
+  /* had to switch the font sizes to rem rather than em to avoid this IE11 bug:
+   * https://connect.microsoft.com/IE/feedback/details/813398/ie-11-css-before-with-font-size-in-em-units-ignores-css-precedence-rules
+   */
+  font-size: calc(3rem + 2vw); /* scale font size to page width */
   letter-spacing: -0.05em;
 }
 @media(min-width: 1000px) {
   .cct-process-step .process-step-number::before {
-    font-size: calc(3em + 20px); /* stop scaling font size at 1000px wide */
+    font-size: calc(3rem + 20px); /* stop scaling font size at 1000px wide */
   }
 }
 
