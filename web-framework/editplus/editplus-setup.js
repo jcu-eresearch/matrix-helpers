@@ -326,7 +326,7 @@ EasyEdit.plugins.addUserMenuButtons = {
         if (EasyEdit.isBackendUser()) {
           buttons += '<a href="' + EasyEdit.getURL().url + '/' + EasyEdit.systemInfo.suffixes.admin + '" title="Go to Admin mode" class="btn btn-secondary"><span aria-label="Admin icon" class="icon-pagesetup"></span></a>'
         }
-        buttons += '<a href="' + EasyEdit.getURL().url + '" class="btn btn-secondary" title="Go to public view" target="_blank" rel="noopener noreferrer"><span class="icon-eye" aria-label="View icon"></span></a><a class="btn btn-secondary" href="https://www.jcu.edu.au/digital-marketing/" target="_blank" title="Get help from a human" rel="noopener noreferrer"><span class="icon-support" aria-label="Help icon"></span></a>'
+        buttons += '<a href="' + EasyEdit.getURL().url + '/_noproxycache" class="btn btn-secondary" title="Go to public view" target="_blank" rel="noopener noreferrer"><span class="icon-eye" aria-label="View icon"></span></a><a class="btn btn-secondary" href="https://www.jcu.edu.au/digital-marketing/" target="_blank" title="Get help from a human" rel="noopener noreferrer"><span class="icon-support" aria-label="Help icon"></span></a>'
         buttons += '</div>'
         return $(oldFn()).append(buttons)[0].outerHTML
       }
