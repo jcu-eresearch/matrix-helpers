@@ -2,30 +2,34 @@
 %begin_frontend_asset_type_code^eq:page_custom_form%
 <div class="container jcu-content p-b-3">
   <div class="row">
-    <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 custom-form">
       %asset_contents%
   </div>
 </div>
-<script runat="server">
-  function JCU_body_reconfigureForms() {
-    print('\
-    <script> \
-      $(".sq-form-required-field-note").addClass("alert alert-info") \n \
-      $(".sq-form-question-error").addClass("alert alert-danger") \n \
-      $(".sq-form-question").addClass("form-group") \n \
-      $(".sq-form-field[type=text], select.sq-form-field, textarea.sq-form-field").addClass("form-control") \n \
-      $(".sq-form-field[type=file]").addClass("form-control-file") \n \
-      $(".sq-form-question-tickbox-list .sq-form-question-answer").addClass("checkbox-inline") \n \
-      $(".sq-form-question-option-list .sq-form-question-answer").addClass("radio-inline") \n \
-      $(".sq-form-question-datetime").addClass("form-inline") \n \
-      $(".sq-form-submit").addClass("btn btn-primary btn-lg") \n \
-    </script' + '>')
-  }
-</script>
-
 <!--@@ If emebedding the form in another asset, keep it basic @@-->
 %else_frontend%
 <div class="custom-form embedded-form">
   %asset_contents%
 </div>
 %end_frontend%
+
+<script runat="server">
+  // This runs at the end of the body
+  // Multiple forms on a page result in just the last function being called
+  // Unfortunately, this will also run on forms with custom renderings, but
+  // there's not much we can do about that for now.
+  function JCU_body_reconfigureForms() {
+    print('\
+    <script> \
+      $(".custom-form .sq-form-required-field-note").addClass("alert alert-info") \n \
+      $(".custom-form .sq-form-question-error").addClass("alert alert-danger") \n \
+      $(".custom-form .sq-form-question").addClass("form-group") \n \
+      $(".custom-form .sq-form-field[type=text], select.sq-form-field, textarea.sq-form-field").addClass("form-control") \n \
+      $(".custom-form .sq-form-field[type=file]").addClass("form-control-file") \n \
+      $(".custom-form .sq-form-question-tickbox-list .sq-form-question-answer").addClass("checkbox-inline") \n \
+      $(".custom-form .sq-form-question-option-list .sq-form-question-answer").addClass("radio-inline") \n \
+      $(".custom-form .sq-form-question-datetime").addClass("form-inline") \n \
+      $(".custom-form .sq-form-submit").addClass("btn btn-primary btn-lg") \n \
+    </script' + '>')
+  }
+</script>
