@@ -17,6 +17,13 @@
   <div class="container-fluid">
     <div class="col-md-6 col-lg-4 col-md-offset-1 col-print-12 location-callout animated" data-animation="fadeInLeft" data-delay="500">
       <div class="location-callout-wrapper">
+        %begin_globals_site_metadata_jcu.maps.api_key%
+        %else_globals%
+        <div class="alert alert-danger">
+          Your map is in testing mode. You must specify a Google Maps API Key in your Site settings for this to go live.
+          <a href="https://developers.google.com/maps/documentation/javascript/get-api-key">Get an API Key.</a>
+        </div>
+        %end_globals%
         <h2>Location &amp; Contact</h2>
         <!--@@ Contact card paint layout @@-->
         %asset_contents_paint_394355%
