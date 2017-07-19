@@ -6,6 +6,10 @@ Append any of these URLs to an Asset URL to have an effect.
 The URLs might change based upon the configuration located in
 `core/include/system_config.inc`.
 
+For information about any potential new URLs, consult
+the `clean_url()` function in `core/include/general.inc`; that function lists
+out all potential Matrix URLs in one easy-to-grep location.
+
 * `/_admin` for administrative UI access. On the JCU site, hit this URL when
   logged out to be prompted for a standard Matrix login form.  Need Admin
   permission and must be a Backend User to access this.
