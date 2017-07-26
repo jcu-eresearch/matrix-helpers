@@ -602,7 +602,7 @@ nav.breadcrumb {
 /*
  * Summary Cards content container template
  */
-.thumbnail-flair .summarycard-image-wrapper {
+.thumbnail-flair .summarycard-image-wrapper img {
   border: 1px solid white; /* set off the coloured drop shadow */
   box-shadow: 0 0 0 5px rgba(0,102,204, 0.6); /* dropshadow with no blur, that's 5px bigger than the thing itself */
   overflow: hidden;
@@ -638,11 +638,11 @@ nav.breadcrumb {
   margin-bottom: 0;
 }
 
-.image-shape-natural .summarycard-image-wrapper {
+.image-shape-natural .summarycard-image-wrapper img {
   background-image: linear-gradient(to bottom, rgba(200,200,200, 0.2), rgba(200,200,200, 0) 2em);
 }
 
-.image-shape-circle .summarycard-image-wrapper {
+.image-shape-circle .summarycard-image-wrapper img {
   border-radius: 50%;
   background-image: radial-gradient(closest-side, transparent, transparent 40%, rgba(200,200,200, 0.4) 40%, rgba(200,200,200, 0.1) 70%, rgba(200,200,200, 0) 70%);
   overflow: hidden;
