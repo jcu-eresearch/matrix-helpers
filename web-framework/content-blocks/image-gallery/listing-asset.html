@@ -1,16 +1,18 @@
 <!--@@ This uses the Asset Related Image paint layout to get the asset's image @@-->
 <div class="col-sm-%asset_assetid^notempty:12^divide:{nested_get_content_container^as_asset:asset_metadata_template.gallery.count}^floor% %nested_get_content_container^as_asset:asset_metadata_template.gallery.column_classes%">
-  <figure class="figure">
+  %begin_nested_get_content_container^as_asset:asset_metadata_template.gallery.show.titles%
+  <figure class="figure center-block">
+  %end_nested%
     %begin_nested_get_content_container^as_asset:asset_metadata_template.gallery.lightbox.enabled%
       %asset_contents_paint_374698^replace:#image_class#:figure-img img-fluid center-block {nested_get_content_container^as_asset:asset_metadata_template.gallery.img_classes}^replace:#link_class#:link-gallery%
     %else_nested%
       %asset_contents_paint_374698^replace:#image_class#:figure-img img-fluid center-block {nested_get_content_container^as_asset:asset_metadata_template.gallery.img_classes}%
     %end_nested%
 
-    %begin_nested_get_content_container^as_asset:asset_metadata_template.gallery.show.titles%
+  %begin_nested_get_content_container^as_asset:asset_metadata_template.gallery.show.titles%
     <figcaption class="figure-caption text-xs-center">%asset_attribute_title^empty:{asset_name}^escapequotes%</figcaption>
-    %end_nested%
   </figure>
+  %end_nested%
 </div>
 %begin_asset_position^modulo:{nested_get_content_container^as_asset:asset_metadata_template.gallery.count}^eq:0%
 <div class="clearfix hidden-xs-down"></div>
