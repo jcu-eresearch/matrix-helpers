@@ -1,0 +1,38 @@
+.navbar-brand .brand-img {
+  max-height: 4rem;
+  height : auto;
+}
+
+@media(min-width:992px) {
+  .navbar-brand .brand-img {
+    max-height: 5rem;
+    height : auto;
+  }
+}
+
+.navbar-custom.navbar-collapsed .brand-img {
+  max-height: 3.5rem;
+  height : auto;
+}
+
+/* mucking around with the grid card layout */
+.summarycard-layout-grid .card-outline-secondary {
+  background-color : #e4F2F7;
+  border-style :  none;
+  border-radius : 2em;
+}
+
+.summarycard-layout-grid .card-outline-secondary img {
+  border-top-left-radius : 2em;
+  border-top-right-radius : 2em;
+}
+
+.summarycard-layout-grid .card-block::after {
+  content : none;
+}
+
+.summarycard-layout-grid .btn-secondary {
+    background-color : #F2E4F7;
+    border-radius : 1em;
+    border-style : outset;
+}
