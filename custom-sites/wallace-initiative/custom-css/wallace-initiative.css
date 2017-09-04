@@ -15,9 +15,12 @@
   height : auto;
 }
 
-/* mucking around with the grid card layout */
+/* mucking around with the grid card layout 
+ *  rounded edges, blue background, blue button
+ *
+
 .summarycard-layout-grid .card-outline-secondary {
-  background-color : #e4F2F7;
+  background-color : #E1F0FC;
   border-style :  none;
   border-radius : 2em;
 }
@@ -32,7 +35,34 @@
 }
 
 .summarycard-layout-grid .btn-secondary {
-    background-color : #F2E4F7;
+    background-color : #f0fcff;
     border-radius : 1em;
-    border-style : outset;
+    border-style : none;
+}
+*/
+
+/* mucking around with the grid card layout 
+ *  polaroid style, neutral background, block style button
+*/
+
+.cct-summary-cards {
+  background-color : #FAF5E3;
+}
+
+.summarycard-layout-grid .card-outline-secondary {
+  background-color : #ffffff;
+  border-style :  none;
+  padding : 1rem 1rem 0 1rem;
+  /*box-shadow : 0.5rem 0.5rem 0.5rem 0rem #dddddd;*/
+}
+
+.summarycard-layout-grid .card-block::after {
+  content : none;
+}
+
+.summarycard-layout-grid .btn-secondary {
+    background-color : #FAF5E3;
+    border-style : none;
+    display : block;
+    
 }
