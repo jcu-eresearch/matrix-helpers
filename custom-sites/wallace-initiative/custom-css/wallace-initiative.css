@@ -1,18 +1,9 @@
-.navbar-brand .brand-img {
-  max-height: 4rem;
-  height : auto;
-}
-
-@media(min-width:992px) {
-  .navbar-brand .brand-img {
-    max-height: 5rem;
-    height : auto;
-  }
-}
-
-.navbar-custom.navbar-collapsed .brand-img {
-  max-height: 3.5rem;
-  height : auto;
+/*
+ * theme styling for Wallace Initiative web-site
+ */
+ 
+.intro {
+  background-color : #242732;
 }
 
 body {
@@ -27,6 +18,9 @@ body.theme-landing {
   background-color : #F5F2E9;
 }
 
+/* 
+ *  Summary Cards content block themeing
+ */
 .summarycard-layout-grid .btn-secondary {
     background-color : #FAF5E3;
     border-style : none;
@@ -49,16 +43,7 @@ body.theme-landing {
   padding : 1rem 0;
 }
 
-/*.btn-primary {
-    background-color : #2D4047;
-    border-color : #2D4047;
-}
-*/
-.btn-secondary {
-    background-color : #FAF5E3;
-    border-color : #FAF5E3;
-}
-
+/* class added for use with the Image Gallery content block to control tall but not wide logos */
 .max-logo-height {
   max-height : 5rem;
 }
