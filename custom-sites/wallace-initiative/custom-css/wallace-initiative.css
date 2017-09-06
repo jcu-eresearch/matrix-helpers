@@ -40,7 +40,7 @@ body.theme-landing {
 .summarycard-layout-grid .card-outline-secondary {
   background-color : #ffffff;
   border-style :  none;
-  padding : 1rem 1rem 0 1rem;
+  padding : 0.5rem 0.5rem 0 0.5rem;
 }
 
 .summarycard-layout-column .row {
@@ -49,12 +49,58 @@ body.theme-landing {
   padding : 1rem 0;
 }
 
-.btn-primary {
+/*.btn-primary {
     background-color : #2D4047;
     border-color : #2D4047;
 }
-
+*/
 .btn-secondary {
     background-color : #FAF5E3;
     border-color : #FAF5E3;
+}
+
+.max-logo-height {
+  max-height : 5rem;
+}
+
+/*
+ * theme'd colours for alerts and buttons
+ */
+
+.alert-info {
+  background-color: #fff;
+  border-color : #777956;
+  color: #777956; 
+}
+
+.btn-primary {
+  background-color: #2d4047;
+  border-color : #2d4047;
+ }
+ 
+.btn-primary:hover {
+  background-color: #425E69;
+  border-color : #425E69;
+ }
+ 
+.btn-secondary {
+  background-color: #c8bfa8;
+  border-color: #c8bfa8;
+}
+
+.btn-secondary:hover {
+  background-color: #B8AF9A;
+  border-color: #B8AF9A;
+}
+
+.btn-info {
+  background-color : #f5f2e9;
+  border-color : #f5f2e9;
+  color : #242732;
+}
+
+.btn-info:hover {
+  background-color : #CFCCC4;
+  border-color : #CFCCC4;
+  color : #242732;
 }
