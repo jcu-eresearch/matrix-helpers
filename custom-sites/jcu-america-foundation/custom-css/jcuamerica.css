@@ -1,0 +1,9 @@
+/*
+ * theme styling for JCU in America Foundation web-site
+ */
+ 
+@media(min-width:992px) {
+  .theme-landing .navbar-brand .brand-img {
+    max-height: 10rem;
+  }
+}
