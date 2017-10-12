@@ -7,3 +7,34 @@
     max-height: 10rem;
   }
 }
+
+/*
+ * theme'd colours for alerts and buttons
+ */
+/*
+.alert-info {
+  background-color: #fff;
+  border-color : #777956;
+  color: #777956; 
+}
+*/
+.btn-primary {
+  background-color: #0A4866;
+  border-color : #0A4866;
+ }
+ 
+.btn-primary:hover {
+  background-color: #08364C;
+  border-color : #08364C;
+ }
+ 
+
+.btn-info {
+  background-color : #18AAF2;
+  border-color : #18AAF2;
+}
+
+.btn-info:hover {
+  background-color : #127DB2;
+  border-color : #127DB2;
+}
