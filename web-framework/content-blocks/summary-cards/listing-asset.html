@@ -154,11 +154,12 @@ print('<!-- imageHtml START -->')
       print('<div class="card-header card-info">' + layout.flairText + '</div>')
 
     if (layout.isTileStyle) { 
+      if (!card.disableLink) print(linkTagOpen())
       print('<div class="card-footer">' + card.name + '</div>')
+      if (!card.disableLink) print(linkTagClose())
     } else {   // must be card style
       print('<div class="card-block">')
       print('<h4 class="card-title">' + card.name + '</h4>')
-
       print('<h5 class="card-title text-muted"><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
       print(card.description)
 
