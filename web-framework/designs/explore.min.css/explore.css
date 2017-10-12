@@ -682,6 +682,7 @@ nav.breadcrumb {
 
 .summarycard-flair .card-header {
   background-color: rgba(0,102,204, 0.6);
+  border-color: rgba(0,102,204, 0.6);
   text-transform: uppercase;
   font-size: 90%;
   font-weight: 700;
@@ -694,4 +695,30 @@ nav.breadcrumb {
 
 .summarycard-layout-grid .card-deck-row {
   display: table-row;
+}
+
+/* trim the whitespace at the base of the cards
+*/
+.summarycard-layout-grid .card-block::after {
+  content : none;
+}
+
+
+/*
+ * New style of card - tile
+ * 
+ * uses the card-footer for the asset title
+ */
+.card-outline-secondary.summarycard-tile {
+  border : none;
+}
+
+.summarycard-tile {
+  background-color : #00264C;
+}
+
+.summarycard-tile .card-footer {
+  border-top : none;
+  background-color : #00264C;
+  color : white;
 }

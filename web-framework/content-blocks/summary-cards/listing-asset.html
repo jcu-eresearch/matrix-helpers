@@ -6,7 +6,8 @@
      flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair%",
      cardLayout : "%nested_get_content_container^as_asset:asset_metadata_template.card.layout%",
      buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text%",
-     gridCardsPerRow : "%nested_get_content_container^as_asset:asset_metadata_template.card.grid.columns%"
+     gridCardsPerRow : "%nested_get_content_container^as_asset:asset_metadata_template.card.grid.columns%",
+     isTileStyle : %nested_get_content_container^as_asset:asset_metadata_template.card.style^eq:tile:true:false%
   }
 
   var columnLayout = {
@@ -38,6 +39,7 @@
     thumbnailTitle : '%asset_thumbnail_title^escapequotes%',
     thumbnailAlt : '%asset_thumbnail_alt^escapequotes%',
     thumbnailUrl : '%asset_thumbnail_url^escapequotes%',
+    brighterImage : '%asset_metadata_item.feature-image%',   // special case for articles from the Brighter site
 //    imageUrl : '%asset_thumbnail_v_newsdetails_url^empty:{asset_thumbnail_url}^escapequotes%',
     assetUrl : '%asset_url^escapequotes%',
     overrideUrl : '%asset_metadata_jcu.summarycard.override.url^escapequotes%',
@@ -50,6 +52,10 @@
     // where the image comes from depends on the type of the asset
     // e.g. if it is an image asset, don't make the user have to set the thumbnail to itself
 
+    if (JCU.debug) {
+      print('<!-- card.assetType(' + card.assetType + ') -->')
+    }
+    
     if (card.assetType === 'image' || card.assetType === 'thumbnail' || card.fileType === 'svg') {
       card.hasImage = true
       card.imageUrl = card.assetUrl
@@ -59,14 +65,25 @@
       card.imageUrl = card.thumbnailUrl
       card.imageTitle = card.thumbnailTitle
       card.imageAlt = card.thumbnailAlt
+    } else if (card.brighterImage) {
+      card.hasImage = true
+      if (JCU.debug) {
+        print('<!-- card.brighterImage(' + card.brighterImage + ') -->')
+        print('<!-- Brighter image url (%globals_asset_url:' + card.brighterImage + '%) -->')
+      }
+      card.imageUrl = '%globals_asset_url:' + card.brighterImage + '%'
     }
 
   } // setImageInfo
 
   function imageHtml(linkWrapper) {
     linkWrapper = linkWrapper || { prepend : '', append : '' }
-
+print('<!-- imageHtml START -->')
     var imageHtml = ''
+    
+    if (JCU.debug) {
+      print('<!-- imageHtml - card.imageUrl(' + card.imageUrl + ') -->')
+    }
 
     if (card.hasImage) {
       imageHtml = linkWrapper.prepend + (card.disableLink ? '' : linkTagOpen()) +
@@ -124,27 +141,34 @@
     //  These cards look good with or without an image
 
     const addFlair = card.position == 1 && layout.flairText
+    var styleAttributes = layout.isTileStyle ? 'summarycard-tile' : ''
+    
 
     if (addFlair)
-      print('<div class="card card-outline-info summarycard-flair">')
-    else
-      print('<div class="card card-outline-secondary">')
+      styleAttributes += ' summarycard-flair'
 
+    print('<div class="card card-outline-secondary ' + styleAttributes + '">')
     print(imageHtml())
 
     if (addFlair)
       print('<div class="card-header card-info">' + layout.flairText + '</div>')
 
-    print('<div class="card-block">')
-    print('<h4 class="card-title">' + card.name + '</h4>')
+    if (layout.isTileStyle) { 
+      print('<div class="card-footer">' + card.name + '</div>')
+    } else {   // must be card style
+      print('<div class="card-block">')
+      print('<h4 class="card-title">' + card.name + '</h4>')
 
-    print('<h5 class="card-title text-muted"><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
-    print(card.description)
+      print('<h5 class="card-title text-muted"><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
+      print(card.description)
 
-    if (!card.disableLink)
-      print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose())
-
-    print('</div></div>')
+      if (!card.disableLink)
+        print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose())
+      
+      print('</div>')
+    }
+    
+    print('</div>')
 
     if (isFixedGrid && (card.position % layout.gridCardsPerRow == 0)) {
       print('</div><div class="card-deck-row">')
@@ -189,9 +213,14 @@
    if (JCU.debug) {
     print('<!-- About to render ' + layout.cardLayout + ' for Summary Cards -->')
     print('<!-- card.id(' + card.id + ') card.name(' + card.name + ') card.position(' + card.position + ') -->')
+    print('<!-- card.isTileStyle(' + card.isTileStyle + ') -->')
   }
 
   setImageInfo()
+  
+  if (JCU.debug) {
+    print('<!-- card.brighterImage(' + card.brighterImage + ') -->')
+  }
 
   if (layout.cardLayout == "mosaicGrid") {
     drawGridCard(false)
