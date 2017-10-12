@@ -27,7 +27,7 @@
   var card = {
     id : '%asset_assetid%',
     name : '%asset_attribute_title^empty:{asset_name}^escapequotes%',
-    description: '%asset_metadata_jcu.summarycard.description^escapequotes%',
+    description: '%asset_metadata_jcu.summarycard.description^empty:{asset_attribute_summary}^escapequotes%',
     position : '%asset_position%',
     assetType : '%asset_type_code%',
     fileType : '%asset_file_type%',
