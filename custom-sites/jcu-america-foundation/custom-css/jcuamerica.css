@@ -8,16 +8,28 @@
   }
 }
 
-/*
- * theme'd colours for alerts and buttons
- */
-/*
-.alert-info {
-  background-color: #fff;
-  border-color : #777956;
-  color: #777956; 
+.navbar-custom.navbar-collapsed {
+  background-color : rgba(0,24,8,.9)
 }
-*/
+
+footer.bg-inverse {
+  background-color : #053323;
+}
+
+/* Home page, The Board section */
+#the-board .table td {
+  border-top : none;
+  padding : .5rem;
+}
+
+/*
+ * theme'd colours for tiles, alerts and buttons
+ */
+.summarycard-tile,
+.summarycard-tile .card-footer {
+  background-color : #053323;
+}
+
 .btn-primary {
   background-color: #0A4866;
   border-color : #0A4866;
@@ -27,14 +39,14 @@
   background-color: #08364C;
   border-color : #08364C;
  }
- 
 
 .btn-info {
-  background-color : #18AAF2;
-  border-color : #18AAF2;
-}
-
+  background-color: #299ECC;
+  border-color : #299ECC;
+ }
+ 
 .btn-info:hover {
-  background-color : #127DB2;
-  border-color : #127DB2;
-}
+  background-color: #4593B4;
+  border-color : #4593B4;
+ }
+ 
