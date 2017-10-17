@@ -70,8 +70,29 @@ wider.
 
 ### Configuration
 
-* Set `JCU.debug = true` in any area of SSJS on any page get debugging
-  information outputted from SSJS as HTML comments
+* Set `JCU.debug = true` in *any* area of SSJS on any page get debugging
+  information outputted from SSJS as HTML comments.
+
+  Add a snippet like this to your Design files:
+
+  ```html
+  <script runat="server">JCU.debug = true</script>
+  ```
+
+  or, if you want to only affect a specific Asset, then you can add the
+  following *anywhere* in your HTML, usually including in your Asset's
+  contents to get debugging to turn on:
+
+  ```html
+  <script runat="server">
+  function JCU_ssjs_enableDebugging() {
+    JCU.debug = true
+  }
+  </script>
+  ```
+
+  This will get hoisted to the exact spot you need to override the global
+  setting, following the SSJS function callback syntax below.
 
 * Define an SSJS function anywhere with various prefixes to have it
   automatically run in the defined location:
