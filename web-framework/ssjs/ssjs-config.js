@@ -20,7 +20,7 @@ var global = this || window || root || global || GLOBAL || self
 /* Public API for JCU SSJS functions */
 var JCU = {
   // Debugging on or off
-  debug: true,
+  debug: false,
 
   // Data and information used in rendering
   data: {
