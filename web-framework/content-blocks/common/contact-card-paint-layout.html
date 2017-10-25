@@ -89,6 +89,16 @@
   <li><span title="UHF radio" class="icon-mobile"></span> %asset_metadata_template.contact.radio%
   </li>
   %end_asset%
-  <script runat="server">print(JCU.stripHtmlFromKeyword('globals_asset_metadata_template.contact.address:%asset_assetid%', 'address', {prepend: '<li><address class="m-b-0"><span title="Address" class="icon-home pull-xs-left"></span> ', append: '</address></li>'}))</script>
-  <script runat="server">print(JCU.stripHtmlFromKeyword('globals_asset_metadata_template.contact.directions:%asset_assetid%', 'flow', {prepend: '<li><span title="Directions" class="icon-directions pull-xs-left"></span>', append: '</li>'}))</script>
+  
+  <script runat="server">
+    var isAddressPopulated = JCU.isViperStringPopulated("%asset_metadata_template.contact.address^empty:^json_encode%")
+    if (isAddressPopulated)
+      print(JCU.stripHtmlFromKeyword('globals_asset_metadata_template.contact.address:%asset_assetid%', 'address', {prepend: '<li><address class="m-b-0"><span title="Address" class="icon-home pull-xs-left"></span> ', append: '</address></li>'}))
+  </script>
+  
+  <script runat="server">
+    var isDirectionsPopulated = JCU.isViperStringPopulated("%asset_metadata_template.contact.directions^empty:^json_encode%")
+    if (isDirectionsPopulated)
+      sprint(JCU.stripHtmlFromKeyword('globals_asset_metadata_template.contact.directions:%asset_assetid%', 'flow', {prepend: '<li><span title="Directions" class="icon-directions pull-xs-left"></span>', append: '</li>'}))
+  </script>
 </ul>

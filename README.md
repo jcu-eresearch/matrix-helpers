@@ -21,24 +21,29 @@ To get started, ensure you don't think about Matrix as a traditional CMS where
 you're able to edit content and create sites out of the box.  It's
 much more akin to a framework, like Django or Rails, except it is very limiting
 and you don't have raw programming (eg PHP, Python or Ruby) at your disposal.
-Matrix is very unopinionated about every aspect of either content management,
-creation or configuration -- except for the Edit+ interface, which is 100%
-opinionated, inflexible and if it doesn't do what you want, you're pretty much
-stuck.  With Matrix, expect that you'll need to do effectively everything
+Matrix is at the same time both heavily opinonated (giving you only a specific
+set of tools to use without the ability to extend them) and highly 
+unopinionated (about how to perform content management or wiring up all the
+spaghetti).  With Matrix, expect that you'll need to do effectively everything
 yourself in terms of wiring: such as creating page templates, writing your own
 listing display and logic (such as Folder listings), setting up fields of
-metadata for users to input and connecting it all together.  In short, good luck.
+metadata for users to input and connecting it all together and hoping it works.
+Likewise, if you want editors to actually edit content, then the only option
+is the Edit+ interface, which is fully opinionated and inflexible; more or less,
+if it doesn't do what you want, you're pretty much stuck short of hacking your
+way there.  Overall, good luck.
 
-So if you're coming from a technical background, it's better you think of
+If you're coming from a technical background, it's better you think of
 Matrix as a framework, with its own custom languages producing HTML output.
 Under the hood, all pages are actually `eval`'d PHP so when you're writing
 keywords or Designs, you're actually outputting PHP behind the scenes
 that'll be executed for display.  For security reasons, you can't manipulate
 that backend PHP directly, so implementing something has to be done in an
 *approved* manner, with only the provided constructs, the behaviour of which may
-or may not be clear or well documented.  Many things that don't appear possible
+or may not be clear or documented at all.  Many things that don't appear possible
 at first (such as "or" conditional blocks) can be achieved in nests, keywords,
-workarounds or by rethinking and tweaking logic.
+workarounds or by rethinking and tweaking logic.  Heavy commenting and thorough
+testing of your own code is highly recommended.
 
 ## About this repo
 
@@ -74,7 +79,7 @@ StackOverflow is unlikely.
   questions and similar.
 
 * [Matrix Users blog](http://matrixusers.com/) - a blog created by Ladoo, an
-  Australian provider, last updated circa 2012.  Again, the screenshots are a
+  Australian provider, last updated circa 2012.  The screenshots are a
   touch out of date but the content still applies.  Of particular note:
 
   * [Matrix Secrets

@@ -1,0 +1,19 @@
+<!--
+Recipient email format: %response_525847_q5_raw^contains:general-enquiry:{globals_site_metadata_jcu.site.email}:{globals_site_metadata_jcuamerica.secretary}%
+From: %response_525847_q2^underscore%
+Subject: [%globals_site_name%] Website Contact Received - %response_525847_q5%
+Body:
+Enquiry type: %response_525847_q5% 
+
+%question_name_525847_q1%
+%response_525847_q1^htmlentities^empty:None%
+
+%question_name_525847_q2%%response_525847_q2^htmlentities^prepend_if:%
+%response_525847_q2^htmlentities^append_if:^empty:None%
+
+%question_name_525847_q3%
+%response_525847_q3^htmlentities^prepend_if:%%response_525847_q3^htmlentities^append_if:^empty:None%
+
+%question_name_525847_q4%
+%response_525847_q4^htmlentities^empty:None%
+-->

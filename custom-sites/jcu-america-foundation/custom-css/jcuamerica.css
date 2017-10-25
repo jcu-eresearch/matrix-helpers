@@ -22,6 +22,10 @@ footer.bg-inverse {
   padding : .5rem;
 }
 
+#confirmation-page .container {
+  margin-bottom : 2rem;
+}
+
 /*
  * theme'd colours for tiles, alerts and buttons
  */

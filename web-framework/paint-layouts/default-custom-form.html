@@ -1,11 +1,17 @@
 <!--@@ If rendering the form as the current asset, wrap it up @@-->
 %begin_frontend_asset_type_code^eq:page_custom_form%
-<div class="container jcu-content p-b-3">
-  <div class="row">
-    <div class="col-xs-12 col-md-10 col-md-offset-1 custom-form">
+  %begin_asset_metadata_jcu.form.wrap_in_grid^eq:true%
+    <div class="container jcu-content p-b-3">
+      <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 custom-form">
+          %asset_contents%
+      </div>
+    </div>
+  %else_asset%
+    <div class="custom-form">
       %asset_contents%
-  </div>
-</div>
+    </div>
+  %end_asset%
 <!--@@ If emebedding the form in another asset, keep it basic @@-->
 %else_frontend%
 <div class="custom-form embedded-form">
