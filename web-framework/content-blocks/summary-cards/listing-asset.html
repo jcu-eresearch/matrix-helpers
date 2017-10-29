@@ -1,11 +1,14 @@
 <script runat="server">
   // %asset_assetid%
 
+  const siteId = %globals_site_assetid%
+  
   // get the summary card list settings
   var layout = {
      flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair%",
      cardLayout : "%nested_get_content_container^as_asset:asset_metadata_template.card.layout%",
      buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text%",
+     linkTarget : "%nested_get_content_container^as_asset:asset_metadata_template.card.link.target%",
      gridCardsPerRow : "%nested_get_content_container^as_asset:asset_metadata_template.card.grid.columns%",
      isTileStyle : %nested_get_content_container^as_asset:asset_metadata_template.card.style^eq:tile:true:false%
   }
@@ -44,9 +47,12 @@
     assetUrl : '%asset_url^escapequotes%',
     overrideUrl : '%asset_metadata_jcu.summarycard.override.url^escapequotes%',
     linkUrl : '%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^escapequotes%',
-    disableLink : ('%asset_metadata_jcu.summarycard.disable.link%' == 'yes' ? true : false)
+    disableLink : ('%asset_metadata_jcu.summarycard.disable.link%' == 'yes' ? true : false),
+    linkingLineage : '%asset_linking_lineage^json_decode^index:0%'
   }
 
+  var debugLinkingLineage = '%asset_linking_lineage^escapequotes%'
+  
   function setImageInfo() {
     // set the image related properties of the card global var
     // where the image comes from depends on the type of the asset
@@ -78,7 +84,6 @@
 
   function imageHtml(linkWrapper) {
     linkWrapper = linkWrapper || { prepend : '', append : '' }
-print('<!-- imageHtml START -->')
     var imageHtml = ''
     
     if (JCU.debug) {
@@ -95,11 +100,16 @@ print('<!-- imageHtml START -->')
   }   // imageHtml
 
   function linkTagOpen(linkClasses) {
-    // if there is an override.url set then use that, otherwise get the url for the original asset
-    // override.urls should open in a separate window
+    // if the linkTarget is set to "all" then all assets must open in a new context
+    // if the linkTarget is set to "external" then cards that link to an external site must open in a new context, others open in default context
+    // the default behaviour is for all cards to open in the default context
     linkClasses = linkClasses || ''
+    
+    var targetAttribute = ''
+    
+    if (layout.linkTarget == "all" || layout.linkTarget == "external" && (card.linkingLineage != siteId || card.overrideUrl)) 
+        targetAttribute = ' target=_blank"' + '" rel="noopener noreferrer"'
 
-    const targetAttribute = ( card.overrideUrl ? 'target="_blank" rel="external noopener" ' : 'target="_self"' )
     return '<a class="' + linkClasses + '" ' + targetAttribute + ' href="' + card.linkUrl + '">'
   }   // linkTagOpen
 
@@ -207,14 +217,21 @@ print('<!-- imageHtml START -->')
     print('</div></div>');  // close text column, close row
   }   // drawColumnCard
 
+  function JCU_ssjs_enableDebugging() {
+    JCU.debug = true
+  }
+
   /*
    *  Draw the card!
    */
-
+   
    if (JCU.debug) {
     print('<!-- About to render ' + layout.cardLayout + ' for Summary Cards -->')
     print('<!-- card.id(' + card.id + ') card.name(' + card.name + ') card.position(' + card.position + ') -->')
-    print('<!-- card.isTileStyle(' + card.isTileStyle + ') -->')
+    print('<!-- card.isTileStyle(' + card.isTileStyle + ') card.overrideUrl(' + card.overrideUrl + ') card.linkingLineage(' + card.linkingLineage + ') -->')
+    print('<!-- layout.linkTarget(' + layout.linkTarget + ') -->')
+    print('<!-- siteId(' + siteId + ') -->')
+    print('<!-- debugLinkingLineage(' + debugLinkingLineage + ') -->')
   }
 
   setImageInfo()
