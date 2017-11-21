@@ -27,6 +27,21 @@ footer.bg-inverse {
 }
 
 /*
+ * special styling for How to Donate buttons
+ */
+#donate .summarycard-layout-grid .card-outline-secondary {
+  background-color : #0A4866;
+  border-style :  none;
+  color : #FFFFFF;
+}
+
+#donate .summarycard-layout-grid .btn-secondary {
+    border-style : none;
+    display : block;
+}
+
+
+/*
  * theme'd colours for tiles, alerts and buttons
  */
 .summarycard-tile,
