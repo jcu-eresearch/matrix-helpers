@@ -106,9 +106,9 @@
     linkClasses = linkClasses || ''
     
     var targetAttribute = ''
-    
-    if (layout.linkTarget == "all" || layout.linkTarget == "external" && (card.linkingLineage != siteId || card.overrideUrl)) 
-        targetAttribute = ' target=_blank"' + '" rel="noopener noreferrer"'
+
+    if (layout.linkTarget == "all" || layout.linkTarget == "external" && (card.linkingLineage != siteId || card.overrideUrl))
+        targetAttribute = ' target="_blank" rel="noopener noreferrer"'
 
     return '<a class="' + linkClasses + '" ' + targetAttribute + ' href="' + card.linkUrl + '">'
   }   // linkTagOpen
