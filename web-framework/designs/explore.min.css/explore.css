@@ -703,6 +703,7 @@ nav.breadcrumb {
   content : none;
 }
 
+.summarycard-layout-mosaicGrid .btn-secondary,
 .summarycard-layout-grid .btn-secondary {
   background-color : transparent;
   display : block;
