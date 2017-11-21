@@ -10,13 +10,16 @@
   <li><span class="text-nowrap"><span title="Fax" class="icon-print"></span> <span class="sr-only">Fax us on </span><a href="tel:%asset_metadata_template.contact.fax%">%asset_metadata_template.contact.fax%</a></span>
   </li>
   %end_asset%
-  %begin_asset_metadata_template.contact.email%
-  <li><span title="Email" class="icon-email2"></span> <a href="mailto:%asset_metadata_template.contact.email%?subject=JCU%20Website%20Enquiry">%asset_metadata_template.contact.email%</a>
-  </li>
-  %else_begin_globals_site_metadata_jcu.site.email%
-  <li><span title="Email" class="icon-email2"></span> <a href="mailto:%globals_site_metadata_jcu.site.email%?subject=JCU%20Website%20Enquiry">%globals_site_metadata_jcu.site.email%</a>
-  </li>
-  %end_asset%
+  <script runat="server">
+    var site_email = '%globals_site_metadata_jcu.site.email%'
+    var override_email = '%asset_metadata_template.contact.email%'
+    var email_subject = '%asset_metadata_template.contact.email_subject^rawurlencode%'
+    
+    var email_address = site_email ? site_email : override_email
+    email_subject = email_subject ? email_subject : 'JCU%20Website%20Enquiry'
+    
+    print('<li><span title="Email" class="icon-email2"></span> <a href="mailto:' + email_address + '?subject=' + email_subject + '">' + email_address + '</a></li>')
+  </script>
 
   <!--@@ Social Media contacts @@-->
 
