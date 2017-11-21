@@ -36,8 +36,9 @@ footer.bg-inverse {
 }
 
 #donate .summarycard-layout-grid .btn-secondary {
-    border-style : none;
-    display : block;
+  background-color : #FFFFFF;
+  color : #0A4866;
+  border-style : none;
 }
 
 
