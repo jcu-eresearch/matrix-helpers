@@ -2,7 +2,7 @@
   //Rewrite links in a given page to avoid Edge caching when a user is logged in
   if (window.parent.document.body.className.search('previewMode') === -1) {
     function rewriteUrlNoProxyCache(i, val) {
-      if (val.match(/\/_(admin|edit|performance|noproxycache|nocache|recache)/) || val.match(/SQ_ACTION/)) {
+      if (val.match(/\/_(admin|edit|performance|noproxycache|nocache|recache|login)/) || val.match(/SQ_ACTION/)) {
         // noop
         return val
       } else {
