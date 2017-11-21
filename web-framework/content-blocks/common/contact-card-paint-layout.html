@@ -11,8 +11,8 @@
   </li>
   %end_asset%
   <script runat="server">
-    var site_email = '%globals_site_metadata_jcu.site.email%'
-    var override_email = '%asset_metadata_template.contact.email%'
+    var site_email = '%globals_site_metadata_jcu.site.email^escapequotes%'
+    var override_email = '%asset_metadata_template.contact.email^escapequotes%'
     var email_subject = '%asset_metadata_template.contact.email_subject^rawurlencode%'
     
     var email_address = site_email ? site_email : override_email
