@@ -105,7 +105,7 @@
     // the default behaviour is for all cards to open in the default context
     linkClasses = linkClasses || ''
     
-    var targetAttribute = ''
+    var targetAttribute = ' target="_self" rel="noopener noreferrer"'
 
     if (layout.linkTarget == "all" || layout.linkTarget == "external" && (card.linkingLineage != siteId || card.overrideUrl))
         targetAttribute = ' target="_blank" rel="noopener noreferrer"'
@@ -113,8 +113,17 @@
     return '<a class="' + linkClasses + '" ' + targetAttribute + ' href="' + card.linkUrl + '">'
   }   // linkTagOpen
 
-  function linkTagClose() {
-    return '</a>'
+  function linkTagClose(isButton) {
+    var iconHtml = ''
+    isButton = isButton || false
+    
+    if (layout.linkTarget == "all" || layout.linkTarget == "external" && (card.linkingLineage != siteId || card.overrideUrl)) {
+      if (isButton) {
+        iconHtml = '<small class="icon-opennewwindow m-l-1/4 hidden-print" title="Opens in new window"></small>'
+      }
+    }
+    
+    return iconHtml + '</a>'
   }
 
   function drawThumbnailGridCard() {
@@ -174,7 +183,7 @@
       print(card.description)
 
       if (!card.disableLink)
-        print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose())
+        print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose(true))
       
       print('</div>')
     }
