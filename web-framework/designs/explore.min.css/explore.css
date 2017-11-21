@@ -703,6 +703,10 @@ nav.breadcrumb {
   content : none;
 }
 
+.summarycard-layout-grid .btn-secondary {
+  background-color : transparent;
+  display : block;
+}
 
 /*
  * New style of card - tile
@@ -721,12 +725,4 @@ nav.breadcrumb {
   border-top : none;
   background-color : #00264C;
   color : white;
-}
-
-/*
- * Fix for btn-secondary background-color so that it is actually transparent
- * rather than just looking transparent.
- */
-.summarycard-layout-grid .btn-secondary {
-  background-color : transparent;
 }
