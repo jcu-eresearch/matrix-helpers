@@ -1,0 +1,12 @@
+<noscript>
+<div class="alert alert-info">Sorry, you need to enable Javascript in your browser for this function to work.</div>
+</noscript>
+<form id="donate-now" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="3F42Y2RXXVSZA">
+</form>
+<p id="wait-message"></p>
+<script>
+document.getElementById("wait-message").textContent = "You are being redirected to PayPal now, please wait ...";
+document.getElementById("donate-now").submit();
+</script>

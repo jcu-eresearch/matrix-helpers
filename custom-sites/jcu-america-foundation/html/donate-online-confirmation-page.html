@@ -1,48 +1,80 @@
 <div id="confirmation-page" class="container-fluid content-block">
-  <div class="row">
+  <div class="row"><div class="col-xs-12 col-md-10 col-md-offset-1 container">
+    <div class="row">Please confirm that the details you have entered are correct:</div>
+  </div></div>
+  <br/>
+  <div class="row"><div class="col-xs-12 col-md-10 col-md-offset-1 container">
+    <div class="row h4">%section_title_525531%</div>
+    <div class="row">%response_525531_q1% %response_525531_q11%</div>
+    <div class="row">%response_525531_q3%%response_525531_q4^notempty:,% %response_525531_q4%</div>
+    <div class="row">%response_525531_q5%&nbsp;&nbsp; %response_525531_q6%&nbsp;&nbsp; %response_525531_q7%</div>
+    <div class="row">%response_525531_q8%</div><br/>
+    <div class="row">%response_525531_q9%</div>
+%begin_response_525531_q10%
+    <div class="row">%response_525531_q10%</div>
+%end_response%
+  </div></div>
+  <br/>
+
+  <div class="row"><div class="col-xs-12 col-md-10 col-md-offset-1 container">
+    <div class="row h4">
+      %section_title_525532%
+    </div>
+    <div class="row">
+      Donation amount is <strong>$%response_525532_q1% USD</strong>
+    </div>
+    <div class="row">
+      This donation to be used, if possible, for %response_525532_q2%.
+    </div>
+  </div></div>
+  <br/>
   
-    <div class="col-xs-12 col-md-10 col-md-offset-1 container">
-      <div class="row ">
-        Please check that the details that you have given are correct:
-      </div>
+  <div class="row"><div class="col-xs-12 col-md-10 col-md-offset-1 container">
+    <div class="row">
+      %previous_page_button% %submit_button%
     </div>
-    
-    <div class="col-xs-12 col-md-10 col-md-offset-1 container">      <div class="row h4">
-        %section_title_525531%
-      </div><div class="row">
-        %response_525531_q1% %response_525531_q2%
-      </div>
-      <div class="row">
-        %response_525531_q3%%response_525531_q4^notempty:,% %response_525531_q4%
-      </div><div class="row">
-        %response_525531_q5%&nbsp;&nbsp; %response_525531_q6%&nbsp;&nbsp; %response_525531_q7%
-      </div><div class="row">
-        %response_525531_q8%
-      </div><br/>
-      <div class="row">
-        %response_525531_q9%
-      </div>
-      %begin_response_525531_q10%
-      <div class="row">%response_525531_q10%</div>
-      %end_response%
-    </div>
-    <div class="col-xs-12 col-md-10 col-md-offset-1 container">
-      <div class="row h4">
-        %section_title_525532%
-      </div><div class="row">
-        Donation amount is <strong>$%response_525532_q1% USD</strong>
-      </div><div class="row">
-        This donation to be used, if possible, for %response_525532_q2%.
-      </div>
-    </div>
-    <div class="col-xs-12 col-md-10 col-md-offset-1 container">
-      <div class="row">
-        %previous_page_button%  %submit_button%
-      </div>
-    </div>
-  </div>
+  </div></div>
+  
 </div>
 
+<!-- PayPal variables -->
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="3F42Y2RXXVSZA">
 
-      
-      
+<input type="hidden" name="amount" value="%response_525532_q1%">
+<input type="hidden" name="item_name" value="donation">
+<input type="hidden" name="quantity" value="1">
+<input type="hidden" name="address_override" value="1">
+<input type="hidden" name="first_name" value="%response_525531_q1%">
+<input type="hidden" name="last_name" value="%response_525531_q11%">
+<input type="hidden" name="address1" value="%response_525531_q3%">
+<input type="hidden" name="address2" value="%response_525531_q4%">
+<input type="hidden" name="city" value="%response_525531_q5%">
+<input type="hidden" name="state" value="%response_525531_q6%">
+<input type="hidden" name="zip" value="%response_525531_q7%">
+<input type="hidden" name="country" value="%response_525531_q8%">
+<input type="hidden" name="email" value="%response_525531_q9%">
+<input type="hidden" name="return" value="https://www.jcu.edu.au/jcuamerica/how-to-support/thank-you">
+<input type="hidden" name="rm" value="1">
+<input type="hidden" name="cancel_return" value="https://www.jcu.edu.au/jcuamerica/how-to-support/donation-cancelled">
+<input type="hidden" name="no_shipping" value="1">
+<input type="hidden" name="currency_code" value="USD">
+
+<input type="hidden" name="donation-purpose" value="%response_525532_q2%">
+
+<script>
+  initialisePayPalDonate();
+  
+  function initialisePayPalDonate() {
+    var submitButton = document.getElementById("form_email_567696_submit");
+    submitButton.onclick = updateFormAction;
+  }
+  
+  function updateFormAction(event) {
+    alert("onclick Event detected - $%response_525532_q1% country(%response_525531_q8%) countryRaw(%response_525531_q8_raw%) stateRaw(%response_525531_q6_raw%)");
+    var form = document.getElementById("form_email_567696");
+    form.action = "https://www.sandbox.paypal.com/cgi-bin/webscr";
+    form.method = "post";
+    form.target="_top";
+  }
+</script>
