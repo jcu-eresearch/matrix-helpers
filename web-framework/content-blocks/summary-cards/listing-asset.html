@@ -5,10 +5,10 @@
   
   // get the summary card list settings
   var layout = {
-     flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair%",
+     flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair^escapequotes%",
      cardLayout : "%nested_get_content_container^as_asset:asset_metadata_template.card.layout%",
-     buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text%",
-     linkTarget : "%nested_get_content_container^as_asset:asset_metadata_template.card.link.target%",
+     buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text^escapequotes%",
+     linkTarget : "%nested_get_content_container^as_asset:asset_metadata_template.card.link.target^escapequotes%",
      gridCardsPerRow : "%nested_get_content_container^as_asset:asset_metadata_template.card.grid.columns%",
      isTileStyle : %nested_get_content_container^as_asset:asset_metadata_template.card.style^eq:tile:true:false%
   }
@@ -48,7 +48,8 @@
     overrideUrl : '%asset_metadata_jcu.summarycard.override.url^escapequotes%',
     linkUrl : '%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^escapequotes%',
     disableLink : ('%asset_metadata_jcu.summarycard.disable.link%' == 'yes' ? true : false),
-    linkingLineage : '%asset_linking_lineage^json_decode^index:0%'
+    linkingLineage : '%asset_linking_lineage^json_decode^index:0%',
+    buttonText : '%asset_metadata_jcu.summarycard.override.button.text^escapequotes%'
   }
 
   var debugLinkingLineage = '%asset_linking_lineage^escapequotes%'
@@ -116,7 +117,7 @@
   function linkTagClose(isButton) {
     var iconHtml = ''
     isButton = isButton || false
-    
+  
     if (layout.linkTarget == "all" || layout.linkTarget == "external" && (card.linkingLineage != siteId || card.overrideUrl)) {
       if (isButton) {
         iconHtml = '<small class="icon-opennewwindow m-l-1/4 hidden-print" title="Opens in new window"></small>'
@@ -182,8 +183,9 @@
       print('<h5 class="card-title text-muted"><small>' + JCU.phrasingHtmlFromKeyword('globals_asset_metadata_jcu.features.byline:' + card.id) + '</small></h5>')
       print(card.description)
 
-      if (!card.disableLink)
-        print(linkTagOpen("btn btn-secondary") + layout.buttonText + linkTagClose(true))
+      if (!card.disableLink) {
+        print(linkTagOpen("btn btn-secondary") + card.buttonText + linkTagClose(true))
+      }
       
       print('</div>')
     }
@@ -221,7 +223,7 @@
     print(card.description)
 
     if (!card.disableLink)
-      print(linkTagOpen("btn-link") + layout.buttonText + linkTagClose())
+      print(linkTagOpen("btn-link") + card.buttonText + linkTagClose(true))
 
     print('</div></div>');  // close text column, close row
   }   // drawColumnCard
@@ -240,6 +242,7 @@
   }
 
   setImageInfo()
+  card.buttonText = card.buttonText ? card.buttonText : layout.buttonText;
   
   if (JCU.debug) {
     print('<!-- card.brighterImage(' + card.brighterImage + ') -->')
