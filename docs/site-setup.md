@@ -71,7 +71,7 @@ before each action and release locks afterwards.</div>
 
 1. **Set your Site URL:** right-click on your site and go to `URLs`.
 
-   1. Enter the proposed URL for the site and tick `HTTPS-only`.
+   1. Enter the proposed URL for the site and tick `HTTPS`. Do not select `HTTP`.
 
    1. Click `Commit`.
 
