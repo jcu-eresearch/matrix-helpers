@@ -30,11 +30,12 @@
     <!--@@ Tag Manager design area: dynamic Google Tag Manager configuration @@-->
     <MySource_AREA id_name="tag_manager" design_area="nest_content" />
 
+    <!--@@ SSJS setup and configuration @@-->
     <script runat="server" id="lodash.min.js" src="./?a=389796"></script>
     %begin_globals_asset_assetid^eq:{globals_site_not_found_id}%
     <script id="ssjs-config.js">
       // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/74
-      // by running all JS on the client; this needs to be inlined because
+      // by running all SSJS on the client; this needs to be inlined because
       // keywords aren't replaced in external files with SSJS is disabled (or borked
       // is it is here).
       %globals_asset_file_contents:391595%
