@@ -37,6 +37,16 @@ yet) @@-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="format-detection" content="telephone=no">
 
+    <!--@@ SSJS setup and configuration @@-->
+    <script runat="server" id="lodash.min.js" src="./?a=389796"></script>
+    <script id="ssjs-config.js">
+      // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/88
+      // by running all SSJS on the client; this needs to be inlined because
+      // keywords aren't replaced in external files when SSJS is broken (as it is on
+      // Login designs.
+      %globals_asset_file_contents:391595%
+    </script>
+
     <!--@@ Change the title based on the page purpose @@-->
     <MySource_AREA id_name="show_title_or_error" design_area="show_if" print="no">
       <MySource_SET name="condition" value="logged_in" />
