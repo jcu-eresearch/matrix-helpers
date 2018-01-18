@@ -2,7 +2,7 @@
   // %asset_assetid%
 
   const siteId = %globals_site_assetid%
-  
+
   // get the summary card list settings
   var layout = {
      flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair^escapequotes%",
@@ -53,7 +53,7 @@
   }
 
   var debugLinkingLineage = '%asset_linking_lineage^escapequotes%'
-  
+
   function setImageInfo() {
     // set the image related properties of the card global var
     // where the image comes from depends on the type of the asset
@@ -62,7 +62,7 @@
     if (JCU.debug) {
       print('<!-- card.assetType(' + card.assetType + ') -->')
     }
-    
+
     if (card.assetType === 'image' || card.assetType === 'thumbnail' || card.fileType === 'svg') {
       card.hasImage = true
       card.imageUrl = card.assetUrl
@@ -86,7 +86,7 @@
   function imageHtml(linkWrapper) {
     linkWrapper = linkWrapper || { prepend : '', append : '' }
     var imageHtml = ''
-    
+
     if (JCU.debug) {
       print('<!-- imageHtml - card.imageUrl(' + card.imageUrl + ') -->')
     }
@@ -105,7 +105,7 @@
     // if the linkTarget is set to "external" then cards that link to an external site must open in a new context, others open in default context
     // the default behaviour is for all cards to open in the default context
     linkClasses = linkClasses || ''
-    
+
     var targetAttribute = ' target="_self" rel="noopener noreferrer"'
 
     if (layout.linkTarget == "all" || layout.linkTarget == "external" && (card.linkingLineage != siteId || card.overrideUrl))
@@ -117,13 +117,13 @@
   function linkTagClose(isButton) {
     var iconHtml = ''
     isButton = isButton || false
-  
+
     if (layout.linkTarget == "all" || layout.linkTarget == "external" && (card.linkingLineage != siteId || card.overrideUrl)) {
       if (isButton) {
         iconHtml = '<small class="icon-opennewwindow m-l-1/4 hidden-print" title="Opens in new window"></small>'
       }
     }
-    
+
     return iconHtml + '</a>'
   }
 
@@ -162,7 +162,7 @@
 
     const addFlair = card.position == 1 && layout.flairText
     var styleAttributes = layout.isTileStyle ? 'summarycard-tile' : ''
-    
+
 
     if (addFlair)
       styleAttributes += ' summarycard-flair'
@@ -173,7 +173,7 @@
     if (addFlair)
       print('<div class="card-header card-info">' + layout.flairText + '</div>')
 
-    if (layout.isTileStyle) { 
+    if (layout.isTileStyle) {
       if (!card.disableLink) print(linkTagOpen())
       print('<div class="card-footer">' + card.name + '</div>')
       if (!card.disableLink) print(linkTagClose())
@@ -186,10 +186,10 @@
       if (!card.disableLink) {
         print(linkTagOpen("btn btn-secondary") + card.buttonText + linkTagClose(true))
       }
-      
+
       print('</div>')
     }
-    
+
     print('</div>')
 
     if (isFixedGrid && (card.position % layout.gridCardsPerRow == 0)) {
@@ -231,7 +231,7 @@
   /*
    *  Draw the card!
    */
-   
+
    if (JCU.debug) {
     print('<!-- About to render ' + layout.cardLayout + ' for Summary Cards -->')
     print('<!-- card.id(' + card.id + ') card.name(' + card.name + ') card.position(' + card.position + ') -->')
@@ -243,7 +243,7 @@
 
   setImageInfo()
   card.buttonText = card.buttonText ? card.buttonText : layout.buttonText;
-  
+
   if (JCU.debug) {
     print('<!-- card.brighterImage(' + card.brighterImage + ') -->')
   }
