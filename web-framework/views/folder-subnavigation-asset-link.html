@@ -10,4 +10,4 @@
   })
   ...
 @@-->
-<li class="nav-item %asset_assetid^eq:{frontend_asset_assetid}:active%"><a class="nav-link" href="%asset_attribute_link_url^escapequotes%" %asset_attribute_link_relation^escapequotes^prepend_if:rel="^append_if:"%>%asset_short_name%</a></li>
+<li class="nav-item %asset_assetid^eq:{frontend_asset_assetid}:active%"><a class="nav-link %asset_metadata_jcu.navigation.css_classes^htmlentities%" href="%asset_attribute_link_url^htmlentities%" %asset_attribute_link_relation^htmlentities^prepend_if:rel="^append_if:"%>%asset_short_name^htmlentities%</a></li>
