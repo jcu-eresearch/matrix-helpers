@@ -105,8 +105,14 @@
       <div class="m-b-1">
         <script runat="server">
           var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%")
+          //String of "0" or "1"
+          var linkingEnabled = !!JSON.parse("%asset_metadata_template.picture.linking.enabled%" || "1")
           pictures.forEach(function(id) {
-            print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid center-block% ')
+            if (linkingEnabled) {
+              print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid center-block% ')
+            } else {
+              print('%globals_asset_contents_paint_layout_id_616475:'+ id + '^replace:#image_class#:img-fluid center-block% ')
+            }
           })
         </script>
       </div>
