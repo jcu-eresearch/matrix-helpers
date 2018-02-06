@@ -107,11 +107,18 @@
           var pictures = JSON.parse("%asset_metadata_template.picture.picture^json_encode%")
           //String of "0" or "1"
           var linkingEnabled = !!JSON.parse("%asset_metadata_template.picture.linking.enabled%" || "1")
+          //String of "0" or "1"
+          var lightboxEnabled = !!JSON.parse("%asset_metadata_template.picture.lightbox.enabled%" || "1")
+          // Replace "#link_class#" with nothing if lightbox is disabled
+          var linkClass = lightboxEnabled ? 'link-gallery' : ''
+
           pictures.forEach(function(id) {
             if (linkingEnabled) {
-              print('%globals_asset_contents_paint_layout_id_374698:'+ id + '^replace:#image_class#:img-fluid center-block% ')
+              // Use the "Asset Related Image" Paint Layout
+              print('%globals_asset_contents_paint_layout_id_374698:' + id + '^replace:#image_class#:img-fluid center-block^replace:#link_class#:' + linkClass + '%')
             } else {
-              print('%globals_asset_contents_paint_layout_id_616475:'+ id + '^replace:#image_class#:img-fluid center-block% ')
+              // Use the "Asset Related Image (Non-Linked)" Paint Layout
+              print('%globals_asset_contents_paint_layout_id_616475:' + id + '^replace:#image_class#:img-fluid center-block%')
             }
           })
         </script>
