@@ -376,13 +376,18 @@
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top">
       <div class="container">
+        <!--@@ Only show navbar toggler and wrapper if there are nav items @@-->
+        %begin_globals_asset_contents:379674^with_get:root={globals_site_assetid}^json_decode^count^gt:0%
         <button class="navbar-toggler pull-xs-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle main navigation">
           &equiv;
         </button>
+        %end_globals%
         <a class="navbar-brand page-scroll" href="%globals_site_url%">
           <img class="brand-img img-fluid %globals_site_metadata_jcu.site.logo^as_asset:asset_file_type^prepend_if:img-%" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name%" alt="%globals_site_name% logo">
         </a>
+        %begin_globals_asset_contents:379674^with_get:root={globals_site_assetid}^json_decode^count^gt:0%
         <div class="collapse navbar-toggleable navbar-toggleable-md" id="mainNav">
+        %end_globals%
           <MySource_AREA id_name="main_navigation" design_area="menu_normal">
             <MySource_SET name="level" value="top"/>
             <MySource_SET name="settings.class.normal" value="" />
@@ -408,8 +413,10 @@
               </MySource_ASSET>
             </ul>
           </MySource_AREA>
-        </div>
-      </div>
+        %begin_globals_asset_contents:379674^with_get:root={globals_site_assetid}^json_decode^count^gt:0%
+        </div><!--@@ /.navbar-toggleable @@-->
+        %end_globals%
+      </div><!--@@ /.container @@-->
     </nav>
 
     <MySource_AREA id_name="header" design_area="nest_content" />
