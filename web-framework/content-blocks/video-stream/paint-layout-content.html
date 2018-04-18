@@ -1,0 +1,62 @@
+<!--@@ Container Block Opening Tag paint layout @@-->
+<script runat="server">
+  this.args = {content_block_class: 'cct-embedded-content container'}
+</script>
+%asset_contents_paint_420277%
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <!--@@ Title paint layout @@-->
+      %asset_contents_paint_420212%
+
+      <!--@@ Contents paint layout @@-->
+      %asset_contents_paint_420234%
+
+      <div class='video-stream-player clearfix'
+        style='height: 100px; width: 100%; background-color: pink'
+        data-vsp_source='https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8'
+        data-vsp_max-buffer-length='30'
+        data-vsp_auto-play='true'
+        data-vsp_width='100%'
+        data-vsp_height='100%'
+        data-vsp_mute='true'
+        data-vsp_hide-volume-bar='true'
+        data-vsp_auto-play-visible='partial'
+        data-vsp_watermark='https://cdn.jcu.edu.au/1.0.0-beta.1/images/jcua-logo-mono-reversed.svg'
+        data-vsp_position='bottom-right'
+        data-vsp_watermark-link='https://www.jcu.edu.au/'
+      ></div>
+
+      <script runat="server">
+        // This runs at the end of the body and:
+        // - searches for .video-stream-player divs
+        // - reads data- attributes of each div
+        // - invokes the Clappr video player on each
+        //     div, using the data- attrs as settings
+        // Note that data attr names get downcased,
+        // so use underscores to split words, and this
+        // code will remove the underscores and re-
+        // capitalise following letters.
+        function JCU_body_empower_video_streams() {
+          print('<script src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></scrip' + 't>\n')
+          print('<script> \n \
+            $(".video-stream-player").each( function(index, item) { \n \
+              var config = { parent: item } \n \
+              $.each($(item).data(), function(name, value) { \n \
+                if (name.indexOf("vsp_") === 0) { \n \
+                  name = name.slice(4) \n \
+                } \n \
+                config[name] = value \n \
+              }) \n \
+              var player = new Clappr.Player(config) \n \
+            }) \n \
+            </scrip' + 't>')
+        }
+      </script>
+
+      <!--@@ Buttons paint layout @@-->
+      <script runat="server">
+        this.args = {wrapper: {opening: '<div class="row m-t-2"><div class="col-xs-12">', closing: '</div></div>'}}
+      </script>
+      %asset_contents_paint_394551%
+    </div>
+  </div>
