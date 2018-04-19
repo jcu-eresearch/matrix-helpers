@@ -11,20 +11,29 @@
       <!--@@ Contents paint layout @@-->
       %asset_contents_paint_420234%
 
-      <div class='video-stream-player clearfix'
-        style='height: 100px; width: 100%; background-color: pink'
-        data-vsp_source='https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8'
-        data-vsp_max-buffer-length='30'
-        data-vsp_auto-play='true'
-        data-vsp_width='100%'
-        data-vsp_height='100%'
-        data-vsp_mute='true'
-        data-vsp_hide-volume-bar='true'
-        data-vsp_auto-play-visible='partial'
-        data-vsp_watermark='https://cdn.jcu.edu.au/1.0.0-beta.1/images/jcua-logo-mono-reversed.svg'
-        data-vsp_position='bottom-right'
-        data-vsp_watermark-link='https://www.jcu.edu.au/'
-      ></div>
+      <div class='video-stream-player-wrapper embed-responsive embed-responsive-%asset_metadata_template.videostream.aspectratio%'>
+        <div class='video-stream-player clearfix embed-responsive-item'
+          style='height: 100%; width: 100%; background-color: #eee'
+          data-vsp_source='%asset_metadata_template.videostream.source%'
+          data-vsp_watermark='https://cdn.jcu.edu.au/%asset_metadata_template.videostream.watermark.type%'
+          data-vsp_position='%asset_metadata_template.videostream.watermark.position%'
+          %begin_asset_metadata_template.videostream.watermark.link%
+            data-vsp_watermark-link='%asset_metadata_template.videostream.watermark.link%'
+          %end_asset%
+          %begin_asset_metadata_template.videostream.autoplay^eq:true%
+            data-vsp_auto-play='true'
+            data-vsp_mute='true'
+          %end_asset%
+          %begin_asset_metadata_template.videostream.loop^eq:true%
+            data-vsp_loop='true'
+          %end_asset%
+          data-vsp_max-buffer-length='90'
+          data-vsp_width='100%'
+          data-vsp_height='100%'
+          data-vsp_auto-play-visible='partial'
+          data-vsp_playback-not-supported-message='cannot play video'
+        ></div>
+      </div>
 
       <script runat="server">
         // This runs at the end of the body and:
@@ -44,6 +53,9 @@
               $.each($(item).data(), function(name, value) { \n \
                 if (name.indexOf("vsp_") === 0) { \n \
                   name = name.slice(4) \n \
+                } \n \
+                if (value === "true" || value === "false") { \n \
+                  value = !!(value === "true")\n \
                 } \n \
                 config[name] = value \n \
               }) \n \
