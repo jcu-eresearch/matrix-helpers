@@ -8,10 +8,12 @@
       <!--@@ Title paint layout @@-->
       %asset_contents_paint_420212%
 
-      <!--@@ Contents paint layout @@-->
-      %asset_contents_paint_420234%
+      <!--@@ UNLESS they specifically wanted the text content AFTER.. @@-->
+      %begin_asset_metadata_template.content.position^eq:after%%else_asset%
+        %asset_contents_paint_420234%
+      %end_asset%
 
-      <div class='video-stream-player-wrapper embed-responsive embed-responsive-%asset_metadata_template.videostream.aspectratio%'>
+      <div class='video-stream-player-wrapper m-b-1 embed-responsive embed-responsive-%asset_metadata_template.videostream.aspectratio%'>
         <div class='video-stream-player clearfix embed-responsive-item'
           style='height: 100%; width: 100%; background-color: #eee'
           data-vsp_source='%asset_metadata_template.videostream.source%'
@@ -31,7 +33,7 @@
           data-vsp_width='100%'
           data-vsp_height='100%'
           data-vsp_auto-play-visible='partial'
-          data-vsp_playback-not-supported-message='cannot play video'
+          data-vsp_playback-not-supported-message='Sorry, your browser cannot play this video.<br><a href="%asset_metadata_template.videostream.source%">Click to open video in another application</a>'
         ></div>
       </div>
 
@@ -64,6 +66,13 @@
             </scrip' + 't>')
         }
       </script>
+
+
+      <!--@@ if they wanted the text content after.. @@-->
+      %begin_asset_metadata_template.content.position^eq:after%
+        %asset_contents_paint_420234%
+      %end_asset%
+
 
       <!--@@ Buttons paint layout @@-->
       <script runat="server">
