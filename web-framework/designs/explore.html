@@ -20,7 +20,7 @@
 </MySource_AREA>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: http://ogp.me/ns#">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -85,8 +85,22 @@
     <!--@@ Design area: Matrix boilerplate, see https://matrix-manuals.squiz.net/designs/chapters/head-design-area @@-->
     <MySource_AREA id_name="head" design_area="head" />
 
-    <!--@@ Design area: Matrix boilerplate, see https://matrix-manuals.squiz.net/designs/chapters/metadata-design-area @@-->
-    <MySource_AREA id_name="metadata" design_area="metadata" />
+    <!--@@ Meta tags from Matrix metadata @@-->
+    <!--@@ Cannot use the Metadata Design area as Matrix doesn't support colon characters @@-->
+    <!--@@ A secondary issue is that keyword replacements use the Site metadata on the homepage so we need to workaround that too @@-->
+    <script runat="server">
+      // 404 Pages don't run SSJS, see https://github.com/jcu-eresearch/matrix-helpers/issues/74
+      if (!JCU.data.is_404) {
+        // Display current asset's meta tags
+        print('%' + 'globals_asset_frontend_metadata:' + JCU.data.current_id + '^replace:_COLON_:\\:%')
+        if (JCU.data.is_homepage) {
+          // Override the og:title property because the last tag takes precedence
+          // This displays only the site name if a user shares the homepage
+          print('<meta property="og:title" content="' + JCU.data.site_name + '">')
+        }
+      }
+    </script>
+    <meta property="og:site_name" content="%globals_site_name^striphtml^escapequotes%">
 
     <script runat="server">
       // Run global functions in the <head> of the page
