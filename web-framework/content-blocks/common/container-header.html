@@ -33,7 +33,14 @@
 %end_globals%
 
 <!--@@ Opening wrapper element for all Content Container Templates @@-->
-<script runat="server">var parts = JCU.extractContentContainerParts("%asset_contents^json_encode%")</script>
+<script runat="server">
+  // Asset 650163's name is a percent sign, which opens Matrix keyword
+  // replacements. We escape those here so we can retain any nested
+  // keywords until our final print of parts.innerHTML. This avoids
+  // accidental code injection.
+  var parts = JCU.extractContentContainerParts("%asset_contents^json_encode^replace:{globals_asset_name:650163}:&percnt;%")
+  parts.innerHTML = parts.innerHTML.replace(/&percnt;/g, '%')
+</script>
 <script runat="server">
   if (JCU.debug) {
     print('<!-- Opening tag for %asset_assetid% -->')
