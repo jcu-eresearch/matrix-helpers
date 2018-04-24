@@ -15,27 +15,38 @@
 
       <div class='video-stream-player-wrapper m-b-1 embed-responsive embed-responsive-%asset_metadata_template.videostream.aspectratio%'>
         <div class='video-stream-player clearfix embed-responsive-item'
-          style='height: 100%; width: 100%; background-color: #eee'
-          data-vsp_source='%asset_metadata_template.videostream.source^htmlentities:ENT_HTML5^htmlentities:ENT_QUOTES%'
+          style='height: 100%; width: 100%'
+          data-vsp_source='%asset_metadata_template.videostream.source^htmlentities:ENT_QUOTES%'
+
           %begin_asset_metadata_template.videostream.watermark.type^neq:none%
             data-vsp_watermark='https://cdn.jcu.edu.au/%asset_metadata_template.videostream.watermark.type%'
             data-vsp_position='%asset_metadata_template.videostream.watermark.position%'
           %end_asset%
+
           %begin_asset_metadata_template.videostream.watermark.link%
-            data-vsp_watermark-link='%asset_metadata_template.videostream.watermark.link^htmlentities:ENT_HTML5^htmlentities:ENT_QUOTES%'
+            data-vsp_watermark-link='%asset_metadata_template.videostream.watermark.link^htmlentities:ENT_QUOTES%'
           %end_asset%
+
+          %begin_asset_metadata_template.videostream.poster.asset%
+            data-vsp_poster='%asset_metadata_template.videostream.poster.asset^as_asset:asset_url^htmlentities:ENT_QUOTES%'
+          %else_begin_asset_metadata_template.videostream.poster.url%
+            data-vsp_poster='%asset_metadata_template.videostream.poster.url^htmlentities:ENT_QUOTES%'
+          %end_asset%
+
           %begin_asset_metadata_template.videostream.autoplay^eq:true%
             data-vsp_auto-play='true'
             data-vsp_mute='true'
           %end_asset%
+
           %begin_asset_metadata_template.videostream.loop^eq:true%
             data-vsp_loop='true'
           %end_asset%
+
           data-vsp_max-buffer-length='90'
           data-vsp_width='100%'
           data-vsp_height='100%'
           data-vsp_auto-play-visible='partial'
-          data-vsp_playback-not-supported-message='Sorry, your browser cannot play this video.&lt;br&gt;&lt;a href="%asset_metadata_template.videostream.source^htmlentities:ENT_HTML5^htmlentities:ENT_QUOTES%"&gt;Click to open video in another application&lt;/a&gt;'
+          data-vsp_playback-not-supported-message='Sorry, your browser cannot play this video.&lt;br&gt;&lt;a href=&quot;%asset_metadata_template.videostream.source^htmlentities:ENT_HTML5^htmlentities:ENT_QUOTES^htmlentities:ENT_QUOTES%&quot;&gt;Click to open video in another application&lt;/a&gt;'
         ></div>
       </div>
 
