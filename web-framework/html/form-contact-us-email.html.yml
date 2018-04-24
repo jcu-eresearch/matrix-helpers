@@ -1,5 +1,5 @@
 to:
-  - "%globals_site_metadata_jcu.site.email%"
-from: "%response_367113_q2^underscore%"
-site_name: "[%globals_site_name%] Website Contact Received"
+  - "%globals_site_metadata_jcu.site.email^htmlentities:ENT_QUOTES%"
+from: "%response_367113_q2^underscore^htmlentities:ENT_QUOTES%"
+site_name: "[%globals_site_name^htmlentities:ENT_QUOTES%] Website Contact Received"
 file_attachments: True

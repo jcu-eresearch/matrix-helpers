@@ -14,10 +14,10 @@
       %begin_asset_metadata_template.embed.asset%
         %begin_asset_metadata_template.embed.asset_via_iframe%
           <div class="embed-responsive %asset_metadata_template.embed.aspect_ratio% hidden-print">
-            <iframe class="embed-responsive-item" src="%asset_metadata_template.embed.asset^as_asset:asset_url%" allowfullscreen="true"></iframe>
+            <iframe class="embed-responsive-item" src="%asset_metadata_template.embed.asset^as_asset:asset_url^htmlentities:ENT_QUOTES%" allowfullscreen="true"></iframe>
           </div>
           <div class="visible-print-block">
-            <a href="%asset_metadata_template.embed.asset^as_asset:asset_url%">Embedded content</a>
+            <a href="%asset_metadata_template.embed.asset^as_asset:asset_url^htmlentities:ENT_QUOTES%">Embedded content</a>
           </div>
         %else_asset%
           %asset_metadata_template.embed.asset^as_asset:asset_contents%
@@ -26,14 +26,14 @@
         <div class="embed-responsive %asset_metadata_template.embed.aspect_ratio% hidden-print">
           %begin_asset_metadata_template.embed.url^lastchars:4^eq:.mp4%
             <video class="embed-responsive-item" controls="controls">
-              <source src="%asset_metadata_template.embed.url%" type="video/mp4"><a href="%asset_metadata_template.embed.url%">Access this video directly</a>
+              <source src="%asset_metadata_template.embed.url^htmlentities:ENT_QUOTES%" type="video/mp4"><a href="%asset_metadata_template.embed.url^htmlentities:ENT_QUOTES%">Access this video directly</a>
             </video>
           %else_asset%
-            <iframe class="embed-responsive-item" src="%asset_metadata_template.embed.url%" allowfullscreen="true"></iframe>
+            <iframe class="embed-responsive-item" src="%asset_metadata_template.embed.url^htmlentities:ENT_QUOTES%" allowfullscreen="true"></iframe>
           %end_asset%
         </div>
         <div class="visible-print-block">
-          <a href="%asset_metadata_template.embed.url%">Embedded content</a>
+          <a href="%asset_metadata_template.embed.url^htmlentities:ENT_QUOTES%">Embedded content</a>
         </div>
       %end_asset%
 

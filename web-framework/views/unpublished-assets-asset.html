@@ -1,15 +1,15 @@
 <tr>
   <td>
-    <a href="%globals_site_url%/_admin/?assetid=%asset_assetid%&am_section=edit_asset" title="%asset_name%" target="_blank">
+    <a href="%globals_site_url%/_admin/?assetid=%asset_assetid%&am_section=edit_asset" title="%asset_name^striphtml^htmlentities:ENT_QUOTES%" target="_blank">
       %asset_assetid%
       <small class="icon-opennewwindow" title="Opens admin in new window"></small>
     </a>
   </td>
   <td>
     %begin_asset_url%
-    <a href="%asset_url%" title="%asset_name%">%asset_short_name%</a>
+    <a href="%asset_url%" title="%asset_name^striphtml^htmlentities:ENT_QUOTES%">%asset_short_name^htmlentities:ENT_QUOTES%</a>
     %else_asset%
-    <a href="%globals_site_url%/_admin/?assetid=%asset_assetid%&am_section=edit_asset" title="%asset_name%">%asset_short_name%</a>
+    <a href="%globals_site_url%/_admin/?assetid=%asset_assetid%&am_section=edit_asset" title="%asset_name^striphtml^htmlentities:ENT_QUOTES%">%asset_short_name^htmlentities:ENT_QUOTES%</a>
     %end_asset%
   </td>
   <td>%asset_type_icon% %asset_type%</td>
@@ -17,10 +17,11 @@
     %begin_asset_url_path%
       <a href="%asset_url_path%/_nocache">%asset_url_path%</a>
     %else_asset%
-      %asset_parent^as_asset:asset_type_icon% %asset_parent^as_asset:asset_name_linked%
+      %asset_parent^as_asset:asset_type_icon%
+      <a href="%asset_parent^as_asset:asset_url%">%asset_parent^as_asset:asset_name^htmlentities:ENT_QUOTES%</a>
     %end_asset%
   </td>
-  <td data-sort="%asset_created_by_last_name%, %asset_created_by_first_name%"><abbr title="%asset_created_by_email%">%asset_created_by_name%</abbr></td>
+  <td data-sort="%asset_created_by_last_name^striphtml^htmlentities:ENT_QUOTES%, %asset_created_by_first_name^striphtml^htmlentities:ENT_QUOTES%"><abbr title="%asset_created_by_email^striphtml^htmlentities:ENT_QUOTES%">%asset_created_by_name^htmlentities:ENT_QUOTES%</abbr></td>
   <td data-sort="%asset_updated%"><abbr title="%asset_updated_readable%">%asset_updated_relative%</abbr></td>
   <td><span class="label small" style="color: #2d2d2d; background-color: %asset_status_colour%;">%asset_status_description%</span></td>
 </tr>

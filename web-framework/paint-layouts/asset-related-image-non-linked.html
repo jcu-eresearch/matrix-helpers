@@ -6,17 +6,16 @@ E.g:
   which adds the class `img-fluid` to the `img` tag.
 @@-->
 <script runat="server">
-  var name = '%asset_attribute_title^escapequotes%' || '%asset_name^escapequotes%'
-  var url = '%asset_url^escapequotes%'
+  var name = '%asset_attribute_title^striphtml^htmlentities:ENT_QUOTES%' || '%asset_name^striphtml^htmlentities:ENT_QUOTES%'
+  var url = '%asset_url^htmlentities:ENT_QUOTES%'
   var asset_type = '%asset_type_code%'
   var file_type = '%asset_file_type%'
-  var caption = '%asset_attribute_caption^escapequotes%'
   var thumbnail = %asset_thumbnail^notempty:true^empty:false%
-  var thumbnail_url = '%asset_thumbnail_url^escapequotes%'
-  var thumbnail_title = '%asset_thumbnail_title^escapequotes%'
-  var thumbnail_alt = '%asset_thumbnail_alt^escapequotes%'
+  var thumbnail_url = '%asset_thumbnail_url^htmlentities:ENT_QUOTES%'
+  var thumbnail_title = '%asset_thumbnail_title^striphtml^htmlentities:ENT_QUOTES%'
+  var thumbnail_alt = '%asset_thumbnail_alt^striphtml^htmlentities:ENT_QUOTES%'
   var link_target = '%link_relation^contains:external:_blank:_self%'
-  var link_rel = '%link_relation^escapequotes%'
+  var link_rel = '%link_relation^striphtml^htmlentities:ENT_QUOTES%'
 
   // Protect against abuse of the window.opener API by new tabs/windows
   if (link_target === '_blank') {

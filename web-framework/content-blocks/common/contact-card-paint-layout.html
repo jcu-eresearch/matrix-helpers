@@ -1,23 +1,23 @@
 <ul class="list-bordered m-b-0">
   %begin_asset_metadata_template.contact.phone_local%
-  <li><span class="text-nowrap"><span title="Phone" class="icon-phone"></span> <span class="sr-only">Call us on </span><a href="tel:%asset_metadata_template.contact.phone_international%">%asset_metadata_template.contact.phone_local%</a></span>
+  <li><span class="text-nowrap"><span title="Phone" class="icon-phone"></span> <span class="sr-only">Call us on </span><a href="tel:%asset_metadata_template.contact.phone_international^htmlentities:ENT_QUOTES%">%asset_metadata_template.contact.phone_local^htmlentities:ENT_QUOTES%</a></span>
   %begin_asset_metadata_template.contact.phone_international%
-    <span class="text-nowrap"><span title="International Phone" class="icon-globe"></span><span class="sr-only">If calling internationally, dial </span><a href="tel:%asset_metadata_template.contact.phone_international%">%asset_metadata_template.contact.phone_international%</a></span>
+    <span class="text-nowrap"><span title="International Phone" class="icon-globe"></span><span class="sr-only">If calling internationally, dial </span><a href="tel:%asset_metadata_template.contact.phone_international^htmlentities:ENT_QUOTES%">%asset_metadata_template.contact.phone_international^htmlentities:ENT_QUOTES%</a></span>
   %end_asset%
   </li>
   %end_asset%
   %begin_asset_metadata_template.contact.fax%
-  <li><span class="text-nowrap"><span title="Fax" class="icon-print"></span> <span class="sr-only">Fax us on </span><a href="tel:%asset_metadata_template.contact.fax%">%asset_metadata_template.contact.fax%</a></span>
+  <li><span class="text-nowrap"><span title="Fax" class="icon-print"></span> <span class="sr-only">Fax us on </span><a href="tel:%asset_metadata_template.contact.fax^htmlentities:ENT_QUOTES%">%asset_metadata_template.contact.fax^htmlentities:ENT_QUOTES%</a></span>
   </li>
   %end_asset%
   <script runat="server">
-    var site_email = '%globals_site_metadata_jcu.site.email^escapequotes%'
-    var override_email = '%asset_metadata_template.contact.email^escapequotes%'
+    var site_email = '%globals_site_metadata_jcu.site.email^striphtml^htmlentities:ENT_QUOTES%'
+    var override_email = '%asset_metadata_template.contact.email^striphtml^htmlentities:ENT_QUOTES%'
     var email_subject = '%asset_metadata_template.contact.email_subject^rawurlencode%'
-    
+
     var email_address = site_email ? site_email : override_email
     email_subject = email_subject ? email_subject : 'JCU%20Website%20Enquiry'
-    
+
     print('<li><span title="Email" class="icon-email2"></span> <a href="mailto:' + email_address + '?subject=' + email_subject + '">' + email_address + '</a></li>')
   </script>
 
@@ -25,63 +25,63 @@
 
   %begin_asset_metadata_template.contact.showsocial^contains:facebook%
     %begin_globals_site_metadata_jcu.social.facebook%
-    <li><span class="text-nowrap"><span title="Facebook" class="icon-facebook"></span> <span class="sr-only">Facebook link </span><a href="%globals_site_metadata_jcu.social.facebook%">find us on Facebook</a></span>
+    <li><span class="text-nowrap"><span title="Facebook" class="icon-facebook"></span> <span class="sr-only">Facebook link </span><a href="%globals_site_metadata_jcu.social.facebook^striphtml^htmlentities:ENT_QUOTES%">find us on Facebook</a></span>
     </li>
     %end_asset%
   %end_asset%
 
   %begin_asset_metadata_template.contact.showsocial^contains:flickr%
     %begin_globals_site_metadata_jcu.social.flickr%
-    <li><span class="text-nowrap"><span title="Flickr" class="icon-flickr"></span> <span class="sr-only">Flickr link </span><a href="%globals_site_metadata_jcu.social.flickr%">find us on Flickr</a></span>
+    <li><span class="text-nowrap"><span title="Flickr" class="icon-flickr"></span> <span class="sr-only">Flickr link </span><a href="%globals_site_metadata_jcu.social.flickr^striphtml^htmlentities:ENT_QUOTES%">find us on Flickr</a></span>
     </li>
     %end_asset%
   %end_asset%
 
   %begin_asset_metadata_template.contact.showsocial^contains:instagram%
     %begin_globals_site_metadata_jcu.social.instagram%
-    <li><span class="text-nowrap"><span title="Instagram" class="icon-instagram"></span> <span class="sr-only">Instagram link </span><a href="%globals_site_metadata_jcu.social.instagram%">find us on Instagram</a></span>
+    <li><span class="text-nowrap"><span title="Instagram" class="icon-instagram"></span> <span class="sr-only">Instagram link </span><a href="%globals_site_metadata_jcu.social.instagram^striphtml^htmlentities:ENT_QUOTES%">find us on Instagram</a></span>
     </li>
     %end_asset%
   %end_asset%
 
   %begin_asset_metadata_template.contact.showsocial^contains:twitter%
     %begin_globals_site_metadata_jcu.social.twitter%
-    <li><span class="text-nowrap"><span title="Twitter" class="icon-twitter"></span> <span class="sr-only">Twitter account </span><a href="http://www.twitter.com/%globals_site_metadata_jcu.social.twitter%">@%globals_site_metadata_jcu.social.twitter% on Twitter</a></span>
+    <li><span class="text-nowrap"><span title="Twitter" class="icon-twitter"></span> <span class="sr-only">Twitter account </span><a href="http://www.twitter.com/%globals_site_metadata_jcu.social.twitter^striphtml^htmlentities:ENT_QUOTES%">@%globals_site_metadata_jcu.social.twitter% on Twitter</a></span>
     </li>
     %end_asset%
   %end_asset%
 
   %begin_asset_metadata_template.contact.showsocial^contains:linkedin%
     %begin_globals_site_metadata_jcu.social.linkedin%
-    <li><span class="text-nowrap"><span title="LinkedIn" class="icon-linkedin"></span> <span class="sr-only">LinkedIn profile </span><a href="%globals_site_metadata_jcu.social.linkedin%">connect on LinkedIn</a></span>
+    <li><span class="text-nowrap"><span title="LinkedIn" class="icon-linkedin"></span> <span class="sr-only">LinkedIn profile </span><a href="%globals_site_metadata_jcu.social.linkedin^striphtml^htmlentities:ENT_QUOTES%">connect on LinkedIn</a></span>
     </li>
     %end_asset%
   %end_asset%
 
   %begin_asset_metadata_template.contact.showsocial^contains:youtube%
     %begin_globals_site_metadata_jcu.social.youtube%
-    <li><span class="text-nowrap"><span title="YouTube" class="icon-youtube"></span> <span class="sr-only">YouTube profile </span><a href="%globals_site_metadata_jcu.social.youtube%">find us on YouTube</a></span>
+    <li><span class="text-nowrap"><span title="YouTube" class="icon-youtube"></span> <span class="sr-only">YouTube profile </span><a href="%globals_site_metadata_jcu.social.youtube^striphtml^htmlentities:ENT_QUOTES%">find us on YouTube</a></span>
     </li>
     %end_asset%
   %end_asset%
 
   %begin_asset_metadata_template.contact.showsocial^contains:tumblr%
     %begin_globals_site_metadata_jcu.social.tumblr%
-    <li><span class="text-nowrap"><span title="Tumblr" class="icon-tumblr"></span> <span class="sr-only">Tumblr page </span><a href="%globals_site_metadata_jcu.social.tumblr%">find us on Tumblr</a></span>
+    <li><span class="text-nowrap"><span title="Tumblr" class="icon-tumblr"></span> <span class="sr-only">Tumblr page </span><a href="%globals_site_metadata_jcu.social.tumblr^striphtml^htmlentities:ENT_QUOTES%">find us on Tumblr</a></span>
     </li>
     %end_asset%
   %end_asset%
 
   %begin_asset_metadata_template.contact.showsocial^contains:googleplus%
     %begin_globals_site_metadata_jcu.social.googleplus%
-    <li><span class="text-nowrap"><span title="Google+" class="icon-googleplus"></span> <span class="sr-only">Google+ profile </span><a href="%globals_site_metadata_jcu.social.googleplus%">find us on Google+</a></span>
+    <li><span class="text-nowrap"><span title="Google+" class="icon-googleplus"></span> <span class="sr-only">Google+ profile </span><a href="%globals_site_metadata_jcu.social.googleplus^striphtml^htmlentities:ENT_QUOTES%">find us on Google+</a></span>
     </li>
     %end_asset%
   %end_asset%
 
   %begin_asset_metadata_template.contact.showsocial^contains:external_site%
     %begin_globals_site_metadata_jcu.social.external_site%
-    <li><span class="text-nowrap"><span title="Web page" class="icon-explorerwindow"></span> <span class="sr-only">Web page </span><a href="%globals_site_metadata_jcu.social.external_site%">%globals_site_metadata_jcu.social.external_site%</a></span>
+    <li><span class="text-nowrap"><span title="Web page" class="icon-explorerwindow"></span> <span class="sr-only">Web page </span><a href="%globals_site_metadata_jcu.social.external_site^striphtml^htmlentities:ENT_QUOTES%">%globals_site_metadata_jcu.social.external_site^htmlentities:ENT_QUOTES%</a></span>
     </li>
     %end_asset%
   %end_asset%
@@ -89,7 +89,7 @@
   <!--@@ physical location related details @@-->
 
   %begin_asset_metadata_template.contact.radio%
-  <li><span title="UHF radio" class="icon-mobile"></span> %asset_metadata_template.contact.radio%
+  <li><span title="UHF radio" class="icon-mobile"></span> %asset_metadata_template.contact.radio^striphtml^htmlentities:ENT_QUOTES%
   </li>
   %end_asset%
 

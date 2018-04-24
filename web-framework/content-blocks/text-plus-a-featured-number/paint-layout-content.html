@@ -20,8 +20,8 @@
       <!--@@ the picture size metadata item is a json string containing textcols and piccols values @@-->
       <div class="col-sm-3 col-print-3 text-xs-center m-y-1 lead
         %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-push-9%end_asset%">
-        <span class="feature-number">%asset_metadata_template.numfeature.num1%</span><br>
-        %asset_metadata_template.numfeature.units1%
+        <span class="feature-number">%asset_metadata_template.numfeature.num1^htmlentities:ENT_QUOTES%</span><br>
+        %asset_metadata_template.numfeature.units1^htmlentities:ENT_QUOTES%
       </div>
       <div class="col-sm-9 col-print-9
         %begin_asset_metadata_template.numfeature.position^eq:right%col-sm-pull-3%end_asset%">

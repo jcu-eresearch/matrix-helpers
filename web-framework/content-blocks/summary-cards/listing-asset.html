@@ -5,10 +5,10 @@
 
   // get the summary card list settings
   var layout = {
-     flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair^escapequotes%",
+     flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair^htmlentities:ENT_QUOTES%",
      cardLayout : "%nested_get_content_container^as_asset:asset_metadata_template.card.layout%",
-     buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text^escapequotes%",
-     linkTarget : "%nested_get_content_container^as_asset:asset_metadata_template.card.link.target^escapequotes%",
+     buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text^htmlentities:ENT_QUOTES%",
+     linkTarget : "%nested_get_content_container^as_asset:asset_metadata_template.card.link.target^striphtml^htmlentities:ENT_QUOTES%",
      gridCardsPerRow : "%nested_get_content_container^as_asset:asset_metadata_template.card.grid.columns%",
      isTileStyle : %nested_get_content_container^as_asset:asset_metadata_template.card.style^eq:tile:true:false%
   }
@@ -29,8 +29,8 @@
   //  get details about the current card / asset
   var card = {
     id : '%asset_assetid%',
-    name : '%asset_attribute_title^empty:{asset_name}^escapequotes%',
-    description: '%asset_metadata_jcu.summarycard.description^empty:{asset_attribute_summary}^escapequotes%',
+    name : '%asset_attribute_title^empty:{asset_name}^htmlentities:ENT_QUOTES%',
+    description: JCU.unescapeKeywords('%asset_metadata_jcu.summarycard.description^empty:{asset_attribute_summary}^replace:{globals_asset_name:650163}:&percnt;^escapequotes%'),
     position : '%asset_position%',
     assetType : '%asset_type_code%',
     fileType : '%asset_file_type%',
@@ -39,17 +39,17 @@
     imageTitle : '',
     imageAlt : '',
     hasThumbnail : %asset_thumbnail^notempty:true^empty:false%,
-    thumbnailTitle : '%asset_thumbnail_title^escapequotes%',
-    thumbnailAlt : '%asset_thumbnail_alt^escapequotes%',
+    thumbnailTitle : '%asset_thumbnail_title^striphtml^htmlentities:ENT_QUOTES%',
+    thumbnailAlt : '%asset_thumbnail_alt^striphtml^htmlentities:ENT_QUOTES%',
     thumbnailUrl : '%asset_thumbnail_url^escapequotes%',
     brighterImage : '%asset_metadata_item.feature-image%',   // special case for articles from the Brighter site
 //    imageUrl : '%asset_thumbnail_v_newsdetails_url^empty:{asset_thumbnail_url}^escapequotes%',
     assetUrl : '%asset_url^escapequotes%',
-    overrideUrl : '%asset_metadata_jcu.summarycard.override.url^escapequotes%',
-    linkUrl : '%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^escapequotes%',
+    overrideUrl : '%asset_metadata_jcu.summarycard.override.url^striphtml^htmlentities:ENT_QUOTES%',
+    linkUrl : '%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^striphtml^htmlentities:ENT_QUOTES%',
     disableLink : ('%asset_metadata_jcu.summarycard.disable.link%' == 'yes' ? true : false),
     linkingLineage : '%asset_linking_lineage^json_decode^index:0%',
-    buttonText : '%asset_metadata_jcu.summarycard.override.button.text^escapequotes%'
+    buttonText : '%asset_metadata_jcu.summarycard.override.button.text^htmlentities:ENT_QUOTES%'
   }
 
   var debugLinkingLineage = '%asset_linking_lineage^escapequotes%'

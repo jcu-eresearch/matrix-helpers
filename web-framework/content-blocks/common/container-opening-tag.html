@@ -37,7 +37,7 @@
   }
 
   // Print the result
-  print('class="' + contentBlockClasses.join(' ') + '"' + contentBlockStyleAttr + " aria-label=\"%asset_metadata_template.title.title^striphtml^htmlentities% %asset_metadata_template.title.subtitle^striphtml^htmlentities%\">")
+  print('class="' + contentBlockClasses.join(' ') + '"' + contentBlockStyleAttr + " aria-label=\"%asset_metadata_template.title.title^striphtml^htmlentities:ENT_QUOTES% %asset_metadata_template.title.subtitle^striphtml^htmlentities:ENT_QUOTES%\">")
   if (JCU.debug) {
     print('<!-- Rendered "Content Block Opening Tag" paint layout for %asset_assetid% (above) -->')
   }

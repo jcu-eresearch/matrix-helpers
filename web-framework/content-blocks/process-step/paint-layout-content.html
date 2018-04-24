@@ -2,7 +2,7 @@
 <script runat="server">
   this.args = {
     content_block_class: 'cct-process-step container %asset_metadata_template.vizfx.border.south%',
-    content_block_style: '%begin_asset_metadata_template.counter.reset^eq:reset%counter-reset: process-step-counter %asset_metadata_template.counter.newvalue^floor^subtract:1%%end_asset%'
+    content_block_style: '%begin_asset_metadata_template.counter.reset^eq:reset%counter-reset: process-step-counter %asset_metadata_template.counter.newvalue^floor^subtract:1^replace:;:^striphtml^htmlentities:ENT_QUOTES%%end_asset%'
   }
 </script>
 %asset_contents_paint_420277%

@@ -71,7 +71,7 @@
                 // We may need other checks if Matrix adds other ID formats
                 if (linkingEnabled) {
                   var baseId = id.split(':')[0]
-                  print('<a class="' + linkClass + '" href="./?a=' + id + '" data-mfp-caption="&lt;p class=\'h3\'&gt;%globals_asset_attribute_title:' + baseId + '%&lt;/p&gt;">')
+                  print('<a class="' + linkClass + '" href="./?a=' + id + '" data-mfp-caption="&lt;p class=\'h3\'&gt;%globals_asset_attribute_title:' + baseId + '^htmlentities:ENT_QUOTES^htmlentities:ENT_QUOTES%&lt;/p&gt;">')
                 }
                 print('  <img class="img-fluid center-block" src="./?a=' + id + '">')
                 if (linkingEnabled) {
