@@ -52,10 +52,10 @@ yet) @@-->
       <MySource_SET name="condition" value="logged_in" />
       <MySource_THEN>
         <!--@@ If the user had read access, we would have redirected them already @@-->
-        <title>Permission Denied - %globals_site_name% - James Cook University</title>
+        <title>Permission Denied - %globals_site_name^striphtml% - James Cook University</title>
       </MySource_THEN>
       <MySource_ELSE>
-        <title>Login - %globals_site_name% - James Cook University</title>
+        <title>Login - %globals_site_name^striphtml% - James Cook University</title>
       </MySource_ELSE>
     </MySource_AREA>
 
@@ -65,7 +65,7 @@ yet) @@-->
       <MySource_SET name="condition_keyword_match" value="^page_password_reset$" />
       <MySource_THEN>
         <!--@@ Display the name from the Password Reset Page @@-->
-        <title>%globals_asset_name% - %globals_site_name% - James Cook University</title>
+        <title>%globals_asset_name^striphtml% - %globals_site_name^striphtml% - James Cook University</title>
       </MySource_THEN>
       <MySource_ELSE>
         <MySource_PRINT id_name="show_title_or_error" />
@@ -133,11 +133,11 @@ yet) @@-->
             <div class="row">
               <div class="col-xs-6">
                 <a href="%globals_site_url%">
-                  <img class="img-fluid" src="%globals_site_metadata_jcu.site.logo^as_asset:asset_url^empty:./?a=281218\:dist/images/jcua-logo-mono-reversed.svg%" title="%globals_site_name%" alt="James Cook University - %globals_site_name% logo">
+                  <img class="img-fluid" src="%globals_site_metadata_jcu.site.logo^as_asset:asset_url^empty:./?a=281218\:dist/images/jcua-logo-mono-reversed.svg%" title="%globals_site_name^striphtml^htmlentities:ENT_QUOTES%" alt="James Cook University - %globals_site_name^striphtml^htmlentities:ENT_QUOTES% logo">
                 </a>
               </div>
               <div class="col-xs-6 text-xs-right">
-                <h1 class="jcu-header__page-title" id="page-title"><span class="sr-only">James Cook University - %globals_site_name% </span>Web Content</h1>
+                <h1 class="jcu-header__page-title" id="page-title"><span class="sr-only">James Cook University - %globals_site_name^htmlentities:ENT_QUOTES% </span>Web Content</h1>
               </div>
             </div>
           </div>
@@ -148,13 +148,13 @@ yet) @@-->
     <main class="container jcu-content jcu-content--short-content" id="main" role="main" aria-labelledby="page-title">
       <div class="row m-y-1">
         <div class="col-xs-12 col-lg-10 col-lg-offset-1">
-          <div class="row">
             <MySource_AREA id_name="login_form" design_area="login_form" print="no">
               <MySource_LOGIN_SECTION>
                 <MySource_SET name="give_username_focus" value="false" />
                 <MySource_SET name="forward_www_vars" value="true" />
                 <MySource_PRINT var="form_open" /><!--@@ <form> @@-->
 
+                <div class="row">
                   <div class="center-vertically">
                     <div class="col-md-6 p-x-3 text-xs-center">
                       <h2 class="sr-only">Sign In with James Cook University credentials</h2>
@@ -193,7 +193,8 @@ yet) @@-->
                       </div>
                     </div><!--@@ /.discover-login @@-->
                   </div><!--@@ /.center-vertically @@-->
-                </form><!--@@ Don't use MySource_PRINT var="form_close" here to avoid JS cruft @@-->
+                </div><!--@@ /.row @@-->
+                </form><!--@@ Manually close the form tag; don't use MySource_PRINT var="form_close" here to avoid JS cruft @@-->
               </MySource_LOGIN_SECTION>
             </MySource_AREA><!--@@ /#login_form @@-->
 
@@ -209,7 +210,7 @@ yet) @@-->
                   have permission to access this content.
                 </div>
                 <div class="text-xs-center">
-                  <a class="btn btn-primary" href="%globals_site_url%">Back to %globals_site_short_name% home</a>
+                  <a class="btn btn-primary" href="%globals_site_url%">Back to %globals_site_short_name^htmlentities:ENT_QUOTES% home</a>
                   <a class="btn btn-danger" href="%globals_site_url%?SQ_ACTION=logout">Logout</a>
                 </div>
               </MySource_THEN>
@@ -233,7 +234,6 @@ yet) @@-->
               </MySource_ELSE>
             </MySource_AREA>
 
-          </div><!--@@ /.row @@-->
         </div><!--@@ /.col-xs-12 @@-->
       </div><!--@@ /.row @@-->
     </main><!--@@ /.container @@-->
