@@ -191,7 +191,7 @@
               </tr>
               <tr>
                 <th scope="row">Type</th>
-                <td>%asset_type_icon% %asset_type%</td>
+                <td><img src="%asset_type_icon_url%" alt="%asset_type% type icon" title="%asset_type%"> %asset_type%</td>
               </tr>
               <tr>
                 <th scope="row">Status</th>
@@ -297,7 +297,7 @@
               <tbody>
                 <tr>
                   <th scope="row">Frontend Asset</th>
-                  <td title="%frontend_asset_short_name^htmlentities:ENT_QUOTES%">%frontend_asset_assetid% (%frontend_asset_type_icon% %frontend_asset_type%)</td>
+                  <td title="%frontend_asset_short_name^htmlentities:ENT_QUOTES%">%frontend_asset_assetid% (<img src="%frontend_asset_type_icon_url%" alt="%frontend_asset_type% type icon" title="%frontend_asset_type%"> %frontend_asset_type%)</td>
                 </tr>
                 <tr>
                   <th scope="row">Design</th>
@@ -373,7 +373,7 @@
                 <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="userMenuLabel">
                   <div class="dropdown-header h6">Logged in as
                     <MySource_PRINT id_name="__global__" var="current_user" /><br>
-                    (%globals_user_type_icon% %globals_user_type%; ID: %globals_user_assetid%)
+                    (<img src="%globals_user_type_icon_url%" alt="%globals_user_type% type icon" title="%globals_user_type%"> %globals_user_type%; ID: %globals_user_assetid%)
                   </div>
                   <MySource_PRINT id_name="toolbar_user_admin" />
                   <a class="dropdown-item" href="%globals_site_url%?SQ_ACTION=logout" title="Logout of this system">
