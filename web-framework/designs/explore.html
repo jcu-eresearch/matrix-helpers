@@ -238,12 +238,17 @@
               <span class="icon-cog" aria-label="Edit site icon"></span> Configure site settings
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_nocache' title="Show page without server caching">
-              <span class="icon-redo" aria-label="Disable cache icon"></span> Show without caching
-            </a>
-            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_recache' title="Regenerate server cache for this page">
-              <span class="icon-lightning2" aria-label="Refresh icon"></span> Regenerate server cache
-            </a>
+            <script runat="server">
+              var currentURL = JCU.data.is_homepage ? '%globals_site_url%' : '%globals_asset_url%'
+              print(' \
+                <a class="dropdown-item" href="' + currentURL + '/_nocache" title="Show page without server caching"> \
+                  <span class="icon-redo" aria-label="Disable cache icon"></span> Show without caching \
+                </a> \
+                <a class="dropdown-item" href="' + currentURL + '/_recache" title="Regenerate server cache for this page"> \
+                  <span class="icon-lightning2" aria-label="Refresh icon"></span> Regenerate server cache \
+                </a> \
+              ')
+            </script>
           </div>
         </div>
       </MySource_THEN>
