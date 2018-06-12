@@ -5,9 +5,9 @@
   var data = JCU.resolveLinkAssetData({
     asset_type_code: '%asset_type_code%',
     asset_url: "%asset_url^escapequotes%",
-    link_url: "%asset_attribute_link_url^striphtml^htmlentities:ENT_QUOTES%",
-    link_relation: "%asset_attribute_link_relation^striphtml^htmlentities:ENT_QUOTES%"
+    link_url: "%asset_attribute_link_url^striphtml^escapehtml%",
+    link_relation: "%asset_attribute_link_relation^striphtml^escapehtml%"
   })
   ...
 @@-->
-<li class="nav-item %asset_assetid^eq:{frontend_asset_assetid}:active%"><a class="nav-link %asset_metadata_jcu.navigation.css_classes^striphtml^htmlentities:ENT_QUOTES%" href="%asset_attribute_link_url^striphtml^htmlentities:ENT_QUOTES%" %asset_attribute_link_relation^striphtml^htmlentities:ENT_QUOTES^prepend_if:rel="^append_if:"%>%asset_short_name^htmlentities:ENT_QUOTES%</a></li>
+<li class="nav-item %asset_assetid^eq:{frontend_asset_assetid}:active%"><a class="nav-link %asset_metadata_jcu.navigation.css_classes^striphtml^escapehtml%" href="%asset_attribute_link_url^striphtml^escapehtml%" %asset_attribute_link_relation^striphtml^escapehtml^prepend_if:rel="^append_if:"%>%asset_short_name^escapehtml%</a></li>

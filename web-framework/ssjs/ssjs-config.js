@@ -36,7 +36,7 @@ var JCU = {
     homepage_theme: '%globals_site_index_id^as_asset:asset_metadata_jcu.features.theme%',
     site_id: '%globals_site_assetid%',
     site_theme: '%globals_site_metadata_jcu.features.theme%',
-    site_name: '%globals_site_name^striphtml^htmlentities:ENT_QUOTES%'
+    site_name: '%globals_site_name^striphtml^escapehtml%'
   },
 
   // Hard-coded asset IDs, but just in one place

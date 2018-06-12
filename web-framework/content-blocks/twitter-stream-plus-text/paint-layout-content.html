@@ -75,7 +75,7 @@
         %else_asset%
           Here are the latest tweets from
         %end_asset%
-        <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^striphtml^htmlentities:ENT_QUOTES%">@%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^htmlentities:ENT_QUOTES%</a>.
+        <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^striphtml^escapehtml%">@%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^escapehtml%</a>.
       </p>
       %end_asset%
 
@@ -85,15 +85,15 @@
       <!--@@ maybe they want show the follow button @@-->
       %begin_asset_metadata_template.twitter.followbutton.show^eq:show%
       <p class="hidden-sm-down"><!--@@ narrower button when columns are side-by-side @@-->
-        <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^striphtml^htmlentities:ENT_QUOTES%"
+        <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^striphtml^escapehtml%"
           class="twitter-follow-button"
           data-show-screen-name="false"
-          data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^htmlentities:ENT_QUOTES%</a>
+          data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^escapehtml%</a>
       </p>
       <p class="hidden-md-up"><!--@@ wide button when screen is narrow (coz columns are full-width) @@-->
-        <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^striphtml^htmlentities:ENT_QUOTES%"
+        <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^striphtml^escapehtml%"
           class="twitter-follow-button"
-          data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^htmlentities:ENT_QUOTES%</a>
+          data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^escapehtml%</a>
       </p>
       %end_asset%
     </div><!--@@ /textCss column @@-->
@@ -107,7 +107,7 @@
       data-theme="light"
       data-tweet-limit="%asset_metadata_template.twitter.tweetcount%"
       data-chrome="noheader noborders noscrollbar transparent"
-      href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^striphtml^htmlentities:ENT_QUOTES%">Tweets by %asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^htmlentities:ENT_QUOTES%</a>
+      href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^striphtml^escapehtml%">Tweets by %asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^escapehtml%</a>
   </div>
 
 <script runat="server">

@@ -17,7 +17,7 @@
 
   <!--@@ Google maps inclusion @@-->
   <script runat="server">
-    var api_key = "%globals_site_metadata_jcu.maps.api_key^replace:{globals_asset_name:650163}:&percnt;^striphtml^htmlentities:ENT_QUOTES%"
+    var api_key = "%globals_site_metadata_jcu.maps.api_key^replace:{globals_asset_name:650163}:&percnt;^striphtml^escapehtml%"
     api_key = JCU.unescapeKeywords(api_key)
     if (JCU.js.specified('google_maps')) {
       print('<script src="https://maps.googleapis.com/maps/api/js?key=' + api_key + '"></script' + '>')

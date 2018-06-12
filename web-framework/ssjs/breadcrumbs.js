@@ -27,11 +27,11 @@ if (JCU.data.breadcrumbs_enabled) {
       '  <nav class="breadcrumb jcu-bg--transparent">')
     lineage.forEach(function(id) {
       if (id === JCU.data.site_id) {
-        print('<a class="breadcrumb-item text-muted" href="%globals_asset_url:' + id + '%" title="%globals_asset_short_name:' + id + '^striphtml^htmlentities:ENT_QUOTES%"><span class="icon-home" aria-hidden="true"></span><span class="sr-only">Go home to %globals_asset_short_name:' + id + '^striphtml^htmlentities:ENT_QUOTES%</span></a>')
+        print('<a class="breadcrumb-item text-muted" href="%globals_asset_url:' + id + '%" title="%globals_asset_short_name:' + id + '^striphtml%"><span class="icon-home" aria-hidden="true"></span><span class="sr-only">Go home to %globals_asset_short_name:' + id + '^striphtml%</span></a>')
       } else if (id !== JCU.data.frontend_id) {
-        print('<a class="breadcrumb-item" href="%globals_asset_url:' + id + '%">%globals_asset_short_name:' + id + '^htmlentities:ENT_QUOTES%</a>')
+        print('<a class="breadcrumb-item" href="%globals_asset_url:' + id + '%">%globals_asset_short_name:' + id + '^striphtml%</a>')
       } else {
-        print('<span class="breadcrumb-item active">%globals_asset_short_name:' + id + '^htmlentities:ENT_QUOTES%</span>')
+        print('<span class="breadcrumb-item active">%globals_asset_short_name:' + id + '^striphtml%</span>')
       }
     })
     print(

@@ -16,7 +16,7 @@
       <div class='video-stream-player-wrapper m-b-1 embed-responsive embed-responsive-%asset_metadata_template.videostream.aspectratio%'>
         <div class='video-stream-player clearfix embed-responsive-item'
           style='height: 100%; width: 100%'
-          data-vsp_source='%asset_metadata_template.videostream.source^htmlentities:ENT_QUOTES%'
+          data-vsp_source='%asset_metadata_template.videostream.source^escapehtml%'
 
           %begin_asset_metadata_template.videostream.watermark.type^neq:none%
             data-vsp_watermark='https://cdn.jcu.edu.au/%asset_metadata_template.videostream.watermark.type%'
@@ -24,13 +24,13 @@
           %end_asset%
 
           %begin_asset_metadata_template.videostream.watermark.link%
-            data-vsp_watermark-link='%asset_metadata_template.videostream.watermark.link^htmlentities:ENT_QUOTES%'
+            data-vsp_watermark-link='%asset_metadata_template.videostream.watermark.link^escapehtml%'
           %end_asset%
 
           %begin_asset_metadata_template.videostream.poster.asset%
-            data-vsp_poster='%asset_metadata_template.videostream.poster.asset^as_asset:asset_url^htmlentities:ENT_QUOTES%'
+            data-vsp_poster='%asset_metadata_template.videostream.poster.asset^as_asset:asset_url^escapehtml%'
           %else_begin_asset_metadata_template.videostream.poster.url%
-            data-vsp_poster='%asset_metadata_template.videostream.poster.url^htmlentities:ENT_QUOTES%'
+            data-vsp_poster='%asset_metadata_template.videostream.poster.url^escapehtml%'
           %end_asset%
 
           %begin_asset_metadata_template.videostream.autoplay^eq:true%

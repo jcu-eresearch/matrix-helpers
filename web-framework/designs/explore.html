@@ -100,7 +100,7 @@
         }
       }
     </script>
-    <meta property="og:site_name" content="%globals_site_name^striphtml^htmlentities:ENT_QUOTES%">
+    <meta property="og:site_name" content="%globals_site_name^striphtml^escapehtml%">
 
     <script runat="server">
       // Run global functions in the <head> of the page
@@ -124,7 +124,7 @@
      <header class="container-fluid m-b-1 p-a-1 visible-print-block" id="printHeader">
        <div class="row">
          <div class="col-xs-5">
-           <img class="img-invert img-fluid" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^htmlentities:ENT_QUOTES%" alt="%globals_site_name^striphtml^htmlentities:ENT_QUOTES% logo">
+           <img class="img-invert img-fluid" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^escapehtml%" alt="%globals_site_name^striphtml^escapehtml% logo">
          </div>
          <div class="col-xs-4 col-xs-offset-3 text-xs-right">
            <div id="qrcode"></div>
@@ -179,15 +179,15 @@
             <tbody>
               <tr>
                 <th scope="row">Asset ID</th>
-                <td class="truncate" title="%globals_asset_name^htmlentities:ENT_QUOTES%"><code>%globals_asset_assetid%</code></td>
+                <td class="truncate" title="%globals_asset_name^escapehtml%"><code>%globals_asset_assetid%</code></td>
               </tr>
               <tr>
                 <th scope="row">Name</th>
-                <td class="truncate" title="%globals_asset_name^striphtml^htmlentities:ENT_QUOTES%">%globals_asset_name^striphtml^htmlentities:ENT_QUOTES%</td>
+                <td class="truncate" title="%globals_asset_name^striphtml^escapehtml%">%globals_asset_name^striphtml^escapehtml%</td>
               </tr>
               <tr>
                 <th scope="row">Short Name</th>
-                <td class="truncate" title="%globals_asset_short_name^striphtml^htmlentities:ENT_QUOTES%">%globals_asset_short_name^striphtml^htmlentities:ENT_QUOTES%</td>
+                <td class="truncate" title="%globals_asset_short_name^striphtml^escapehtml%">%globals_asset_short_name^striphtml^escapehtml%</td>
               </tr>
               <tr>
                 <th scope="row">Type</th>
@@ -302,15 +302,15 @@
               <tbody>
                 <tr>
                   <th scope="row">Frontend Asset</th>
-                  <td title="%frontend_asset_short_name^htmlentities:ENT_QUOTES%">%frontend_asset_assetid% (<img src="%frontend_asset_type_icon_url%" alt="%frontend_asset_type% type icon" title="%frontend_asset_type%"> %frontend_asset_type%)</td>
+                  <td title="%frontend_asset_short_name^escapehtml%">%frontend_asset_assetid% (<img src="%frontend_asset_type_icon_url%" alt="%frontend_asset_type% type icon" title="%frontend_asset_type%"> %frontend_asset_type%)</td>
                 </tr>
                 <tr>
                   <th scope="row">Design</th>
-                  <td class="truncate" title="%globals_asset_design_id%"><a class="text-inverse" href="%globals_asset_design_id^as_asset:asset_url%/_admin">%globals_asset_design_id^as_asset:asset_name^htmlentities:ENT_QUOTES%</a></td>
+                  <td class="truncate" title="%globals_asset_design_id%"><a class="text-inverse" href="%globals_asset_design_id^as_asset:asset_url%/_admin">%globals_asset_design_id^as_asset:asset_name^escapehtml%</a></td>
                 </tr>
                 <tr>
                   <th scope="row">Paint Layout</th>
-                <td class="truncate" title="%globals_asset_paint_layout_id%"><a class="text-inverse" href="%globals_asset_paint_layout_id^as_asset:asset_url%/_admin">%globals_asset_paint_layout_id^as_asset:asset_name^htmlentities:ENT_QUOTES%</a></td>
+                <td class="truncate" title="%globals_asset_paint_layout_id%"><a class="text-inverse" href="%globals_asset_paint_layout_id^as_asset:asset_url%/_admin">%globals_asset_paint_layout_id^as_asset:asset_name^escapehtml%</a></td>
                 </tr>
               </tbody>
             </table>
@@ -361,7 +361,7 @@
                   <span class="icon-support" aria-label="Help icon"></span> Help
                 </button>
                 <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="helpMenuLabel">
-                  <a class="dropdown-item" href="mailto:ithelpdesk@jcu.edu.au?subject=[CMS Content] %globals_user_name^htmlentities:ENT_QUOTES^htmlentities:ENT_QUOTES% has flagged '%globals_asset_short_name^htmlentities:ENT_QUOTES^htmlentities:ENT_QUOTES%'&amp;body=%globals_user_name^htmlentities:ENT_QUOTES^htmlentities:ENT_QUOTES% [%globals_user_attribute_username^htmlentities:ENT_QUOTES^htmlentities:ENT_QUOTES%] is flagging the content at:%0A %globals_asset_url^htmlentities:ENT_QUOTES% %0Afor attention.%0A%0AComments:%0A[please add info here about the issue you are experiencing]">
+                  <a class="dropdown-item" href="mailto:ithelpdesk@jcu.edu.au?subject=[CMS Content] %globals_user_name^escapehtml^escapehtml% has flagged '%globals_asset_short_name^escapehtml^escapehtml%'&amp;body=%globals_user_name^escapehtml^escapehtml% [%globals_user_attribute_username^escapehtml^escapehtml%] is flagging the content at:%0A %globals_asset_url^escapehtml% %0Afor attention.%0A%0AComments:%0A[please add info here about the issue you are experiencing]">
                     <span class="icon-flag" aria-label="Flag icon"></span> Flag this page
                   </a>
                   <a class="dropdown-item" href="https://www.jcu.edu.au/digital-marketing" target="_blank" title="Get help from a human" rel="noopener noreferrer">
@@ -402,7 +402,7 @@
         </button>
         %end_globals%
         <a class="navbar-brand page-scroll" href="%globals_site_url%">
-          <img class="brand-img img-fluid %globals_site_metadata_jcu.site.logo^as_asset:asset_file_type^prepend_if:img-%" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^htmlentities:ENT_QUOTES%" alt="%globals_site_name^striphtml^htmlentities:ENT_QUOTES% logo">
+          <img class="brand-img img-fluid %globals_site_metadata_jcu.site.logo^as_asset:asset_file_type^prepend_if:img-%" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^escapehtml%" alt="%globals_site_name^striphtml^escapehtml% logo">
         </a>
         %begin_globals_asset_contents:379674^with_get:root={globals_site_assetid}^json_decode^count^gt:0%
         <div class="collapse navbar-toggleable navbar-toggleable-md" id="mainNav">
@@ -499,7 +499,7 @@
     https://developers.google.com/maps/ @@-->
     <!--@@ This will automatically get enabled via SSJS inclusion @@-->
     <script runat="server">
-      var api_key = '%globals_site_metadata_jcu.maps.api_key^htmlentities:ENT_QUOTES%'
+      var api_key = '%globals_site_metadata_jcu.maps.api_key^escapehtml%'
       if (JCU.js.specified('google_maps')) {
         print('<script src="https://maps.googleapis.com/maps/api/js?key=' + api_key + '"></script' + '>')
       }

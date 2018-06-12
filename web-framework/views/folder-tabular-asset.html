@@ -3,13 +3,13 @@
   <td>%asset_assetid%</td>
 %end_globals%
   <td>
-    <a href="%asset_url%" title="%asset_name^striphtml^htmlentities:ENT_QUOTES%">
-      %asset_short_name^htmlentities:ENT_QUOTES%
+    <a href="%asset_url%" title="%asset_name^striphtml^escapehtml%">
+      %asset_short_name^escapehtml%
     </a>
   </td>
   <td><img src="%asset_type_icon_url%" alt="%asset_type% type icon" title="%asset_type%"> %asset_type%</td>
 %begin_globals_user_type_code^neq:public_user%
-  <td data-sort="%asset_created_by_last_name%, %asset_created_by_first_name^striphtml^htmlentities:ENT_QUOTES%"><abbr title="%asset_created_by_email^striphtml^htmlentities:ENT_QUOTES%">%asset_created_by_name^htmlentities:ENT_QUOTES%</abbr></td>
+  <td data-sort="%asset_created_by_last_name%, %asset_created_by_first_name^striphtml^escapehtml%"><abbr title="%asset_created_by_email^striphtml^escapehtml%">%asset_created_by_name^escapehtml%</abbr></td>
   <td data-sort="%asset_updated%"><abbr title="%asset_updated_readable%">%asset_updated_relative%</abbr></td>
   <td><span class="label small" style="color: #2d2d2d; background-color: %asset_status_colour%;">%asset_status_description%</span></td>
 %end_globals%

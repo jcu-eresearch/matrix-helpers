@@ -5,8 +5,8 @@
 
 <!--@@ Backwards compatibility in case Matrix breaks the above @@-->
 <script>
-  window.location = "%link_target_asset_url^empty:{link_url}^striphtml^htmlentities:ENT_QUOTES%"
+  window.location = "%link_target_asset_url^empty:{link_url}^striphtml^escapehtml%"
 </script>
 <div class="container jcu-content text-xs-center m-b-3 p-a-3">
-  <a class="btn btn-primary" href="%link_target_asset_url^empty:{link_url}^striphtml^htmlentities:ENT_QUOTES%" %link_relation^striphtml^htmlentities:ENT_QUOTES^prepend_if:rel="^append_if:"%>Continue to linked page</a>
+  <a class="btn btn-primary" href="%link_target_asset_url^empty:{link_url}^striphtml^escapehtml%" %link_relation^striphtml^escapehtml^prepend_if:rel="^append_if:"%>Continue to linked page</a>
 </div>

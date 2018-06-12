@@ -1,7 +1,7 @@
 <li class="media">
   <div class="media-body">
     <h4 class="media-heading">
-      <a href="%asset_url%" title="%asset_short_name^striphtml^htmlentities:ENT_QUOTES%"><img src="%asset_type_icon_url%" alt="%asset_type% type icon" title="%asset_type%"> %asset_name^htmlentities:ENT_QUOTES%</a>
+      <a href="%asset_url%" title="%asset_short_name^striphtml^escapehtml%"><img src="%asset_type_icon_url%" alt="%asset_type% type icon" title="%asset_type%"> %asset_name^escapehtml%</a>
     %begin_globals_user_type_code^neq:public_user%
       <span class="label small" style="color: #2d2d2d; background-color: %asset_status_colour%;">%asset_status_description%</span>
     %end_globals%
@@ -10,7 +10,7 @@
     <div class="text-muted">%globals_asset_metadata_jcu.features.byline%</div>
     %end_globals%
     %begin_globals_user_type_code^neq:public_user%
-    <p>By <abbr title="%asset_created_by_email^striphtml^htmlentities:ENT_QUOTES%">%asset_created_by_name^striphtml^htmlentities:ENT_QUOTES%</abbr>, last modified %asset_updated_readable%</p>
+    <p>By <abbr title="%asset_created_by_email^striphtml^escapehtml%">%asset_created_by_name^striphtml^escapehtml%</abbr>, last modified %asset_updated_readable%</p>
     %end_globals%
     <p>%asset_metadata_description%</p>
   </div>

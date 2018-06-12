@@ -15,16 +15,16 @@
  * https://github.com/jcu-eresearch/matrix-helpers/issues/74
 */
 print('<body class="' +
-  '%globals_asset_design_id^as_asset:asset_short_name^lowercase^css_safe^prepend:design-^htmlentities:ENT_QUOTES%' +
-  ' %globals_asset_paint_layout_id^as_asset:asset_short_name^lowercase^css_safe^prepend:layout-^htmlentities:ENT_QUOTES%' +
+  '%globals_asset_design_id^as_asset:asset_short_name^lowercase^css_safe^prepend:design-^escapehtml%' +
+  ' %globals_asset_paint_layout_id^as_asset:asset_short_name^lowercase^css_safe^prepend:layout-^escapehtml%' +
   ' %globals_asset_type_code^lowercase^css_safe^prepend:type-%' +
   ' theme-' + JCU.data.current_theme +
-  ' %globals_site_href^lowercase^css_safe^prepend:site-^htmlentities:ENT_QUOTES%' +
-  ' %globals_asset_linking_lineage^json_decode^index:1^as_asset:asset_href^lowercase^css_safe^prepend:section-^htmlentities:ENT_QUOTES%' +
-  ' %globals_site_metadata_jcu.features.body_class^htmlentities:ENT_QUOTES%' +
-  ' %globals_asset_metadata_jcu.features.body_class^htmlentities:ENT_QUOTES%' +
-  ' %globals_user_type_code^eq:public_user:user-anonymous:user-authenticated^htmlentities:ENT_QUOTES%' +
-  ' %globals_user_type_code^lowercase^css_safe^prepend:usertype-^htmlentities:ENT_QUOTES%' +
+  ' %globals_site_href^lowercase^css_safe^prepend:site-^escapehtml%' +
+  ' %globals_asset_linking_lineage^json_decode^index:1^as_asset:asset_href^lowercase^css_safe^prepend:section-^escapehtml%' +
+  ' %globals_site_metadata_jcu.features.body_class^escapehtml%' +
+  ' %globals_asset_metadata_jcu.features.body_class^escapehtml%' +
+  ' %globals_user_type_code^eq:public_user:user-anonymous:user-authenticated^escapehtml%' +
+  ' %globals_user_type_code^lowercase^css_safe^prepend:usertype-^escapehtml%' +
   ' ' + (JCU.data.current_animations ? 'animations-on' : 'animations-off') +
   '" id="page-top" role="document">')
 </script>
