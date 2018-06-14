@@ -1,0 +1,13 @@
+/*
+ * Special styling for Summary Card layouts in the Art of Academic Writing website
+ */
+ 
+ .summarycard-layout-column .row {
+  background-color : #E2F2F2;
+  padding: 1em;
+ }
+ 
+ .summarycard-tile,
+ .summarycard-tile .card-footer {
+   background-color : #34A1A1;
+ }
