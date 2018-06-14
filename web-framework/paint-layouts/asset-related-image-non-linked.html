@@ -1,0 +1,30 @@
+<!--@@
+Replace the #image_class# strings to add image classes to the result of this layout.
+The replace keyword transformation is useful for this.
+E.g:
+  %asset_metadata_template.picture.picture^as_asset:asset_contents_paint_616475^replace:#image_class#:img-fluid%
+  which adds the class `img-fluid` to the `img` tag.
+@@-->
+<script runat="server">
+  var name = '%asset_attribute_title^striphtml^escapehtml%' || '%asset_name^striphtml^escapehtml%'
+  var url = '%asset_url^escapehtml%'
+  var asset_type = '%asset_type_code%'
+  var file_type = '%asset_file_type%'
+  var thumbnail = %asset_thumbnail^notempty:true^empty:false%
+  var thumbnail_url = '%asset_thumbnail_url^escapehtml%'
+  var thumbnail_title = '%asset_thumbnail_title^striphtml^escapehtml%'
+  var thumbnail_alt = '%asset_thumbnail_alt^striphtml^escapehtml%'
+  var link_target = '%link_relation^contains:external:_blank:_self%'
+  var link_rel = '%link_relation^striphtml^escapehtml%'
+
+  // Protect against abuse of the window.opener API by new tabs/windows
+  if (link_target === '_blank') {
+    link_rel = 'noopener noreferrer ' + link_rel
+  }
+
+  if (asset_type === 'image' || asset_type === 'thumbnail' || file_type === 'svg') {
+    print('<img class="img-related #image_class#" src="' + url + '" alt="' + name + '">')
+  } else if (thumbnail) {
+    print('<img class="img-related #image_class#" src="' + thumbnail_url + '" title="' + thumbnail_title + '" alt="' + thumbnail_alt + '">')
+  }
+</script>

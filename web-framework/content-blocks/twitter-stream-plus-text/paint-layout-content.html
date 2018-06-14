@@ -1,6 +1,6 @@
 <!--@@ Container Block Opening Tag paint layout @@-->
 <script runat="server">
-  this.args = {content_block_class: 'cct-basic-text'}
+  this.args = {content_block_class: 'cct-twitter-stream-with-text'}
 </script>
 %asset_contents_paint_420277%
 <script runat="server">
@@ -34,9 +34,7 @@
   %asset_contents_paint_420212%
 
   <div class="row twtr twtr-pos-%asset_metadata_template.twitter.position%">
-
     <script runat="server">
-
       // get the size and position of the twitter column from metadata
       var twtrPos = "%asset_metadata_template.twitter.position%";
       var twtrSize = "%asset_metadata_template.twitter.size%";
@@ -67,20 +65,18 @@
 
       // print the div tag for the text column
       print('<div class="' + textCss + ' animated" data-animation="fadeInUp" data-delay="0">')
-
     </script>
 
       <!--@@ maybe they want show the twitter header @@-->
       %begin_asset_metadata_template.twitter.textheader.show^eq:show%
-        <p class="lead">
-          %begin_asset_metadata_template.twitter.tweetcount^eq:1%
-            Here is the latest tweet from
-          %else_asset%
-            Here are the latest tweets from
-          %end_asset%
-          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%"
-          >@%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>.
-        </p>
+      <p class="lead">
+        %begin_asset_metadata_template.twitter.tweetcount^eq:1%
+          Here is the latest tweet from
+        %else_asset%
+          Here are the latest tweets from
+        %end_asset%
+        <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^striphtml^escapehtml%">@%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^escapehtml%</a>.
+      </p>
       %end_asset%
 
       <!--@@ Contents paint layout @@-->
@@ -88,37 +84,30 @@
 
       <!--@@ maybe they want show the follow button @@-->
       %begin_asset_metadata_template.twitter.followbutton.show^eq:show%
-        <p class="hidden-sm-down"><!--@@ narrower button when columns are side-by-side @@-->
-          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%"
-            class="twitter-follow-button"
-            data-show-screen-name="false"
-            data-show-count="true"
-          >Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>
-        </p>
-        <p class="hidden-md-up"><!--@@ wide button when screen is narrow (coz columns are full-width) @@-->
-          <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%"
-            class="twitter-follow-button"
-            data-show-count="true"
-          >Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>
-        </p>
+      <p class="hidden-sm-down"><!--@@ narrower button when columns are side-by-side @@-->
+        <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^striphtml^escapehtml%"
+          class="twitter-follow-button"
+          data-show-screen-name="false"
+          data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^escapehtml%</a>
+      </p>
+      <p class="hidden-md-up"><!--@@ wide button when screen is narrow (coz columns are full-width) @@-->
+        <a href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^striphtml^escapehtml%"
+          class="twitter-follow-button"
+          data-show-count="true">Follow @%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^escapehtml%</a>
+      </p>
       %end_asset%
+    </div><!--@@ /textCss column @@-->
+  </div><!--@@ /.row.twtr @@-->
 
-    </div>
-
-
-    <script runat="server">
-      // print the div tag for the twitter feed column
-      print('<div class="' + twitterCss + ' animated" data-animation="%asset_metadata_template.twitter.position^eq:left:fadeInLeft:fadeInRight%"data-delay="250">')
-    </script>
-
-      <a class="twitter-timeline"
-        data-theme="light"
-        data-tweet-limit="%asset_metadata_template.twitter.tweetcount%"
-        data-chrome="noheader noborders noscrollbar transparent"
-        href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%"
-      >Tweets by %asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}%</a>
-
-    </div>
+  <script runat="server">
+    // print the div tag for the twitter feed column
+    print('<div class="' + twitterCss + ' animated" data-animation="%asset_metadata_template.twitter.position^eq:left:fadeInLeft:fadeInRight%" data-delay="250">')
+  </script>
+    <a class="twitter-timeline"
+      data-theme="light"
+      data-tweet-limit="%asset_metadata_template.twitter.tweetcount%"
+      data-chrome="noheader noborders noscrollbar transparent"
+      href="https://twitter.com/%asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^striphtml^escapehtml%">Tweets by %asset_metadata_template.twitter.account^empty:{globals_site_metadata_jcu.social.twitter}^escapehtml%</a>
   </div>
 
 <script runat="server">

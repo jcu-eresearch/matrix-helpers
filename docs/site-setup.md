@@ -71,7 +71,7 @@ before each action and release locks afterwards.</div>
 
 1. **Set your Site URL:** right-click on your site and go to `URLs`.
 
-   1. Enter the proposed URL for the site and tick `HTTPS-only`.
+   1. Enter the proposed URL for the site and tick `HTTPS`. Do not select `HTTP`.
 
    1. Click `Commit`.
 
@@ -83,7 +83,7 @@ before each action and release locks afterwards.</div>
       so we try and detect if these aren't available and alert the user on the
       frontend.  If these aren't present on the `Site`, you must add them;
       refer to an existing site to check best-practice setup.
-      
+
    1. Confirm `Asset Settings` > `Cascade` is **checked**. This is **critically**
       important to ensure content is configured correctly.
 
@@ -91,7 +91,7 @@ before each action and release locks afterwards.</div>
       is **critically** important to ensure the correct metadata schemas are applied
       to all future content in this site.  If you miss this point, you'll have to
       manually fix this later.
-      
+
    1. Confirm `Summary Card` > `Cascade` is **checked**. This is important to ensure content is configured correctly and the Summary Cards content container can be used within the site.
 
    1. Click `Commit`.
@@ -232,3 +232,45 @@ if you clone **any** content underneath a JCU Web Framework site (or really
 anywhere in Matrix) with a non-cascading schema, that schema will get copied
 onto cloned assets.  See more info at
 <https://github.com/jcu-eresearch/matrix-helpers/issues/102>.
+
+## Search indexing
+
+Firstly, public search indexing (such as Google and the like), is
+automatically handled once your site is public and linked to by other public
+pages.  You have the ability to control this indexing in Settings at either
+the site level or individual content level as well.
+
+JCU search indexing on the other hand is controlled by Funnelback
+(<https://jcu-funnelback01.squiz.net:8443/search/admin/index.cgi>). To login,
+you'll need an administrative account.
+
+Given the limitations of how FunnelBack works and how JCU's website search is
+configured, we have to manually take a list of Web Framework sites and put
+them into several different places within FunnelBack.  **This must be done
+every time a new site goes live and public if that site wants to be listed in
+JCU search results.** Sadly, there is currently no simple way of automating
+this process.
+
+1. Load the URL <https://www.jcu.edu.au/_web/search/index/> as a non-logged in
+   user (use a Private browser window if you're unsure).
+
+1. Within the Collection `jcu-web-framework-sites`, go to `Edit Collection
+   Settings`.
+
+   1. Add the list of URLs into `Start URL(s)` and `Include content
+      from`, replacing all domains listed.
+
+   1. Click `Save`.
+
+   1. Go to `Update` --> `Update this Collection` to reindex the sites.
+
+1. Within the Collection `jcua-web`, go to `Edit Collection Settings`.
+
+   1. Add the list of URLs into the `Exclude content from` field, overwriting
+      just the relevant section.  Take care not to remove other lines.  Ask if
+      you're unsure.
+
+   1. Click `Save`.
+
+   1. Go to `Update` --> `Update this Collection` to reindex the sites.
+

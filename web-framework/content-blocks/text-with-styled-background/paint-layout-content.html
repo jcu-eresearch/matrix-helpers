@@ -4,7 +4,7 @@
 </script>
 %asset_contents_paint_420277%
   <div class="jcu-bg--cover" style="
-    %asset_metadata_template.styled-bg.color^prepend_if:background-color\: ^append_if:;%
+    %asset_metadata_template.styled-bg.color^replace:;:^striphtml^escapehtml^prepend_if:background-color\: ^append_if:;%
     %asset_metadata_template.styled-bg.image^as_asset:asset_url^prepend_if:background-image\: url(^append_if:?v={asset_metadata_template.styled-bg.image^as_asset:asset_version});%
     %asset_metadata_template.styled-bg.attachment^prepend_if:background-attachment\: ^append_if:;%
     ">

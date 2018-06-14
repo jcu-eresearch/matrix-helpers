@@ -170,6 +170,9 @@
         <symbol id="border">
             <rect x="2" y="1" width="56" height="0.1" />
         </symbol>
+        <symbol id="todo">
+            <text x="2" y="20" dx="3,3,3,3" font-size="15" fill="orange">TODO</text>
+        </symbol>
     </defs>
 </svg>
 
@@ -507,6 +510,40 @@ arranged six across. This is an excellent layout for showing
 staff associated with your department or project. The
 ability to highlight the first item is also particularly 
 useful in this layout.
+
+
+### Twitter Stream plus Text
+
+<svg class="diag" viewBox="0 0 60 55">
+    <use xlink:href="#bg"></use>
+    <use xlink:href="#heading-and-sub"></use>
+    <use xlink:href="#text-sml" x="6" y="17"></use>
+    <use xlink:href="#text-sml" x="6" y="23"></use>
+    <use xlink:href="#btn" x="5" y="29"></use>
+    <use xlink:href="#border" y="53"></use>
+    <use xlink:href="#todo"></use>
+</svg>
+<svg class="diag" viewBox="0 0 60 24">
+    <use xlink:href="#bg"></use>
+    <use xlink:href="#text-med" x="25" y="7"></use>
+    <use xlink:href="#text-med" x="33" y="7"></use>
+    <use xlink:href="#pic-sml" x="6" y="6"></use>
+    <use xlink:href="#border" y="22"></use>
+    <use xlink:href="#todo"></use>
+</svg>
+
+This content block includes a [twitter](http://twitter.com/jcu) 
+stream in your page. Tweets are arranged to the left, right, 
+or below a text block, and a standard optional heading is 
+available.
+
+By default the text block includes some initial text naming 
+the account, and adds a twitter Follow button below, although 
+these items are optional.
+
+This content block can be used to feature content from an 
+interesting Twitter account, or to create a "News" page that 
+is fed via your organisation's Twitter activity.
 
 
 ### Contact info plus map

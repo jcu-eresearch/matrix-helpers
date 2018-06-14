@@ -36,7 +36,7 @@ var JCU = {
     homepage_theme: '%globals_site_index_id^as_asset:asset_metadata_jcu.features.theme%',
     site_id: '%globals_site_assetid%',
     site_theme: '%globals_site_metadata_jcu.features.theme%',
-    site_name: '%globals_site_name^escapequotes%'
+    site_name: '%globals_site_name^striphtml^escapehtml%'
   },
 
   // Hard-coded asset IDs, but just in one place
@@ -331,8 +331,17 @@ var JCU = {
       print('<!-- Resolved linked asset data with value: ' + JSON.stringify(result) + '-->')
     }
     return result
-  }
+  },
 
+  /**
+   * Unescape percent symbols to restore Matrix keyword functionality.
+   *
+   * @param {String} text or HTML input with HTML entity-encoded percent symbols.
+   * @returns {String} The unescaped value.
+   */
+  unescapeKeywords: function (str) {
+    return str.replace(/&percnt;/g, '%')
+  }
 }
 
 JCU.data.current_id = JCU.resolveCurrentAssetData({

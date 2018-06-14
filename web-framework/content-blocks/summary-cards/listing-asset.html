@@ -2,13 +2,13 @@
   // %asset_assetid%
 
   const siteId = %globals_site_assetid%
-  
+
   // get the summary card list settings
   var layout = {
-     flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair^escapequotes%",
+     flairText : "%nested_get_content_container^as_asset:asset_metadata_template.card.initial.flair^escapehtml%",
      cardLayout : "%nested_get_content_container^as_asset:asset_metadata_template.card.layout%",
-     buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text^escapequotes%",
-     linkTarget : "%nested_get_content_container^as_asset:asset_metadata_template.card.link.target^escapequotes%",
+     buttonText : "%nested_get_content_container^as_asset:asset_metadata_template.card.button.text^escapehtml%",
+     linkTarget : "%nested_get_content_container^as_asset:asset_metadata_template.card.link.target^striphtml^escapehtml%",
      gridCardsPerRow : "%nested_get_content_container^as_asset:asset_metadata_template.card.grid.columns%",
      isTileStyle : %nested_get_content_container^as_asset:asset_metadata_template.card.style^eq:tile:true:false%
   }
@@ -29,8 +29,8 @@
   //  get details about the current card / asset
   var card = {
     id : '%asset_assetid%',
-    name : '%asset_attribute_title^empty:{asset_name}^escapequotes%',
-    description: '%asset_metadata_jcu.summarycard.description^empty:{asset_attribute_summary}^escapequotes%',
+    name : '%asset_attribute_title^empty:{asset_name}^escapehtml%',
+    description: JCU.unescapeKeywords('%asset_metadata_jcu.summarycard.description^empty:{asset_attribute_summary}^replace:{globals_asset_name:650163}:&percnt;^escapequotes%'),
     position : '%asset_position%',
     assetType : '%asset_type_code%',
     fileType : '%asset_file_type%',
@@ -39,21 +39,21 @@
     imageTitle : '',
     imageAlt : '',
     hasThumbnail : %asset_thumbnail^notempty:true^empty:false%,
-    thumbnailTitle : '%asset_thumbnail_title^escapequotes%',
-    thumbnailAlt : '%asset_thumbnail_alt^escapequotes%',
+    thumbnailTitle : '%asset_thumbnail_title^striphtml^escapehtml%',
+    thumbnailAlt : '%asset_thumbnail_alt^striphtml^escapehtml%',
     thumbnailUrl : '%asset_thumbnail_url^escapequotes%',
     brighterImage : '%asset_metadata_item.feature-image%',   // special case for articles from the Brighter site
 //    imageUrl : '%asset_thumbnail_v_newsdetails_url^empty:{asset_thumbnail_url}^escapequotes%',
     assetUrl : '%asset_url^escapequotes%',
-    overrideUrl : '%asset_metadata_jcu.summarycard.override.url^escapequotes%',
-    linkUrl : '%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^escapequotes%',
+    overrideUrl : '%asset_metadata_jcu.summarycard.override.url^striphtml^escapehtml%',
+    linkUrl : '%asset_metadata_jcu.summarycard.override.url^empty:{asset_url}^striphtml^escapehtml%',
     disableLink : ('%asset_metadata_jcu.summarycard.disable.link%' == 'yes' ? true : false),
     linkingLineage : '%asset_linking_lineage^json_decode^index:0%',
-    buttonText : '%asset_metadata_jcu.summarycard.override.button.text^escapequotes%'
+    buttonText : '%asset_metadata_jcu.summarycard.override.button.text^escapehtml%'
   }
 
   var debugLinkingLineage = '%asset_linking_lineage^escapequotes%'
-  
+
   function setImageInfo() {
     // set the image related properties of the card global var
     // where the image comes from depends on the type of the asset
@@ -62,7 +62,7 @@
     if (JCU.debug) {
       print('<!-- card.assetType(' + card.assetType + ') -->')
     }
-    
+
     if (card.assetType === 'image' || card.assetType === 'thumbnail' || card.fileType === 'svg') {
       card.hasImage = true
       card.imageUrl = card.assetUrl
@@ -86,7 +86,7 @@
   function imageHtml(linkWrapper) {
     linkWrapper = linkWrapper || { prepend : '', append : '' }
     var imageHtml = ''
-    
+
     if (JCU.debug) {
       print('<!-- imageHtml - card.imageUrl(' + card.imageUrl + ') -->')
     }
@@ -105,7 +105,7 @@
     // if the linkTarget is set to "external" then cards that link to an external site must open in a new context, others open in default context
     // the default behaviour is for all cards to open in the default context
     linkClasses = linkClasses || ''
-    
+
     var targetAttribute = ' target="_self" rel="noopener noreferrer"'
 
     if (layout.linkTarget == "all" || layout.linkTarget == "external" && (card.linkingLineage != siteId || card.overrideUrl))
@@ -117,13 +117,13 @@
   function linkTagClose(isButton) {
     var iconHtml = ''
     isButton = isButton || false
-  
+
     if (layout.linkTarget == "all" || layout.linkTarget == "external" && (card.linkingLineage != siteId || card.overrideUrl)) {
       if (isButton) {
         iconHtml = '<small class="icon-opennewwindow m-l-1/4 hidden-print" title="Opens in new window"></small>'
       }
     }
-    
+
     return iconHtml + '</a>'
   }
 
@@ -162,7 +162,7 @@
 
     const addFlair = card.position == 1 && layout.flairText
     var styleAttributes = layout.isTileStyle ? 'summarycard-tile' : ''
-    
+
 
     if (addFlair)
       styleAttributes += ' summarycard-flair'
@@ -173,7 +173,7 @@
     if (addFlair)
       print('<div class="card-header card-info">' + layout.flairText + '</div>')
 
-    if (layout.isTileStyle) { 
+    if (layout.isTileStyle) {
       if (!card.disableLink) print(linkTagOpen())
       print('<div class="card-footer">' + card.name + '</div>')
       if (!card.disableLink) print(linkTagClose())
@@ -186,10 +186,10 @@
       if (!card.disableLink) {
         print(linkTagOpen("btn btn-secondary") + card.buttonText + linkTagClose(true))
       }
-      
+
       print('</div>')
     }
-    
+
     print('</div>')
 
     if (isFixedGrid && (card.position % layout.gridCardsPerRow == 0)) {
@@ -231,7 +231,7 @@
   /*
    *  Draw the card!
    */
-   
+
    if (JCU.debug) {
     print('<!-- About to render ' + layout.cardLayout + ' for Summary Cards -->')
     print('<!-- card.id(' + card.id + ') card.name(' + card.name + ') card.position(' + card.position + ') -->')
@@ -243,7 +243,7 @@
 
   setImageInfo()
   card.buttonText = card.buttonText ? card.buttonText : layout.buttonText;
-  
+
   if (JCU.debug) {
     print('<!-- card.brighterImage(' + card.brighterImage + ') -->')
   }

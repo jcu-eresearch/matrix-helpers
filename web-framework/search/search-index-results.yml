@@ -1,0 +1,12 @@
+asset_id: 651905
+type: asset_listing
+listing:
+  asset_types:
+    - Form
+    - Page
+    - Site
+  root_nodes: [364590]
+  link_types:
+    - type_1
+    - type_2
+

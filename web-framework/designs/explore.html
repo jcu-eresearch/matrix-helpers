@@ -6,7 +6,7 @@
 <MySource_AREA id_name="editplus_custom" design_area="nest_content" print="no" />
 <MySource_AREA id_name="editplus" design_area="editplus">
   <!--@@ Web Framework Core CSS @@-->
-  <link rel="stylesheet" href="https://cdn.web.jcu.io/1.0.0-beta.1/css/jcu.min.css" integrity="sha384-yvalFRKl+0g0tWrYJQwXPaf4oRFo9hOu7BssvfScVX9wdvvA+NjYtnAFm3sqP7LF" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jcu.edu.au/1.0.0-beta.1/css/jcu.min.css" integrity="sha384-yvalFRKl+0g0tWrYJQwXPaf4oRFo9hOu7BssvfScVX9wdvvA+NjYtnAFm3sqP7LF" crossorigin="anonymous">
 
   <!--@@ CSS from Design and custom CSS from Site metadata @@-->
   <link href="mysource_files/explore.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
 </MySource_AREA>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: http://ogp.me/ns#">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,11 +30,12 @@
     <!--@@ Tag Manager design area: dynamic Google Tag Manager configuration @@-->
     <MySource_AREA id_name="tag_manager" design_area="nest_content" />
 
+    <!--@@ SSJS setup and configuration @@-->
     <script runat="server" id="lodash.min.js" src="./?a=389796"></script>
     %begin_globals_asset_assetid^eq:{globals_site_not_found_id}%
     <script id="ssjs-config.js">
       // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/74
-      // by running all JS on the client; this needs to be inlined because
+      // by running all SSJS on the client; this needs to be inlined because
       // keywords aren't replaced in external files with SSJS is disabled (or borked
       // is it is here).
       %globals_asset_file_contents:391595%
@@ -69,7 +70,7 @@
     <MySource_AREA id_name="title" design_area="nest_content" />
 
     <!--@@ Web Framework Core CSS @@-->
-    <link rel="stylesheet" href="https://cdn.web.jcu.io/1.0.0-beta.1/css/jcu.min.css" integrity="sha384-yvalFRKl+0g0tWrYJQwXPaf4oRFo9hOu7BssvfScVX9wdvvA+NjYtnAFm3sqP7LF" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jcu.edu.au/1.0.0-beta.1/css/jcu.min.css" integrity="sha384-yvalFRKl+0g0tWrYJQwXPaf4oRFo9hOu7BssvfScVX9wdvvA+NjYtnAFm3sqP7LF" crossorigin="anonymous">
 
     <!--@@ 'Explore' template CSS, referenced by Matrix Design mysource syntax  @@-->
     <link href="mysource_files/explore.min.css" rel="stylesheet">
@@ -84,8 +85,22 @@
     <!--@@ Design area: Matrix boilerplate, see https://matrix-manuals.squiz.net/designs/chapters/head-design-area @@-->
     <MySource_AREA id_name="head" design_area="head" />
 
-    <!--@@ Design area: Matrix boilerplate, see https://matrix-manuals.squiz.net/designs/chapters/metadata-design-area @@-->
-    <MySource_AREA id_name="metadata" design_area="metadata" />
+    <!--@@ Meta tags from Matrix metadata @@-->
+    <!--@@ Cannot use the Metadata Design area as Matrix doesn't support colon characters @@-->
+    <!--@@ A secondary issue is that keyword replacements use the Site metadata on the homepage so we need to workaround that too @@-->
+    <script runat="server">
+      // 404 Pages don't run SSJS, see https://github.com/jcu-eresearch/matrix-helpers/issues/74
+      if (!JCU.data.is_404) {
+        // Display current asset's meta tags
+        print('%' + 'globals_asset_frontend_metadata:' + JCU.data.current_id + '^replace:_COLON_:\\:%')
+        if (JCU.data.is_homepage) {
+          // Override the og:title property because the last tag takes precedence
+          // This displays only the site name if a user shares the homepage
+          print('<meta property="og:title" content="' + JCU.data.site_name + '">')
+        }
+      }
+    </script>
+    <meta property="og:site_name" content="%globals_site_name^striphtml^escapehtml%">
 
     <script runat="server">
       // Run global functions in the <head> of the page
@@ -109,7 +124,7 @@
      <header class="container-fluid m-b-1 p-a-1 visible-print-block" id="printHeader">
        <div class="row">
          <div class="col-xs-5">
-           <img class="img-invert img-fluid" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name%" alt="%globals_site_name% logo">
+           <img class="img-invert img-fluid" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^escapehtml%" alt="%globals_site_name^striphtml^escapehtml% logo">
          </div>
          <div class="col-xs-4 col-xs-offset-3 text-xs-right">
            <div id="qrcode"></div>
@@ -164,19 +179,19 @@
             <tbody>
               <tr>
                 <th scope="row">Asset ID</th>
-                <td class="truncate" title="%globals_asset_name%"><code>%globals_asset_assetid%</code></td>
+                <td class="truncate" title="%globals_asset_name^escapehtml%"><code>%globals_asset_assetid%</code></td>
               </tr>
               <tr>
                 <th scope="row">Name</th>
-                <td class="truncate" title="%globals_asset_name%">%globals_asset_name%</td>
+                <td class="truncate" title="%globals_asset_name^striphtml^escapehtml%">%globals_asset_name^striphtml^escapehtml%</td>
               </tr>
               <tr>
                 <th scope="row">Short Name</th>
-                <td class="truncate" title="%globals_asset_short_name%">%globals_asset_short_name%</td>
+                <td class="truncate" title="%globals_asset_short_name^striphtml^escapehtml%">%globals_asset_short_name^striphtml^escapehtml%</td>
               </tr>
               <tr>
                 <th scope="row">Type</th>
-                <td>%asset_type_icon% %asset_type%</td>
+                <td><img src="%asset_type_icon_url%" alt="%asset_type% type icon" title="%asset_type%"> %asset_type%</td>
               </tr>
               <tr>
                 <th scope="row">Status</th>
@@ -223,12 +238,17 @@
               <span class="icon-cog" aria-label="Edit site icon"></span> Configure site settings
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_nocache' title="Show page without server caching">
-              <span class="icon-redo" aria-label="Disable cache icon"></span> Show without caching
-            </a>
-            <a class="dropdown-item" href='<MySource_PRINT id_name="__global__" var="asset_link" full_url="true" />/_recache' title="Regenerate server cache for this page">
-              <span class="icon-lightning2" aria-label="Refresh icon"></span> Regenerate server cache
-            </a>
+            <script runat="server">
+              var currentURL = JCU.data.is_homepage ? '%globals_site_url%' : '%globals_asset_url%'
+              print(' \
+                <a class="dropdown-item" href="' + currentURL + '/_nocache" title="Show page without server caching"> \
+                  <span class="icon-redo" aria-label="Disable cache icon"></span> Show without caching \
+                </a> \
+                <a class="dropdown-item" href="' + currentURL + '/_recache" title="Regenerate server cache for this page"> \
+                  <span class="icon-lightning2" aria-label="Refresh icon"></span> Regenerate server cache \
+                </a> \
+              ')
+            </script>
           </div>
         </div>
       </MySource_THEN>
@@ -247,7 +267,7 @@
           <span class="icon-switchoff" aria-label="Switch icon"></span> Disable Server-side JavaScript
         </a>
       </MySource_ELSE>
-    </MySource_AREA><!-- @@ /toolbar_admin_enable_disable_ssjs @@-->
+    </MySource_AREA><!--@@ /toolbar_admin_enable_disable_ssjs @@-->
     <MySource_AREA id_name="toolbar_admin" design_area="show_if" print="no">
       <MySource_SET name="condition" value="admin_access" />
       <MySource_THEN>
@@ -282,15 +302,15 @@
               <tbody>
                 <tr>
                   <th scope="row">Frontend Asset</th>
-                  <td title="%frontend_asset_short_name%">%frontend_asset_assetid% (%frontend_asset_type_icon% %frontend_asset_type%)</td>
+                  <td title="%frontend_asset_short_name^escapehtml%">%frontend_asset_assetid% (<img src="%frontend_asset_type_icon_url%" alt="%frontend_asset_type% type icon" title="%frontend_asset_type%"> %frontend_asset_type%)</td>
                 </tr>
                 <tr>
                   <th scope="row">Design</th>
-                  <td class="truncate" title="%globals_asset_design_id%"><a class="text-inverse" href="%globals_asset_design_id^as_asset:asset_url%/_admin">%globals_asset_design_id^as_asset:asset_name%</a></td>
+                  <td class="truncate" title="%globals_asset_design_id%"><a class="text-inverse" href="%globals_asset_design_id^as_asset:asset_url%/_admin">%globals_asset_design_id^as_asset:asset_name^escapehtml%</a></td>
                 </tr>
                 <tr>
                   <th scope="row">Paint Layout</th>
-                <td class="truncate" title="%globals_asset_paint_layout_id%"><a class="text-inverse" href="%globals_asset_paint_layout_id^as_asset:asset_url%/_admin">%globals_asset_paint_layout_id^as_asset:asset_name%</a></td>
+                <td class="truncate" title="%globals_asset_paint_layout_id%"><a class="text-inverse" href="%globals_asset_paint_layout_id^as_asset:asset_url%/_admin">%globals_asset_paint_layout_id^as_asset:asset_name^escapehtml%</a></td>
                 </tr>
               </tbody>
             </table>
@@ -341,7 +361,7 @@
                   <span class="icon-support" aria-label="Help icon"></span> Help
                 </button>
                 <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="helpMenuLabel">
-                  <a class="dropdown-item" href="mailto:ithelpdesk@jcu.edu.au?subject=[CMS Content] %globals_user_name% has flagged '%globals_asset_short_name%'&amp;body=%globals_user_name% [%globals_user_attribute_username%] is flagging the content at:%0A %globals_asset_url% %0Afor attention.%0A%0AComments:%0A[please add info here about the issue you are experiencing]">
+                  <a class="dropdown-item" href="mailto:ithelpdesk@jcu.edu.au?subject=[CMS Content] %globals_user_name^escapehtml^escapehtml% has flagged '%globals_asset_short_name^escapehtml^escapehtml%'&amp;body=%globals_user_name^escapehtml^escapehtml% [%globals_user_attribute_username^escapehtml^escapehtml%] is flagging the content at:%0A %globals_asset_url^escapehtml% %0Afor attention.%0A%0AComments:%0A[please add info here about the issue you are experiencing]">
                     <span class="icon-flag" aria-label="Flag icon"></span> Flag this page
                   </a>
                   <a class="dropdown-item" href="https://www.jcu.edu.au/digital-marketing" target="_blank" title="Get help from a human" rel="noopener noreferrer">
@@ -358,7 +378,7 @@
                 <div class="dropdown-menu dropdown-menu-top-right" aria-labelledby="userMenuLabel">
                   <div class="dropdown-header h6">Logged in as
                     <MySource_PRINT id_name="__global__" var="current_user" /><br>
-                    (%globals_user_type_icon% %globals_user_type%; ID: %globals_user_assetid%)
+                    (<img src="%globals_user_type_icon_url%" alt="%globals_user_type% type icon" title="%globals_user_type%"> %globals_user_type%; ID: %globals_user_assetid%)
                   </div>
                   <MySource_PRINT id_name="toolbar_user_admin" />
                   <a class="dropdown-item" href="%globals_site_url%?SQ_ACTION=logout" title="Logout of this system">
@@ -375,13 +395,18 @@
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top">
       <div class="container">
+        <!--@@ Only show navbar toggler and wrapper if there are nav items @@-->
+        %begin_globals_asset_contents:379674^with_get:root={globals_site_assetid}^json_decode^count^gt:0%
         <button class="navbar-toggler pull-xs-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle main navigation">
           &equiv;
         </button>
+        %end_globals%
         <a class="navbar-brand page-scroll" href="%globals_site_url%">
-          <img class="brand-img img-fluid %globals_site_metadata_jcu.site.logo^as_asset:asset_file_type^prepend_if:img-%" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name%" alt="%globals_site_name% logo">
+          <img class="brand-img img-fluid %globals_site_metadata_jcu.site.logo^as_asset:asset_file_type^prepend_if:img-%" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^escapehtml%" alt="%globals_site_name^striphtml^escapehtml% logo">
         </a>
+        %begin_globals_asset_contents:379674^with_get:root={globals_site_assetid}^json_decode^count^gt:0%
         <div class="collapse navbar-toggleable navbar-toggleable-md" id="mainNav">
+        %end_globals%
           <MySource_AREA id_name="main_navigation" design_area="menu_normal">
             <MySource_SET name="level" value="top"/>
             <MySource_SET name="settings.class.normal" value="" />
@@ -407,8 +432,10 @@
               </MySource_ASSET>
             </ul>
           </MySource_AREA>
-        </div>
-      </div>
+        %begin_globals_asset_contents:379674^with_get:root={globals_site_assetid}^json_decode^count^gt:0%
+        </div><!--@@ /.navbar-toggleable @@-->
+        %end_globals%
+      </div><!--@@ /.container @@-->
     </nav>
 
     <MySource_AREA id_name="header" design_area="nest_content" />
@@ -465,14 +492,14 @@
     <!--@@ Bootstrap Core JavaScript @@-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js" integrity="sha384-MWq1Lnqj72tmjGdOKuNBn3E0gj3vWfy/1EmR5TVL8d8nGvwgy32YkCpKpTUhwBVv" crossorigin="anonymous"></script>
     <!--@@ Cannot have CORS applied because external domains need access @@-->
-    <script src="https://cdn.web.jcu.io/1.0.0-beta.1/js/jcu.min.js" integrity="sha384-GXpe6UW5FXR+By2fTo2YeI+yVoY1QGkZdZpppWl3qboYFMqHL7zFEq+X6hRoB1gH" crossorigin="anonymous"></script>
+    <script src="https://cdn.jcu.edu.au/1.0.0-beta.1/js/jcu.min.js" integrity="sha384-GXpe6UW5FXR+By2fTo2YeI+yVoY1QGkZdZpppWl3qboYFMqHL7zFEq+X6hRoB1gH" crossorigin="anonymous"></script>
 
     <!--@@ Google Maps API - You must use your own API key to enable the map
     feature. More information on the Google Maps API can be found at
     https://developers.google.com/maps/ @@-->
     <!--@@ This will automatically get enabled via SSJS inclusion @@-->
     <script runat="server">
-      var api_key = '%globals_site_metadata_jcu.maps.api_key^escapequotes%'
+      var api_key = '%globals_site_metadata_jcu.maps.api_key^escapehtml%'
       if (JCU.js.specified('google_maps')) {
         print('<script src="https://maps.googleapis.com/maps/api/js?key=' + api_key + '"></script' + '>')
       }
