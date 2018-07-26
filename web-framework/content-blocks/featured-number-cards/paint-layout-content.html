@@ -26,7 +26,7 @@
       <div class="card-deck-wrapper">
         <div class="card-deck">
           <script runat="server">
-            function printFeaturedNumberCard(card_id, number, units, icon_class) {
+            var printFeaturedNumberCard = function(card_id, number, units, icon_class) {
               if (!(number || units)) {
                 return
               }
