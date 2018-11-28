@@ -1,0 +1,174 @@
+<!--@@ Stored design areas: custom CSS/JS via Site metadata @@-->
+<MySource_AREA id_name="site_custom_css" design_area="nest_content" print="no" />
+<MySource_AREA id_name="site_custom_js" design_area="nest_content" print="no" />
+
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no">
+
+    <!--@@ Tag Manager design area: dynamic Google Tag Manager configuration @@-->
+    <MySource_AREA id_name="tag_manager" design_area="nest_content" />
+
+    <!--@@ SSJS setup and configuration @@-->
+    <script runat="server" id="lodash.min.js" src="./?a=389796"></script>
+    %begin_globals_asset_assetid^eq:{globals_site_not_found_id}%
+    <script id="ssjs-config.js">
+      // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/74
+      // by running all SSJS on the client; this needs to be inlined because
+      // keywords aren't replaced in external files with SSJS is disabled (or borked
+      // is it is here).
+      %globals_asset_file_contents:391595%
+    </script>
+    %else_begin_globals_get^json_decode^array_key_exists:SQ_DISABLE_SERVER_JS%
+    <!-- SSJS is disabled; including inline so keyword replacement works -->
+    <script id="ssjs-config.js">
+      %globals_asset_file_contents:391595%
+    </script>
+    %else_globals%
+    <script runat="server" id="ssjs-config.js" src="./?a=391595"></script>
+    %end_globals%
+
+    <!--@@ Reload the page "logged in"; done early via JS so we can fast-forward the reload @@-->
+    <!--@@ Workaround for Squiz Edge serving only public content: https://github.com/jcu-eresearch/matrix-helpers/issues/20 @@-->
+    <script>
+      var current_user = "<MySource_PRINT id_name="__global__" var="current_user" default="" attr="name" escape="yes" />"
+      if (!window.location.pathname.match(/_(admin|edit|noproxycache|nocache|recache)/) &&
+         (current_user || document.cookie.search('jcuredirecturl=') >= 0)) {
+        var url = document.createElement('a')
+        url.href = window.location.href
+        url.pathname += url.pathname.endsWith('/') ? "_noproxycache" : "/_noproxycache"
+        window.location = url.href
+      }
+    </script>
+
+    <!--@@ Site icons @@-->
+    <MySource_AREA id_name="site_icons" design_area="nest_content" />
+
+    <!--@@ Site title; nested content due to "inconsisent asset" keyword bug @@-->
+    <!--@@ Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/9 @@-->
+    <MySource_AREA id_name="title" design_area="nest_content" />
+
+    <!--@@ Web Framework Core CSS @@-->
+    <link rel="stylesheet" href="https://cdn.jcu.edu.au/1.0.0-beta.1/css/jcu.min.css" integrity="sha384-yvalFRKl+0g0tWrYJQwXPaf4oRFo9hOu7BssvfScVX9wdvvA+NjYtnAFm3sqP7LF" crossorigin="anonymous">
+
+    <!--@@ 'Explore' template CSS, referenced by Matrix Design mysource syntax  @@-->
+    <link href="mysource_files/explore.min.css" rel="stylesheet">
+
+    <!--@@ 'Embed' styles and overrides for a few of the 'Explore' designs @@-->
+    <script runat="server">
+      JCU.data.current_theme = 'embed'
+    </script>
+    <style>
+      body {
+        background-color: transparent;
+      }
+      .content-block:first-of-type {
+        padding-top: 0;
+      }
+      .content-block:last-of-type {
+        padding-bottom: 0;
+      }
+      .jcu-content {
+        background-color: transparent;
+      }
+    </style>
+
+    <!--@@ Stored design area: custom CSS via Site metadata @@-->
+    <MySource_PRINT id_name="site_custom_css" />
+
+    <!--@@ Custom CSS, specified by the asset metadata;
+      nested content due to "inconsisent asset" keyword bug @@-->
+    <MySource_AREA id_name="site_landing_css" design_area="nest_content" />
+
+    <!--@@ Design area: Matrix boilerplate, see https://matrix-manuals.squiz.net/designs/chapters/head-design-area @@-->
+    <MySource_AREA id_name="head" design_area="head" />
+
+    <!--@@ Meta tags from Matrix metadata @@-->
+    <!--@@ Cannot use the Metadata Design area as Matrix doesn't support colon characters @@-->
+    <!--@@ A secondary issue is that keyword replacements use the Site metadata on the homepage so we need to workaround that too @@-->
+    <script runat="server">
+      // 404 Pages don't run SSJS, see https://github.com/jcu-eresearch/matrix-helpers/issues/74
+      if (!JCU.data.is_404) {
+        // Display current asset's meta tags
+        print('%' + 'globals_asset_frontend_metadata:' + JCU.data.current_id + '^replace:_COLON_:\\:%')
+        if (JCU.data.is_homepage) {
+          // Override the og:title property because the last tag takes precedence
+          // This displays only the site name if a user shares the homepage
+          print('<meta property="og:title" content="' + JCU.data.site_name + '">')
+        }
+      }
+    </script>
+    <meta property="og:site_name" content="%globals_site_name^striphtml^escapehtml%">
+
+    <script runat="server">
+      // Run global functions in the <head> of the page
+      JCU.runGlobalFunctions('JCU_head_')
+    </script>
+  </head>
+
+  <!--@@ Body opening tag; nested content due to "inconsisent asset" keyword bug @@-->
+  <MySource_AREA id_name="body_opening_tag" design_area="nest_content" />
+
+    <!--@@ Tag Manager Body design area: dynamic Google Tag Manager configuration for people with JS turned off @@-->
+    <MySource_AREA id_name="tag_manager_body" design_area="nest_content" />
+
+    <main id="main" role="main" aria-labelledby="page-title">
+      <MySource_AREA id_name="content" design_area="body" />
+    </main>
+
+    <!--@@ JavaScript resources @@-->
+    <!--@@ jQuery @@-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+    <!--@@ Bootstrap Core JavaScript @@-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js" integrity="sha384-MWq1Lnqj72tmjGdOKuNBn3E0gj3vWfy/1EmR5TVL8d8nGvwgy32YkCpKpTUhwBVv" crossorigin="anonymous"></script>
+    <!--@@ Cannot have CORS applied because external domains need access @@-->
+    <script src="https://cdn.jcu.edu.au/1.0.0-beta.1/js/jcu.min.js" integrity="sha384-GXpe6UW5FXR+By2fTo2YeI+yVoY1QGkZdZpppWl3qboYFMqHL7zFEq+X6hRoB1gH" crossorigin="anonymous"></script>
+
+    <!--@@ Google Maps API - You must use your own API key to enable the map
+    feature. More information on the Google Maps API can be found at
+    https://developers.google.com/maps/ @@-->
+    <!--@@ This will automatically get enabled via SSJS inclusion @@-->
+    <script runat="server">
+      var api_key = '%globals_site_metadata_jcu.maps.api_key^escapehtml%'
+      if (JCU.js.specified('google_maps')) {
+        print('<script src="https://maps.googleapis.com/maps/api/js?key=' + api_key + '"></script' + '>')
+      }
+    </script>
+
+    <!--@@ Twitter Widgets - set JCU.js.require('twitter_widgets')
+    when you include a twitter widget on the page @@-->
+    <script runat="server">
+      if (JCU.js.specified('twitter_widgets')) {
+        print('<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script' + '>')
+      }
+    </script>
+
+    <!--@@ 'Explore' template JS, referenced by Matrix Design mysource syntax  @@-->
+    <script src="mysource_files/explore.min.js"></script>
+
+    <!--@@ Stored design area: custom JS via Site metadata @@-->
+    <MySource_PRINT id_name="site_custom_js" />
+
+    <!--@@ Analytics design area: dynamic analytics configuration @@-->
+    <MySource_AREA id_name="analytics" design_area="nest_content" />
+
+    <!--@@ Workaround for Squiz Edge serving only public content: https://github.com/jcu-eresearch/matrix-helpers/issues/20 @@-->
+    <!--@@ Adjust all page links to avoid broken Edge proxy if *actually* logged in @@-->
+    <!--@@ Only rewrite links if not embedded inside Edit+ iframe @@-->
+    <MySource_AREA id_name="noproxycache_link_rewriting" design_area="show_if">
+      <MySource_SET name="condition" value="logged_in" />
+      <MySource_THEN>
+        %globals_asset_contents:424476%
+      </MySource_THEN>
+    </MySource_AREA>
+
+    <script runat="server">
+      JCU.runGlobalFunctions('JCU_body_')
+    </script>
+  </body>
+</html>
