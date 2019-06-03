@@ -2,16 +2,18 @@
 <footer class="p-y-2 bg-inverse text-inverse hidden-print">
 
   <div class="container">
-    <p class="pull-sm-left"><a class="text-inverse page-scroll" href="#page-top"><span class="icon-chevronup" aria-hidden="true"></span> Back to top</a>
+    <p class="pull-sm-left m-b-3"><a class="text-inverse page-scroll" href="#page-top"><span class="icon-chevronup" aria-hidden="true"></span> Back to top</a>
     </p>
 
+    %begin_globals_site_metadata_jcu.site.footer.show_logo%
     <p class="pull-sm-right m-b-2 text-xs-center text-sm-right">
       %begin_globals_server_HTTP_HOST^eq:www.jcu.edu.sg%
       <a class="text-inverse" href="https://www.jcu.edu.sg"><img class="jcu-footer__brand-img img-fluid center-block" src="./?a=605856" alt="JCU Singapore logo" /></a>
       %else_globals%
-      <a class="text-inverse" href="https://www.jcu.edu.au"><img class="jcu-footer__brand-img img-fluid center-block" src="./?a=281218:dist/images/jcua-logo-mono-reversed.svg" alt="James Cook University Australia logo" /></a>
+      <a class="text-inverse" href="https://www.jcu.edu.au"><img class="jcu-footer__brand-img img-fluid center-block" src="./?a=509467" alt="James Cook University Australia logo" /></a>
       %end_globals%
     </p>
+    %end_globals%
 
     <div class="clearfix hidden-xs-down">
     </div>
