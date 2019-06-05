@@ -67,6 +67,10 @@ a {
   font-size: 2rem;
 }
 
+.navbar-custom .navbar-brand {
+  white-space: nowrap;
+}
+
 .navbar-custom .navbar-brand:focus {
   color: #fff;
 }
@@ -102,7 +106,52 @@ a {
   position: static;
   top: auto;
   max-height: 3.5rem;
-  height : auto;  
+  height : auto;
+}
+
+.brand-site-logo {
+  display: inline-block;
+  margin-left: .75rem;
+  padding-left: .75rem;
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  border-left: 1px solid white;
+  border-left: 1px solid rgba(255,255,255,.4);
+  vertical-align: middle;
+}
+
+@media(min-width:992px) {
+  .brand-site-logo {
+    margin-left: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
+
+.brand-site-logo .brand-img {
+  margin-top: 0;
+  margin-bottom: 0;
+  max-height: 3.5rem;
+  position: inherit;
+}
+
+.brand-site-logo-text {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.2;
+  font-size: .9rem;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+@media(min-width:992px) {
+  .brand-site-logo-text {
+    font-size: 1.1rem;
+  }
+}
+
+a.brand-site-logo-text:hover,
+a.brand-site-logo-text:focus {
+  color: #fff;
 }
 
 .navbar-collapsed .navbar-nav .nav-link {
@@ -111,7 +160,7 @@ a {
 }
 
 /* All of this can be fixed with Flexbox in Boostrap v4.alpha6 */
-@media(max-width:991px) {
+@media(max-width:992px) {
   .navbar-toggleable-md .navbar-nav .nav-item {
     float: none;
     margin-top: .1rem;
@@ -711,7 +760,7 @@ nav.breadcrumb {
 
 /*
  * New style of card - tile
- * 
+ *
  * uses the card-footer for the asset title
  */
 .card-outline-secondary.summarycard-tile {

@@ -394,9 +394,21 @@
           &equiv;
         </button>
         %end_globals%
-        <a class="navbar-brand page-scroll" href="%globals_site_url%">
-          <img class="brand-img img-fluid %globals_site_metadata_jcu.site.logo^as_asset:asset_file_type^prepend_if:img-%" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^escapehtml%" alt="%globals_site_name^striphtml^escapehtml% logo">
-        </a>
+        <div class="navbar-brand page-scroll">
+          %begin_globals_site_metadata_jcu.site.logo_display^eq:site-logo%
+          <a href="%globals_site_url%"><img class="brand-img img-fluid %globals_site_metadata_jcu.site.logo^as_asset:asset_file_type^prepend_if:img-%" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^escapehtml%" alt="%globals_site_name^striphtml^escapehtml% logo"></a>
+          %else_globals%
+          <a href="https://www.jcu.edu.au"><img class="brand-img img-fluid img-svg" src="./?a=509467" title="James Cook University Australia" alt="James Cook University Australia logo"></a>
+          <div class="brand-site-logo">
+            %begin_globals_site_metadata_jcu.site.logo_display^eq:site-logo-jcua%
+            <a href="%globals_site_url%"><img class="brand-img img-fluid %globals_site_metadata_jcu.site.logo^as_asset:asset_file_type^prepend_if:img-%" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^escapehtml%" alt="%globals_site_name^striphtml^escapehtml% logo"></a>
+            %end_globals%
+            %begin_globals_site_metadata_jcu.site.logo_display^eq:site-logo-text-jcua%
+            <a class="brand-site-logo-text" href="%globals_site_url%">%globals_site_metadata_jcu.site.logo_text%</a>
+            %end_globals%
+          </div>
+          %end_globals%
+        </div>
         %begin_globals_asset_contents:379674^with_get:root={globals_site_assetid}^json_decode^count^gt:0%
         <div class="collapse navbar-toggleable navbar-toggleable-md" id="mainNav">
         %end_globals%
