@@ -120,6 +120,13 @@ a {
   vertical-align: middle;
 }
 
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .brand-site-logo {
+    position: absolute;
+    margin-top: 1rem;
+  }
+}
+
 @media(min-width:992px) {
   .brand-site-logo {
     margin-left: 1.5rem;
@@ -128,10 +135,10 @@ a {
 }
 
 .brand-site-logo .brand-img {
+  top: 0;
   margin-top: 0;
   margin-bottom: 0;
   max-height: 3.5rem;
-  position: inherit;
 }
 
 .brand-site-logo-text {
