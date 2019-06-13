@@ -75,6 +75,9 @@ yet) @@-->
     <!--@@ Web Framework Core CSS @@-->
     <link rel="stylesheet" href="https://cdn.jcu.edu.au/1.0.0-beta.1/css/jcu.min.css" integrity="sha384-yvalFRKl+0g0tWrYJQwXPaf4oRFo9hOu7BssvfScVX9wdvvA+NjYtnAFm3sqP7LF" crossorigin="anonymous">
 
+    <!--@@ Branding CSS - separated out from Explore CSS @@-->
+    <link rel="stylesheet" href="./?a=858134">
+
     <!--@@ Site icons @@-->
     <MySource_AREA id_name="site_icons" design_area="nest_content" />
 
@@ -131,12 +134,22 @@ yet) @@-->
         <div class="col-xs-12 col-md-10 col-md-offset-1 p-y-1 jcu-bg--black-75pc">
           <div class="container">
             <div class="row">
-              <div class="col-xs-6">
-                <a href="%globals_site_url%">
-                  <img class="img-fluid" src="%globals_site_metadata_jcu.site.logo^as_asset:asset_url^empty:./?a=281218\:dist/images/jcua-logo-mono-reversed.svg%" title="%globals_site_name^striphtml^escapehtml%" alt="James Cook University - %globals_site_name^striphtml^escapehtml% logo">
-                </a>
+              <div class="col-xs-9 navbar-brand">
+                %begin_globals_site_metadata_jcu.site.logo_display^eq:site-logo%
+                <a href="%globals_site_url%"><img class="img-fluid %globals_site_metadata_jcu.site.logo^as_asset:asset_file_type^prepend_if:img-%" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^escapehtml%" alt="%globals_site_name^striphtml^escapehtml% logo"></a>
+                %else_globals%
+                <a href="https://www.jcu.edu.au"><img class="brand-img img-fluid img-svg" src="./?a=509467" title="James Cook University Australia" alt="James Cook University Australia logo"></a>
+                <div class="brand-site-logo">
+                  %begin_globals_site_metadata_jcu.site.logo_display^eq:site-logo-jcua%
+                  <a href="%globals_site_url%"><img class="brand-img img-fluid %globals_site_metadata_jcu.site.logo^as_asset:asset_file_type^prepend_if:img-%" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^escapehtml%" alt="%globals_site_name^striphtml^escapehtml% logo"></a>
+                  %end_globals%
+                  %begin_globals_site_metadata_jcu.site.logo_display^eq:site-logo-text-jcua%
+                  <a class="brand-site-logo-text" href="%globals_site_url%">%globals_site_metadata_jcu.site.logo_text%</a>
+                  %end_globals%
+                </div>
+                %end_globals%
               </div>
-              <div class="col-xs-6 text-xs-right">
+              <div class="col-xs-3 text-xs-right">
                 <h1 class="jcu-header__page-title" id="page-title"><span class="sr-only">James Cook University - %globals_site_name^escapehtml% </span>Web Content</h1>
               </div>
             </div>
