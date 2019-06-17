@@ -75,6 +75,12 @@ a {
   color: #fff;
 }
 
+.navbar-custom .brand-img.img-svg,
+.navbar-custom .brand-img[src$=".svg"] {
+  -webkit-filter: drop-shadow(1px 1px 0px rgba(0,0,0,.5));
+          filter: drop-shadow(1px 1px 0px rgba(0,0,0,.5));
+}
+
 .navbar-custom.navbar-collapsed .brand-img {
   position: static;
   top: auto;

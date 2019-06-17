@@ -120,18 +120,30 @@
       </div>
     </a>
 
-     <!-- Print navigation -->
-     <header class="container-fluid m-b-1 p-a-1 visible-print-block" id="printHeader">
-       <div class="row">
-         <div class="col-xs-5">
-           <img class="img-invert img-fluid" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^escapehtml%" alt="%globals_site_name^striphtml^escapehtml% logo">
+    <!-- Print navigation -->
+    <header class="container-fluid m-b-1 p-a-1 visible-print-block print-header" id="printHeader">
+      <div class="row">
+        <div class="col-xs-10">
+         %begin_globals_site_metadata_jcu.site.logo_display^eq:site-logo%
+         <img class="brand-img img-fluid img-invert" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^escapehtml%" alt="%globals_site_name^striphtml^escapehtml% logo">
+         %else_globals%
+         <img class="brand-img img-fluid img-invert" src="./?a=509467" title="James Cook University Australia" alt="James Cook University Australia logo">
+         <div class="brand-site-logo">
+           %begin_globals_site_metadata_jcu.site.logo_display^eq:site-logo-jcua%
+           <img class="brand-img img-fluid img-invert" src="./?a=%globals_site_metadata_jcu.site.logo%" title="%globals_site_name^striphtml^escapehtml%" alt="%globals_site_name^striphtml^escapehtml% logo">
+           %end_globals%
+           %begin_globals_site_metadata_jcu.site.logo_display^eq:site-logo-text-jcua%
+           <span class="brand-site-logo-text">%globals_site_metadata_jcu.site.logo_text%</span>
+           %end_globals%
          </div>
-         <div class="col-xs-4 col-xs-offset-3 text-xs-right">
-           <div id="qrcode"></div>
-           Scan to visit this page
-         </div>
-       </div>
-     </header>
+         %end_globals%
+        </div>
+        <div class="col-xs-2 text-xs-right">
+          <div id="qrcode"></div>
+          Scan to visit<br>this page
+        </div>
+      </div>
+    </header>
 
     <!--@@ Page toolbar, only visible to authenticated users @@-->
     <MySource_AREA id_name="toolbar_view_editor_user" design_area="show_if" print="no">
