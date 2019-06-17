@@ -15,6 +15,8 @@ a {
 }
 
 .img-invert {
+  -webkit-filter: grayscale(100%) invert(100%);
+  filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='greyInvert'><feColorMatrix in='SourceGraphic' type='saturate' values='0' /><feComponentTransfer><feFuncR type='table' tableValues='1 0'/><feFuncG type='table' tableValues='1 0'/><feFuncB type='table' tableValues='1 0'/></feComponentTransfer></filter></svg>#greyInvert");
   filter: grayscale(100%) invert(100%);
 }
 
