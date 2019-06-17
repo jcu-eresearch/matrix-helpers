@@ -1,10 +1,4 @@
-.brand-img.img-svg,
-.brand-img[src$=".svg"] {
-  -webkit-filter: drop-shadow(1px 1px 0px rgba(0,0,0,.5));
-          filter: drop-shadow(1px 1px 0px rgba(0,0,0,.5));
-}
-
-.navbar-brand .brand-img {
+.brand-img {
   display: inline-block;
   max-height: 4rem;
   height : auto;
@@ -17,7 +11,7 @@
 }
 
 @media(min-width:992px) {
-  .navbar-brand .brand-img {
+  .brand-img {
     position: relative;
     top: -.6rem;
     max-height: 5rem;
@@ -31,9 +25,13 @@
   padding-left: .75rem;
   padding-top: .25rem;
   padding-bottom: .25rem;
-  border-left: 1px solid white;
+  border-left: 1px solid #fff;
   border-left: 1px solid rgba(255,255,255,.4);
   vertical-align: middle;
+}
+
+.print-header .brand-site-logo {
+  border-left-color: #000;
 }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -64,6 +62,10 @@
   font-size: .9rem;
   color: #fff;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.print-header .brand-site-logo-text {
+  color: #000;
 }
 
 @media(min-width:992px) {
