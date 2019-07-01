@@ -15,7 +15,7 @@
     var override_email = '%asset_metadata_template.contact.email^striphtml^escapehtml%'
     var email_subject = '%asset_metadata_template.contact.email_subject^rawurlencode%'
 
-    var email_address = site_email ? site_email : override_email
+    var email_address = override_email ? override_email : site_email
     email_subject = email_subject ? email_subject : 'JCU%20Website%20Enquiry'
 
     print('<li><span title="Email" class="icon-email2"></span> <a href="mailto:' + email_address + '?subject=' + email_subject + '">' + email_address + '</a></li>')
