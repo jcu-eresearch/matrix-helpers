@@ -9,11 +9,6 @@
     site_data: JCU.data.site_animations,
     default: false
   })
-
-/* We render the whole body tag with SSJS, which means that on 404 Pages, the JS
- * runs client side. This is a mega hack, waiting for install of
- * https://github.com/jcu-eresearch/matrix-helpers/issues/74
-*/
 print('<body class="' +
   '%globals_asset_design_id^as_asset:asset_short_name^lowercase^css_safe^prepend:design-^escapehtml%' +
   ' %globals_asset_paint_layout_id^as_asset:asset_short_name^lowercase^css_safe^prepend:layout-^escapehtml%' +

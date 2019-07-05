@@ -15,15 +15,7 @@
 
     <!--@@ SSJS setup and configuration @@-->
     <script runat="server" id="lodash.min.js" src="./?a=389796"></script>
-    %begin_globals_asset_assetid^eq:{globals_site_not_found_id}%
-    <script id="ssjs-config.js">
-      // Workaround for https://github.com/jcu-eresearch/matrix-helpers/issues/74
-      // by running all SSJS on the client; this needs to be inlined because
-      // keywords aren't replaced in external files with SSJS is disabled (or borked
-      // is it is here).
-      %globals_asset_file_contents:391595%
-    </script>
-    %else_begin_globals_get^json_decode^array_key_exists:SQ_DISABLE_SERVER_JS%
+    %begin_globals_get^json_decode^array_key_exists:SQ_DISABLE_SERVER_JS%
     <!-- SSJS is disabled; including inline so keyword replacement works -->
     <script id="ssjs-config.js">
       %globals_asset_file_contents:391595%
@@ -91,15 +83,12 @@
     <!--@@ Cannot use the Metadata Design area as Matrix doesn't support colon characters @@-->
     <!--@@ A secondary issue is that keyword replacements use the Site metadata on the homepage so we need to workaround that too @@-->
     <script runat="server">
-      // 404 Pages don't run SSJS, see https://github.com/jcu-eresearch/matrix-helpers/issues/74
-      if (!JCU.data.is_404) {
-        // Display current asset's meta tags
-        print('%' + 'globals_asset_frontend_metadata:' + JCU.data.current_id + '^replace:_COLON_:\\:%')
-        if (JCU.data.is_homepage) {
-          // Override the og:title property because the last tag takes precedence
-          // This displays only the site name if a user shares the homepage
-          print('<meta property="og:title" content="' + JCU.data.site_name + '">')
-        }
+      // Display current asset's meta tags
+      print('%' + 'globals_asset_frontend_metadata:' + JCU.data.current_id + '^replace:_COLON_:\\:%')
+      if (JCU.data.is_homepage) {
+        // Override the og:title property because the last tag takes precedence
+        // This displays only the site name if a user shares the homepage
+        print('<meta property="og:title" content="' + JCU.data.site_name + '">')
       }
     </script>
     <meta property="og:site_name" content="%globals_site_name^striphtml^escapehtml%">
