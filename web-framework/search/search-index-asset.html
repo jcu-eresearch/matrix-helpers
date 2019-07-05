@@ -1,5 +1,10 @@
 %begin_asset_metadata_robots^contains:noindex:1:0^eq:0%
   %begin_asset_metadata_jcu.site.search_enabled^neq:0%
-    <a href="%asset_url^escapehtml%">%asset_url^escapehtml%</a><br>
+    %begin_asset_metadata_jcu.site.custom_url%
+    <a href="%asset_metadata_jcu.site.custom_url^escapehtml%">%asset_metadata_jcu.site.custom_url^escapehtml%</a>
+    %else_asset%
+    <a href="%asset_url^escapehtml%">%asset_url^escapehtml%</a>
+    %end_asset%
+    <br>
   %end_asset%
 %end_asset%
