@@ -188,10 +188,10 @@ function _logout {
     --output "$tmpfile" \
     --write-out "%{http_code}" \
     --cookie "$cookie_jar_path")
-  is_public_user=$(grep -c '"user_is_public":"1"' "$tmpfile")
+  is_public_user=$(grep -c '"public_user"' "$tmpfile")
 
   if ! [ "$response_code" -eq 200 ] || [ "$is_public_user" -eq 0 ]; then
-    echo_error "Logout failed during authsession validation ($response_code)."
+    echo_error "Logout failed during authsession validation ($response_code).\n   You may wish to delete your cookie jar at $cookie_jar_path and start over."
     if [ "$debug" = true ]; then
       echo_error_reason "  Refer to request cookies in $cookie_jar_path."
     fi
@@ -471,6 +471,9 @@ function upload {
 
     # Backend administrator URL
     matrix_url="$BASE_URL/$BACKEND_SUFFIX/?SQ_BACKEND_PAGE=main&backend_section=am&am_section=edit_asset&assetid=$asset_id&asset_ei_screen=$screen_type"
+    if [ "$debug" = true ]; then
+      echo "$matrix_url"
+    fi
 
     # Create temporary file for HTTP request data storage
     tmpfile=$($GNUMKTEMP --tmpdir XXXXXXXXXXX.html)
@@ -496,7 +499,7 @@ function upload {
     # Test to ensure that the locks are ours
     if [ "$response_code" -eq 200 ]; then
       # Check for false 200s
-      if grep -q 'to release the locks you hold on' "$tmpfile"; then
+      if grep -q 'value="Release locks"' "$tmpfile"; then
         echo_success "Successfully acquired locks for asset $asset_id."
       else
         echo_error "Lock acquisition failed for asset $asset_id."
@@ -617,7 +620,7 @@ function upload {
       --form "sq_lock_type=$lock_type" > "$tmpfile"
 
     # Test to ensure that the locks were released
-    if grep -q 'button to lock' "$tmpfile"; then
+    if grep -q 'value="Acquire locks"' "$tmpfile"; then
       echo_success "Successfully released locks for asset $asset_id."
     else
       echo_success "Lock release failed for asset $asset_id."
