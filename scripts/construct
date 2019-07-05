@@ -109,8 +109,17 @@ function parse_subcommand_args {
   done
 }
 
-function _get_hipo_url_from_file {
-  grep -o '"http.*\?SQ_ACTION=hipo.*"' "$1" | cut -d \" -f 2
+
+function _get_hipo_url_from_html_file {
+  grep -o '"http.*\?SQ_ACTION=hipo.*"' "$1" | cut -d \" -f 2 | sed 's#\\##g'
+}
+
+function _get_hipo_url_from_json_file {
+  # As of Matrix 5.5, we can use "JSON"
+  # HIPO returns JSON when running and HTML when done so we need to handle both eventualities
+  jq \
+    --raw-input \
+    --raw-output 'fromjson? | .processUrl' "$1" | grep 'SQ_ACTION=hipo'
 }
 
 function _get_percentage_from_file {
@@ -120,37 +129,40 @@ function _get_percentage_from_file {
 function handle_hipo {
   # $1 is a human-readable description (eg "acquire locks")
   job_description="$1"
-  hipo_next_url=$(_get_hipo_url_from_file "$tmpfile")
+  hipo_next_url=$(_get_hipo_url_from_html_file "$tmpfile")
+
+  if [ "$debug" = true ]; then
+    echo "Next HIPO URL: $hipo_next_url"
+  fi
 
   # Only run HIPO if we're being asked to
   if [ "$hipo_next_url" ]; then
     local hipo_log_prefix="Running HIPO job to $job_description for asset $asset_id...   "
-    local progress="  0%"
+    echo_warning "$hipo_log_prefix"
 
-    echo_warning_inline "$hipo_log_prefix $progress"
-
+    # Repeat until we have no matching URL, aka "we're done"
+    # The Matrix admin UI just smashes the heck out of the HIPO job URL to ask
+    # if it's done.  Let's take the "blue pill" and sleep it off.  Get it?
     until [ -z "$hipo_next_url" ]; do
-      if [ "$debug" = true ]; then
-        echo
-        echo_warning_reason "HIPO job now loading $hipo_next_url"
-        echo_warning_inline "$hipo_log_prefix $progress"
-      fi
+      echo_warning_reason "Waiting for HIPO job to complete"
+      sleep 2
 
       # HIPO hits with POST, but GET seems to work fine
-      response_code=$(curl "$hipo_next_url" \
+      # As of Matrix 5.5, we can use "JSON"
+      if [ "$debug" = true ]; then
+        echo_warning_reason "HIPO job now loading $hipo_next_url"
+      fi
+      response_code=$(curl "$hipo_next_url&as_json" \
         --silent \
         --output "$tmpfile" \
         --write-out "%{http_code}" \
         --cookie "$cookie_jar_path")
 
       if [ "$response_code" -eq 200 ]; then
-        # Display progress percentage from HIPO
-        echo -en "\b\b\b\b\b"
-        progress=$(printf '%4s' "$(_get_percentage_from_file "$tmpfile")")
-        echo -n "$progress"
-
-        # Prepare next URL for being loaded
-        hipo_next_url=$(_get_hipo_url_from_file "$tmpfile")
+        # See if there is a further URL to be loaded
+        # If the next URL was actually a link to the admin HTML page, this will
+        # return null and break the loop
+        hipo_next_url=$(_get_hipo_url_from_json_file "$tmpfile")
       else
         echo_error "Execution of HIPO job failed for asset $asset_id. ($response_code)"
         cleanup "$tmpfile"
@@ -695,7 +707,7 @@ function install-deps {
       echo 'This script requires Homebrew. Install via https://brew.sh and come back.'
       exit 1
     else
-      cmd='brew install shyaml entr coreutils gnu-sed'
+      cmd='brew install shyaml entr coreutils gnu-sed jq'
       echo "We are about to run this: "
       echo "    $cmd"
       read -p "Are you sure? [Y/n] " -r
@@ -704,7 +716,7 @@ function install-deps {
       fi
     fi
   elif [ $_IS_DEBIAN ]; then
-      cmd='sudo apt-get install entr coreutils python-pip && sudo pip install shyaml'
+      cmd='sudo apt install entr coreutils python-pip jq && sudo pip install shyaml'
       echo "We are about to run this: "
       echo "    $cmd"
       read -p "Are you sure? [Y/n] " -r
@@ -713,7 +725,7 @@ function install-deps {
       fi
   else
     # shellcheck disable=SC2016
-    echo 'You need to install `shyaml`, `entr` and `coreutils` (realpath) using your package manager or other tools.'
+    echo 'You need to install `shyaml`, `entr`, `coreutils` (realpath) and `jq` using your package manager or other tools.'
   fi
 }
 
