@@ -60,7 +60,6 @@ EasyEditLocalise.translations.en = {
     "Styling": "Wrapper HTML",
     "Presentation": "Element",
     "CSS class": "CSS Classes (space separated)",
-    "You cannot delete divs in safe edit.": "You cannot delete Content Blocks in Safe Edit mode. You must Approve or Cancel Safe Edit first under the Details screen.",
     "Are you sure you want to delete this container?": "Are you sure you want to delete this Content Block? This action is permanent and cannot be undone.",
 
     // Linking pane

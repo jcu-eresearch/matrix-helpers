@@ -38,16 +38,19 @@
 1. Unminify this file using <http://unminify.com/> and store as `easyedit.css`
 1. Remove all reset rules from easyedit.css (usually up to the `.ir` selector)
    and including the `a, a:visited` selector.
-1. Remove all rules for `* .content_type_wysiwyg *` from `easyedit.css`,
+1. Remove all rules for `[something] .content_type_wysiwyg [something]` from `easyedit.css`,
    except for:
 
   * `.plus .content_type_wysiwyg .bodycopy_content`
   * `.plus .content_type_wysiwyg`
+  * Rules with `.sq-illegal-*` in them
 
-1. Remove all rules for `.plus .bodycopy_content *` from `easyedit.css`
+1. Remove all rules for `.plus .bodycopy_content [something]` from `easyedit.css`
 1. Append `/__data/ees/` to all URLs in the file.  For Vim users, try:
 
        %s#url(#url(/__data/ees/#g
+
+1. Save this file as `easyedit.patched.css` and upload to Matrix.
 
 1. Try Edit+ and confirm whether any additional fixes are required to
    integrate with the Web Framework.  These should be placed into
