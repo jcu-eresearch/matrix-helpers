@@ -289,7 +289,7 @@ body.previewMode {
 }
 
 /* Integrate buttons into Viper */
-.plus .btn {
+.plus .htmlarea-div .btn {
   -webkit-user-select: all;
      -moz-user-select: all;
       -ms-user-select: all;
@@ -379,6 +379,22 @@ body.previewMode {
   margin-bottom: 1rem;
 }
 
+/* Metadata heading description fix */
+/* See https://github.com/jcu-eresearch/matrix-helpers/issues/147 */
+.section-heading {
+  display: inline-block;
+  width: 20%;
+}
+.section-description {
+  display: inline-block;
+  width: 60%;
+  vertical-align: middle;
+  margin-left: 1em;
+  font-size: 80%;
+  font-weight: 600;
+  color: #666;
+}
+
 /* Metadata fixed-width uses content-box */
 .editSection .cellName,
 .editSection .cellData {
@@ -433,21 +449,21 @@ body.previewMode {
   color: #aaa;
   font-weight: 600;
 }
-
 .collapse-toggle,
 .collapse-toggle:hover,
 .collapse-toggle:focus {
   text-decoration: none;
 }
 .metadata .collapse-toggle {
-  padding-top: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background: #fafafa;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #dce3ec;
+  border-bottom: 1px solid #9dbce3;
 }
 .collapse-toggle [class^="sectionHeading_"]::after {
   content: "–";
   display: inline;
+  float: right;
   margin-left: 0.5rem;
   padding: 0.1em;
   color: #aaa;

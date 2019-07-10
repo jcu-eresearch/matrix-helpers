@@ -179,45 +179,52 @@ EasyEditAssetManager.designStyleClasses = function(asset, callback) {
 }
 
 /**
-  * JCU Web Framework JS: Edit+, meet Bootstrap's JavaScript.  Play nice.
+  * JCU Web Framework JS: generate wrapper init that can use custom jQuery
   */
-function initWebFrameworkComponents() {
-  // Collapsing metadata sections
-  $('.content_template_custom_layout .metadata [class^=schemaHeading_], #ees_editMetadata [class^=schemaHeading_]').each(function(schema_index) {
+function initWebFrameworkComponents($) {
+  return function() {
+    // After initial load of custom jQuery/Bootstrap load, restore the `jQuery` name
+    if (window.jQuery === window.jQuery214) {
+      window.jQuery.noConflict(true)
+    }
 
-    // Prepare the metadata section divs
-    $(this).nextUntil('[class^=schemaHeading]').filter('.editSection').addClass('collapse').each(function(section_index) {
+    // Collapsing metadata sections
+    $('.content_template_custom_layout .metadata [class^=schemaHeading_], #ees_editMetadata [class^=schemaHeading_]').each(function(schema_index) {
+
+      // Prepare the metadata section divs
+      $(this).nextUntil('[class^=schemaHeading]').filter('.editSection').addClass('collapse').each(function(section_index) {
         // Add identifier to the section for targetting
         var section_id = 'metadata_schema_' + schema_index + '_section_' + section_index
         $(this).attr('id', section_id)
         // Prepare and initialise the section heading
         $(this).prev().wrap('<a class="collapse-toggle collapsed" data-toggle="collapse" href="#' + section_id + '"></a>').parent().collapse()
+      })
+
+      // Add expand and collapse all buttons
+      $(this).append('<span class="pull-xs-right"><a class="collapse-toggle-expand" href="#">+ Expand all</a> <a class="collapse-toggle-collapse m-l-1" href="#">– Collapse all</a></span>')
     })
 
-    // Add expand and collapse all buttons
-    $(this).append('<span class="pull-xs-right"><a class="collapse-toggle-expand" href="#">+ Expand all</a> <a class="collapse-toggle-collapse m-l-1" href="#">– Collapse all</a></span>')
-  })
+    // Expand all metadata section headings
+    $('.collapse-toggle-expand').click(function() {
+      $(this).parent().parent().nextUntil('[class^=schemaHeading]').filter('.editSection').collapse('show')
+      return false
+    })
 
-  // Expand all metadata section headings
-  $('.collapse-toggle-expand').click(function() {
-    $(this).parent().parent().nextUntil('[class^=schemaHeading]').filter('.editSection').collapse('show')
-    return false
-  })
+    // Collapse all metadata section headings
+    $('.collapse-toggle-collapse').click(function() {
+      $(this).parent().parent().nextUntil('[class^=schemaHeading]').filter('.editSection').collapse('hide')
+      return false
+    })
 
-  // Collapse all metadata section headings
-  $('.collapse-toggle-collapse').click(function() {
-    $(this).parent().parent().nextUntil('[class^=schemaHeading]').filter('.editSection').collapse('hide')
-    return false
-  })
-
-  // Preview window lazy loading
-  $('.collapse-toggle-preview').click(function() {
-    var targetFrame = $($(this).attr('href')).find('iframe').first()
-    // Test if target frame exists and isn't already configured
-    if (targetFrame && !targetFrame.attr('src')) {
-      targetFrame.attr('src', targetFrame.attr('data-src'))
-    }
-  })
+    // Preview window lazy loading
+    $('.collapse-toggle-preview').click(function() {
+      var targetFrame = $($(this).attr('href')).find('iframe').first()
+      // Test if target frame exists and isn't already configured
+      if (targetFrame && !targetFrame.attr('src')) {
+        targetFrame.attr('src', targetFrame.attr('data-src'))
+      }
+    })
+  }
 }
 
 /**
@@ -228,13 +235,20 @@ EasyEdit.plugins.jcuWebFrameworkJS = {
   init: function () {
 
     EasyEditEventManager.bind("EasyEditAfterLoad", function () {
-      // Test for `collapse` from Bootstrap's JS
-      if (!$.fn.collapse) {
+      // Test for custom jQuery version and `collapse` function from Bootstrap's JS
+      // If these exist don't load the libraries again
+      if (!(window.jQuery214 && window.jQuery214.fn.collapse)) {
         $.getScript('https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js', function() {
-            $.getScript('https://cdn.jcu.edu.au/1.0.0-beta.1/js/jcu.min.js', initWebFrameworkComponents)
+          // JCU Bootstrap requires jQuery < v3, but we use whatever jQuery
+          // is available as `$` to get the specific version of jQuery
+          $.getScript('https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js', function() {
+            // Relinquish control of `$` ASAP
+            window.jQuery214 = window.jQuery.noConflict()
+            window.jQuery214.getScript('https://cdn.jcu.edu.au/1.0.0-beta.1/js/jcu.min.js', initWebFrameworkComponents(window.jQuery214))
 
             // Handle changes in screen (eg Content to Metadata)
-            EasyEditEventManager.bind("EasyEditScreenLoad", initWebFrameworkComponents)
+            EasyEditEventManager.bind("EasyEditScreenLoad", initWebFrameworkComponents(window.jQuery214))
+          })
         })
       }
     })
@@ -336,6 +350,20 @@ EasyEdit.plugins.addUserMenuButtons = {
 /**
 * Hotfix Plugin - Fixes various EasyEdit bugs and incomatibilities
 */
+EasyEdit.plugins.fixMetadataSectionHeadings = {
+  init: function() {
+    // Bug fix: Section headings combine heading + description in an incomprehensible mess
+    // in 5.5.3.0 (and above?). See https://github.com/jcu-eresearch/matrix-helpers/issues/147
+    EasyEditEventManager.bind("EasyEditScreenLoad", function () {
+      $('[class^=sectionHeading]').each(function(i, element) {
+        element.innerHTML = element.innerHTML.replace(
+          /(.*) \|\| (.*)/gm,
+          '<span class="section-heading">$1</span> <span class="section-description">$2</span>'
+        )
+      })
+    })
+  }
+}
 EasyEdit.plugins.fixImageEditorAspectRatio = {
   init: function() {
     EasyEditEventManager.bind("EasyEditBeforeLoad", function () {
@@ -440,15 +468,15 @@ EasyEdit.plugins.contentContainerTemplateWarning = {
 
 /**
   * Colour picker fields: add a helpful colour picker if the field description contains
-    any element matching `.tool.tool-colorpicker`
+    a link matching the structure of <a href="#tool-colorpicker"></a>
   */
 EasyEdit.plugins.colorPickerFields = {
   init: function () {
 
     EasyEditEventManager.bind("EasyEditScreenLoad", function () {
-      if ($('.sq-metadata-description > .tool.tool-colorpicker')) {
+      if ($('.sq-metadata-description > a[href="#tool-colorpicker"]')) {
         var initialiseColorPickers = function() {
-            $('.sq-metadata-description > .tool.tool-colorpicker').closest('.row').find('input[id*=metadata_field][type=text]').colorPicker({
+            $('.sq-metadata-description > a[href="#tool-colorpicker"]').closest('.row').find('input[id*=metadata_field][type=text]').colorPicker({
             // Plugin: shows input fields for rgb and hsv; changeable
             animationSpeed: 0,
             buildCallback: function($elm) {
@@ -525,7 +553,7 @@ EasyEdit.plugins.colorPickerFields = {
 
 /**
   * Icon picker fields: add a helpful icon autocompleter  if the field description contains
-    any element matching `.tool.tool-iconpicker`
+  * a link matching the structure of <a href="#tool-iconpicker"></a>
   *
   * Known issue: performance due to showing all rows
   *   See https://github.com/select2/select2/issues/813
@@ -538,14 +566,14 @@ EasyEdit.plugins.iconPickerFields = {
   init: function () {
 
     EasyEditEventManager.bind("EasyEditScreenLoad", function () {
-      if ($('.sq-metadata-description > .tool.tool-iconpicker')) {
+      if ($('.sq-metadata-description > a[href="#tool-iconpicker"]')) {
         var formatItem = function(data) {
           if (!data.id) { return data.text; }
           return $('<span><span class="' + data.id + '" aria-label=""></span> ' + data.text + '</span>')
         }
 
         var initialiseIconPickers = function(icon_data) {
-            $('.sq-metadata-description > .tool.tool-iconpicker')
+            $('.sq-metadata-description > a[href="#tool-iconpicker"]')
               .closest('.row')
               .find('input[id*=metadata_field][type=text]')
               .replaceWith(function() {
