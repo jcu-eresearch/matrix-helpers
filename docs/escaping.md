@@ -30,7 +30,7 @@ Strip/escape Matrix keyword syntax (critical when inputting data into SSJS):
       var slightlySaferValue = JCU.unescapeKeywords('%globals_something^replace:{globals_asset_name:650163}:&percnt;^escapequotes%')
       // This can still be hazardous on output if there were keywords in the underlying replacement value...
       print(slightySaferValue)
-    </script> 
+    </script>
 
 ## Gotchas
 
