@@ -39,6 +39,20 @@
     </script>
     %end_globals%
 
+    <!--@@ Reload the page "logged in"; done early via JS so we can fast-forward the reload @@-->
+    <!--@@ Workaround for Squiz Edge serving only public content: https://github.com/jcu-eresearch/matrix-helpers/issues/20 @@-->
+    <!--@@ Check if the page template is being rendered as logged in or if a marker cookie is set @@-->
+    <script>
+      var loggedIn = %globals_user_is_logged_in^eq:1:true:false%
+      if (!window.location.pathname.match(/_(admin|edit|noproxycache|nocache|recache)/) &&
+         (loggedIn || document.cookie.search('jcuredirecturl=') >= 0)) {
+        var url = document.createElement('a')
+        url.href = window.location.href
+        url.pathname += url.pathname.endsWith('/') ? "_noproxycache" : "/_noproxycache"
+        window.location = url.href
+      }
+    </script>
+
     <!--@@ Tag Manager design area: dynamic Google Tag Manager configuration @@-->
     <MySource_AREA id_name="tag_manager" design_area="nest_content" />
 
@@ -52,19 +66,6 @@
     %else_globals%
     <script runat="server" id="ssjs-config.js" src="./?a=391595"></script>
     %end_globals%
-
-    <!--@@ Reload the page "logged in"; done early via JS so we can fast-forward the reload @@-->
-    <!--@@ Workaround for Squiz Edge serving only public content: https://github.com/jcu-eresearch/matrix-helpers/issues/20 @@-->
-    <script>
-      var current_user = "<MySource_PRINT id_name="__global__" var="current_user" default="" attr="name" escape="yes" />"
-      if (!window.location.pathname.match(/_(admin|edit|noproxycache|nocache|recache)/) &&
-         (current_user || document.cookie.search('jcuredirecturl=') >= 0)) {
-        var url = document.createElement('a')
-        url.href = window.location.href
-        url.pathname += url.pathname.endsWith('/') ? "_noproxycache" : "/_noproxycache"
-        window.location = url.href
-      }
-    </script>
 
     <!--@@ Site icons @@-->
     <MySource_AREA id_name="site_icons" design_area="nest_content" />
