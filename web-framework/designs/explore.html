@@ -27,6 +27,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="format-detection" content="telephone=no">
 
+    <!--@@ Redirect to custom URLs -->
+    <!--@@ Must be done client side because of reverse proxy loads on www.jcu.edu.au domain @@-->
+    %begin_globals_site_metadata_jcu.site.custom_url%
+    <script>
+      var siteUrl = "%globals_site_url^striphtml^escapehtml%"
+      var siteCustomUrl = "%globals_site_metadata_jcu.site.custom_url^striphtml^escapehtml%"
+      if (window.location.href.search(siteCustomUrl) !== 0) {
+        window.location = window.location.href.replace(siteUrl, siteCustomUrl)
+      }
+    </script>
+    %end_globals%
+
     <!--@@ Tag Manager design area: dynamic Google Tag Manager configuration @@-->
     <MySource_AREA id_name="tag_manager" design_area="nest_content" />
 
