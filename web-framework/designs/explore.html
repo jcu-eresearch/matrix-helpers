@@ -123,7 +123,7 @@
     </a>
 
     <!-- Print navigation -->
-    <header class="container-fluid m-b-1 p-a-1 visible-print-block print-header" id="printHeader">
+    <header class="container-fluid m-b-1 p-a-1 visible-print-block print-header" id="printHeader" aria-label="Print header">
       <div class="row">
         <div class="col-xs-10">
          %begin_globals_site_metadata_jcu.site.logo_display^eq:site-logo%
@@ -400,7 +400,7 @@
     </MySource_AREA><!--@@ /page_tools @@-->
 
     <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top">
+    <nav class="navbar navbar-custom navbar-fixed-top" aria-label="Site navigation">
       <div class="container">
         <!--@@ Only show navbar toggler and wrapper if there are nav items @@-->
         %begin_globals_asset_contents:379674^with_get:root={globals_site_assetid}^json_decode^count^gt:0%

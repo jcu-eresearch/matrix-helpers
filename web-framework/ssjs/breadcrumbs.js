@@ -24,18 +24,22 @@ if (JCU.data.breadcrumbs_enabled) {
   if (lineage) {
     print(
       '<div class="container breadcrumb-wrapper ' + theme_css + '">' +
-      '  <nav class="breadcrumb jcu-bg--transparent">')
+      '  <nav aria-label="Breadcrumb">' +
+      '    <ol class="breadcrumb jcu-bg--transparent">'
+    )
     lineage.forEach(function(id) {
       if (id === JCU.data.site_id) {
-        print('<a class="breadcrumb-item text-muted" href="%globals_asset_url:' + id + '%" title="%globals_asset_short_name:' + id + '^striphtml%"><span class="icon-home" aria-hidden="true"></span><span class="sr-only">Go home to %globals_asset_short_name:' + id + '^striphtml%</span></a>')
+        print('<li class="breadcrumb-item"><a class="text-muted" href="%globals_asset_url:' + id + '%" title="%globals_asset_short_name:' + id + '^striphtml%"><span class="icon-home" aria-hidden="true"></span><span class="sr-only">Go home to %globals_asset_short_name:' + id + '^striphtml%</span></a></li>')
       } else if (id !== JCU.data.frontend_id) {
-        print('<a class="breadcrumb-item" href="%globals_asset_url:' + id + '%">%globals_asset_short_name:' + id + '^striphtml%</a>')
+        print('<li class="breadcrumb-item"><a href="%globals_asset_url:' + id + '%">%globals_asset_short_name:' + id + '^striphtml%</a></li>')
       } else {
-        print('<span class="breadcrumb-item active">%globals_asset_short_name:' + id + '^striphtml%</span>')
+        print('<li class="breadcrumb-item active" aria-current="page"><a class="text-muted" href="%globals_asset_url:' + id + '%">%globals_asset_short_name:' + id + '^striphtml%</span>')
       }
     })
     print(
+      '    </ol>' +
       '  </nav>' +
-      '</div>')
+      '</div>'
+    )
   }
 }
