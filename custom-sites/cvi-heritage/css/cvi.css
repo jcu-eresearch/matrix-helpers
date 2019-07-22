@@ -18,6 +18,10 @@
   overflow-x: auto;
 }
 
+#gallery .link-gallery-parent::-webkit-scrollbar {
+  display: none;
+}
+
 #gallery .link-gallery-parent .clearfix {
   display: none;
 }
