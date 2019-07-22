@@ -27,25 +27,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="format-detection" content="telephone=no">
 
+    <script>
+      var loggedInServerSide = %globals_user_is_logged_in^eq:1:true:false%
+      var isLoggedIn = loggedInServerSide || document.cookie.search('jcuredirecturl=') >= 0
+    </script>
+
     <!--@@ Redirect to custom URLs -->
     <!--@@ Must be done client side because of reverse proxy loads on www.jcu.edu.au domain @@-->
     %begin_globals_site_metadata_jcu.site.custom_url%
     <script>
       var siteUrl = "%globals_site_url^striphtml^escapehtml%"
       var siteCustomUrl = "%globals_site_metadata_jcu.site.custom_url^striphtml^escapehtml%"
-      if (window.location.href.search(siteCustomUrl) !== 0) {
+      if (!isLoggedIn && window.location.href.search(siteCustomUrl) !== 0) {
         window.location = window.location.href.replace(siteUrl, siteCustomUrl)
       }
     </script>
     %end_globals%
 
-    <!--@@ Reload the page "logged in"; done early via JS so we can fast-forward the reload @@-->
+    <!--@@ Reload the page if "logged in"; done early via JS so we can fast-forward the reload @@-->
     <!--@@ Workaround for Squiz Edge serving only public content: https://github.com/jcu-eresearch/matrix-helpers/issues/20 @@-->
     <!--@@ Check if the page template is being rendered as logged in or if a marker cookie is set @@-->
     <script>
-      var loggedIn = %globals_user_is_logged_in^eq:1:true:false%
-      if (!window.location.pathname.match(/_(admin|edit|noproxycache|nocache|recache)/) &&
-         (loggedIn || document.cookie.search('jcuredirecturl=') >= 0)) {
+      if (isLoggedIn && !window.location.pathname.match(/_(admin|edit|noproxycache|nocache|recache)/)) {
         var url = document.createElement('a')
         url.href = window.location.href
         url.pathname += url.pathname.endsWith('/') ? "_noproxycache" : "/_noproxycache"
