@@ -7,13 +7,18 @@
 </script>
 %asset_contents_paint_420277%
 
-
 <script runat="server">
-  if (JCU.data.current_theme === 'landing') {
-    print('<div class="row"><div class="col-xs-12 container">')
-  } else {
-    print('<div class="row"><div class="col-xs-12 col-md-10 col-md-offset-1 container">')
+  var content_block_content_class = '%asset_metadata_template.vizfx.width%'
+
+  if (!content_block_content_class) {
+    if (JCU.data.current_theme === 'landing') {
+      content_block_content_class = 'col-xs-12'
+    } else {
+      content_block_content_class = 'col-xs-12 col-md-10 col-md-offset-1'
+    }
   }
+
+  print('<div class="row"><div class="' + content_block_content_class + ' container">')
 </script><!--@@ that was the padding wrapper @@-->
 
   <!--@@
