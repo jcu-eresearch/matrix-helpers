@@ -1,0 +1,69 @@
+/* Full width on Homepage intro text */
+.intro-body .col-lg-8 {
+  width: 100%;
+}
+
+.intro-body {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Horizontal scrolling gallery
+/* Un-fix the width, hide clearfix and set width for cols */
+#gallery {
+  max-width: none !important;
+}
+
+#gallery .link-gallery-parent {
+  display: flex;
+  overflow-x: auto;
+}
+
+#gallery .link-gallery-parent .clearfix {
+  display: none;
+}
+
+#gallery .link-gallery-parent > div {
+  min-width: 250px;
+}
+
+@media (min-width:544px) {
+  #gallery .link-gallery-parent > div {
+    min-width: 300px;
+  }
+}
+
+/* Closer content to Gallery */
+#gallery .m-b-3 {
+  margin-bottom: .5rem !important;
+}
+
+/* Max size on images in Key Metrics & better fit */
+#key-metrics .card .img-fluid {
+  max-height: 8rem;
+  margin: 0 auto;
+}
+
+#key-metrics .card-block {
+  padding-top: 0;
+}
+
+#key-metrics .card-deck-wrapper.p-t-0 {
+  padding-top: 0 !important;
+}
+
+/* Vertical alignment of partners */
+#partners .link-gallery-parent .col-sm-3 {
+	display: table-cell;
+	vertical-align: middle;
+	float: none;
+}
+
+/* Table widths on Events page */
+.section-events #workshops th:nth-child(-n+2) {
+  width: 22.5%;
+}
+
+/* Button widths on Resources page */
+.site-cvi-heritage.section-resources .btn-block {
+  width: 12rem;
+}
