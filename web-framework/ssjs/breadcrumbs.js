@@ -33,7 +33,7 @@ if (JCU.data.breadcrumbs_enabled) {
       } else if (id !== JCU.data.frontend_id) {
         print('<li class="breadcrumb-item"><a href="%globals_asset_url:' + id + '%">%globals_asset_short_name:' + id + '^striphtml%</a></li>')
       } else {
-        print('<li class="breadcrumb-item active" aria-current="page"><a class="text-muted" href="%globals_asset_url:' + id + '%">%globals_asset_short_name:' + id + '^striphtml%</span>')
+        print('<li class="breadcrumb-item active" aria-current="page"><a class="text-muted" href="%globals_asset_url:' + id + '%">%globals_asset_short_name:' + id + '^striphtml%</a>')
       }
     })
     print(
