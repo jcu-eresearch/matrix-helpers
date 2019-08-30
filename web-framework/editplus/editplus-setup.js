@@ -244,7 +244,7 @@ EasyEdit.plugins.jcuWebFrameworkJS = {
           $.getScript('https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js', function() {
             // Relinquish control of `$` ASAP
             window.jQuery214 = window.jQuery.noConflict()
-            window.jQuery214.getScript('https://cdn.jcu.edu.au/1.0.0-beta.1/js/jcu.min.js', initWebFrameworkComponents(window.jQuery214))
+            window.jQuery214.getScript('https://cdn.jcu.edu.au/web-framework/1.0.0-beta.1/js/jcu.min.js', initWebFrameworkComponents(window.jQuery214))
 
             // Handle changes in screen (eg Content to Metadata)
             EasyEditEventManager.bind("EasyEditScreenLoad", initWebFrameworkComponents(window.jQuery214))
