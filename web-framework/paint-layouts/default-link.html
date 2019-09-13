@@ -4,9 +4,27 @@
 %globals_asset_contents_raw:423379^with_get:url={link_target_asset_url}%
 
 <!--@@ Backwards compatibility in case Matrix breaks the above @@-->
-<script>
-  window.location = "%link_target_asset_url^empty:{link_url}^striphtml^escapehtml%"
+<!--@@ This does appear broken in Matrix 5.5.3.0 @@-->
+<script runat="server">
+    var redirectLocation = "%link_target_asset_url^empty:{link_url}^striphtml^escapehtml%"
+    var linkRelation = "%link_relation^striphtml^escapehtml%"
+    if (redirectLocation) {
+        print('<script>window.location = "'+ redirectLocation + '"></script' + '>')
+        print('<div class="container jcu-content text-xs-center m-b-3 p-a-3">')
+        if (linkRelation) {
+          print('<a class="btn btn-primary" href="' + redirectLocation +'" rel="+ linkRelation +">Continue to linked page</a>')
+        } else {
+          print('<a class="btn btn-primary" href="' + redirectLocation +'">Continue to linked page</a>')
+        }
+        print('</div>')
+    } else {
+        print(' \
+        <div class="container jcu-content m-b-3 p-a-3"> \
+          <p>This content has no link or URL associated with it.</p> \
+          <p class="text-xs-center"> \
+            <a class="btn btn-primary" href="%globals_site_url%">Go to homepage</a> \
+          </p> \
+        </div> \
+        ')
+    }
 </script>
-<div class="container jcu-content text-xs-center m-b-3 p-a-3">
-  <a class="btn btn-primary" href="%link_target_asset_url^empty:{link_url}^striphtml^escapehtml%" %link_relation^striphtml^escapehtml^prepend_if:rel="^append_if:"%>Continue to linked page</a>
-</div>
