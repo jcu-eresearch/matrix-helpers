@@ -13,7 +13,7 @@
         %asset_contents_paint_420234%
       %end_asset%
 
-      <div class='video-stream-player-wrapper m-b-1 embed-responsive embed-responsive-%asset_metadata_template.videostream.aspectratio%'>
+      <div class='video-stream-player-wrapper embed-responsive embed-responsive-%asset_metadata_template.videostream.aspectratio%'>
         <div class='video-stream-player clearfix embed-responsive-item'
           style='height: 100%; width: 100%'
           data-vsp_source='%asset_metadata_template.videostream.source^escapehtml%'
@@ -87,7 +87,9 @@
 
       <!--@@ if they wanted the text content after.. @@-->
       %begin_asset_metadata_template.content.position^eq:after%
+        <div class="m-t-1">
         %asset_contents_paint_420234%
+        </div>
       %end_asset%
 
 
