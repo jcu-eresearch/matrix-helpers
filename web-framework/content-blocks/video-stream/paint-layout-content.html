@@ -8,12 +8,20 @@
       <!--@@ Title paint layout @@-->
       %asset_contents_paint_420212%
 
-      <!--@@ UNLESS they specifically wanted the text content AFTER.. @@-->
+      <!--@@ Display content above video unless set to show "after" @@-->
       %begin_asset_metadata_template.content.position^neq:after%
         %asset_contents_paint_420234%
       %end_asset%
 
-      <div class='video-stream-player-wrapper embed-responsive embed-responsive-%asset_metadata_template.videostream.aspectratio%'>
+      <!--@@ Display video stream unless set to never show via "alwaysoff" @@-->
+      %begin_asset_metadata_template.videostream.scheduled^neq:alwaysoff%
+      <div
+        class='video-stream-player-wrapper embed-responsive embed-responsive-%asset_metadata_template.videostream.aspectratio%'
+        %begin_asset_metadata_template.videostream.scheduled^eq:scheduled%
+        data-schedule-on='%asset_metadata_template.videostream.schedule.on%'
+        data-schedule-off='%asset_metadata_template.videostream.schedule.off%'
+        %end_asset%
+      >
         <div class='video-stream-player clearfix embed-responsive-item'
           style='height: 100%; width: 100%'
           data-vsp_source='%asset_metadata_template.videostream.source^escapehtml%'
@@ -51,47 +59,33 @@
       </div>
 
       <script runat="server">
-        // This runs at the end of the body, and:
-        //
-        // - searches for .video-stream-player divs
-        // - reads data- attributes of each div
-        // - invokes the Clappr video player on each div, using the `data-vsp_` attrs as settings
-        //
-        // This would have worked fine without the vsp_ bit, except that
-        // the Clappr player has some style rules for an internal element
-        // that is specified with [data-watermark]. That rule accidentally
-        // targets our parent div, so we have to add a prefix.
-        //
-        // Note that data attr names get auto-magically re-written to
-        // remove dashes and capitalise the letter following the dash.
+        // This runs at the end of the body set up video streams
         function JCU_body_empower_video_streams() {
           print('<script src="https://cdn.jsdelivr.net/npm/clappr@0/dist/clappr.min.js"></scrip' + 't>\n')
-          print('<script> \n \
-            $(".video-stream-player").each( function(index, item) { \n \
-              var config = { parent: item } \n \
-              $.each($(item).data(), function(name, value) { \n \
-                if (name.indexOf("vsp_") === 0) { \n \
-                  name = name.slice(4) \n \
-                } \n \
-                if (value === "true" || value === "false") { \n \
-                  value = !!(value === "true")\n \
-                } \n \
-                config[name] = value \n \
-              }) \n \
-              var player = new Clappr.Player(config) \n \
-            }) \n \
-            </scrip' + 't>')
+          print('<scr' + 'ipt src="%globals_asset_url:980352%?v=%globals_asset_version:980352%"></scr' + 'ipt>')
         }
       </script>
+      %end_asset%
 
+      <!--@@ Display YouTube video as per streaming schedule @@-->
+      %begin_asset_metadata_template.videostream.scheduled^neq:alwayson%
+      <div
+        class='video-stream-player-wrapper embed-responsive embed-responsive-%asset_metadata_template.videostream.aspectratio%'
+        %begin_asset_metadata_template.videostream.scheduled^eq:scheduled%
+        data-schedule-off='%asset_metadata_template.videostream.schedule.on%'
+        data-schedule-on='%asset_metadata_template.videostream.schedule.off%'
+        %end_asset%
+      >
+        <iframe class="embed-responsive-item" src="%asset_metadata_template.embed.url^striphtml^escapehtml%" allowfullscreen="true"></iframe>
+      </div>
+      %end_asset%
 
-      <!--@@ if they wanted the text content after.. @@-->
+      <!--@@ Display content below video when set to show "after" @@-->
       %begin_asset_metadata_template.content.position^eq:after%
         <div class="m-t-1">
         %asset_contents_paint_420234%
         </div>
       %end_asset%
-
 
       <!--@@ Buttons paint layout @@-->
       <script runat="server">
