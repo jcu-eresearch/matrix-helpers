@@ -35,13 +35,18 @@
     <!--@@ Redirect to custom URLs -->
     <!--@@ Must be done client side because of reverse proxy loads on www.jcu.edu.au domain @@-->
     %begin_globals_site_metadata_jcu.site.custom_url%
+    %begin_globals_asset_metadata_jcu.features.custom_url_redirect^empty:true^eq:true%
     <script>
       var siteUrl = "%globals_site_url^striphtml^escapehtml%"
       var siteCustomUrl = "%globals_site_metadata_jcu.site.custom_url^striphtml^escapehtml%"
+      // Redirect to custom URL when:
+      // * User isn't logged in; and
+      // * Site is accessed at a different-to-custom URL
       if (!isLoggedIn && window.location.href.search(siteCustomUrl) !== 0) {
         window.location = window.location.href.replace(siteUrl, siteCustomUrl)
       }
     </script>
+    %end_globals%
     %end_globals%
 
     <!--@@ Reload the page if "logged in"; done early via JS so we can fast-forward the reload @@-->
