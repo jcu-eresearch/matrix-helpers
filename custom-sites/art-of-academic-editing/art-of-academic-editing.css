@@ -1,0 +1,28 @@
+/*
+ * Special styling for Summary Card layouts in the Art of Academic Editing website
+ */
+
+ .summarycard-layout-column .row {
+  background-color : #E5F2E4;
+  padding: 1em;
+ }
+
+ .summarycard-tile,
+ .summarycard-tile .card-footer {
+   /* background-color : #004E00 */
+   background-color : #043303;
+ }
+
+ .summarycard-layout-column .summarycard-text h5 {
+   margin-top: 0rem;
+ }
+
+ .blockquote-footer {
+   color : white;
+ }
+
+ul.nobullet {
+    list-style-type: none;
+}
+
+
