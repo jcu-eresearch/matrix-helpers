@@ -51,9 +51,9 @@ This repository contains a variety of helpers and documentation to make life a
 little easier. Go exploring for now and eventually, there'll be a listing here
 of the key bits of info.
 
-You're welcome to use any or all of it. The licence is the Affero GPL 
-(see LICENCE.txt), which means that the system you're using it
-within needs to be compatibly licensed.
+You're welcome to use any or all of it. The licence is the Affero GPL (see
+LICENCE.txt), which means that the system you're using it within needs to be
+compatibly licensed.
 
 The current useful scripts are:
 
