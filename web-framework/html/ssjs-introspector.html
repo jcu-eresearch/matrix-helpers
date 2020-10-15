@@ -69,9 +69,42 @@
         return id !== 'S'
       },
 
-      testConst: function() {
-        const test = '<code>const</code> is available'
-        return test
+      tests: {
+        ['const']: () => {
+          try {
+            eval('const test = 1')
+            return true
+          } catch {
+            return false
+          }
+        },
+
+        ['let']: () => {
+          try {
+            eval('let test = 1')
+            return true
+          } catch {
+            return false
+          }
+        },
+
+        ['`template literals`']: () => {
+          try {
+            eval('var test = `hello world`')
+            return true
+          } catch {
+            return false
+          }
+        },
+
+        ['** operator']: () => {
+          try {
+            eval('10 ** 10')
+            return true
+          } catch {
+            return false
+          }
+        }
       }
     }
   </script>
@@ -82,12 +115,13 @@
     <div class="row">
       <div class="col-xs-12">
         <h1 id="introspector">SSJS Introspector</h1>
-        <p class="alert alert-warning">This page is dynamically populated with all available information about our SSJS environment (V8js is somewhere between ECMAScript 5.1 and 6). Any MDN links are provided for <em>convenience only</em> and no guarantees are given as to this JS environment's implementation. <strong>Test everything and assume nothing!</strong></p>
-        <h2 id="syntax">Syntax <small class="text-muted">(Manually tested as of 9 March 2017)</small></h2>
+        <p class="alert alert-warning">This page is dynamically populated with all available information about our SSJS environment (V8js is somewhere north of ECMAScript 2020 given that <code>String.prototype.matchAll</code> exists). Any MDN links are provided for <em>convenience only</em> and no guarantees are given as to this JS environment's implementation. You may wish to consult the <a href="https://kangax.github.io/compat-table/es2016plus/">ECMAScript compatibility table</a> to check which features exist and add tests if you're so inclined. <br><br><strong>Test everything and assume nothing!</strong></p>
+        <h2 id="syntax">Syntax <small class="text-muted">(Manually tested as of 15 October 2020)</small></h2>
         <ul>
-          <li><script runat="server">print(S.testConst())</script></li>
-          <li><code>let</code> is unavailable</li>
-          <li><code>`template literals`</code> are unavailable</li>
+          <script runat="server">
+            Object.entries(S.tests).forEach(
+              ([id, test]) => print(`<li><code>${id}</code> is ${test() ? 'available' : 'not available'} </li>`))
+          </script>
         </ul>
         <h2 id="globals">Globals</h2>
         <script runat="server">
